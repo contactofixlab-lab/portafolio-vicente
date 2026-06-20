@@ -1,0 +1,132 @@
+{
+  "proyectos": [
+    {
+      "id": 1,
+      "nombre": "Iencinas Analytics",
+      "descripcion": "Dashboard de BI para análisis de datos empresariales con reportes interactivos",
+      "longDescripcion": "Sistema completo de business intelligence con visualizaciones, reportes automáticos y análisis predictivos. Diseño moderno con framer-motion y glassmorphism.",
+      "carpeta": "Iencinas Proyectos/Iencinas Analitics",
+      "imagen": "📊",
+      "stack": ["React", "Python", "PostgreSQL", "Power BI", "Framer Motion", "Tailwind"],
+      "estado": "En Desarrollo",
+      "tags": ["analytics", "business", "dashboard"],
+      "imagenes": [],
+      "fases": [
+        "Diseño inicial",
+        "Desarrollo de dashboard",
+        "Integración de datos",
+        "Reportes automáticos"
+      ]
+    },
+    {
+      "id": 2,
+      "nombre": "Iencinas Bodega",
+      "descripcion": "Sistema de gestión de inventario y asignación de insumos para bodega",
+      "longDescripcion": "Aplicación de control de inventario con seguimiento de activos, historial de movimientos y reportes. Interfaz intuitiva para gestión eficiente.",
+      "carpeta": "Iencinas Proyectos/Iencinas Bodega",
+      "imagen": "📦",
+      "stack": ["React", "Node.js", "PostgreSQL", "Express", "Tailwind"],
+      "estado": "Terminado",
+      "tags": ["inventory", "business", "management"],
+      "imagenes": [],
+      "fases": [
+        "Prototipo",
+        "Desarrollo base de datos",
+        "Sistema de asignación",
+        "Reportes"
+      ]
+    },
+    {
+      "id": 3,
+      "nombre": "Boulevard Santa Rosa",
+      "descripcion": "Sitio web de proyecto inmobiliario con diseño moderno e interactivo",
+      "longDescripcion": "Página de marketing para proyecto inmobiliario con mapas interactivos, galería de renders optimizada y cotizaciones en línea. Deployed en Vercel.",
+      "carpeta": "Iencinas Proyectos/Pagina Web",
+      "imagen": "🏢",
+      "stack": ["React", "Tailwind", "Framer Motion", "Next.js", "Vercel"],
+      "estado": "En Desarrollo",
+      "tags": ["real-estate", "marketing", "design"],
+      "imagenes": [],
+      "fases": [
+        "Diseño",
+        "Desarrollo frontend",
+        "Galería de renders",
+        "Deploy"
+      ]
+    },
+    {
+      "id": 4,
+      "nombre": "Puertas del Sol",
+      "descripcion": "Sitio web de arquitectura y bienes raíces con galería de renders optimizada",
+      "longDescripcion": "Portafolio arquitectónico con galería de proyectos, descripciones detalladas y contacto directo. Diseño responsivo y optimizado.",
+      "carpeta": "Iencinas Proyectos/Pagina Web",
+      "imagen": "🏗️",
+      "stack": ["React", "Tailwind", "Framer Motion"],
+      "estado": "En Desarrollo",
+      "tags": ["design", "real-estate", "portfolio"],
+      "imagenes": [],
+      "fases": [
+        "Investigación",
+        "Diseño web",
+        "Desarrollo",
+        "Optimización"
+      ]
+    },
+    {
+      "id": 5,
+      "nombre": "PokeTask",
+      "descripcion": "App de tareas con gamificación usando Pokémon",
+      "longDescripcion": "Aplicación de gestión de tareas con sistema de gamificación. Incluye bot de Telegram, XP dinámico, dashboard con gráficos y progresión de personajes.",
+      "carpeta": "Proyectos Personales/App Tareas",
+      "imagen": "⚡",
+      "stack": ["React", "Node.js", "MongoDB", "Telegram Bot", "Chart.js"],
+      "estado": "En Desarrollo",
+      "tags": ["productivity", "gamification", "personal-project"],
+      "imagenes": [],
+      "fases": [
+        "Bot Telegram",
+        "Sistema XP",
+        "Dashboard gráficos",
+        "Sincronización"
+      ]
+    },
+    {
+      "id": 6,
+      "nombre": "Vortex",
+      "descripcion": "Sitio web de descargas con diseño glassmorphism cyberpunk",
+      "longDescripcion": "Plataforma de descargas de series, películas y anime. Diseño cyberpunk futurista con integración de múltiples servidores (OneDrive, GDrive, Mega).",
+      "carpeta": "Proyectos Personales/Vortex",
+      "imagen": "🌀",
+      "stack": ["React", "Node.js", "Glassmorphism", "Cyberpunk Design"],
+      "estado": "En Desarrollo",
+      "tags": ["downloads", "entertainment", "design"],
+      "imagenes": [],
+      "fases": [
+        "Diseño glassmorphism",
+        "Scraping de contenido",
+        "Integración servidores",
+        "Optimización"
+      ]
+    },
+    {
+      "id": 7,
+      "nombre": "Portafolio Vicente",
+      "descripcion": "Portafolio profesional personal con proyectos y experiencias",
+      "longDescripcion": "Sitio web profesional que muestra experiencia, proyectos, habilidades y vida personal. Carrusel de proyectos, sección masonry de fotos, integración de logos reales de tecnologías.",
+      "carpeta": "Proyectos Personales/portafolio Vicente",
+      "imagen": "👨‍💻",
+      "stack": ["React", "Vite", "Tailwind", "Framer Motion", "Vercel"],
+      "estado": "En Desarrollo",
+      "tags": ["portfolio", "personal", "showcase"],
+      "imagenes": [],
+      "fases": [
+        "Estructura base",
+        "Carrusel proyectos",
+        "Sección skills",
+        "Optimización"
+      ]
+    }
+  ],
+  "ultimaActualizacion": "2026-06-19",
+  "nota": "Archivo centralizado que sincroniza todos tus proyectos con el portafolio. Actualiza este archivo cuando termines o mejores un proyecto."
+}
