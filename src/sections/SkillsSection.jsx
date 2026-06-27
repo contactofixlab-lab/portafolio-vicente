@@ -57,6 +57,13 @@ export default function SkillsSection() {
     { name: 'Claude', image: '/claud logo.png' }
   ]
 
+  // Certificaciones
+  const certificates = [
+    { name: 'Excel Avanzado', image: '/Certificados/Excel Avanzado.jpg', issuer: 'Certificación Profesional', year: 2024 },
+    { name: 'Master Hardware', image: '/Certificados/Master Hardware.jpg', issuer: 'Certificación Técnica', year: 2024 },
+    { name: 'Alibaba Cloud', image: '/Certificados/alibaba.jpg', issuer: 'Alibaba Cloud', year: 2024 }
+  ]
+
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <motion.div
@@ -178,13 +185,67 @@ export default function SkillsSection() {
           </div>
         </motion.div>
 
-        {/* Certificaciones - Vacía */}
+        {/* Certificaciones */}
         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Certificaciones
-          </h3>
-          <div className="text-center py-12 bg-gray-50 rounded-xl border-2 border-dashed border-gray-300">
-            <p className="text-gray-500 text-lg">Próximamente</p>
+          <div className="space-y-8">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                Certificaciones & Credenciales
+              </h3>
+              <p className="text-gray-600">Certificados profesionales que validan mi experiencia</p>
+            </div>
+
+            {/* Certificates Grid */}
+            <div className="grid md:grid-cols-3 gap-8">
+              {certificates.map((cert, idx) => (
+                <motion.div
+                  key={cert.name}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05, y: -10 }}
+                  className="group cursor-pointer"
+                >
+                  <Card className="h-full flex flex-col overflow-hidden hover:shadow-2xl transition-all bg-white">
+                    {/* Certificate Image */}
+                    <div className="relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 h-64">
+                      <motion.img
+                        src={cert.image}
+                        alt={cert.name}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </div>
+
+                    {/* Certificate Info */}
+                    <div className="flex-1 flex flex-col justify-between p-6">
+                      <div>
+                        <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
+                          {cert.name}
+                        </h4>
+                        <p className="text-sm text-gray-600 mb-1">{cert.issuer}</p>
+                        <p className="text-xs text-gray-500">Año: {cert.year}</p>
+                      </div>
+
+                      {/* Badge */}
+                      <Badge variant="success" className="w-full text-center mt-4">
+                        ✓ Verificado
+                      </Badge>
+                    </div>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center pt-8 border-t border-gray-200"
+            >
+              <p className="text-gray-600 mb-4">
+                Tengo otros certificados en proceso de validación y actualización
+              </p>
+            </motion.div>
           </div>
         </motion.div>
       </motion.div>
