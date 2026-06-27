@@ -31,11 +31,6 @@ export default function LifeSection() {
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900">
               Más allá del código
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Soy del norte de Chile y actualmente vivo en Montevideo, Uruguay.
-              Mi vida está equilibrada entre la pasión por la tecnología y
-              disfrutar de experiencias significativas con familia y amigos.
-            </p>
           </motion.div>
 
           {/* Descripción detallada */}
