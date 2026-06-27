@@ -2,7 +2,6 @@ import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import SkillImage from '../components/ui/SkillImage'
-import CertificateCard from '../components/CertificateCard'
 
 export default function SkillsSection() {
   const containerVariants = {
@@ -56,50 +55,6 @@ export default function SkillsSection() {
     { name: 'Google Adsense', image: '/google adsense logo.jpg' },
     { name: 'Bizagi', image: '/bizagi modeler.png' },
     { name: 'Claude', image: '/claud logo.png' }
-  ]
-
-  // Certificaciones
-  const certificates = [
-    {
-      name: 'Excel Avanzado',
-      image: '/Certificados/Excel Avanzado.jpg',
-      logo: '/Certificados/Excel avanzado imagen portada.jpg',
-      issuer: 'Microsoft Office Specialist',
-      description: 'Dominio avanzado de Excel y análisis de datos',
-      year: 2024
-    },
-    {
-      name: 'Master Hardware & Reparación',
-      image: '/Certificados/Master Hardware.jpg',
-      logo: '/Certificados/hardware reparacion portada.jfif',
-      issuer: 'Certificación Técnica',
-      description: 'Especialización en hardware, mantenimiento y reparación de equipos',
-      year: 2024
-    },
-    {
-      name: 'Power BI',
-      image: '/Certificados/Power bi.jpg',
-      logo: '/Certificados/power bi portada.jpg',
-      issuer: 'Microsoft Business Intelligence',
-      description: 'Análisis avanzado de datos y visualización con Power BI',
-      year: 2024
-    },
-    {
-      name: 'Project Management',
-      image: '/Certificados/Proyect Management-Gestion de Proyectos.jpg',
-      logo: '/Certificados/gestion proyectos portada.jfif',
-      issuer: 'Gestión de Proyectos Profesional',
-      description: 'Certificación en metodologías y gestión de proyectos',
-      year: 2024
-    },
-    {
-      name: 'Importación en Alibaba',
-      image: '/Certificados/alibaba.jpg',
-      logo: '/Certificados/importacion alibaba portada.webp',
-      issuer: 'Alibaba International',
-      description: 'Especialización en procesos de importación y comercio electrónico',
-      year: 2024
-    }
   ]
 
   return (
@@ -223,53 +178,6 @@ export default function SkillsSection() {
           </div>
         </motion.div>
 
-        {/* Certificaciones */}
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <div className="space-y-8">
-            <div className="text-center">
-              <h3 className="text-3xl font-bold text-gray-900 mb-3">
-                🏆 Certificaciones & Credenciales
-              </h3>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Certificados profesionales reconocidos que validan mi expertise en diferentes áreas
-              </p>
-            </div>
-
-            {/* Certificates Grid */}
-            <div className="grid md:grid-cols-3 gap-8">
-              {certificates.map((cert) => (
-                <motion.div key={cert.name} variants={itemVariants}>
-                  <CertificateCard certificate={cert} />
-                </motion.div>
-              ))}
-            </div>
-
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="grid md:grid-cols-4 gap-6 pt-8 border-t border-gray-200"
-            >
-              {[
-                { icon: '📚', label: 'Certificados', value: certificates.length },
-                { icon: '🎯', label: 'Validados', value: '100%' },
-                { icon: '⭐', label: 'Vigentes', value: 'Sí' },
-                { icon: '🏆', label: 'Especializaciones', value: '5' }
-              ].map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  whileHover={{ scale: 1.05 }}
-                  className="text-center p-4 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg"
-                >
-                  <p className="text-3xl mb-2">{stat.icon}</p>
-                  <p className="text-sm text-gray-600">{stat.label}</p>
-                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </motion.div>
       </motion.div>
     </section>
   )

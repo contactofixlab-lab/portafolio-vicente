@@ -4,6 +4,7 @@ import LifeSection from '../sections/LifeSection'
 import ProjectsCanvas from '../sections/ProjectsCanvas'
 import ExperienceSection from '../sections/ExperienceSection'
 import SkillsSection from '../sections/SkillsSection'
+import CertificatesCanvas from '../sections/CertificatesCanvas'
 import ContactSection from '../sections/ContactSection'
 
 export default function Home() {
@@ -19,6 +20,9 @@ export default function Home() {
           <ExperienceSection />
         </div>
         <SkillsSection />
+        <div className="bg-gray-50">
+          <CertificatesCanvas />
+        </div>
         <div className="bg-primary-50">
           <ContactSection />
         </div>
