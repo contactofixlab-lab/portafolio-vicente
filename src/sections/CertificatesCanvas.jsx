@@ -51,8 +51,9 @@ export default function CertificatesCanvas() {
     }
   ]
 
-  const cardWidth = 320 // width + gap
-  const maxPosition = -(certificates.length - 1) * cardWidth
+  const cardWidth = 360 // ancho de cada tarjeta + gap
+  const visibleCards = 3 // mostrar 3 a la vez
+  const maxPosition = -(certificates.length - visibleCards) * cardWidth
 
   const handleDragStart = (e) => {
     setDragStart(e.clientX)
@@ -124,7 +125,7 @@ export default function CertificatesCanvas() {
             {certificates.map((cert, idx) => (
               <motion.div
                 key={cert.name}
-                className="flex-shrink-0 w-80"
+                className="flex-shrink-0 w-96"
               >
                 <CertificateCard certificate={cert} />
               </motion.div>
@@ -137,7 +138,7 @@ export default function CertificatesCanvas() {
           {/* Stats */}
           <div className="text-sm text-gray-600">
             <span className="font-bold text-gray-900">
-              {Math.abs(position / cardWidth) + 1} / {certificates.length}
+              {Math.abs(Math.round(position / cardWidth)) + 1} - {Math.min(Math.abs(Math.round(position / cardWidth)) + visibleCards, certificates.length)} de {certificates.length}
             </span>
             {' '}certificados
           </div>
