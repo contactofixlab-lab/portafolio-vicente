@@ -1,12 +1,10 @@
 import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import CertificateCard from '../components/CertificateCard'
 
 export default function CertificatesCanvas() {
-  const [position, setPosition] = useState(0)
-  const containerRef = useRef(null)
-  const [dragStart, setDragStart] = useState(null)
+  const [currentIndex, setCurrentIndex] = useState(0)
 
   const certificates = [
     {
@@ -51,40 +49,20 @@ export default function CertificatesCanvas() {
     }
   ]
 
-  const cardWidth = 360 // ancho de cada tarjeta + gap
-  const visibleCards = 3 // mostrar 3 a la vez
-  const maxPosition = -(certificates.length - visibleCards) * cardWidth
+  const itemsPerView = 3
+  const maxIndex = Math.max(0, certificates.length - itemsPerView)
 
-  const handleDragStart = (e) => {
-    setDragStart(e.clientX)
+  const goNext = () => {
+    setCurrentIndex(Math.min(currentIndex + 1, maxIndex))
   }
 
-  const handleDragEnd = (e) => {
-    if (!dragStart) return
-    const dragDistance = e.clientX - dragStart
-
-    if (Math.abs(dragDistance) > 50) {
-      if (dragDistance > 0) {
-        // Dragged right - show previous
-        setPosition(Math.min(position + cardWidth, 0))
-      } else {
-        // Dragged left - show next
-        setPosition(Math.max(position - cardWidth, maxPosition))
-      }
-    }
-    setDragStart(null)
+  const goPrev = () => {
+    setCurrentIndex(Math.max(currentIndex - 1, 0))
   }
 
-  const navigate = (direction) => {
-    if (direction === 'left') {
-      setPosition(Math.max(position - cardWidth, maxPosition))
-    } else {
-      setPosition(Math.min(position + cardWidth, 0))
-    }
-  }
-
-  const isAtStart = position === 0
-  const isAtEnd = position === maxPosition
+  const visibleCertificates = certificates.slice(currentIndex, currentIndex + itemsPerView)
+  const isAtStart = currentIndex === 0
+  const isAtEnd = currentIndex === maxIndex
 
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -100,95 +78,83 @@ export default function CertificatesCanvas() {
             🏆 Certificaciones & Credenciales
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Desliza o usa las flechas para explorar mis certificados profesionales validados
+            Explora mis certificados profesionales validados - desliza o usa las flechas
           </p>
         </div>
 
-        {/* Canvas Container */}
-        <div className="relative">
-          {/* Gradient Overlays */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-r from-white via-white to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 md:w-20 bg-gradient-to-l from-white via-white to-transparent z-10 pointer-events-none" />
-
-          {/* Carousel */}
-          <motion.div
-            ref={containerRef}
-            drag="x"
-            dragConstraints={{ left: -2000, right: 0 }}
-            dragElastic={0.2}
-            onDragStart={handleDragStart}
-            onDragEnd={handleDragEnd}
-            animate={{ x: position }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-            className="flex gap-6 cursor-grab active:cursor-grabbing overflow-hidden"
-          >
-            {certificates.map((cert, idx) => (
-              <motion.div
-                key={cert.name}
-                className="flex-shrink-0 w-96"
-              >
-                <CertificateCard certificate={cert} />
-              </motion.div>
-            ))}
-          </motion.div>
+        {/* Cards Grid - 3 Visible */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {visibleCertificates.map((cert) => (
+            <motion.div
+              key={cert.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <CertificateCard certificate={cert} />
+            </motion.div>
+          ))}
         </div>
 
         {/* Navigation Controls */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-center gap-8">
+          {/* Left Arrow */}
+          <motion.button
+            whileHover={{ scale: isAtStart ? 1 : 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={goPrev}
+            disabled={isAtStart}
+            className={`p-3 rounded-full transition-all ${
+              isAtStart
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg active:shadow-md'
+            }`}
+          >
+            <ChevronLeft size={28} />
+          </motion.button>
+
           {/* Stats */}
-          <div className="text-sm text-gray-600">
-            <span className="font-bold text-gray-900">
-              {Math.abs(Math.round(position / cardWidth)) + 1} - {Math.min(Math.abs(Math.round(position / cardWidth)) + visibleCards, certificates.length)} de {certificates.length}
-            </span>
-            {' '}certificados
+          <div className="text-center min-w-40">
+            <div className="text-lg font-bold text-gray-900">
+              {currentIndex + 1} - {Math.min(currentIndex + itemsPerView, certificates.length)}
+            </div>
+            <div className="text-sm text-gray-600">
+              de {certificates.length} certificados
+            </div>
           </div>
 
-          {/* Arrow Buttons */}
-          <div className="flex gap-4">
+          {/* Right Arrow */}
+          <motion.button
+            whileHover={{ scale: isAtEnd ? 1 : 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={goNext}
+            disabled={isAtEnd}
+            className={`p-3 rounded-full transition-all ${
+              isAtEnd
+                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg active:shadow-md'
+            }`}
+          >
+            <ChevronRight size={28} />
+          </motion.button>
+        </div>
+
+        {/* Indicators */}
+        <div className="flex gap-2 justify-center">
+          {Array.from({ length: certificates.length - itemsPerView + 1 }).map((_, idx) => (
             <motion.button
-              whileHover={{ scale: isAtStart ? 1 : 1.1 }}
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              whileHover={{ scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('left')}
-              disabled={isAtStart}
-              className={`p-3 rounded-full transition-all ${
-                isAtStart
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg'
+              className={`h-3 rounded-full transition-all ${
+                currentIndex === idx
+                  ? 'bg-primary-600 w-8'
+                  : 'bg-gray-300 w-3 hover:bg-gray-400'
               }`}
-            >
-              <ChevronLeft size={24} />
-            </motion.button>
-
-            <motion.button
-              whileHover={{ scale: isAtEnd ? 1 : 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => navigate('right')}
-              disabled={isAtEnd}
-              className={`p-3 rounded-full transition-all ${
-                isAtEnd
-                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                  : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg'
-              }`}
-            >
-              <ChevronRight size={24} />
-            </motion.button>
-          </div>
-
-          {/* Indicators */}
-          <div className="flex gap-2">
-            {certificates.map((_, idx) => (
-              <motion.button
-                key={idx}
-                onClick={() => setPosition(-idx * cardWidth)}
-                whileHover={{ scale: 1.2 }}
-                className={`h-2 rounded-full transition-all ${
-                  Math.abs(position / cardWidth) === idx
-                    ? 'bg-primary-600 w-8'
-                    : 'bg-gray-300 w-2'
-                }`}
-              />
-            ))}
-          </div>
+            />
+          ))}
         </div>
 
         {/* Info */}
