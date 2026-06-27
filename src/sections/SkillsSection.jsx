@@ -63,24 +63,40 @@ export default function SkillsSection() {
     {
       name: 'Excel Avanzado',
       image: '/Certificados/Excel Avanzado.jpg',
+      logo: '/Certificados/Excel avanzado imagen portada.jpg',
       issuer: 'Microsoft Office Specialist',
-      logo: '/microsoft 365 logo.jpg',
       description: 'Dominio avanzado de Excel y análisis de datos',
       year: 2024
     },
     {
-      name: 'Master Hardware',
+      name: 'Master Hardware & Reparación',
       image: '/Certificados/Master Hardware.jpg',
+      logo: '/Certificados/hardware reparacion portada.jfif',
       issuer: 'Certificación Técnica',
-      logo: '/Logo Sql Developer.png',
-      description: 'Especialización en hardware y reparación de equipos',
+      description: 'Especialización en hardware, mantenimiento y reparación de equipos',
+      year: 2024
+    },
+    {
+      name: 'Power BI',
+      image: '/Certificados/Power bi.jpg',
+      logo: '/Certificados/power bi portada.jpg',
+      issuer: 'Microsoft Business Intelligence',
+      description: 'Análisis avanzado de datos y visualización con Power BI',
+      year: 2024
+    },
+    {
+      name: 'Project Management',
+      image: '/Certificados/Proyect Management-Gestion de Proyectos.jpg',
+      logo: '/Certificados/gestion proyectos portada.jfif',
+      issuer: 'Gestión de Proyectos Profesional',
+      description: 'Certificación en metodologías y gestión de proyectos',
       year: 2024
     },
     {
       name: 'Importación en Alibaba',
       image: '/Certificados/alibaba.jpg',
+      logo: '/Certificados/importacion alibaba portada.webp',
       issuer: 'Alibaba International',
-      logo: '/trello logo.png',
       description: 'Especialización en procesos de importación y comercio electrónico',
       year: 2024
     }
@@ -233,12 +249,13 @@ export default function SkillsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="grid md:grid-cols-3 gap-6 pt-8 border-t border-gray-200"
+              className="grid md:grid-cols-4 gap-6 pt-8 border-t border-gray-200"
             >
               {[
                 { icon: '📚', label: 'Certificados', value: certificates.length },
                 { icon: '🎯', label: 'Validados', value: '100%' },
-                { icon: '⭐', label: 'Vigentes', value: 'Sí' }
+                { icon: '⭐', label: 'Vigentes', value: 'Sí' },
+                { icon: '🏆', label: 'Especializaciones', value: '5' }
               ].map((stat) => (
                 <motion.div
                   key={stat.label}
