@@ -47,14 +47,10 @@ export default function LifeSection() {
             className="space-y-4 text-gray-600"
           >
             <p>
-              Fuera del desarrollo, me encanta sumergirme en la música,
-              descubrir nuevas series y películas, y pasar tiempo competitivo
-              en videojuegos. Mi perro es mi compañero de aventuras favorito
-              en los paseos.
-            </p>
-            <p>
-              Creo que la mejor inspiración viene de vivir plenamente y mantener
-              un equilibrio entre la dedicación profesional y el disfrute personal.
+              Mi vida me ha llevado a distintos lugares como el norte de Chile y Montevideo, Uruguay.
+              Esto me ha dado una perspectiva distinta acerca de algunos aspectos de la vida.
+              Cuando no estoy optimizando sistemas o creando dashboards o reportes, disfruto de los amigos,
+              familia, música, videojuegos y series. Además me gusta dar largos paseos con mi perro.
             </p>
           </motion.div>
 
