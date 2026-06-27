@@ -147,18 +147,34 @@ export default function SkillsSection() {
 
         {/* Herramientas Modernas & IA */}
         <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-          <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
-            Herramientas Modernas & IA
-          </h3>
-          <div className="grid md:grid-cols-2 gap-6">
-            {modern.map((tool, idx) => (
-              <motion.div key={tool.name} variants={itemVariants}>
-                <Card className="flex items-center gap-4 p-6 hover:shadow-lg transition-all bg-gradient-to-r from-primary-50 to-accent-50">
-                  <SkillImage name={tool.name} size="lg" />
-                  <h4 className="font-bold text-gray-900">{tool.name}</h4>
-                </Card>
-              </motion.div>
-            ))}
+          <div className="space-y-6">
+            <div className="text-center">
+              <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                Herramientas Modernas & IA
+              </h3>
+              <p className="text-gray-600">Tecnologías de vanguardia para desarrollo e innovación</p>
+            </div>
+
+            {/* Grid side-by-side */}
+            <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4">
+              {modern.map((tool, idx) => (
+                <motion.div
+                  key={tool.name}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.08, rotateZ: 2 }}
+                  className="group"
+                >
+                  <Card className="h-full flex flex-col items-center justify-center py-6 px-4 bg-gradient-to-br from-purple-50 via-primary-50 to-accent-50 border-2 border-transparent hover:border-primary-300 hover:shadow-2xl transition-all cursor-pointer">
+                    <div className="mb-3 transform group-hover:scale-110 transition-transform">
+                      <SkillImage name={tool.name} size="lg" />
+                    </div>
+                    <h4 className="font-bold text-gray-900 text-center text-sm leading-tight">
+                      {tool.name}
+                    </h4>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
 
