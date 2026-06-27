@@ -1,15 +1,14 @@
 import { motion } from 'framer-motion'
 import Badge from '../components/ui/Badge'
 import { hobbies } from '../data/hobbies'
-import { ImageIcon } from 'lucide-react'
 
 export default function LifeSection() {
-  const imagePlaceholders = [
-    { id: 1, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
-    { id: 2, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
-    { id: 3, colSpan: 'col-span-1', rowSpan: 'row-span-1' },
-    { id: 4, colSpan: 'col-span-1', rowSpan: 'row-span-2' },
-    { id: 5, colSpan: 'col-span-1', rowSpan: 'row-span-2' }
+  const images = [
+    { id: 1, src: '/img mas alla del codigo/images.jfif', alt: 'Vida fuera del código 1' },
+    { id: 2, src: '/img mas alla del codigo/cx-picture-100608993-primary-idge_.jpg', alt: 'Vida fuera del código 2' },
+    { id: 3, src: '/img mas alla del codigo/images (1).jfif', alt: 'Vida fuera del código 3' },
+    { id: 4, src: '/img mas alla del codigo/imgi_12_que-es-la-seguridad-informatica-principios-tipos-ejemplos-y-mas.jpeg.webp', alt: 'Vida fuera del código 4' },
+    { id: 5, src: '/img mas alla del codigo/clickup logo.jfif', alt: 'Vida fuera del código 5' }
   ]
 
   return (
@@ -89,12 +88,13 @@ export default function LifeSection() {
               viewport={{ once: true }}
               transition={{ delay: 0 * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="col-span-1 row-span-1 bg-gradient-to-br from-gray-100 to-gray-50 border-2 border-gray-200 rounded-lg flex items-center justify-center cursor-pointer group hover:from-primary-50 hover:to-primary-100 transition-all"
+              className="col-span-1 row-span-1 border-2 border-gray-200 rounded-lg overflow-hidden cursor-pointer group hover:border-primary-300 transition-all"
             >
-              <div className="text-center flex flex-col items-center justify-center gap-2">
-                <ImageIcon className="w-8 h-8 text-gray-400 group-hover:text-primary-400 transition-colors" />
-                <p className="text-xs font-semibold text-gray-500 group-hover:text-primary-500 transition-colors">1</p>
-              </div>
+              <img
+                src={images[0].src}
+                alt={images[0].alt}
+                className="w-full h-full object-cover group-hover:brightness-110 transition-all"
+              />
             </motion.div>
 
             {/* Imagen 2 - Top Right (alta, ocupa 2 filas) */}
@@ -104,12 +104,13 @@ export default function LifeSection() {
               viewport={{ once: true }}
               transition={{ delay: 1 * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="col-span-1 row-span-2 bg-gradient-to-br from-gray-100 to-gray-50 border-2 border-gray-200 rounded-lg flex items-center justify-center cursor-pointer group hover:from-primary-50 hover:to-primary-100 transition-all"
+              className="col-span-1 row-span-2 border-2 border-gray-200 rounded-lg overflow-hidden cursor-pointer group hover:border-primary-300 transition-all"
             >
-              <div className="text-center flex flex-col items-center justify-center gap-2">
-                <ImageIcon className="w-10 h-10 text-gray-400 group-hover:text-primary-400 transition-colors" />
-                <p className="text-xs font-semibold text-gray-500 group-hover:text-primary-500 transition-colors">2</p>
-              </div>
+              <img
+                src={images[1].src}
+                alt={images[1].alt}
+                className="w-full h-full object-cover group-hover:brightness-110 transition-all"
+              />
             </motion.div>
 
             {/* Imagen 3 - Middle Left (pequeña) */}
@@ -119,12 +120,13 @@ export default function LifeSection() {
               viewport={{ once: true }}
               transition={{ delay: 2 * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="col-span-1 row-span-1 bg-gradient-to-br from-gray-100 to-gray-50 border-2 border-gray-200 rounded-lg flex items-center justify-center cursor-pointer group hover:from-primary-50 hover:to-primary-100 transition-all"
+              className="col-span-1 row-span-1 border-2 border-gray-200 rounded-lg overflow-hidden cursor-pointer group hover:border-primary-300 transition-all"
             >
-              <div className="text-center flex flex-col items-center justify-center gap-2">
-                <ImageIcon className="w-8 h-8 text-gray-400 group-hover:text-primary-400 transition-colors" />
-                <p className="text-xs font-semibold text-gray-500 group-hover:text-primary-500 transition-colors">3</p>
-              </div>
+              <img
+                src={images[2].src}
+                alt={images[2].alt}
+                className="w-full h-full object-cover group-hover:brightness-110 transition-all"
+              />
             </motion.div>
 
             {/* Imagen 4 - Bottom (grande, ocupa 2 filas y casi todo el ancho) */}
@@ -134,12 +136,13 @@ export default function LifeSection() {
               viewport={{ once: true }}
               transition={{ delay: 3 * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="col-span-1 row-span-2 bg-gradient-to-br from-gray-100 to-gray-50 border-2 border-gray-200 rounded-lg flex items-center justify-center cursor-pointer group hover:from-primary-50 hover:to-primary-100 transition-all"
+              className="col-span-1 row-span-2 border-2 border-gray-200 rounded-lg overflow-hidden cursor-pointer group hover:border-primary-300 transition-all"
             >
-              <div className="text-center flex flex-col items-center justify-center gap-2">
-                <ImageIcon className="w-10 h-10 text-gray-400 group-hover:text-primary-400 transition-colors" />
-                <p className="text-xs font-semibold text-gray-500 group-hover:text-primary-500 transition-colors">4</p>
-              </div>
+              <img
+                src={images[3].src}
+                alt={images[3].alt}
+                className="w-full h-full object-cover group-hover:brightness-110 transition-all"
+              />
             </motion.div>
 
             {/* Imagen 5 - Bottom Right (pequeña, ocupa 2 filas) */}
@@ -149,25 +152,26 @@ export default function LifeSection() {
               viewport={{ once: true }}
               transition={{ delay: 4 * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="col-span-1 row-span-2 bg-gradient-to-br from-gray-100 to-gray-50 border-2 border-gray-200 rounded-lg flex items-center justify-center cursor-pointer group hover:from-primary-50 hover:to-primary-100 transition-all"
+              className="col-span-1 row-span-2 border-2 border-gray-200 rounded-lg overflow-hidden cursor-pointer group hover:border-primary-300 transition-all"
             >
-              <div className="text-center flex flex-col items-center justify-center gap-2">
-                <ImageIcon className="w-8 h-8 text-gray-400 group-hover:text-primary-400 transition-colors" />
-                <p className="text-xs font-semibold text-gray-500 group-hover:text-primary-500 transition-colors">5</p>
-              </div>
+              <img
+                src={images[4].src}
+                alt={images[4].alt}
+                className="w-full h-full object-cover group-hover:brightness-110 transition-all"
+              />
             </motion.div>
           </div>
 
-          {/* Instrucción */}
+          {/* Galería Info */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.6 }}
-            className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg text-center"
+            className="mt-4 p-3 bg-primary-50 border border-primary-200 rounded-lg text-center"
           >
-            <p className="text-blue-700 text-sm font-medium">
-              📸 5 espacios listos para tus fotos
+            <p className="text-primary-700 text-sm font-medium">
+              📸 Galería de mi vida fuera del código
             </p>
           </motion.div>
         </div>
