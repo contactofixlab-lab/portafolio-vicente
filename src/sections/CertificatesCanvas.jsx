@@ -13,7 +13,7 @@ export default function CertificatesCanvas() {
       logo: '/Certificados/Excel avanzado imagen portada.jpg',
       issuer: 'Microsoft Office Specialist',
       description: 'Dominio avanzado de Excel y análisis de datos',
-      year: 2024
+      year: 2022
     },
     {
       name: 'Master Hardware & Reparación',
@@ -21,7 +21,7 @@ export default function CertificatesCanvas() {
       logo: '/Certificados/hardware reparacion portada.jfif',
       issuer: 'Certificación Técnica',
       description: 'Especialización en hardware, mantenimiento y reparación de equipos',
-      year: 2024
+      year: 2022
     },
     {
       name: 'Power BI',
@@ -29,7 +29,7 @@ export default function CertificatesCanvas() {
       logo: '/Certificados/power bi portada.jpg',
       issuer: 'Microsoft Business Intelligence',
       description: 'Análisis avanzado de datos y visualización con Power BI',
-      year: 2024
+      year: 2026
     },
     {
       name: 'Project Management',
@@ -37,7 +37,7 @@ export default function CertificatesCanvas() {
       logo: '/Certificados/gestion proyectos portada.jfif',
       issuer: 'Gestión de Proyectos Profesional',
       description: 'Certificación en metodologías y gestión de proyectos',
-      year: 2024
+      year: 2022
     },
     {
       name: 'Importación en Alibaba',
@@ -45,7 +45,7 @@ export default function CertificatesCanvas() {
       logo: '/Certificados/importacion alibaba portada.webp',
       issuer: 'Alibaba International',
       description: 'Especialización en procesos de importación y comercio electrónico',
-      year: 2024
+      year: 2026
     }
   ]
 
