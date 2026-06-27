@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
 import SkillImage from '../components/ui/SkillImage'
+import CertificateCard from '../components/CertificateCard'
 
 export default function SkillsSection() {
   const containerVariants = {
@@ -59,9 +60,30 @@ export default function SkillsSection() {
 
   // Certificaciones
   const certificates = [
-    { name: 'Excel Avanzado', image: '/Certificados/Excel Avanzado.jpg', issuer: 'Certificación Profesional', year: 2024 },
-    { name: 'Master Hardware', image: '/Certificados/Master Hardware.jpg', issuer: 'Certificación Técnica', year: 2024 },
-    { name: 'Alibaba Cloud', image: '/Certificados/alibaba.jpg', issuer: 'Alibaba Cloud', year: 2024 }
+    {
+      name: 'Excel Avanzado',
+      image: '/Certificados/Excel Avanzado.jpg',
+      issuer: 'Microsoft Office Specialist',
+      logo: '/microsoft 365 logo.jpg',
+      description: 'Dominio avanzado de Excel y análisis de datos',
+      year: 2024
+    },
+    {
+      name: 'Master Hardware',
+      image: '/Certificados/Master Hardware.jpg',
+      issuer: 'Certificación Técnica',
+      logo: '/Logo Sql Developer.png',
+      description: 'Especialización en hardware y reparación de equipos',
+      year: 2024
+    },
+    {
+      name: 'Alibaba Cloud',
+      image: '/Certificados/alibaba.jpg',
+      issuer: 'Alibaba Cloud Academy',
+      logo: '/claud logo.png',
+      description: 'Certificación en servicios en la nube de Alibaba',
+      year: 2024
+    }
   ]
 
   return (
@@ -190,61 +212,44 @@ export default function SkillsSection() {
           <div className="space-y-8">
             <div className="text-center">
               <h3 className="text-3xl font-bold text-gray-900 mb-3">
-                Certificaciones & Credenciales
+                🏆 Certificaciones & Credenciales
               </h3>
-              <p className="text-gray-600">Certificados profesionales que validan mi experiencia</p>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Certificados profesionales reconocidos que validan mi expertise en diferentes áreas
+              </p>
             </div>
 
             {/* Certificates Grid */}
             <div className="grid md:grid-cols-3 gap-8">
-              {certificates.map((cert, idx) => (
-                <motion.div
-                  key={cert.name}
-                  variants={itemVariants}
-                  whileHover={{ scale: 1.05, y: -10 }}
-                  className="group cursor-pointer"
-                >
-                  <Card className="h-full flex flex-col overflow-hidden hover:shadow-2xl transition-all bg-white">
-                    {/* Certificate Image */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-gray-100 to-gray-200 h-64">
-                      <motion.img
-                        src={cert.image}
-                        alt={cert.name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                    </div>
-
-                    {/* Certificate Info */}
-                    <div className="flex-1 flex flex-col justify-between p-6">
-                      <div>
-                        <h4 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition-colors">
-                          {cert.name}
-                        </h4>
-                        <p className="text-sm text-gray-600 mb-1">{cert.issuer}</p>
-                        <p className="text-xs text-gray-500">Año: {cert.year}</p>
-                      </div>
-
-                      {/* Badge */}
-                      <Badge variant="success" className="w-full text-center mt-4">
-                        ✓ Verificado
-                      </Badge>
-                    </div>
-                  </Card>
+              {certificates.map((cert) => (
+                <motion.div key={cert.name} variants={itemVariants}>
+                  <CertificateCard certificate={cert} />
                 </motion.div>
               ))}
             </div>
 
-            {/* CTA */}
+            {/* Stats */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-center pt-8 border-t border-gray-200"
+              className="grid md:grid-cols-3 gap-6 pt-8 border-t border-gray-200"
             >
-              <p className="text-gray-600 mb-4">
-                Tengo otros certificados en proceso de validación y actualización
-              </p>
+              {[
+                { icon: '📚', label: 'Certificados', value: certificates.length },
+                { icon: '🎯', label: 'Validados', value: '100%' },
+                { icon: '⭐', label: 'Vigentes', value: 'Sí' }
+              ].map((stat) => (
+                <motion.div
+                  key={stat.label}
+                  whileHover={{ scale: 1.05 }}
+                  className="text-center p-4 bg-gradient-to-br from-primary-50 to-accent-50 rounded-lg"
+                >
+                  <p className="text-3xl mb-2">{stat.icon}</p>
+                  <p className="text-sm text-gray-600">{stat.label}</p>
+                  <p className="text-2xl font-bold text-gray-900">{stat.value}</p>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
         </motion.div>
