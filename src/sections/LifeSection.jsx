@@ -17,7 +17,7 @@ export default function LifeSection() {
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-12 items-stretch"
+        className="grid md:grid-cols-2 gap-12 items-center"
       >
         {/* Texto - Izquierda */}
         <div className="space-y-8 order-2 md:order-1">
@@ -54,10 +54,10 @@ export default function LifeSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="space-y-4"
+            className="space-y-6 bg-gradient-to-br from-accent-50 to-primary-50 p-8 rounded-2xl border-2 border-accent-200"
           >
-            <h3 className="text-lg font-bold text-gray-900">Mis Pasiones</h3>
-            <div className="flex flex-wrap gap-3">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900">✨ Mis Pasiones</h3>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {hobbies.map((hobby, idx) => (
                 <motion.div
                   key={hobby.name}
@@ -65,12 +65,13 @@ export default function LifeSection() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.05 }}
-                  whileHover={{ scale: 1.1 }}
+                  whileHover={{ scale: 1.08, y: -4 }}
+                  className="flex items-center justify-center"
                 >
-                  <Badge variant="accent" className="text-base py-2 px-4 backdrop-blur-lg bg-gradient-to-r from-accent-100 to-accent-50">
-                    <span className="text-lg mr-2">{hobby.icon}</span>
-                    {hobby.name}
-                  </Badge>
+                  <div className="w-full bg-white rounded-xl p-4 border-2 border-accent-300 hover:border-primary-400 shadow-md hover:shadow-lg transition-all text-center">
+                    <div className="text-4xl mb-2">{hobby.icon}</div>
+                    <p className="text-sm font-semibold text-gray-800">{hobby.name}</p>
+                  </div>
                 </motion.div>
               ))}
             </div>
