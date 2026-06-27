@@ -77,11 +77,11 @@ export default function SkillsSection() {
       year: 2024
     },
     {
-      name: 'Alibaba Cloud',
+      name: 'Importación en Alibaba',
       image: '/Certificados/alibaba.jpg',
-      issuer: 'Alibaba Cloud Academy',
-      logo: '/claud logo.png',
-      description: 'Certificación en servicios en la nube de Alibaba',
+      issuer: 'Alibaba International',
+      logo: '/trello logo.png',
+      description: 'Especialización en procesos de importación y comercio electrónico',
       year: 2024
     }
   ]
