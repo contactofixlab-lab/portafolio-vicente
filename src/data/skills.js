@@ -1,34 +1,92 @@
-export const skills = {
-  languages: [
-    { name: 'JavaScript', icon: '💛', level: 'Avanzado' },
-    { name: 'SQL', icon: '🗄️', level: 'Avanzado' },
-    { name: 'Java', icon: '☕', level: 'Intermedio' },
-    { name: 'Python', icon: '🐍', level: 'Intermedio' }
-  ],
-  bi: [
-    { name: 'Power BI', icon: '📊', description: 'Análisis de datos y dashboards interactivos' },
-    { name: 'Microsoft 365', icon: '☁️', description: 'Suite completa de productividad empresarial' }
-  ],
-  management: [
-    { name: 'MobySuite', icon: '📱', category: 'Gestión' },
-    { name: 'Transbank', icon: '💳', category: 'Pagos' },
-    { name: 'GoFirmex', icon: '📄', category: 'Documentación' }
-  ],
-  collaboration: [
-    { name: 'Trello', icon: '📋', category: 'Proyectos' },
-    { name: 'GitHub', icon: '🐙', category: 'Control de versión' },
-    { name: 'ClickUp', icon: '✅', category: 'Tareas' },
-    { name: 'Miro', icon: '🎨', category: 'Diseño' }
-  ],
-  modern: [
-    { name: 'V0.dev', icon: '⚡', description: 'Generación de UI con IA' },
-    { name: 'ChatGPT', icon: '🤖', description: 'IA para productividad' },
-    { name: 'Google Adsense', icon: '📢', description: 'Marketing digital' },
-    { name: 'Bizagi', icon: '🔄', description: 'Automatización de procesos' }
-  ],
-  certifications: [
-    { name: 'Google Cloud Associate Cloud Engineer', year: 2023 },
-    { name: 'AWS Solutions Architect Associate', year: 2022 },
-    { name: 'Certified Kubernetes Administrator', year: 2023 }
-  ]
-}
+export const skillsCategories = [
+  {
+    id: 1,
+    name: 'Lenguajes de Programación',
+    icon: '💻',
+    skills: [
+      { name: 'JavaScript', image: '/JavaScript-logo.png' },
+      { name: 'SQL', image: '/Logo Sql Developer.png' },
+      { name: 'Java', image: '/java logo.png' },
+      { name: 'Python', image: '/python logo.png' }
+    ]
+  },
+  {
+    id: 2,
+    name: 'Business Intelligence',
+    icon: '📊',
+    skills: [
+      { name: 'Power BI', image: '/power bi logo.png' },
+      { name: 'Microsoft 365', image: '/microsoft 365 logo.jpg' }
+    ]
+  },
+  {
+    id: 3,
+    name: 'Herramientas de Gestión',
+    icon: '⚙️',
+    skills: [
+      { name: 'MobySuite', image: '/mobysuite logo.png' },
+      { name: 'Transbank', image: '/Transbank.png' },
+      { name: 'GoFirmex', image: '/gofirmex logo.png' }
+    ]
+  },
+  {
+    id: 4,
+    name: 'Herramientas Colaborativas',
+    icon: '🤝',
+    skills: [
+      { name: 'Trello', image: '/trello logo.png' },
+      { name: 'GitHub', image: '/github logo.png' },
+      { name: 'ClickUp', image: '/clickup logo.jfif' },
+      { name: 'Miro', image: '/miro logo.png' },
+      { name: 'Gmail', image: '/gmail-logo.png' }
+    ]
+  },
+  {
+    id: 5,
+    name: 'Herramientas Modernas & IA',
+    icon: '✨',
+    skills: [
+      { name: 'V0.dev', image: '/vo.dev logo.png' },
+      { name: 'ChatGPT', image: '/chatgpt logo.jpg' },
+      { name: 'Google Adsense', image: '/google adsense logo.jpg' },
+      { name: 'Claude', image: '/claud logo.png' },
+      { name: 'Visual Studio Code', image: '/vscode-logo.png' }
+    ]
+  },
+  {
+    id: 6,
+    name: 'Almacenamiento en la Nube',
+    icon: '☁️',
+    skills: [
+      { name: 'Mega', image: '/mega-logo.png' },
+      { name: 'OneDrive', image: '/onedrive-logo.png' },
+      { name: 'Dropbox', image: '/dropbox-logo.png' }
+    ]
+  },
+  {
+    id: 7,
+    name: 'Diseño',
+    icon: '🎨',
+    skills: [
+      { name: 'Wix', image: '/wix-logo.png' },
+      { name: 'Sigma', image: '/sigma-logo.png' }
+    ]
+  },
+  {
+    id: 8,
+    name: 'Soporte Técnico',
+    icon: '🔧',
+    skills: [
+      { name: 'AnyDesk', image: '/anydesk-logo.png' }
+    ]
+  },
+  {
+    id: 9,
+    name: 'Integraciones',
+    icon: '🔌',
+    skills: [
+      { name: 'OpenAI', image: '/openai-logo.png' },
+      { name: 'Bizagi', image: '/bizagi modeler.png' }
+    ]
+  }
+]

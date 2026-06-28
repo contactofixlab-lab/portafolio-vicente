@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Proyectos from './pages/Proyectos'
 import ProjectDetail from './pages/ProjectDetail'
 import TrajectoryPage from './pages/TrajectoryPage'
+import SkillsPage from './pages/SkillsPage'
 import './styles/globals.css'
 
 function App() {
@@ -40,6 +41,8 @@ function App() {
         return <ProjectDetail projectId={projectId} />
       case 'trayectoria':
         return <TrajectoryPage />
+      case 'habilidades':
+        return <SkillsPage />
       case 'home':
       default:
         return <Home />
