@@ -10,7 +10,7 @@ export default function FullSkillsSection() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="space-y-12"
+        className="space-y-12 rounded-3xl p-8 sm:p-12 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900"
       >
         {/* Header con botón volver */}
         <div className="space-y-4">

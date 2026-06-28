@@ -38,7 +38,9 @@ export const skillsCategories = [
       { name: 'GitHub', image: '/github logo.png' },
       { name: 'ClickUp', image: '/clickup logo.jfif' },
       { name: 'Miro', image: '/miro logo.png' },
-      { name: 'Gmail', image: '/gmail-logo.png' }
+      { name: 'Gmail', image: '/gmail.png' },
+      { name: 'Slack', image: '/Slack.png' },
+      { name: 'Discord', image: '/Discord.png' }
     ]
   },
   {
@@ -48,9 +50,9 @@ export const skillsCategories = [
     skills: [
       { name: 'V0.dev', image: '/vo.dev logo.png' },
       { name: 'ChatGPT', image: '/chatgpt logo.jpg' },
-      { name: 'Google Adsense', image: '/google adsense logo.jpg' },
       { name: 'Claude', image: '/claud logo.png' },
-      { name: 'Visual Studio Code', image: '/vscode-logo.png' }
+      { name: 'Visual Studio Code', image: '/Visual Studio Code.png' },
+      { name: 'Google Adsense', image: '/google adsense logo.jpg' }
     ]
   },
   {
@@ -58,9 +60,9 @@ export const skillsCategories = [
     name: 'Almacenamiento en la Nube',
     icon: '☁️',
     skills: [
-      { name: 'Mega', image: '/mega-logo.png' },
-      { name: 'OneDrive', image: '/onedrive-logo.png' },
-      { name: 'Dropbox', image: '/dropbox-logo.png' }
+      { name: 'Mega', image: '/mega.png' },
+      { name: 'OneDrive', image: '/Onedrive.png' },
+      { name: 'Dropbox', image: '/Dropbox.png' }
     ]
   },
   {
@@ -68,8 +70,8 @@ export const skillsCategories = [
     name: 'Diseño',
     icon: '🎨',
     skills: [
-      { name: 'Wix', image: '/wix-logo.png' },
-      { name: 'Sigma', image: '/sigma-logo.png' }
+      { name: 'Wix', image: '/wix.png' },
+      { name: 'Sigma', image: '/Gigma.png' }
     ]
   },
   {
@@ -77,16 +79,28 @@ export const skillsCategories = [
     name: 'Soporte Técnico',
     icon: '🔧',
     skills: [
-      { name: 'AnyDesk', image: '/anydesk-logo.png' }
+      { name: 'AnyDesk', image: '/Anydesk.png' }
     ]
   },
   {
     id: 9,
-    name: 'Integraciones',
+    name: 'Integraciones & Cadenas de Pago',
     icon: '🔌',
     skills: [
-      { name: 'OpenAI', image: '/openai-logo.png' },
-      { name: 'Bizagi', image: '/bizagi modeler.png' }
+      { name: 'OpenAI', image: '/openIA.png' },
+      { name: 'Bizagi', image: '/bizagi modeler.png' },
+      { name: 'Zapier', image: '/Zapier.png' },
+      { name: 'Microsoft Sharepoint', image: '/Microsoft Sharepoint.png' }
+    ]
+  },
+  {
+    id: 10,
+    name: 'Plataformas & Redes',
+    icon: '🌐',
+    skills: [
+      { name: 'Vercel', image: '/vercel.png' },
+      { name: 'Meta', image: '/Meta.png' },
+      { name: 'Alibaba', image: '/Alibaba.png' }
     ]
   }
 ]
