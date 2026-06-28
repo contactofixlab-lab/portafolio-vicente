@@ -9,8 +9,13 @@ export default function ExperienceSection() {
     Aprendizaje: 'success',
     Liderazgo: 'warning',
     Estrategia: 'danger',
+    Operaciones: 'info',
+    Sistemas: 'success',
     Actual: 'success'
   }
+
+  // Mostrar solo las últimas 3 experiencias
+  const recentExperiences = experiences.slice(0, 3)
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -26,7 +31,7 @@ export default function ExperienceSection() {
             Mi Trayectoria Profesional
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl">
-            5 años de experiencia en transformación digital, liderazgo e innovación empresarial.
+            Especialista en sistemas, innovación y transformación digital.
           </p>
         </div>
 
@@ -36,13 +41,13 @@ export default function ExperienceSection() {
           <svg
             className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 -ml-0.5"
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 4 1000"
+            viewBox="0 0 4 800"
           >
             <motion.line
               x1="2"
               y1="0"
               x2="2"
-              y2="1000"
+              y2="800"
               stroke="#f97316"
               strokeWidth="2"
               strokeDasharray="10,10"
@@ -55,7 +60,7 @@ export default function ExperienceSection() {
 
           {/* Experience Cards */}
           <div className="space-y-8">
-            {experiences.map((exp, idx) => (
+            {recentExperiences.map((exp, idx) => (
               <motion.div
                 key={exp.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -108,6 +113,26 @@ export default function ExperienceSection() {
             ))}
           </div>
         </div>
+
+        {/* Ver Más Button */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center pt-8"
+        >
+          <motion.a
+            href="#trayectoria"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
+          >
+            Ver Trayectoria Completa
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </motion.a>
+        </motion.div>
       </motion.div>
     </section>
   )

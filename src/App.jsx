@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Home from './pages/Home'
 import Proyectos from './pages/Proyectos'
 import ProjectDetail from './pages/ProjectDetail'
+import TrajectoryPage from './pages/TrajectoryPage'
 import './styles/globals.css'
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
         return <Proyectos />
       case 'proyecto-detalle':
         return <ProjectDetail projectId={projectId} />
+      case 'trayectoria':
+        return <TrajectoryPage />
       case 'home':
       default:
         return <Home />
