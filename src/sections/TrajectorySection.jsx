@@ -64,7 +64,7 @@ export default function TrajectorySection() {
           </svg>
 
           {/* Experience Cards */}
-          <div className="space-y-8">
+          <div className="space-y-12">
             {experiences.map((exp, idx) => (
               <motion.div
                 key={exp.id}
@@ -76,46 +76,75 @@ export default function TrajectorySection() {
                 {/* Left/Right Content */}
                 <div className="md:w-1/2 px-4">
                   <motion.div
-                    whileHover={{ y: -4 }}
+                    whileHover={{ y: -8, scale: 1.02 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    <Card hoverable className="h-full">
-                      <div className="space-y-4">
-                        <div>
-                          <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                            {exp.title}
-                          </h3>
-                          <p className="text-primary-600 font-semibold text-lg">
-                            {exp.company}
-                          </p>
+                    <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 p-8">
+                      {/* Decorative Top Bar */}
+                      <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${
+                        exp.badge === 'Actual' ? 'from-green-500 to-green-400' :
+                        exp.badge === 'Liderazgo' ? 'from-amber-500 to-amber-400' :
+                        exp.badge === 'Estrategia' ? 'from-red-500 to-red-400' :
+                        exp.badge === 'Operaciones' ? 'from-blue-500 to-blue-400' :
+                        exp.badge === 'Sistemas' ? 'from-purple-500 to-purple-400' :
+                        'from-primary-500 to-primary-400'
+                      }`}></div>
+
+                      <div className="space-y-5">
+                        {/* Title Section */}
+                        <div className="pt-2">
+                          <div className="flex items-start justify-between gap-3 mb-2">
+                            <div className="flex-1">
+                              <h3 className="text-2xl font-bold text-gray-900 dark:text-white leading-tight">
+                                {exp.title}
+                              </h3>
+                              <p className="text-primary-600 dark:text-primary-400 font-bold text-lg mt-1">
+                                {exp.company}
+                              </p>
+                            </div>
+                            <Badge variant={badgeVariants[exp.badge]} className="flex-shrink-0 mt-1">
+                              {exp.badge}
+                            </Badge>
+                          </div>
                         </div>
 
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        {/* Divider */}
+                        <div className="h-0.5 bg-gradient-to-r from-primary-200 to-transparent dark:from-primary-800"></div>
+
+                        {/* Description */}
+                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-base">
                           {exp.description}
                         </p>
 
-                        <div className="flex items-center gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                          <span className="text-sm font-medium text-gray-500 dark:text-gray-400">
-                            {exp.startDate} → {exp.endDate}
+                        {/* Date Section */}
+                        <div className="pt-4 flex items-center gap-3 bg-gradient-to-r from-gray-100 to-transparent dark:from-gray-700 dark:to-transparent rounded-lg px-4 py-3">
+                          <svg className="w-5 h-5 text-primary-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
+                          </svg>
+                          <span className="font-semibold text-gray-800 dark:text-gray-200">
+                            {exp.startDate} <span className="text-primary-500">→</span> {exp.endDate}
                           </span>
-                          <Badge variant={badgeVariants[exp.badge]}>
-                            {exp.badge}
-                          </Badge>
                         </div>
                       </div>
-                    </Card>
+                    </div>
                   </motion.div>
                 </div>
 
                 {/* Timeline Dot */}
-                <div className="hidden md:flex md:w-0 justify-center items-start pt-6">
+                <div className="hidden md:flex md:w-0 justify-center items-center">
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ delay: idx * 0.1 + 0.3, type: 'spring', stiffness: 400 }}
-                    className="w-5 h-5 bg-gradient-to-r from-primary-500 to-primary-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"
-                    whileHover={{ scale: 1.3 }}
-                  />
+                    className="relative"
+                  >
+                    <div className="w-6 h-6 bg-gradient-to-br from-primary-500 to-primary-600 rounded-full border-4 border-white dark:border-gray-900 shadow-lg"></div>
+                    <motion.div
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                      className="absolute inset-0 w-6 h-6 bg-primary-500 rounded-full opacity-20"
+                    ></motion.div>
+                  </motion.div>
                 </div>
 
                 {/* Spacer */}
