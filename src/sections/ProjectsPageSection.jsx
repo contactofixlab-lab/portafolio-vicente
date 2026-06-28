@@ -70,8 +70,12 @@ export default function ProjectsPageSection() {
                   <Card hoverable className="h-full">
                     <div className="space-y-4">
                       {/* Image Placeholder */}
-                      <div className="text-6xl text-center mb-4">
-                        {project.image}
+                      <div className="h-32 text-center mb-4 flex items-center justify-center">
+                        {project.image.startsWith('/') ? (
+                          <img src={project.image} alt={project.title} className="max-h-full max-w-full object-contain" />
+                        ) : (
+                          <span className="text-6xl">{project.image}</span>
+                        )}
                       </div>
 
                       {/* Title */}

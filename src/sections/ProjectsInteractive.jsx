@@ -59,11 +59,15 @@ export default function ProjectsInteractive() {
               >
                 {/* Project Image Area */}
                 <motion.div
-                  className="text-6xl text-center mb-4 p-4 bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg"
+                  className="h-32 text-center mb-4 p-4 bg-gradient-to-br from-primary-50 to-primary-100 rounded-lg flex items-center justify-center"
                   animate={{ scale: hoveredId === project.id ? 1.1 : 1 }}
                   transition={{ type: 'spring', stiffness: 300 }}
                 >
-                  {project.image}
+                  {project.image.startsWith('/') ? (
+                    <img src={project.image} alt={project.title} className="max-h-full max-w-full object-contain" />
+                  ) : (
+                    <span className="text-6xl">{project.image}</span>
+                  )}
                 </motion.div>
 
                 {/* Content */}

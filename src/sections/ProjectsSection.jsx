@@ -64,11 +64,15 @@ export default function ProjectsSection() {
                 <Card hoverable className="h-full flex flex-col">
                   {/* Image */}
                   <motion.div
-                    className={`text-center mb-4 ${isLarge ? 'text-8xl' : 'text-6xl'}`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    className={`text-center mb-4 flex items-center justify-center ${isLarge ? 'h-32' : 'h-24'}`}
+                    whileHover={{ scale: 1.1 }}
                     transition={{ type: 'spring', stiffness: 300 }}
                   >
-                    {project.image}
+                    {project.image.startsWith('/') ? (
+                      <img src={project.image} alt={project.title} className="max-h-full max-w-full object-contain" />
+                    ) : (
+                      <span className={isLarge ? 'text-8xl' : 'text-6xl'}>{project.image}</span>
+                    )}
                   </motion.div>
 
                   {/* Content */}

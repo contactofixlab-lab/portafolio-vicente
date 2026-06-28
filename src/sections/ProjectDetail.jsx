@@ -57,7 +57,13 @@ export default function ProjectDetail({ projectId }) {
           <div className="space-y-6">
             <div className="flex items-start justify-between gap-4">
               <div className="space-y-2">
-                <div className="text-7xl">{project.image}</div>
+                <div className="h-40 flex items-center">
+                  {project.image.startsWith('/') ? (
+                    <img src={project.image} alt={project.title} className="max-h-full max-w-full object-contain" />
+                  ) : (
+                    <span className="text-7xl">{project.image}</span>
+                  )}
+                </div>
                 <h1 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white">
                   {project.title}
                 </h1>
