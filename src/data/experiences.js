@@ -2,7 +2,7 @@ export const experiences = [
   {
     id: 1,
     title: 'Especialista en Sistemas e Innovación',
-    company: 'Giansinas (Inmobiliaria)',
+    company: 'Iencinas - Área de Sistemas y Operaciones',
     description: 'Implementación de sistemas, soporte técnico y análisis de datos. Desarrollo de herramientas de gestión, firma digital (TOPIQ), y aplicación de análisis de datos para rentas, finanzas y marketing. Área informática y operaciones.',
     startDate: '2026-05-05',
     endDate: 'presente',
@@ -11,7 +11,7 @@ export const experiences = [
   {
     id: 2,
     title: 'Soporte y Operaciones en Proyectos Inmobiliarios',
-    company: 'Neo Edificios, Neo Ungai, NeoBrisas',
+    company: 'Neo Edificios, Neo Yungai, NeoBrisas',
     description: 'Soporte técnico y operaciones en sistemas de proyectos de edificios. Implementación de integraciones y mantenimiento de sistemas. Dando soporte en infraestructura informática y operaciones.',
     startDate: '2026-03',
     endDate: 'presente',
