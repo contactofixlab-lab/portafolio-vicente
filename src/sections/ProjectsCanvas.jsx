@@ -83,106 +83,66 @@ export default function ProjectsCanvas() {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="relative group select-none"
             >
-              {/* Premium Glass Card */}
-              <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500">
-                {/* Background with gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
-
-                {/* Glass effect overlay */}
-                <div className="absolute inset-0 backdrop-blur-xl bg-white/40 dark:bg-gray-900/40 border border-white/50 dark:border-gray-700/50"></div>
-
-                {/* Animated gradient background */}
-                <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-400/30 to-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-accent-400/30 to-pink-500/30 rounded-full blur-3xl animate-pulse"></div>
+              {/* Neon Card Design */}
+              <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 bg-gray-900 dark:bg-gray-950 border border-gray-800 dark:border-gray-900">
+                {/* Neon glow lines */}
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-50"></div>
+                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent opacity-50"></div>
+                <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-primary-500/50 via-transparent to-transparent opacity-30"></div>
 
                 {/* Content Grid */}
-                <div className="relative p-8 sm:p-12 md:p-16 grid md:grid-cols-2 gap-8 items-center z-10">
+                <div className="relative p-8 sm:p-12 md:p-16 grid md:grid-cols-2 gap-8 items-center">
                   {/* Left Side - Info */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="space-y-6"
+                    className="space-y-8"
                   >
-                    {/* Title with gradient */}
-                    <div className="space-y-4">
-                      <motion.h3
-                        className="text-4xl md:text-5xl font-bold text-center md:text-left bg-gradient-to-r from-primary-600 via-purple-600 to-accent-600 bg-clip-text text-transparent dark:from-primary-400 dark:via-purple-400 dark:to-accent-400"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                      >
-                        {currentProject.title}
-                      </motion.h3>
+                    {/* Title */}
+                    <h3 className="text-4xl md:text-5xl font-bold text-center md:text-left text-white">
+                      {currentProject.title}
+                    </h3>
 
-                      {/* Status Badge with enhanced style */}
-                      <div className="flex justify-center md:justify-start">
-                        <motion.div
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          transition={{ delay: 0.4 }}
-                        >
-                          <Badge
-                            variant={badgeVariants[currentProject.status]}
-                            className="text-base py-2 px-4 backdrop-blur-sm"
+                    {/* Status Badge */}
+                    <div className="flex justify-center md:justify-start">
+                      <Badge
+                        variant={badgeVariants[currentProject.status]}
+                        className="text-base py-2 px-4"
+                      >
+                        {currentProject.status === 'En Desarrollo' && '⏱️'}
+                        {currentProject.status === 'Últimas Fases' && '🎯'}
+                        {currentProject.status === 'Terminado' && '✓'}
+                        {' '} {currentProject.status}
+                      </Badge>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-lg text-gray-300 leading-relaxed">
+                      {currentProject.longDescription}
+                    </p>
+
+                    {/* Stack */}
+                    <div className="space-y-4">
+                      <p className="text-sm font-bold text-primary-400 uppercase tracking-widest">Stack</p>
+                      <div className="flex flex-wrap gap-3">
+                        {currentProject.stack.map((tech) => (
+                          <motion.div
+                            key={tech}
+                            whileHover={{ y: -3 }}
+                            className="px-5 py-2 bg-gray-800 border border-primary-500/50 text-white rounded-lg text-sm font-medium hover:border-primary-400 hover:bg-gray-700 transition-all"
                           >
-                            {currentProject.status === 'En Desarrollo' && '⏱️'}
-                            {currentProject.status === 'Últimas Fases' && '🎯'}
-                            {currentProject.status === 'Terminado' && '✓'}
-                            {' '} {currentProject.status}
-                          </Badge>
-                        </motion.div>
+                            {tech}
+                          </motion.div>
+                        ))}
                       </div>
                     </div>
 
-                    {/* Divider */}
-                    <div className="h-0.5 bg-gradient-to-r from-transparent via-primary-300 to-transparent dark:via-primary-700"></div>
-
-                    {/* Description */}
-                    <motion.p
-                      className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      {currentProject.longDescription}
-                    </motion.p>
-
-                    {/* Stack */}
-                    <motion.div
-                      className="space-y-3"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.5 }}
-                    >
-                      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">🛠️ Stack Tecnológico</p>
-                      <div className="flex flex-wrap gap-2">
-                        {currentProject.stack.map((tech, idx) => (
-                          <motion.span
-                            key={tech}
-                            initial={{ opacity: 0, scale: 0.8 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.5 + idx * 0.05 }}
-                            whileHover={{ scale: 1.15, y: -2 }}
-                            className="px-4 py-2 bg-gradient-to-r from-primary-500/80 to-purple-500/80 hover:from-primary-600 hover:to-purple-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all backdrop-blur-sm border border-white/20"
-                          >
-                            {tech}
-                          </motion.span>
-                        ))}
-                      </div>
-                    </motion.div>
-
-                    {/* CTA Button with enhanced design */}
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.6 }}
-                    >
+                    {/* CTA Button */}
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                       <motion.a
                         href={`#proyecto/${currentProject.id}`}
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-purple-600 text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group/btn border border-white/20"
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg rounded-lg transition-all duration-300 group/btn"
                       >
                         Ir a la Página del Proyecto
                         <motion.div className="transition-transform group-hover/btn:translate-x-2">
