@@ -1,8 +1,8 @@
 export const experiences = [
   {
     id: 1,
-    title: 'Especialista en Sistemas e Innovación',
-    company: 'Iencinas - Área de Sistemas y Operaciones',
+    title: 'Área de Sistemas y Operaciones',
+    company: 'Iencinas (Inmobiliaria)',
     description: 'Implementación de sistemas, soporte técnico y análisis de datos. Desarrollo de herramientas de gestión, firma digital (TOPIQ), y aplicación de análisis de datos para rentas, finanzas y marketing. Área informática y operaciones.',
     startDate: '2026-05-05',
     endDate: 'presente',
