@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
 import Button from '../components/ui/Button'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail } from 'lucide-react'
 
 export default function ContactSection() {
   const contactItems = [
@@ -12,14 +12,6 @@ export default function ContactSection() {
       icon: Mail,
       color: 'text-primary-500',
       href: 'mailto:vrabanales@rcapcorp.cl'
-    },
-    {
-      id: 2,
-      title: 'Ubicación',
-      value: 'Chile / Uruguay',
-      icon: MapPin,
-      color: 'text-green-500',
-      href: '#'
     }
   ]
 
@@ -62,7 +54,7 @@ export default function ContactSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6"
+          className="grid md:grid-cols-1 gap-6 max-w-2xl mx-auto"
         >
           {contactItems.map((item) => {
             const Icon = item.icon
