@@ -32,43 +32,45 @@ export default function FullSkillsSection() {
         </div>
 
         {/* All Categories */}
-        <div className="space-y-16">
+        <div className="space-y-16 flex flex-col items-center">
           {skillsCategories.map((category, idx) => (
             <motion.div
               key={category.id}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.1 }}
-              className="space-y-6"
+              className="space-y-6 w-full max-w-5xl"
             >
-              {/* Category Title */}
-              <div className="flex items-center gap-4">
-                <div className="text-4xl">{category.icon}</div>
+              {/* Category Title - Centrado */}
+              <div className="text-center">
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
-                  {category.name}
+                  {category.icon} {category.name}
                 </h2>
               </div>
 
-              {/* Skills Grid */}
-              <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4">
-                {category.skills.map((skill, skillIdx) => (
-                  <motion.div
-                    key={skill.name}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: idx * 0.1 + skillIdx * 0.05 }}
-                    whileHover={{ y: -4, scale: 1.05 }}
-                  >
-                    <Card className="h-full flex flex-col items-center justify-center py-6 px-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 border-2 border-transparent hover:border-primary-300 hover:shadow-xl transition-all cursor-pointer group">
-                      <div className="mb-3 group-hover:scale-110 transition-transform">
-                        <SkillImage name={skill.name} size="lg" />
-                      </div>
-                      <h4 className="font-bold text-gray-900 dark:text-white text-center text-sm leading-tight">
-                        {skill.name}
-                      </h4>
-                    </Card>
-                  </motion.div>
-                ))}
+              {/* Skills Grid - Centrado */}
+              <div className="flex justify-center w-full">
+                <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4 w-full">
+                  {category.skills.map((skill, skillIdx) => (
+                    <motion.div
+                      key={skill.name}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: idx * 0.1 + skillIdx * 0.05 }}
+                      whileHover={{ y: -4, scale: 1.05 }}
+                      className="flex justify-center"
+                    >
+                      <Card className="h-full flex flex-col items-center justify-center py-6 px-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 border-2 border-transparent hover:border-primary-300 hover:shadow-xl transition-all cursor-pointer group w-full">
+                        <div className="mb-3 group-hover:scale-110 transition-transform">
+                          <SkillImage name={skill.name} size="lg" />
+                        </div>
+                        <h4 className="font-bold text-gray-900 dark:text-white text-center text-sm leading-tight">
+                          {skill.name}
+                        </h4>
+                      </Card>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           ))}

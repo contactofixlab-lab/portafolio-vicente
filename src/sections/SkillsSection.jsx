@@ -41,23 +41,23 @@ export default function SkillsSection() {
         </div>
 
         {/* Featured Categories */}
-        <motion.div className="space-y-12">
+        <motion.div className="space-y-12 flex flex-col items-center">
           {featuredCategories.map((category) => (
             <motion.div
               key={category.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="space-y-6"
+              className="space-y-6 w-full max-w-5xl"
             >
               <h3 className="text-3xl font-bold text-gray-900 text-center">
                 {category.icon} {category.name}
               </h3>
-              <div className="flex justify-center">
-                <div className="grid md:grid-cols-4 gap-6 w-full max-w-5xl">
+              <div className="flex justify-center w-full">
+                <div className="grid md:grid-cols-4 gap-6 w-full">
                   {category.skills.map((skill) => (
-                    <motion.div key={skill.name} variants={itemVariants}>
-                      <Card className="text-center h-full flex flex-col items-center justify-center py-8 hover:shadow-xl transition-all bg-gradient-to-br from-primary-50 to-primary-100">
+                    <motion.div key={skill.name} variants={itemVariants} className="flex justify-center">
+                      <Card className="text-center h-full flex flex-col items-center justify-center py-8 hover:shadow-xl transition-all bg-gradient-to-br from-primary-50 to-primary-100 w-full">
                         <div className="w-24 h-24 bg-white rounded-lg flex items-center justify-center mb-4 shadow-md">
                           <SkillImage name={skill.name} size="xl" />
                         </div>
