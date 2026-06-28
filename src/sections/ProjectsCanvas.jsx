@@ -83,68 +83,106 @@ export default function ProjectsCanvas() {
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="relative group select-none"
             >
-              {/* Glassmorphism Card */}
-              <div className="relative backdrop-blur-xl bg-white/30 border border-white/40 rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-all duration-300">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+              {/* Premium Glass Card */}
+              <div className="relative overflow-hidden rounded-3xl shadow-2xl hover:shadow-3xl transition-all duration-500">
+                {/* Background with gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-800 dark:via-gray-900 dark:to-gray-800"></div>
+
+                {/* Glass effect overlay */}
+                <div className="absolute inset-0 backdrop-blur-xl bg-white/40 dark:bg-gray-900/40 border border-white/50 dark:border-gray-700/50"></div>
+
+                {/* Animated gradient background */}
+                <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-primary-400/30 to-purple-500/30 rounded-full blur-3xl animate-pulse"></div>
+                <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-accent-400/30 to-pink-500/30 rounded-full blur-3xl animate-pulse"></div>
 
                 {/* Content Grid */}
-                <div className="relative p-8 sm:p-12 md:p-16 grid md:grid-cols-2 gap-8 items-center">
+                <div className="relative p-8 sm:p-12 md:p-16 grid md:grid-cols-2 gap-8 items-center z-10">
                   {/* Left Side - Info */}
                   <motion.div
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
-                    className="space-y-6 z-10"
+                    className="space-y-6"
                   >
-                    {/* Title */}
+                    {/* Title with gradient */}
                     <div className="space-y-4">
-                      <h3 className="text-4xl md:text-5xl font-bold text-center md:text-left text-gray-900">
+                      <motion.h3
+                        className="text-4xl md:text-5xl font-bold text-center md:text-left bg-gradient-to-r from-primary-600 via-purple-600 to-accent-600 bg-clip-text text-transparent dark:from-primary-400 dark:via-purple-400 dark:to-accent-400"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 0.3 }}
+                      >
                         {currentProject.title}
-                      </h3>
+                      </motion.h3>
 
-                      {/* Status Badge */}
+                      {/* Status Badge with enhanced style */}
                       <div className="flex justify-center md:justify-start">
-                        <Badge
-                          variant={badgeVariants[currentProject.status]}
-                          className="text-base py-2 px-4"
+                        <motion.div
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          transition={{ delay: 0.4 }}
                         >
-                          {currentProject.status === 'En Desarrollo' && '⏱️'}
-                          {currentProject.status === 'Últimas Fases' && '🎯'}
-                          {currentProject.status === 'Terminado' && '✓'}
-                          {' '} {currentProject.status}
-                        </Badge>
+                          <Badge
+                            variant={badgeVariants[currentProject.status]}
+                            className="text-base py-2 px-4 backdrop-blur-sm"
+                          >
+                            {currentProject.status === 'En Desarrollo' && '⏱️'}
+                            {currentProject.status === 'Últimas Fases' && '🎯'}
+                            {currentProject.status === 'Terminado' && '✓'}
+                            {' '} {currentProject.status}
+                          </Badge>
+                        </motion.div>
                       </div>
                     </div>
 
+                    {/* Divider */}
+                    <div className="h-0.5 bg-gradient-to-r from-transparent via-primary-300 to-transparent dark:via-primary-700"></div>
+
                     {/* Description */}
-                    <p className="text-lg text-gray-700 leading-relaxed">
+                    <motion.p
+                      className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4 }}
+                    >
                       {currentProject.longDescription}
-                    </p>
+                    </motion.p>
 
                     {/* Stack */}
-                    <div className="space-y-3">
-                      <p className="text-sm font-semibold text-gray-600 uppercase tracking-wide">Stack Tecnológico</p>
+                    <motion.div
+                      className="space-y-3"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.5 }}
+                    >
+                      <p className="text-sm font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wider">🛠️ Stack Tecnológico</p>
                       <div className="flex flex-wrap gap-2">
-                        {currentProject.stack.map((tech) => (
+                        {currentProject.stack.map((tech, idx) => (
                           <motion.span
                             key={tech}
-                            whileHover={{ scale: 1.1 }}
-                            className="px-4 py-2 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-shadow"
+                            initial={{ opacity: 0, scale: 0.8 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            transition={{ delay: 0.5 + idx * 0.05 }}
+                            whileHover={{ scale: 1.15, y: -2 }}
+                            className="px-4 py-2 bg-gradient-to-r from-primary-500/80 to-purple-500/80 hover:from-primary-600 hover:to-purple-600 text-white rounded-full text-sm font-semibold shadow-lg hover:shadow-xl transition-all backdrop-blur-sm border border-white/20"
                           >
                             {tech}
                           </motion.span>
                         ))}
                       </div>
-                    </div>
+                    </motion.div>
 
-                    {/* CTA Button */}
+                    {/* CTA Button with enhanced design */}
                     <motion.div
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.6 }}
                     >
                       <motion.a
                         href={`#proyecto/${currentProject.id}`}
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group/btn"
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-purple-600 text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 group/btn border border-white/20"
                       >
                         Ir a la Página del Proyecto
                         <motion.div className="transition-transform group-hover/btn:translate-x-2">
