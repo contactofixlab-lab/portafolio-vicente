@@ -159,14 +159,18 @@ export default function ProjectsCanvas() {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="hidden md:flex items-center justify-center"
+                    className="hidden md:flex items-center justify-center h-64"
                   >
                     <motion.div
                       animate={{ y: [0, -10, 0] }}
                       transition={{ duration: 3, repeat: Infinity }}
-                      className="text-9xl drop-shadow-2xl"
+                      className="drop-shadow-2xl"
                     >
-                      {currentProject.image}
+                      {currentProject.image.startsWith('/') ? (
+                        <img src={currentProject.image} alt={currentProject.title} className="max-h-64 max-w-64 object-contain" />
+                      ) : (
+                        <span className="text-9xl">{currentProject.image}</span>
+                      )}
                     </motion.div>
                   </motion.div>
                 </div>
