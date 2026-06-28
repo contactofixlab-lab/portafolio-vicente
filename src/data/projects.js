@@ -4,7 +4,7 @@ export const projects = [
     title: 'Iencinas Analytics',
     description: 'Dashboard de BI para análisis de datos empresariales con reportes interactivos',
     longDescription: 'Sistema completo de business intelligence con visualizaciones, reportes automáticos y análisis predictivos. Diseño moderno con framer-motion y glassmorphism.',
-    image: '/powerbi-logo.png',
+    image: '/iencinas-logo.png',
     stack: ['React', 'Python', 'PostgreSQL', 'Power BI', 'Framer Motion', 'Tailwind'],
     status: 'En Desarrollo',
     tags: ['analytics', 'business', 'dashboard'],
