@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import Button from '../components/ui/Button'
+import Card from '../components/ui/Card'
 import { Mail, Phone } from 'lucide-react'
 
 export default function ContactSection() {
@@ -137,7 +138,7 @@ export default function ContactSection() {
                 Soy accesible y respondo rápidamente. No dudes en escribir para cualquier oportunidad o consulta.
               </p>
               <motion.a
-                href="mailto:vrabanales@rcapcorp.cl"
+                href="mailto:v.rabanales23@gmail.com"
                 whileHover={{ scale: 1.05 }}
                 className="inline-block"
               >
