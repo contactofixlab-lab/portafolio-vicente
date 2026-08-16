@@ -3,11 +3,11 @@ import { hobbies } from '../data/hobbies'
 
 export default function LifeSection() {
   const images = [
-    { id: 1, src: '/foto.png', alt: 'Vida fuera del código 1' },
-    { id: 2, src: '/Developer.png', alt: 'Vida fuera del código 2' },
-    { id: 3, src: '/Code.png', alt: 'Vida fuera del código 3' },
-    { id: 4, src: '/poketask-hero.png', alt: 'Vida fuera del código 4' },
-    { id: 5, src: '/analytics-logo.png', alt: 'Vida fuera del código 5' }
+    { id: 1, src: '/life/foto.png', alt: 'Vida fuera del código 1' },
+    { id: 2, src: '/life/Developer.png', alt: 'Vida fuera del código 2' },
+    { id: 3, src: '/life/Code.png', alt: 'Vida fuera del código 3' },
+    { id: 4, src: '/life/poketask-hero.png', alt: 'Vida fuera del código 4' },
+    { id: 5, src: '/life/analytics-logo.png', alt: 'Vida fuera del código 5' }
   ]
 
   return (

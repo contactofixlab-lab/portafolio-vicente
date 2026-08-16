@@ -4,10 +4,10 @@ export const skillsCategories = [
     name: 'Lenguajes de Programación',
     icon: '💻',
     skills: [
-      { name: 'JavaScript', image: '/JavaScript-logo.png' },
-      { name: 'SQL', image: '/Logo Sql Developer.png' },
-      { name: 'Java', image: '/java logo.png' },
-      { name: 'Python', image: '/python logo.png' }
+      { name: 'JavaScript', image: '/skills/JavaScript-logo.png' },
+      { name: 'SQL', image: '/skills/Logo Sql Developer.png' },
+      { name: 'Java', image: '/skills/java logo.png' },
+      { name: 'Python', image: '/skills/python logo.png' }
     ]
   },
   {
@@ -15,8 +15,8 @@ export const skillsCategories = [
     name: 'Business Intelligence',
     icon: '📊',
     skills: [
-      { name: 'Power BI', image: '/power bi logo.png' },
-      { name: 'Microsoft 365', image: '/microsoft 365 logo.jpg' }
+      { name: 'Power BI', image: '/skills/power bi logo.png' },
+      { name: 'Microsoft 365', image: '/skills/microsoft 365 logo.jpg' }
     ]
   },
   {
@@ -24,9 +24,9 @@ export const skillsCategories = [
     name: 'Herramientas de Gestión',
     icon: '⚙️',
     skills: [
-      { name: 'MobySuite', image: '/mobysuite logo.png' },
-      { name: 'Transbank', image: '/Transbank.png' },
-      { name: 'GoFirmex', image: '/gofirmex logo.png' }
+      { name: 'MobySuite', image: '/skills/mobysuite logo.png' },
+      { name: 'Transbank', image: '/skills/Transbank.png' },
+      { name: 'GoFirmex', image: '/skills/gofirmex logo.png' }
     ]
   },
   {
@@ -34,13 +34,13 @@ export const skillsCategories = [
     name: 'Herramientas Colaborativas',
     icon: '🤝',
     skills: [
-      { name: 'Trello', image: '/trello logo.png' },
-      { name: 'GitHub', image: '/github logo.png' },
-      { name: 'ClickUp', image: '/clickup logo.jfif' },
-      { name: 'Miro', image: '/miro logo.png' },
-      { name: 'Gmail', image: '/gmail.png' },
-      { name: 'Slack', image: '/Slack.png' },
-      { name: 'Discord', image: '/Discord.png' }
+      { name: 'Trello', image: '/skills/trello logo.png' },
+      { name: 'GitHub', image: '/skills/github logo.png' },
+      { name: 'ClickUp', image: '/skills/clickup logo.jfif' },
+      { name: 'Miro', image: '/skills/miro logo.png' },
+      { name: 'Gmail', image: '/skills/gmail.png' },
+      { name: 'Slack', image: '/skills/Slack.png' },
+      { name: 'Discord', image: '/skills/Discord.png' }
     ]
   },
   {
@@ -48,11 +48,11 @@ export const skillsCategories = [
     name: 'Herramientas Modernas & IA',
     icon: '✨',
     skills: [
-      { name: 'V0.dev', image: '/vo.dev logo.png' },
-      { name: 'ChatGPT', image: '/chatgpt logo.jpg' },
-      { name: 'Claude', image: '/claud logo.png' },
-      { name: 'Visual Studio Code', image: '/Visual Studio Code.png' },
-      { name: 'Google Adsense', image: '/google adsense logo.jpg' }
+      { name: 'V0.dev', image: '/skills/vo.dev logo.png' },
+      { name: 'ChatGPT', image: '/skills/chatgpt logo.jpg' },
+      { name: 'Claude', image: '/skills/claud logo.png' },
+      { name: 'Visual Studio Code', image: '/skills/Visual Studio Code.png' },
+      { name: 'Google Adsense', image: '/skills/google adsense logo.jpg' }
     ]
   },
   {
@@ -60,9 +60,9 @@ export const skillsCategories = [
     name: 'Almacenamiento en la Nube',
     icon: '☁️',
     skills: [
-      { name: 'Mega', image: '/mega.png' },
-      { name: 'OneDrive', image: '/Onedrive.png' },
-      { name: 'Dropbox', image: '/Dropbox.png' }
+      { name: 'Mega', image: '/skills/mega.png' },
+      { name: 'OneDrive', image: '/skills/Onedrive.png' },
+      { name: 'Dropbox', image: '/skills/Dropbox.png' }
     ]
   },
   {
@@ -70,8 +70,8 @@ export const skillsCategories = [
     name: 'Diseño',
     icon: '🎨',
     skills: [
-      { name: 'Wix', image: '/wix.png' },
-      { name: 'Sigma', image: '/Gigma.png' }
+      { name: 'Wix', image: '/skills/wix.png' },
+      { name: 'Sigma', image: '/skills/Gigma.png' }
     ]
   },
   {
@@ -79,7 +79,7 @@ export const skillsCategories = [
     name: 'Soporte Técnico',
     icon: '🔧',
     skills: [
-      { name: 'AnyDesk', image: '/Anydesk.png' }
+      { name: 'AnyDesk', image: '/skills/Anydesk.png' }
     ]
   },
   {
@@ -87,10 +87,10 @@ export const skillsCategories = [
     name: 'Integraciones & Cadenas de Pago',
     icon: '🔌',
     skills: [
-      { name: 'OpenAI', image: '/openIA.png' },
-      { name: 'Bizagi', image: '/bizagi modeler.png' },
-      { name: 'Zapier', image: '/Zapier.png' },
-      { name: 'Microsoft Sharepoint', image: '/Microsoft Sharepoint.png' }
+      { name: 'OpenAI', image: '/skills/openIA.png' },
+      { name: 'Bizagi', image: '/skills/bizagi modeler.png' },
+      { name: 'Zapier', image: '/skills/Zapier.png' },
+      { name: 'Microsoft Sharepoint', image: '/skills/Microsoft Sharepoint.png' }
     ]
   },
   {
@@ -98,9 +98,9 @@ export const skillsCategories = [
     name: 'Plataformas & Redes',
     icon: '🌐',
     skills: [
-      { name: 'Vercel', image: '/vercel.png' },
-      { name: 'Meta', image: '/Meta.png' },
-      { name: 'Alibaba', image: '/Alibaba.png' }
+      { name: 'Vercel', image: '/skills/vercel.png' },
+      { name: 'Meta', image: '/skills/Meta.png' },
+      { name: 'Alibaba', image: '/skills/Alibaba.png' }
     ]
   }
 ]
