@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Proyectos - Portafolio Vicente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .table-wrapper {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        th {
+            padding: 20px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 1.05em;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid #e5e7eb;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background-color: #f9fafb;
+            transition: background-color 0.3s ease;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .existe-si {
+            background-color: #d1fae5;
+            color: #065f46;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .existe-no {
+            background-color: #fee2e2;
+            color: #991b1b;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .carpeta-name {
+            color: #667eea;
+            font-weight: 600;
+            font-family: monospace;
+        }
+
+        .warning-box {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .warning-box h2 {
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .warning-box p {
+            color: #78350f;
+            margin-bottom: 10px;
+        }
+
+        .project-list {
+            list-style: none;
+            margin-top: 15px;
+            padding-left: 0;
+        }
+
+        .project-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #fcd34d;
+            color: #78350f;
+        }
+
+        .project-list li:last-child {
+            border-bottom: none;
+        }
+
+        .recommendation {
+            background: #f0f9ff;
+            border-left: 4px solid #0ea5e9;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            color: #0c4a6e;
+        }
+
+        .recommendation strong {
+            color: #075985;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Validación de Proyectos</h1>
+        <p class="subtitle">Verificación de carpetas existentes en "Proyectos Personales"</p>
+
+        <div class="warning-box">
+            <h2>⚠️ Proyectos sin carpeta separada</h2>
+            <p>Estos proyectos están en el portafolio pero NO tienen una carpeta separada en "Proyectos Personales":</p>
+            <ul class="project-list">
+                <li>❌ <strong>Iencinas Analytics</strong> - No tiene carpeta</li>
+                <li>❌ <strong>Yencinas Bodega</strong> - No tiene carpeta</li>
+                <li>❌ <strong>TRAZA</strong> - No tiene carpeta</li>
+                <li>❌ <strong>Constructora PDS</strong> - No tiene carpeta</li>
+                <li>❌ <strong>PokeTask</strong> - No tiene carpeta</li>
+                <li>❌ <strong>RecipeHub</strong> - No tiene carpeta</li>
+            </ul>
+            <div class="recommendation">
+                <strong>Recomendación:</strong> ¿Quieres eliminar estos 6 proyectos de la lista de proyectos del portafolio?
+            </div>
+        </div>
+
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Proyecto</th>
+                        <th>¿Existe carpeta?</th>
+                        <th>Nombre de carpeta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Iencinas Analytics</td>
+                        <td><span class="existe-no">NO</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Yencinas Bodega</td>
+                        <td><span class="existe-no">NO</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>TRAZA</td>
+                        <td><span class="existe-no">NO</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Constructora PDS</td>
+                        <td><span class="existe-no">NO</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>PokeTask</td>
+                        <td><span class="existe-no">NO</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Vortex</td>
+                        <td><span class="existe-si">SÍ</span></td>
+                        <td><span class="carpeta-name">Vortex</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>FamilyColab</td>
+                        <td><span class="existe-si">SÍ</span></td>
+                        <td><span class="carpeta-name">FamilyColab</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>NEXORA</td>
+                        <td><span class="existe-si">SÍ</span></td>
+                        <td><span class="carpeta-name">ArenaFPS</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Plataforma Videojuegos</td>
+                        <td><span class="existe-si">SÍ</span></td>
+                        <td><span class="carpeta-name">Plataforma Videojuegos</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>RecipeHub</td>
+                        <td><span class="existe-no">NO</span></td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div style="background: white; padding: 20px; border-radius: 12px; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);">
+            <h2 style="color: #333; margin-bottom: 15px;">📁 Carpetas disponibles en "Proyectos Personales"</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>✓ ArenaFPS</strong> (NEXORA)</li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>✓ FamilyColab</strong></li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>✓ Plataforma Videojuegos</strong></li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>✓ portafolio Vicente</strong></li>
+                <li style="padding: 10px 0; border-bottom: 1px solid #e5e7eb;"><strong>✓ páginas proyectos</strong></li>
+                <li style="padding: 10px 0;"><strong>✓ Vortex</strong></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
