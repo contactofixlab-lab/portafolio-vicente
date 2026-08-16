@@ -131,6 +131,19 @@
             transition: all 0.3s;
         }
 
+        .btn-delete {
+            padding: 6px 12px;
+            background: #ef4444;
+            color: white;
+            font-size: 0.85em;
+            width: 100%;
+        }
+
+        .btn-delete:hover {
+            background: #dc2626;
+            transform: translateY(-1px);
+        }
+
         .btn-export {
             background: #10b981;
             color: white;
@@ -231,6 +244,7 @@
                         <th>Estado</th>
                         <th>Año</th>
                         <th>Imagen Path</th>
+                        <th>Acción</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -242,6 +256,7 @@
                         <td><select><option selected>Terminado</option><option>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/analytics-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">2</td>
@@ -251,6 +266,7 @@
                         <td><select><option selected>Terminado</option><option>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/java-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">3</td>
@@ -260,6 +276,7 @@
                         <td><select><option>Terminado</option><option selected>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/traza-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">4</td>
@@ -269,6 +286,7 @@
                         <td><select><option selected>Terminado</option><option>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/constructora-pds-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">5</td>
@@ -278,6 +296,7 @@
                         <td><select><option>Terminado</option><option selected>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/poketask-hero.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">6</td>
@@ -287,6 +306,7 @@
                         <td><select><option selected>Terminado</option><option>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/vortex-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">7</td>
@@ -296,6 +316,7 @@
                         <td><select><option>Terminado</option><option selected>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/familycolab-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">8</td>
@@ -305,6 +326,7 @@
                         <td><select><option selected>Terminado</option><option>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/nexora-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">9</td>
@@ -314,6 +336,7 @@
                         <td><select><option>Terminado</option><option selected>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/plataforma-games-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                     <tr>
                         <td class="row-number">10</td>
@@ -323,6 +346,7 @@
                         <td><select><option>Terminado</option><option selected>En Desarrollo</option></select></td>
                         <td><input type="number" value="2024"></td>
                         <td><input type="text" value="/projects/recipehub-logo.png"></td>
+                        <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -368,18 +392,41 @@
 
             table.querySelectorAll('tbody tr').forEach((row, index) => {
                 const cells = row.querySelectorAll('input, select');
-                rows.push({
-                    id: index + 1,
-                    title: cells[0].value,
-                    company: cells[1].value,
-                    type: cells[2].value,
-                    status: cells[3].value,
-                    year: cells[4].value,
-                    image: cells[5].value
-                });
+                if (cells.length > 0) {
+                    rows.push({
+                        id: index + 1,
+                        title: cells[0].value,
+                        company: cells[1].value,
+                        type: cells[2].value,
+                        status: cells[3].value,
+                        year: cells[4].value,
+                        image: cells[5].value
+                    });
+                }
             });
 
             return rows;
+        }
+
+        function eliminarFila(button) {
+            const fila = button.closest('tr');
+            if (confirm('¿Estás seguro de que quieres eliminar este proyecto?')) {
+                fila.style.opacity = '0.5';
+                fila.style.textDecoration = 'line-through';
+                button.textContent = '✓ Eliminado';
+                button.disabled = true;
+                button.style.background = '#6b7280';
+                mostrarFeedback('Proyecto marcado para eliminar');
+            }
+        }
+
+        function recuperarFila(button) {
+            const fila = button.closest('tr');
+            fila.style.opacity = '1';
+            fila.style.textDecoration = 'none';
+            button.textContent = '🗑️ Eliminar';
+            button.disabled = false;
+            button.style.background = '';
         }
 
         function copiarJSON() {
