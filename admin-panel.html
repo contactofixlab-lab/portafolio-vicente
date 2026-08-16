@@ -825,6 +825,65 @@
           document.getElementById('password').value = '';
         }
 
+        // Inicializar datos por defecto
+        function initializeDefaultData() {
+          const defaultProjects = [
+            { id: 1, title: 'Iencinas Analytics', description: 'Dashboard de BI para análisis de datos empresariales con reportes interactivos', company: 'Iencinas', type: 'App', status: 'Terminado', year: 2024, image: '/projects/analytics-logo.png', github: 'https://github.com/contactofixlab-lab/iencinas-analytics', demo: 'https://iencinas-analytics.vercel.app' },
+            { id: 2, title: 'Yencinas Bodega', description: 'Sistema de gestión de inventario y asignación de insumos de oficina', company: 'Yencinas', type: 'App', status: 'Terminado', year: 2024, image: '/projects/java-logo.png', github: 'https://github.com/contactofixlab-lab/yencinas-bodega', demo: 'https://yencinas-bodega.vercel.app' },
+            { id: 3, title: 'TRAZA', description: 'Sistema de control documental y firmas digitales para resiliencias', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024, image: '/projects/traza-logo.png', github: 'https://github.com/contactofixlab-lab/traza', demo: 'https://traza-app.vercel.app' },
+            { id: 4, title: 'Constructora PDS', description: 'Sitio corporativo para constructora con información de proyectos y equipo', company: 'Constructora PDS', type: 'Web', status: 'Terminado', year: 2024, image: '/projects/constructora-pds-logo.png', github: 'https://github.com/contactofixlab-lab/constructora-pds', demo: 'https://constructora-pds.vercel.app' },
+            { id: 5, title: 'PokeTask', description: 'App de tareas con temática Pokémon y sistema de gamificación', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024, image: '/projects/poketask-hero.png', github: 'https://github.com/contactofixlab-lab/poketask', demo: 'https://poketask.vercel.app' },
+            { id: 6, title: 'Vortex', description: 'Sitio web de descargas con estilo glassmorphism 3D cyberpunk', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', year: 2024, image: '/projects/vortex-logo.png', github: 'https://github.com/contactofixlab-lab/vortex', demo: 'https://vortex-downloads.vercel.app' },
+            { id: 7, title: 'FamilyColab', description: 'App familiar con tareas, inventario, cocina y menú 3D flotante', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024, image: '/projects/familycolab-logo.png', github: 'https://github.com/contactofixlab-lab/familycolab', demo: 'https://familycolab.vercel.app' },
+            { id: 8, title: 'NEXORA', description: 'Sitio web AAA para hero shooter estilo Paladins con 10 héroes únicos', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', year: 2024, image: '/projects/nexora-logo.png', github: 'https://github.com/contactofixlab-lab/nexora', demo: 'https://nexora-game.vercel.app' },
+            { id: 9, title: 'Plataforma Videojuegos', description: 'Plataforma de distribución y gestión de videojuegos independientes', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', year: 2024, image: '/projects/plataforma-games-logo.png', github: 'https://github.com/contactofixlab-lab/plataforma-videojuegos', demo: 'https://plataforma-games.vercel.app' },
+            { id: 10, title: 'RecipeHub', description: 'Sitio web de recetas monetizable con AdSense, primero en la red de proyectos', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', year: 2024, image: '/projects/recipehub-logo.png', github: 'https://github.com/contactofixlab-lab/recipe-hub', demo: 'https://mundo-al-plato.vercel.app' }
+          ];
+          const defaultExperiences = [
+            { id: 1, title: 'Área de Sistemas y Operaciones', company: 'Iencinas (Inmobiliaria)', description: 'Implementación de sistemas, soporte técnico y análisis de datos', startDate: '2026-05-05', endDate: '', badge: 'Actual' },
+            { id: 2, title: 'Soporte y Operaciones en Proyectos Inmobiliarios', company: 'Neo Edificios, Neo Yungai, NeoBrisas', description: 'Soporte técnico y operaciones en sistemas de proyectos', startDate: '2026-03-01', endDate: '', badge: 'Operaciones' },
+            { id: 3, title: 'Ingeniero en Innovación', company: 'Empresa C', description: 'Desarrollo de soluciones innovadoras, automatización de procesos', startDate: '2024-07-01', endDate: '2026-02-28', badge: 'Estrategia' },
+            { id: 4, title: 'Jefe de Innovación', company: 'Empresa C', description: 'Dirección de proyectos de transformación digital', startDate: '2023-01-01', endDate: '2024-06-30', badge: 'Liderazgo' },
+            { id: 5, title: 'Jefe de Informática', company: 'Empresa C', description: 'Liderazgo de equipo de TI, gestión de infraestructura', startDate: '2022-07-01', endDate: '2023-12-31', badge: 'Liderazgo' },
+            { id: 6, title: 'Prácticas Profesionales', company: 'Empresa B', description: 'Desarrollo de features, buenas prácticas', startDate: '2021-06-01', endDate: '2022-06-30', badge: 'Aprendizaje' },
+            { id: 7, title: 'Atención al Cliente', company: 'Empresa A', description: 'Gestión de clientes, soporte técnico', startDate: '2020-01-01', endDate: '2021-12-31', badge: 'Entrada' }
+          ];
+          const defaultSkills = [
+            { id: 1, name: 'JavaScript', category: 'Lenguajes de Programación', image: '/skills/JavaScript-logo.png', level: 'Experto' },
+            { id: 2, name: 'SQL', category: 'Lenguajes de Programación', image: '/skills/Logo Sql Developer.png', level: 'Avanzado' },
+            { id: 3, name: 'Java', category: 'Lenguajes de Programación', image: '/skills/java logo.png', level: 'Intermedio' },
+            { id: 4, name: 'Python', category: 'Lenguajes de Programación', image: '/skills/python logo.png', level: 'Avanzado' },
+            { id: 5, name: 'Power BI', category: 'Business Intelligence', image: '/skills/power bi logo.png', level: 'Experto' },
+            { id: 6, name: 'MobySuite', category: 'Herramientas de Gestión', image: '/skills/mobysuite logo.png', level: 'Avanzado' },
+            { id: 7, name: 'GitHub', category: 'Herramientas Colaborativas', image: '/skills/github logo.png', level: 'Experto' },
+            { id: 8, name: 'ChatGPT', category: 'Herramientas Modernas & IA', image: '/skills/chatgpt logo.jpg', level: 'Experto' },
+            { id: 9, name: 'Vercel', category: 'Plataformas & Redes', image: '/skills/vercel.png', level: 'Experto' }
+          ];
+          const defaultCertificates = [
+            { id: 1, title: 'Excel Avanzado', issuer: 'Microsoft Office Specialist', year: 2022, description: 'Dominio avanzado de Excel y análisis de datos', image: '/Certificados/Excel Avanzado.jpg' },
+            { id: 2, title: 'Master Hardware & Reparación', issuer: 'Certificación Técnica', year: 2022, description: 'Especialización en hardware, mantenimiento y reparación', image: '/Certificados/Master Hardware.jpg' },
+            { id: 3, title: 'Power BI', issuer: 'Microsoft Business Intelligence', year: 2026, description: 'Análisis avanzado de datos y visualización con Power BI', image: '/Certificados/Power bi.jpg' },
+            { id: 4, title: 'Project Management', issuer: 'Gestión de Proyectos Profesional', year: 2022, description: 'Certificación en metodologías y gestión de proyectos', image: '/Certificados/Proyect Management-Gestion de Proyectos.jpg' },
+            { id: 5, title: 'Importación en Alibaba', issuer: 'Alibaba International', year: 2026, description: 'Especialización en procesos de importación y comercio', image: '/Certificados/alibaba.jpg' }
+          ];
+
+          if (!localStorage.getItem('portafolio_projects')) {
+            localStorage.setItem('portafolio_projects', JSON.stringify(defaultProjects));
+          }
+          if (!localStorage.getItem('portafolio_experiences')) {
+            localStorage.setItem('portafolio_experiences', JSON.stringify(defaultExperiences));
+          }
+          if (!localStorage.getItem('portafolio_skills')) {
+            localStorage.setItem('portafolio_skills', JSON.stringify(defaultSkills));
+          }
+          if (!localStorage.getItem('portafolio_certificates')) {
+            localStorage.setItem('portafolio_certificates', JSON.stringify(defaultCertificates));
+          }
+        }
+
+        // Inicializar datos al cargar
+        initializeDefaultData();
+
         // Verificar si ya está logueado
         window.addEventListener('load', () => {
           if (sessionStorage.getItem('adminLoggedIn') === 'true') {
