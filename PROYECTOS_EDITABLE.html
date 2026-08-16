@@ -155,6 +155,17 @@
             box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
         }
 
+        .btn-add {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .btn-add:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+        }
+
         .btn-copy {
             background: #667eea;
             color: white;
@@ -353,6 +364,7 @@
         </div>
 
         <div class="button-group">
+            <button class="btn-add" onclick="agregarProyecto()">➕ Agregar Proyecto</button>
             <button class="btn-copy" onclick="copiarJSON()">📋 Copiar como JSON</button>
             <button class="btn-export" onclick="descargarCSV()">💾 Descargar como CSV</button>
         </div>
@@ -454,6 +466,27 @@
             window.URL.revokeObjectURL(url);
 
             mostrarFeedback('💾 CSV descargado');
+        }
+
+        function agregarProyecto() {
+            const tabla = document.getElementById('projectsTable').querySelector('tbody');
+            const totalRows = tabla.querySelectorAll('tr').length;
+            const newId = totalRows + 1;
+
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="row-number">${newId}</td>
+                <td><input type="text" value="" placeholder="Nombre del proyecto"></td>
+                <td><input type="text" value="" placeholder="Empresa"></td>
+                <td><select><option>App</option><option>Web</option></select></td>
+                <td><select><option>Terminado</option><option>En Desarrollo</option></select></td>
+                <td><input type="number" value="2024"></td>
+                <td><input type="text" value="" placeholder="/projects/logo.png"></td>
+                <td><button class="btn-delete" onclick="eliminarFila(this)">🗑️ Eliminar</button></td>
+            `;
+
+            tabla.appendChild(newRow);
+            mostrarFeedback('✅ Nuevo proyecto agregado');
         }
 
         function mostrarFeedback(mensaje) {
