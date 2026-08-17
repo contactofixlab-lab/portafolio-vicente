@@ -15,6 +15,14 @@ export default function Footer() {
     { icon: MapPin, label: 'Ubicación', value: 'Chile / Uruguay' }
   ]
 
+  const navItems = [
+    { label: 'Inicio', href: '#home' },
+    { label: 'Proyectos', href: '#proyectos' },
+    { label: 'Trayectoria', href: '#trayectoria' },
+    { label: 'Habilidades', href: '#habilidades' },
+    { label: 'Contacto', href: '#contacto' }
+  ]
+
   return (
     <footer className="bg-primary-500 text-white mt-20">
       {/* Main Content */}
@@ -26,15 +34,12 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                <span className="text-primary-600 font-bold">V</span>
+            <div className="flex items-center gap-3">
+              <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center shrink-0">
+                <span className="text-primary-600 font-bold text-2xl">V</span>
               </div>
-              <span className="font-bold text-lg">Vicente Rabanales</span>
+              <span className="font-bold text-3xl">Vicente Rabanales</span>
             </div>
-            <p className="text-white/70 text-sm">
-              Ingeniero en Informática | Innovación & Desarrollo
-            </p>
           </motion.div>
 
           {/* Column 2: Quick Links */}
@@ -46,21 +51,13 @@ export default function Footer() {
           >
             <h3 className="font-semibold mb-4">Navegación</h3>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a href="/" className="text-white/70 hover:text-white transition-colors">
-                  Inicio
-                </a>
-              </li>
-              <li>
-                <a href="/proyectos" className="text-white/70 hover:text-white transition-colors">
-                  Proyectos
-                </a>
-              </li>
-              <li>
-                <a href="#contacto" className="text-white/70 hover:text-white transition-colors">
-                  Contacto
-                </a>
-              </li>
+              {navItems.map((item) => (
+                <li key={item.href}>
+                  <a href={item.href} className="text-white/70 hover:text-white transition-colors">
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </motion.div>
 

@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion } from 'framer-motion'
 import Badge from '../components/ui/Badge'
 import { ChevronLeft, ChevronRight, ArrowRight, ExternalLink, Github } from 'lucide-react'
 import { projects } from '../data/projects'
@@ -17,22 +17,6 @@ export default function ProjectsCanvas() {
     'En Desarrollo': 'warning',
     'Últimas Fases': 'success',
     'Terminado': 'success'
-  }
-
-  const handleDragEnd = (info) => {
-    const threshold = 50
-    const velocity = info.velocity.x
-    const distance = info.offset.x
-
-    if (Math.abs(distance) > threshold || Math.abs(velocity) > 500) {
-      if (distance > 0 || velocity > 500) {
-        // Drag right → anterior
-        setCurrentIndex((prev) => (prev - 1 + featuredProjects.length) % featuredProjects.length)
-      } else {
-        // Drag left → siguiente
-        setCurrentIndex((prev) => (prev + 1) % featuredProjects.length)
-      }
-    }
   }
 
   const nextProject = () => {
@@ -62,169 +46,168 @@ export default function ProjectsCanvas() {
         </div>
 
         {/* Canvas Container - Draggable */}
-        <div
-          ref={containerRef}
-          className="relative group cursor-grab active:cursor-grabbing overflow-hidden rounded-3xl"
-        >
-          {/* Glass Morphism Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 to-accent-500/10 rounded-3xl blur-3xl -z-10"></div>
+        <div ref={containerRef} className="relative">
+          {/* Left Arrow — al costado de la tarjeta */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={prevProject}
+            className="hidden sm:flex absolute left-0 sm:-left-4 md:-left-6 top-1/2 -translate-y-1/2 z-20 p-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+            aria-label="Proyecto anterior"
+          >
+            <ChevronLeft size={24} className="group-hover:scale-110 transition-transform" />
+          </motion.button>
 
-          {/* Draggable Content */}
-          <AnimatePresence mode="wait">
+          {/* Right Arrow — al costado de la tarjeta */}
+          <motion.button
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={nextProject}
+            className="hidden sm:flex absolute right-0 sm:-right-4 md:-right-6 top-1/2 -translate-y-1/2 z-20 p-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+            aria-label="Siguiente proyecto"
+          >
+            <ChevronRight size={24} className="group-hover:scale-110 transition-transform" />
+          </motion.button>
+
+          <div className="overflow-hidden rounded-3xl">
+            {/* Contenido — key={currentIndex} reemplaza la tarjeta al cambiar, con animación de entrada */}
             <motion.div
               key={currentIndex}
-              drag="x"
-              dragElastic={0.2}
-              dragConstraints={{ left: 0, right: 0 }}
-              onDragEnd={handleDragEnd}
-              initial={{ opacity: 0, x: 100 }}
+              initial={{ opacity: 0, x: 40 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -100 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="relative group select-none"
+              transition={{ duration: 0.35, ease: 'easeOut' }}
+              className="relative select-none"
             >
-              {/* Neon Card Design */}
-              <div className="relative overflow-hidden rounded-2xl shadow-2xl hover:shadow-3xl transition-all duration-500 bg-gray-900 dark:bg-gray-950 border border-gray-800 dark:border-gray-900">
-                {/* Neon glow lines */}
-                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-50"></div>
-                <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent-500 to-transparent opacity-50"></div>
-                <div className="absolute top-0 left-0 h-full w-1 bg-gradient-to-b from-primary-500/50 via-transparent to-transparent opacity-30"></div>
+                {/* Card Design */}
+                <div className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-500 bg-white border border-gray-200">
+                  {/* Accent line */}
+                  <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary-500 to-accent"></div>
 
-                {/* Content Grid */}
-                <div className="relative p-8 sm:p-12 md:p-16 grid md:grid-cols-2 gap-8 items-center">
-                  {/* Left Side - Info */}
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="space-y-8"
-                  >
-                    {/* Title */}
-                    <h3 className="text-4xl md:text-5xl font-bold text-center md:text-left text-white">
-                      {currentProject.title}
-                    </h3>
-
-                    {/* Status Badge */}
-                    <div className="flex justify-center md:justify-start">
-                      <Badge
-                        variant={badgeVariants[currentProject.status]}
-                        className="text-base py-2 px-4"
-                      >
-                        {currentProject.status === 'En Desarrollo' && '⏱️'}
-                        {currentProject.status === 'Últimas Fases' && '🎯'}
-                        {currentProject.status === 'Terminado' && '✓'}
-                        {' '} {currentProject.status}
-                      </Badge>
-                    </div>
-
-                    {/* Description */}
-                    <p className="text-lg text-gray-300 leading-relaxed">
-                      {currentProject.longDescription}
-                    </p>
-
-                    {/* Stack */}
-                    <div className="space-y-4">
-                      <p className="text-sm font-bold text-primary-400 uppercase tracking-widest">Stack</p>
-                      <div className="flex flex-wrap gap-3">
-                        {currentProject.stack.map((tech) => (
-                          <motion.div
-                            key={tech}
-                            whileHover={{ y: -3 }}
-                            className="px-5 py-2 bg-gray-800 border border-primary-500/50 text-white rounded-lg text-sm font-medium hover:border-primary-400 hover:bg-gray-700 transition-all"
-                          >
-                            {tech}
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                      <motion.a
-                        href={`#proyecto/${currentProject.id}`}
-                        className="inline-flex items-center gap-3 px-8 py-4 bg-primary-600 hover:bg-primary-700 text-white font-bold text-lg rounded-lg transition-all duration-300 group/btn"
-                      >
-                        Ir a la Página del Proyecto
-                        <motion.div className="transition-transform group-hover/btn:translate-x-2">
-                          <ArrowRight size={24} />
-                        </motion.div>
-                      </motion.a>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Right Side - Image */}
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.3 }}
-                    className="hidden md:flex items-center justify-center h-64"
-                  >
+                  {/* Content Grid */}
+                  <div className="relative p-6 sm:p-8 md:p-10 grid md:grid-cols-2 gap-6 items-center">
+                    {/* Left Side - Info */}
                     <motion.div
-                      animate={{ y: [0, -10, 0] }}
-                      transition={{ duration: 3, repeat: Infinity }}
-                      className="drop-shadow-2xl"
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 0.2 }}
+                      className="space-y-5"
                     >
-                      {currentProject.image.startsWith('/') ? (
-                        <img src={currentProject.image} alt={currentProject.title} className="max-h-64 max-w-64 object-contain" />
-                      ) : (
-                        <span className="text-9xl">{currentProject.image}</span>
-                      )}
+                      {/* Title */}
+                      <h3 className="text-2xl md:text-3xl font-bold text-center md:text-left text-gray-900">
+                        {currentProject.title}
+                      </h3>
+
+                      {/* Status Badge */}
+                      <div className="flex justify-center md:justify-start">
+                        <Badge variant={badgeVariants[currentProject.status]}>
+                          {currentProject.status === 'En Desarrollo' && '⏱️'}
+                          {currentProject.status === 'Últimas Fases' && '🎯'}
+                          {currentProject.status === 'Terminado' && '✓'}
+                          {' '} {currentProject.status}
+                        </Badge>
+                      </div>
+
+                      {/* Description */}
+                      <p className="text-sm text-gray-600 leading-relaxed">
+                        {currentProject.longDescription}
+                      </p>
+
+                      {/* Stack */}
+                      <div className="space-y-3">
+                        <p className="text-xs font-bold text-primary-600 uppercase tracking-widest">Stack</p>
+                        <div className="flex flex-wrap gap-2">
+                          {currentProject.stack.map((tech) => (
+                            <motion.div
+                              key={tech}
+                              whileHover={{ y: -2 }}
+                              className="px-3 py-1.5 bg-gray-50 border border-gray-200 text-gray-700 rounded-lg text-xs font-medium hover:border-primary-400 hover:bg-primary-50 transition-all"
+                            >
+                              {tech}
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* CTA Button */}
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <motion.a
+                          href={`#proyecto/${currentProject.id}`}
+                          className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm rounded-lg transition-all duration-300 group/btn"
+                        >
+                          Ir a la Página del Proyecto
+                          <motion.div className="transition-transform group-hover/btn:translate-x-2">
+                            <ArrowRight size={18} />
+                          </motion.div>
+                        </motion.a>
+                      </motion.div>
                     </motion.div>
-                  </motion.div>
+
+                    {/* Right Side - Image */}
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.3 }}
+                      className="hidden md:flex items-center justify-center h-44"
+                    >
+                      <motion.div
+                        animate={{ y: [0, -10, 0] }}
+                        transition={{ duration: 3, repeat: Infinity }}
+                        className="drop-shadow-xl"
+                      >
+                        {currentProject.image.startsWith('/') ? (
+                          <img src={currentProject.image} alt={currentProject.title} className="max-h-44 max-w-44 object-contain" />
+                        ) : (
+                          <span className="text-7xl">{currentProject.image}</span>
+                        )}
+                      </motion.div>
+                    </motion.div>
+                  </div>
+
                 </div>
+              </motion.div>
+          </div>
 
-                {/* Drag Hint */}
-                <motion.div
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-gray-400 text-sm"
-                >
-                  ↔️ Desliza para navegar
-                </motion.div>
-              </div>
-            </motion.div>
-          </AnimatePresence>
-
-          {/* Navigation Buttons */}
-          <div className="flex justify-between items-center mt-8">
+          {/* Mobile arrows (below card, only on small screens) */}
+          <div className="flex sm:hidden justify-center gap-6 mt-6">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={prevProject}
-              className="p-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="p-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg"
+              aria-label="Proyecto anterior"
             >
-              <ChevronLeft size={28} className="group-hover:scale-110 transition-transform" />
+              <ChevronLeft size={22} />
             </motion.button>
-
-            {/* Dots Indicator */}
-            <div className="flex gap-3">
-              {featuredProjects.map((_, idx) => (
-                <motion.button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  animate={{
-                    width: idx === currentIndex ? 32 : 12,
-                    backgroundColor: idx === currentIndex ? '#f97316' : '#e5e7eb'
-                  }}
-                  className="h-2 rounded-full transition-colors duration-300"
-                  whileHover={{ scale: 1.2 }}
-                />
-              ))}
-            </div>
-
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
               onClick={nextProject}
-              className="p-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 group"
+              className="p-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full shadow-lg"
+              aria-label="Siguiente proyecto"
             >
-              <ChevronRight size={28} className="group-hover:scale-110 transition-transform" />
+              <ChevronRight size={22} />
             </motion.button>
           </div>
 
+          {/* Dots Indicator */}
+          <div className="flex justify-center gap-3 mt-6">
+            {featuredProjects.map((_, idx) => (
+              <motion.button
+                key={idx}
+                onClick={() => setCurrentIndex(idx)}
+                animate={{
+                  width: idx === currentIndex ? 32 : 12,
+                  backgroundColor: idx === currentIndex ? '#f97316' : '#e5e7eb'
+                }}
+                className="h-2 rounded-full transition-colors duration-300"
+                whileHover={{ scale: 1.2 }}
+              />
+            ))}
+          </div>
+
           {/* Counter */}
-          <div className="text-center mt-8 text-gray-600">
-            <p className="text-lg font-semibold">
+          <div className="text-center mt-4 text-gray-600">
+            <p className="text-sm font-semibold">
               {currentIndex + 1} de {featuredProjects.length}
             </p>
           </div>
