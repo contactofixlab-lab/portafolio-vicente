@@ -5,9 +5,9 @@ export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   const socialLinks = [
-    { icon: Github, label: 'GitHub', href: '#', color: 'text-gray-600' },
-    { icon: Linkedin, label: 'LinkedIn', href: '#', color: 'text-blue-600' },
-    { icon: Mail, label: 'Email', href: 'mailto:vrabanales@rcapcorp.cl', color: 'text-primary-600' }
+    { icon: Github, label: 'GitHub', href: '#', color: 'text-white/80' },
+    { icon: Linkedin, label: 'LinkedIn', href: '#', color: 'text-white/80' },
+    { icon: Mail, label: 'Email', href: 'mailto:vrabanales@rcapcorp.cl', color: 'text-white/80' }
   ]
 
   const contactItems = [
@@ -16,7 +16,7 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="bg-gray-900 text-white mt-20">
+    <footer className="bg-primary-500 text-white mt-20">
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid md:grid-cols-3 gap-8 mb-8">
@@ -27,12 +27,12 @@ export default function Footer() {
             viewport={{ once: true }}
           >
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary-500 to-primary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">V</span>
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                <span className="text-primary-600 font-bold">V</span>
               </div>
               <span className="font-bold text-lg">Vicente Rabanales</span>
             </div>
-            <p className="text-gray-400 text-sm">
+            <p className="text-white/70 text-sm">
               Ingeniero en Informática | Innovación & Desarrollo
             </p>
           </motion.div>
@@ -47,17 +47,17 @@ export default function Footer() {
             <h3 className="font-semibold mb-4">Navegación</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <a href="/" className="text-gray-400 hover:text-primary-400 transition-colors">
+                <a href="/" className="text-white/70 hover:text-white transition-colors">
                   Inicio
                 </a>
               </li>
               <li>
-                <a href="/proyectos" className="text-gray-400 hover:text-primary-400 transition-colors">
+                <a href="/proyectos" className="text-white/70 hover:text-white transition-colors">
                   Proyectos
                 </a>
               </li>
               <li>
-                <a href="#contacto" className="text-gray-400 hover:text-primary-400 transition-colors">
+                <a href="#contacto" className="text-white/70 hover:text-white transition-colors">
                   Contacto
                 </a>
               </li>
@@ -93,8 +93,8 @@ export default function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="border-t border-gray-800 py-8">
-          <p className="text-center text-gray-400 text-sm">
+        <div className="border-t border-white/20 py-8">
+          <p className="text-center text-white/60 text-sm">
             © {currentYear} Vicente Rabanales. Hecho con ❤️ usando React + Tailwind + Framer Motion
           </p>
         </div>

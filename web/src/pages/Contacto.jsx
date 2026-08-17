@@ -152,7 +152,7 @@ export default function Contacto() {
 
   return (
     <Layout>
-      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      <div className="bg-primary-50">
         {/* Hero */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-4">
           <motion.a
@@ -240,7 +240,7 @@ export default function Contacto() {
             </div>
 
             {/* Formulario */}
-            <div className="md:col-span-3 bg-white dark:bg-gray-900 p-8 md:p-10">
+            <div className="md:col-span-3 bg-white p-8 md:p-10">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
                 Envíame un <span className="text-primary-600 dark:text-primary-400">Mensaje</span>
               </h2>

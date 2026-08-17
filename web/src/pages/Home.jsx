@@ -12,7 +12,7 @@ export default function Home() {
     <Layout>
       <div className="space-y-0">
         <HeroSection />
-        <div className="bg-gradient-to-b from-gray-50 to-white">
+        <div className="bg-gradient-to-b from-primary-50 to-primary-50">
           <LifeSection />
         </div>
         <ProjectsCanvas />

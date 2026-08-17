@@ -9,7 +9,7 @@ export default function TrajectoryPage() {
 
   return (
     <Layout>
-      <div className="bg-gradient-to-b from-gray-50 to-white">
+      <div className="bg-primary-50">
         <TrajectorySection />
       </div>
     </Layout>

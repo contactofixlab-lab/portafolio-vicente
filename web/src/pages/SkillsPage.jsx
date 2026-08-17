@@ -9,7 +9,7 @@ export default function SkillsPage() {
 
   return (
     <Layout>
-      <div className="bg-gradient-to-b from-gray-50 to-white dark:from-gray-950 dark:to-gray-900">
+      <div className="bg-primary-50">
         <FullSkillsSection />
       </div>
     </Layout>
