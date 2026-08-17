@@ -4,7 +4,7 @@ import Proyectos from './pages/Proyectos'
 import ProjectDetail from './pages/ProjectDetail'
 import TrajectoryPage from './pages/TrajectoryPage'
 import SkillsPage from './pages/SkillsPage'
-import AdminPanel from './pages/AdminPanel'
+import Contacto from './pages/Contacto'
 import './styles/globals.css'
 
 function App() {
@@ -44,8 +44,8 @@ function App() {
         return <TrajectoryPage />
       case 'habilidades':
         return <SkillsPage />
-      case 'admin-panel':
-        return <AdminPanel />
+      case 'contacto':
+        return <Contacto />
       case 'home':
       default:
         return <Home />

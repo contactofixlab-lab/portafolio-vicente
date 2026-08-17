@@ -1,0 +1,1657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Console - Portafolio Vicente</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --primary-dark: #764ba2;
+            --accent: #10b981;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border: rgba(51, 65, 85, 0.3);
+
+            /* Sistema glass compartido — mismo tratamiento en header y sidebar */
+            --glass-bg-strong: linear-gradient(160deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.06) 45%, rgba(255, 255, 255, 0.03) 100%);
+            --glass-border: rgba(102, 126, 234, 0.35);
+            --glass-shadow: 0 22px 60px rgba(0, 0, 0, 0.5), 0 4px 16px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.12), inset 0 -2px 10px rgba(0, 0, 0, 0.3);
+            --glass-glow: rgba(102, 126, 234, 0.3);
+            --glass-sheen: rgba(255, 255, 255, 0.3);
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #1a2847 100%);
+            color: var(--text-primary);
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Blobs de luz ambiental fijos — mismo recurso de profundidad que FamilyColab */
+        .ambient-glow {
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .ambient-glow span {
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            border-radius: 50%;
+            filter: blur(120px);
+        }
+
+        .ambient-glow .glow-1 { top: -140px; left: -140px; background: rgba(102, 126, 234, 0.18); }
+        .ambient-glow .glow-2 { top: 28%; right: -160px; background: rgba(118, 75, 162, 0.16); }
+        .ambient-glow .glow-3 { bottom: -120px; left: 22%; background: rgba(102, 126, 234, 0.09); }
+
+        /* Clases glass compartidas — header y sidebar usan EXACTAMENTE el mismo tratamiento */
+        .glass-strong {
+            backdrop-filter: blur(28px) saturate(160%);
+            -webkit-backdrop-filter: blur(28px) saturate(160%);
+            background: var(--glass-bg-strong);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow), 0 0 30px var(--glass-glow);
+        }
+
+        .glass-float {
+            position: relative;
+            isolation: isolate;
+        }
+
+        .glass-float::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 12%;
+            right: 12%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--glass-sheen), transparent);
+            pointer-events: none;
+        }
+
+        /* LOGIN */
+        .login-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a2847 100%);
+        }
+
+        .login-card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 50px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5), 0 0 40px rgba(102, 126, 234, 0.2);
+            animation: slideUp 0.5s ease-out;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .login-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .login-title {
+            font-size: 2em;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.95em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(51, 65, 85, 0.4);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.95em;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            background: rgba(51, 65, 85, 0.6);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .login-error {
+            background: rgba(239, 68, 68, 0.1);
+            color: #fca5a5;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            margin-bottom: 20px;
+            display: none;
+            font-size: 0.85em;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .login-error.show {
+            display: block;
+        }
+
+        /* MAIN APP — mismo esquema que FamilyColab: sidebar fijo flotante + header sticky */
+        .app-wrapper {
+            display: none;
+        }
+
+        .app-wrapper.active {
+            display: block;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 16px;
+            top: 16px;
+            bottom: 16px;
+            width: 260px;
+            border-radius: 24px;
+            z-index: 40;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
+        }
+
+        .sidebar-tilt-glare {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: inherit;
+        }
+
+        .sidebar:hover .sidebar-tilt-glare {
+            opacity: 1;
+        }
+
+        .sidebar-inner {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            transform: translateZ(24px);
+        }
+
+        .sidebar-logo {
+            padding: 20px;
+            border-bottom: 1px solid rgba(102, 126, 234, 0.15);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .sidebar-logo-badge {
+            width: 44px;
+            height: 44px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .sidebar-logo-title {
+            font-weight: 700;
+            font-size: 0.95em;
+        }
+
+        .sidebar-logo-subtitle {
+            font-size: 0.72em;
+            color: var(--text-secondary);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            flex: 1;
+            overflow-y: auto;
+            padding: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .sidebar-menu::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 3px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 14px;
+            background: none;
+            border: 1px solid transparent;
+            color: var(--text-secondary);
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.25s;
+            font-size: 0.9em;
+            text-align: left;
+            width: 100%;
+        }
+
+        .sidebar-link .icon-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(148, 163, 184, 0.1);
+            font-size: 1em;
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+
+        .sidebar-link:hover {
+            color: var(--text-primary);
+        }
+
+        .sidebar-link.active {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.22), rgba(102, 126, 234, 0.06));
+            border-color: rgba(102, 126, 234, 0.4);
+            color: var(--text-primary);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar-link.active .icon-badge {
+            background: rgba(102, 126, 234, 0.18);
+            box-shadow: 0 0 14px rgba(102, 126, 234, 0.3);
+        }
+
+        .sidebar-user {
+            padding: 14px;
+            border-top: 1px solid rgba(102, 126, 234, 0.15);
+        }
+
+        .sidebar-user-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px;
+            border-radius: 14px;
+        }
+
+        .sidebar-user-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.85em;
+            color: var(--primary);
+            flex-shrink: 0;
+            box-shadow: 0 0 0 1px rgba(102, 126, 234, 0.3);
+        }
+
+        .sidebar-user-name {
+            font-size: 0.88em;
+            font-weight: 600;
+        }
+
+        .sidebar-user-role {
+            font-size: 0.72em;
+            color: var(--text-secondary);
+        }
+
+        .btn-logout {
+            margin-top: 6px;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.78em;
+            padding: 6px 8px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            color: #fca5a5;
+            background: rgba(239, 68, 68, 0.08);
+        }
+
+        .main-wrapper {
+            margin-left: 292px;
+            min-height: 100vh;
+            padding-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            position: sticky;
+            top: 16px;
+            z-index: 30;
+            margin: 16px 24px 0 24px;
+            height: 68px;
+            border-radius: 18px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 24px;
+        }
+
+        .header-title {
+            font-size: 1.35em;
+            font-weight: 700;
+        }
+
+        .content-wrapper {
+            padding: 24px;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 8px;
+        }
+
+        .view-btn {
+            padding: 10px 18px;
+            background: rgba(51, 65, 85, 0.3);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            color: var(--text-secondary);
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            backdrop-filter: blur(15px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .view-btn:hover {
+            background: rgba(51, 65, 85, 0.5);
+            border-color: rgba(102, 126, 234, 0.4);
+        }
+
+        .view-btn.active {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8) 0%, rgba(118, 75, 162, 0.7) 100%);
+            color: white;
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.3),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.2);
+        }
+
+        .content-area {
+            padding-bottom: 20px;
+        }
+
+        /* GRID VIEW */
+        .grid-view {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .card {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2), inset 0 0 20px rgba(102, 126, 234, 0.1);
+            transform: translateY(-8px);
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card-top-bar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+        }
+
+        .card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-weight: 700;
+            font-size: 1.1em;
+            margin-bottom: 8px;
+            color: var(--text-primary);
+        }
+
+        .card-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 12px;
+        }
+
+        .meta-line {
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            width: fit-content;
+            backdrop-filter: blur(10px);
+        }
+
+        .badge-primary {
+            background: rgba(102, 126, 234, 0.2);
+            color: #a5b4fc;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+        }
+
+        .badge-success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .badge-warning {
+            background: rgba(245, 158, 11, 0.2);
+            color: #fcd34d;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            padding-top: 12px;
+            border-top: 1px solid var(--border);
+            margin-top: 12px;
+        }
+
+        .btn-sm {
+            flex: 1;
+            padding: 10px 12px;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.3) 0%, rgba(30, 41, 59, 0.2) 100%);
+            color: var(--text-secondary);
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.85em;
+            font-weight: 600;
+            transition: all 0.3s;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-sm:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.3) 0%, rgba(102, 126, 234, 0.15) 100%);
+            border-color: var(--primary);
+            color: var(--primary);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+        }
+
+        .btn-sm-delete {
+            border-color: rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-sm-delete:hover {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.15) 100%);
+            border-color: var(--danger);
+            color: #fca5a5;
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+
+        /* LIST VIEW */
+        .list-view {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .list-item {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .list-item:hover {
+            border-color: var(--primary);
+            box-shadow: 0 8px 24px rgba(102, 126, 234, 0.15);
+            background: rgba(30, 41, 59, 0.9);
+        }
+
+        .list-item-info {
+            flex: 1;
+        }
+
+        .list-item-title {
+            font-weight: 700;
+            font-size: 1em;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+        }
+
+        .list-item-detail {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+        }
+
+        .list-item-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        /* FILTERS */
+        .filters-section {
+            display: flex;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: 18px;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            backdrop-filter: blur(20px) saturate(140%);
+            -webkit-backdrop-filter: blur(20px) saturate(140%);
+            background: var(--glass-bg-strong);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-group label {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .filter-input, .filter-select {
+            padding: 10px 14px;
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(30, 41, 59, 0.3) 100%);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-size: 0.9em;
+            font-weight: 500;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.1);
+        }
+
+        .filter-input::placeholder {
+            color: rgba(203, 213, 225, 0.6);
+        }
+
+        .filter-input:focus, .filter-select:focus {
+            outline: none;
+            background: linear-gradient(135deg, rgba(51, 65, 85, 0.6) 0%, rgba(30, 41, 59, 0.5) 100%);
+            border-color: var(--primary);
+            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.2),
+                        inset 0 1px 2px rgba(255, 255, 255, 0.15);
+        }
+
+        .filter-select option {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+        }
+
+        .filter-select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23a5b4fc' stroke-width='2'%3E%3Cpath d='M5 8l5 5 5-5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+                              linear-gradient(135deg, rgba(51, 65, 85, 0.4) 0%, rgba(30, 41, 59, 0.3) 100%);
+            background-repeat: no-repeat;
+            background-position: right 12px center, 0 0;
+            background-size: 16px, auto;
+            padding-right: 38px;
+            cursor: pointer;
+            min-width: 140px;
+        }
+
+        .filter-select:hover {
+            border-color: rgba(102, 126, 234, 0.5);
+        }
+
+        .filter-select:focus {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23a5b4fc' stroke-width='2'%3E%3Cpath d='M5 8l5 5 5-5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"),
+                              linear-gradient(135deg, rgba(51, 65, 85, 0.6) 0%, rgba(30, 41, 59, 0.5) 100%);
+        }
+
+        .btn-add {
+            padding: 10px 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.3) 0%, rgba(16, 185, 129, 0.15) 100%);
+            color: #6ee7b7;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 0.9em;
+            backdrop-filter: blur(15px);
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-add:hover {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.45) 0%, rgba(16, 185, 129, 0.25) 100%);
+            border-color: rgba(16, 185, 129, 0.6);
+            box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+        }
+
+        /* MODAL */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(8px);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-card {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.97) 0%, rgba(15, 23, 42, 0.97) 100%);
+            backdrop-filter: blur(30px);
+            border: 1px solid rgba(102, 126, 234, 0.4);
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 50px rgba(102, 126, 234, 0.2);
+            animation: slideUp 0.3s ease-out;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .modal-title {
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            background: rgba(51, 65, 85, 0.4);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .modal-close:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: var(--danger);
+            color: #fca5a5;
+        }
+
+        .form-row {
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-label {
+            font-size: 0.8em;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .modal-field {
+            width: 100%;
+        }
+
+        select.modal-field {
+            width: 100%;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .btn-primary {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+            background: rgba(51, 65, 85, 0.3);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(51, 65, 85, 0.5);
+        }
+
+        .btn-clear-filters {
+            padding: 8px 14px;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-clear-filters:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .filter-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(102, 126, 234, 0.2);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            color: #a5b4fc;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(102, 126, 234, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(102, 126, 234, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen" class="login-wrapper">
+    <div class="login-card">
+        <div class="login-header">
+            <div class="login-icon">🔐</div>
+            <h1 class="login-title">Admin Console</h1>
+            <p class="login-subtitle">Consola Privada Profesional</p>
+        </div>
+        <div class="login-error" id="login-error"></div>
+        <form onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label>Usuario</label>
+                <input type="text" id="username" placeholder="Ingresa tu usuario" required autofocus>
+            </div>
+            <div class="form-group">
+                <label>Contraseña</label>
+                <input type="password" id="password" placeholder="Ingresa la contraseña" required>
+            </div>
+            <button type="submit" class="btn-login">Entrar</button>
+        </form>
+    </div>
+</div>
+
+<!-- APP -->
+<div id="app-wrapper" class="app-wrapper">
+    <!-- Blobs de luz ambiental (mismo recurso que FamilyColab) -->
+    <div class="ambient-glow">
+        <span class="glow-1"></span>
+        <span class="glow-2"></span>
+        <span class="glow-3"></span>
+    </div>
+
+    <!-- SIDEBAR — fijo, flotante, con tilt 3D real al pasar el cursor -->
+    <aside class="sidebar glass-strong glass-float" id="sidebar-tilt">
+        <div class="sidebar-tilt-glare" id="sidebar-glare"></div>
+        <div class="sidebar-inner">
+            <div class="sidebar-logo">
+                <div class="sidebar-logo-badge">AV</div>
+                <div>
+                    <div class="sidebar-logo-title">Admin Console</div>
+                    <div class="sidebar-logo-subtitle">Portafolio Vicente</div>
+                </div>
+            </div>
+
+            <ul class="sidebar-menu">
+                <li>
+                    <button class="sidebar-link active" onclick="switchSection('proyectos')">
+                        <span class="icon-badge">🎨</span>
+                        <span>Proyectos</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-link" onclick="switchSection('trayectoria')">
+                        <span class="icon-badge">📍</span>
+                        <span>Trayectoria</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-link" onclick="switchSection('habilidades')">
+                        <span class="icon-badge">💻</span>
+                        <span>Habilidades</span>
+                    </button>
+                </li>
+                <li>
+                    <button class="sidebar-link" onclick="switchSection('certificados')">
+                        <span class="icon-badge">🎓</span>
+                        <span>Certificados</span>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="sidebar-user">
+                <div class="sidebar-user-row">
+                    <div class="sidebar-user-avatar">V</div>
+                    <div>
+                        <div class="sidebar-user-name">Vicente</div>
+                        <div class="sidebar-user-role">Admin</div>
+                    </div>
+                </div>
+                <button class="btn-logout" onclick="handleLogout()">🚪 Cerrar sesión</button>
+            </div>
+        </div>
+    </aside>
+
+    <!-- MAIN WRAPPER -->
+    <div class="main-wrapper">
+        <!-- HEADER — sticky, mismo tratamiento glass que el sidebar -->
+        <div class="header glass-strong glass-float">
+            <h1 class="header-title" id="section-title">Proyectos</h1>
+        </div>
+
+        <div class="content-wrapper">
+            <!-- FILTERS -->
+            <div class="filters-section" id="filters-section"></div>
+
+            <!-- CONTENT -->
+            <div class="content-area" id="content-area"></div>
+        </div>
+    </div>
+</div>
+
+<!-- FORM MODAL -->
+<div id="modal-overlay" class="modal-overlay" onclick="if(event.target === this) closeFormModal()">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2 class="modal-title" id="modal-title">Nuevo</h2>
+            <button class="modal-close" onclick="closeFormModal()">✕</button>
+        </div>
+        <form onsubmit="submitFormModal(event)">
+            <div id="modal-fields"></div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" onclick="closeFormModal()">Cancelar</button>
+                <button type="submit" class="btn-primary">💾 Guardar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+const ADMIN_USERNAME = 'admin';
+const ADMIN_PASSWORD = 'vincente2026';
+let currentSection = 'proyectos';
+let currentView = 'grid';
+let filters = {
+    proyectos: { nombre: '', año: '' },
+    trayectoria: { nombre: '', empresa: '', estado: '' },
+    habilidades: { nombre: '', categoria: '', nivel: '' },
+    certificados: { nombre: '', año: '', emisor: '' }
+};
+let allData = {
+    proyectos: [],
+    trayectoria: [],
+    habilidades: [],
+    certificados: []
+};
+let editingId = null;
+
+const FIELD_SCHEMAS = {
+    proyectos: [
+        { key: 'title', label: 'Título', type: 'text', required: true },
+        { key: 'description', label: 'Descripción', type: 'text' },
+        { key: 'company', label: 'Empresa', type: 'text', required: true },
+        { key: 'type', label: 'Tipo', type: 'select', options: ['App', 'Web'], required: true },
+        { key: 'status', label: 'Estado', type: 'select', options: ['Terminado', 'En Desarrollo'], required: true },
+        { key: 'year', label: 'Año', type: 'number', required: true }
+    ],
+    trayectoria: [
+        { key: 'title', label: 'Puesto', type: 'text', required: true },
+        { key: 'company', label: 'Empresa', type: 'text', required: true },
+        { key: 'startDate', label: 'Fecha inicio', type: 'date', required: true },
+        { key: 'endDate', label: 'Fecha término (vacío = Actual)', type: 'date' },
+        { key: 'badge', label: 'Etiqueta', type: 'text', required: true }
+    ],
+    habilidades: [
+        { key: 'name', label: 'Nombre', type: 'text', required: true },
+        { key: 'category', label: 'Categoría', type: 'text', required: true },
+        { key: 'level', label: 'Nivel', type: 'select', options: ['Experto', 'Avanzado', 'Intermedio'], required: true }
+    ],
+    certificados: [
+        { key: 'title', label: 'Título', type: 'text', required: true },
+        { key: 'issuer', label: 'Emisor', type: 'text', required: true },
+        { key: 'year', label: 'Año', type: 'number', required: true }
+    ]
+};
+
+const SECTION_LABELS = {
+    proyectos: 'Proyecto',
+    trayectoria: 'Experiencia',
+    habilidades: 'Habilidad',
+    certificados: 'Certificado'
+};
+
+// Datos por defecto
+const defaultData = {
+    proyectos: [
+        { id: 1, title: 'Iencinas Analytics', description: 'Dashboard de BI', company: 'Iencinas', type: 'App', status: 'Terminado', year: 2024 },
+        { id: 2, title: 'Yencinas Bodega', description: 'Sistema de gestión de inventario', company: 'Yencinas', type: 'App', status: 'Terminado', year: 2024 },
+        { id: 3, title: 'TRAZA', description: 'Control documental y firmas', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024 },
+        { id: 4, title: 'Constructora PDS', description: 'Sitio corporativo', company: 'Constructora PDS', type: 'Web', status: 'Terminado', year: 2024 },
+        { id: 5, title: 'PokeTask', description: 'App de tareas gamificada', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024 },
+        { id: 6, title: 'Vortex', description: 'Sitio de descargas 3D cyberpunk', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', year: 2024 },
+        { id: 7, title: 'FamilyColab', description: 'App familiar multifuncional', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024 },
+        { id: 8, title: 'NEXORA', description: 'Hero shooter AAA web', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', year: 2024 },
+        { id: 9, title: 'Plataforma Videojuegos', description: 'Distribución indie games', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', year: 2024 },
+        { id: 10, title: 'RecipeHub', description: 'Sitio de recetas monetizable', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', year: 2024 }
+    ],
+    trayectoria: [
+        { id: 1, title: 'Área de Sistemas y Operaciones', company: 'Iencinas', startDate: '2026-05-05', endDate: '', badge: 'Actual' },
+        { id: 2, title: 'Soporte y Operaciones', company: 'Neo Edificios', startDate: '2026-03-01', endDate: '', badge: 'Operaciones' },
+        { id: 3, title: 'Ingeniero en Innovación', company: 'Empresa C', startDate: '2024-07-01', endDate: '2026-02-28', badge: 'Estrategia' },
+        { id: 4, title: 'Jefe de Innovación', company: 'Empresa C', startDate: '2023-01-01', endDate: '2024-06-30', badge: 'Liderazgo' },
+        { id: 5, title: 'Jefe de Informática', company: 'Empresa C', startDate: '2022-07-01', endDate: '2023-12-31', badge: 'Liderazgo' },
+        { id: 6, title: 'Prácticas Profesionales', company: 'Empresa B', startDate: '2021-06-01', endDate: '2022-06-30', badge: 'Aprendizaje' },
+        { id: 7, title: 'Atención al Cliente', company: 'Empresa A', startDate: '2020-01-01', endDate: '2021-12-31', badge: 'Entrada' }
+    ],
+    habilidades: [
+        { id: 1, name: 'JavaScript', category: 'Lenguajes', level: 'Experto' },
+        { id: 2, name: 'SQL', category: 'Lenguajes', level: 'Avanzado' },
+        { id: 3, name: 'Python', category: 'Lenguajes', level: 'Avanzado' },
+        { id: 4, name: 'Power BI', category: 'BI', level: 'Experto' },
+        { id: 5, name: 'React', category: 'Frameworks', level: 'Experto' },
+        { id: 6, name: 'GitHub', category: 'Herramientas', level: 'Experto' },
+        { id: 7, name: 'Vercel', category: 'Deploy', level: 'Experto' },
+        { id: 8, name: 'Docker', category: 'DevOps', level: 'Avanzado' },
+        { id: 9, name: 'AWS', category: 'Cloud', level: 'Intermedio' }
+    ],
+    certificados: [
+        { id: 1, title: 'Excel Avanzado', issuer: 'Microsoft', year: 2022 },
+        { id: 2, title: 'Master Hardware', issuer: 'Certificación Técnica', year: 2022 },
+        { id: 3, title: 'Power BI', issuer: 'Microsoft', year: 2026 },
+        { id: 4, title: 'Project Management', issuer: 'PMI', year: 2022 },
+        { id: 5, title: 'Alibaba Trade', issuer: 'Alibaba', year: 2026 }
+    ]
+};
+
+function handleLogin(e) {
+    e.preventDefault();
+    const username = document.getElementById('username').value.trim();
+    const password = document.getElementById('password').value.trim();
+
+    if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+        document.getElementById('login-screen').style.display = 'none';
+        document.getElementById('app-wrapper').classList.add('active');
+        loadData();
+        renderContent();
+    } else {
+        const errorEl = document.getElementById('login-error');
+        if (username !== ADMIN_USERNAME) {
+            errorEl.textContent = '❌ Usuario incorrecto';
+        } else {
+            errorEl.textContent = '❌ Contraseña incorrecta';
+        }
+        errorEl.classList.add('show');
+        setTimeout(() => errorEl.classList.remove('show'), 3000);
+    }
+}
+
+function handleLogout() {
+    if (confirm('¿Estás seguro que quieres salir?')) {
+        document.getElementById('app-wrapper').classList.remove('active');
+        document.getElementById('login-screen').style.display = 'flex';
+        document.getElementById('password').value = '';
+        document.getElementById('username').value = '';
+    }
+}
+
+function loadData() {
+    for (const [key, value] of Object.entries(defaultData)) {
+        allData[key] = JSON.parse(localStorage.getItem(`portafolio_${key}`) || JSON.stringify(value));
+    }
+}
+
+function saveData() {
+    Object.keys(allData).forEach(key => {
+        localStorage.setItem(`portafolio_${key}`, JSON.stringify(allData[key]));
+    });
+}
+
+function openFormModal(section, id) {
+    editingId = id !== undefined ? id : null;
+    const schema = FIELD_SCHEMAS[section];
+    const item = editingId !== null ? allData[section].find(i => i.id === editingId) : null;
+
+    const isFeminine = section === 'trayectoria' || section === 'habilidades';
+    document.getElementById('modal-title').textContent = editingId !== null
+        ? `✏️ Editar ${SECTION_LABELS[section]}`
+        : `➕ Nuev${isFeminine ? 'a' : 'o'} ${SECTION_LABELS[section]}`;
+
+    const fieldsHTML = schema.map(f => {
+        const value = item ? (item[f.key] ?? '') : '';
+        if (f.type === 'select') {
+            return `
+                <div class="form-row">
+                    <label class="form-label">${f.label}${f.required ? ' *' : ''}</label>
+                    <select class="filter-select modal-field" id="field-${f.key}" ${f.required ? 'required' : ''}>
+                        ${f.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}
+                    </select>
+                </div>`;
+        }
+        return `
+            <div class="form-row">
+                <label class="form-label">${f.label}${f.required ? ' *' : ''}</label>
+                <input class="filter-input modal-field" type="${f.type}" id="field-${f.key}" value="${value}" ${f.required ? 'required' : ''}>
+            </div>`;
+    }).join('');
+
+    document.getElementById('modal-fields').innerHTML = fieldsHTML;
+    document.getElementById('modal-overlay').dataset.section = section;
+    document.getElementById('modal-overlay').classList.add('active');
+}
+
+function closeFormModal() {
+    document.getElementById('modal-overlay').classList.remove('active');
+    editingId = null;
+}
+
+function submitFormModal(e) {
+    e.preventDefault();
+    const section = document.getElementById('modal-overlay').dataset.section;
+    const schema = FIELD_SCHEMAS[section];
+    const values = {};
+
+    for (const f of schema) {
+        const el = document.getElementById(`field-${f.key}`);
+        let val = el.value.trim();
+        if (f.required && !val) {
+            alert(`El campo "${f.label}" es obligatorio`);
+            return;
+        }
+        if (f.type === 'number') val = val === '' ? '' : Number(val);
+        values[f.key] = val;
+    }
+
+    if (editingId !== null) {
+        const idx = allData[section].findIndex(i => i.id === editingId);
+        allData[section][idx] = { ...allData[section][idx], ...values };
+    } else {
+        const newId = allData[section].length ? Math.max(...allData[section].map(i => i.id)) + 1 : 1;
+        allData[section].push({ id: newId, ...values });
+    }
+
+    saveData();
+    closeFormModal();
+    renderContent();
+}
+
+function deleteItem(section, id) {
+    if (!confirm('¿Eliminar este elemento? Esta acción no se puede deshacer.')) return;
+    allData[section] = allData[section].filter(i => i.id !== id);
+    saveData();
+    renderContent();
+}
+
+function switchSection(section) {
+    currentSection = section;
+    const titles = {
+        proyectos: 'Proyectos',
+        trayectoria: 'Trayectoria Profesional',
+        habilidades: 'Habilidades Técnicas',
+        certificados: 'Certificados'
+    };
+    document.getElementById('section-title').textContent = titles[section];
+
+    document.querySelectorAll('.sidebar-link').forEach(link => link.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    renderContent();
+}
+
+function switchView(view) {
+    currentView = view;
+    document.querySelectorAll('.view-btn').forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    renderContent();
+}
+
+// Tilt 3D del sidebar — inclinación según posición del cursor DENTRO del panel
+// (no persigue el cursor por la pantalla), + glare radial, igual que FamilyColab
+function initSidebarTilt() {
+    const sidebar = document.getElementById('sidebar-tilt');
+    const glare = document.getElementById('sidebar-glare');
+    if (!sidebar) return;
+    const maxTilt = 4;
+
+    sidebar.addEventListener('mousemove', (e) => {
+        const rect = sidebar.getBoundingClientRect();
+        const mx = (e.clientX - rect.left) / rect.width;
+        const my = (e.clientY - rect.top) / rect.height;
+        const rotateX = maxTilt - my * maxTilt * 2;
+        const rotateY = mx * maxTilt * 2 - maxTilt;
+        sidebar.style.transform = `perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        if (glare) {
+            glare.style.background = `radial-gradient(360px circle at ${mx * 100}% ${my * 100}%, var(--glass-glow), transparent 60%)`;
+        }
+    });
+
+    sidebar.addEventListener('mouseleave', () => {
+        sidebar.style.transform = 'perspective(1200px) rotateX(0deg) rotateY(0deg)';
+    });
+}
+
+initSidebarTilt();
+
+function renderFilters() {
+    const filtersSection = document.getElementById('filters-section');
+    const currentFilters = filters[currentSection];
+
+    let filtersHTML = '';
+
+    if (currentSection === 'proyectos') {
+        filtersHTML = `
+            <div class="filter-group">
+                <label>Buscar por nombre:</label>
+                <input type="text" class="filter-input" id="filter-nombre" placeholder="Ej: TRAZA" value="${currentFilters.nombre}" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Año:</label>
+                <select class="filter-select" id="filter-año" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    ${[...new Set(allData.proyectos.map(p => p.year))].sort().map(year => `<option value="${year}" ${currentFilters.año === String(year) ? 'selected' : ''}>${year}</option>`).join('')}
+                </select>
+            </div>
+        `;
+    } else if (currentSection === 'trayectoria') {
+        filtersHTML = `
+            <div class="filter-group">
+                <label>Buscar por puesto:</label>
+                <input type="text" class="filter-input" id="filter-nombre" placeholder="Ej: Jefe" value="${currentFilters.nombre}" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Empresa:</label>
+                <select class="filter-select" id="filter-empresa" onchange="applyFilters()">
+                    <option value="">Todas</option>
+                    ${[...new Set(allData.trayectoria.map(t => t.company))].sort().map(company => `<option value="${company}" ${currentFilters.empresa === company ? 'selected' : ''}>${company}</option>`).join('')}
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Estado:</label>
+                <select class="filter-select" id="filter-estado" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    <option value="actual" ${currentFilters.estado === 'actual' ? 'selected' : ''}>Actual</option>
+                    <option value="pasado" ${currentFilters.estado === 'pasado' ? 'selected' : ''}>Pasado</option>
+                </select>
+            </div>
+        `;
+    } else if (currentSection === 'habilidades') {
+        filtersHTML = `
+            <div class="filter-group">
+                <label>Buscar:</label>
+                <input type="text" class="filter-input" id="filter-nombre" placeholder="Ej: JavaScript" value="${currentFilters.nombre}" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Categoría:</label>
+                <select class="filter-select" id="filter-categoria" onchange="applyFilters()">
+                    <option value="">Todas</option>
+                    ${[...new Set(allData.habilidades.map(h => h.category))].sort().map(cat => `<option value="${cat}" ${currentFilters.categoria === cat ? 'selected' : ''}>${cat}</option>`).join('')}
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Nivel:</label>
+                <select class="filter-select" id="filter-nivel" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    <option value="Experto" ${currentFilters.nivel === 'Experto' ? 'selected' : ''}>Experto</option>
+                    <option value="Avanzado" ${currentFilters.nivel === 'Avanzado' ? 'selected' : ''}>Avanzado</option>
+                    <option value="Intermedio" ${currentFilters.nivel === 'Intermedio' ? 'selected' : ''}>Intermedio</option>
+                </select>
+            </div>
+        `;
+    } else if (currentSection === 'certificados') {
+        filtersHTML = `
+            <div class="filter-group">
+                <label>Buscar:</label>
+                <input type="text" class="filter-input" id="filter-nombre" placeholder="Ej: Excel" value="${currentFilters.nombre}" onchange="applyFilters()">
+            </div>
+            <div class="filter-group">
+                <label>Año:</label>
+                <select class="filter-select" id="filter-año" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    ${[...new Set(allData.certificados.map(c => c.year))].sort().map(year => `<option value="${year}" ${currentFilters.año === String(year) ? 'selected' : ''}>${year}</option>`).join('')}
+                </select>
+            </div>
+            <div class="filter-group">
+                <label>Emisor:</label>
+                <select class="filter-select" id="filter-emisor" onchange="applyFilters()">
+                    <option value="">Todos</option>
+                    ${[...new Set(allData.certificados.map(c => c.issuer))].sort().map(issuer => `<option value="${issuer}" ${currentFilters.emisor === issuer ? 'selected' : ''}>${issuer}</option>`).join('')}
+                </select>
+            </div>
+        `;
+    }
+
+    filtersHTML += `
+        <div style="display: flex; gap: 10px; align-items: center; margin-left: auto;">
+            <button class="btn-add" onclick="openFormModal('${currentSection}')">➕ Nuevo</button>
+            <button class="btn-clear-filters" onclick="clearFilters()">✕ Limpiar</button>
+            <div class="view-toggle">
+                <button class="view-btn ${currentView === 'grid' ? 'active' : ''}" onclick="switchView('grid')" data-view="grid">▦ Grid</button>
+                <button class="view-btn ${currentView === 'list' ? 'active' : ''}" onclick="switchView('list')" data-view="list">☰ Lista</button>
+            </div>
+        </div>
+    `;
+    filtersSection.innerHTML = filtersHTML;
+}
+
+function applyFilters() {
+    const currentFilters = filters[currentSection];
+
+    if (currentSection === 'proyectos') {
+        currentFilters.nombre = document.getElementById('filter-nombre')?.value || '';
+        currentFilters.año = document.getElementById('filter-año')?.value || '';
+    } else if (currentSection === 'trayectoria') {
+        currentFilters.nombre = document.getElementById('filter-nombre')?.value || '';
+        currentFilters.empresa = document.getElementById('filter-empresa')?.value || '';
+        currentFilters.estado = document.getElementById('filter-estado')?.value || '';
+    } else if (currentSection === 'habilidades') {
+        currentFilters.nombre = document.getElementById('filter-nombre')?.value || '';
+        currentFilters.categoria = document.getElementById('filter-categoria')?.value || '';
+        currentFilters.nivel = document.getElementById('filter-nivel')?.value || '';
+    } else if (currentSection === 'certificados') {
+        currentFilters.nombre = document.getElementById('filter-nombre')?.value || '';
+        currentFilters.año = document.getElementById('filter-año')?.value || '';
+        currentFilters.emisor = document.getElementById('filter-emisor')?.value || '';
+    }
+
+    renderContent();
+}
+
+function clearFilters() {
+    filters[currentSection] = {
+        nombre: '', año: '', empresa: '', estado: '', categoria: '', nivel: '', emisor: ''
+    };
+    renderFilters();
+    renderContent();
+}
+
+function getFilteredItems() {
+    let items = allData[currentSection];
+    const currentFilters = filters[currentSection];
+
+    if (currentSection === 'proyectos') {
+        items = items.filter(item =>
+            (currentFilters.nombre === '' || item.title.toLowerCase().includes(currentFilters.nombre.toLowerCase())) &&
+            (currentFilters.año === '' || String(item.year) === currentFilters.año)
+        );
+    } else if (currentSection === 'trayectoria') {
+        items = items.filter(item => {
+            const isActual = !item.endDate || item.endDate === '';
+            return (currentFilters.nombre === '' || item.title.toLowerCase().includes(currentFilters.nombre.toLowerCase())) &&
+                (currentFilters.empresa === '' || item.company === currentFilters.empresa) &&
+                (currentFilters.estado === '' || (currentFilters.estado === 'actual' ? isActual : !isActual));
+        });
+    } else if (currentSection === 'habilidades') {
+        items = items.filter(item =>
+            (currentFilters.nombre === '' || item.name.toLowerCase().includes(currentFilters.nombre.toLowerCase())) &&
+            (currentFilters.categoria === '' || item.category === currentFilters.categoria) &&
+            (currentFilters.nivel === '' || item.level === currentFilters.nivel)
+        );
+    } else if (currentSection === 'certificados') {
+        items = items.filter(item =>
+            (currentFilters.nombre === '' || item.title.toLowerCase().includes(currentFilters.nombre.toLowerCase())) &&
+            (currentFilters.año === '' || String(item.year) === currentFilters.año) &&
+            (currentFilters.emisor === '' || item.issuer === currentFilters.emisor)
+        );
+    }
+
+    return items;
+}
+
+function renderContent() {
+    renderFilters();
+    const contentArea = document.getElementById('content-area');
+    const items = getFilteredItems();
+
+    if (items.length === 0) {
+        contentArea.innerHTML = '<div class="empty-state">No hay items que coincidan con los filtros 📭</div>';
+        return;
+    }
+
+    if (currentView === 'grid') {
+        renderGridView(contentArea, items);
+    } else {
+        renderListView(contentArea, items);
+    }
+}
+
+function renderGridView(container, items) {
+    container.innerHTML = `<div class="grid-view">${items.map(item => createCard(item)).join('')}</div>`;
+}
+
+function renderListView(container, items) {
+    container.innerHTML = `<div class="list-view">${items.map(item => createListItem(item)).join('')}</div>`;
+}
+
+function createCard(item) {
+    let content = '';
+    if (currentSection === 'proyectos') {
+        content = `
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">
+                <div class="meta-line"><span>${item.company}</span> <span class="badge badge-primary">${item.type}</span></div>
+                <div class="meta-line"><span>${item.year}</span> <span class="badge ${item.status === 'Terminado' ? 'badge-success' : 'badge-warning'}">${item.status}</span></div>
+            </div>
+        `;
+    } else if (currentSection === 'trayectoria') {
+        content = `
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">
+                <div class="meta-line"><span>${item.company}</span></div>
+                <div class="meta-line"><span>${item.startDate} - ${item.endDate || 'Actual'}</span> <span class="badge badge-primary">${item.badge}</span></div>
+            </div>
+        `;
+    } else if (currentSection === 'habilidades') {
+        content = `
+            <div class="card-title">${item.name}</div>
+            <div class="card-meta">
+                <div class="meta-line"><span>${item.category}</span></div>
+                <div class="meta-line"><span>${item.level}</span></div>
+            </div>
+        `;
+    } else if (currentSection === 'certificados') {
+        content = `
+            <div class="card-title">${item.title}</div>
+            <div class="card-meta">
+                <div class="meta-line"><span>${item.issuer}</span></div>
+                <div class="meta-line"><span>Año: ${item.year}</span></div>
+            </div>
+        `;
+    }
+
+    return `
+        <div class="card">
+            <div class="card-top-bar"></div>
+            <div class="card-content">
+                ${content}
+                <div class="card-actions">
+                    <button class="btn-sm" onclick="openFormModal('${currentSection}', ${item.id})">✏️ Editar</button>
+                    <button class="btn-sm btn-sm-delete" onclick="deleteItem('${currentSection}', ${item.id})">🗑️ Eliminar</button>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+function createListItem(item) {
+    let title = '', detail = '';
+    if (currentSection === 'proyectos') {
+        title = item.title;
+        detail = `${item.company} • ${item.type} • ${item.status}`;
+    } else if (currentSection === 'trayectoria') {
+        title = item.title;
+        detail = `${item.company} • ${item.startDate} - ${item.endDate || 'Actual'}`;
+    } else if (currentSection === 'habilidades') {
+        title = item.name;
+        detail = `${item.category} • ${item.level}`;
+    } else if (currentSection === 'certificados') {
+        title = item.title;
+        detail = `${item.issuer} • Año: ${item.year}`;
+    }
+
+    return `
+        <div class="list-item">
+            <div class="list-item-info">
+                <div class="list-item-title">${title}</div>
+                <div class="list-item-detail">${detail}</div>
+            </div>
+            <div class="list-item-actions">
+                <button class="btn-sm" onclick="openFormModal('${currentSection}', ${item.id})">✏️</button>
+                <button class="btn-sm btn-sm-delete" onclick="deleteItem('${currentSection}', ${item.id})">🗑️</button>
+            </div>
+        </div>
+    `;
+}
+</script>
+
+</body>
+</html>
