@@ -863,6 +863,217 @@
             width: 100%;
         }
 
+        .image-upload-box {
+            width: 100%;
+            height: 120px;
+            border: 2px dashed rgba(102, 126, 234, 0.35);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            overflow: hidden;
+            background: rgba(51, 65, 85, 0.2);
+            transition: all 0.3s;
+        }
+
+        .image-upload-box:hover {
+            border-color: var(--primary);
+            background: rgba(102, 126, 234, 0.08);
+        }
+
+        .image-upload-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 10px;
+        }
+
+        .image-upload-placeholder {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85em;
+            line-height: 1.6;
+        }
+
+        .btn-remove-image {
+            margin-top: 8px;
+            width: 100%;
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-remove-image:hover {
+            background: rgba(239, 68, 68, 0.2);
+        }
+
+        .card-thumb {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 4px;
+            flex-shrink: 0;
+        }
+
+        .card-thumb-placeholder {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4em;
+            background: rgba(102, 126, 234, 0.12);
+        }
+
+        .card-header-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .list-item-thumb {
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 3px;
+            flex-shrink: 0;
+        }
+
+        .file-upload-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .btn-file-upload {
+            padding: 10px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(102, 126, 234, 0.1) 100%);
+            color: var(--text-primary);
+            font-size: 0.85em;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .btn-file-upload:hover {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.35) 0%, rgba(102, 126, 234, 0.2) 100%);
+            border-color: var(--primary);
+        }
+
+        .file-name-label {
+            font-size: 0.8em;
+            color: var(--text-secondary);
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            flex: 1;
+        }
+
+        .badge-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            text-decoration: none;
+            width: fit-content;
+        }
+
+        .badge-download:hover {
+            background: rgba(16, 185, 129, 0.3);
+        }
+
+        /* PÁGINA — configuración general */
+        .settings-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 720px;
+        }
+
+        .settings-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.08) 0%, rgba(118, 75, 162, 0.06) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(102, 126, 234, 0.25);
+            border-radius: 18px;
+            padding: 24px;
+        }
+
+        .settings-card-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .settings-card-desc {
+            font-size: 0.85em;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+        }
+
+        .settings-grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .settings-image-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .image-upload-box-sm {
+            height: 70px;
+            border-radius: 10px;
+        }
+
+        .badge-hidden {
+            background: rgba(148, 163, 184, 0.15);
+            color: var(--text-secondary);
+            border: 1px solid rgba(148, 163, 184, 0.3);
+        }
+
+        .form-row-checkbox {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .modal-checkbox {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--primary);
+            cursor: pointer;
+        }
+
         select.modal-field {
             width: 100%;
         }
@@ -1067,6 +1278,12 @@
                         <span>Certificados</span>
                     </button>
                 </li>
+                <li>
+                    <button class="sidebar-link" onclick="switchSection('pagina')">
+                        <span class="icon-badge">⚙️</span>
+                        <span>Página</span>
+                    </button>
+                </li>
             </ul>
 
             <div class="sidebar-user">
@@ -1135,14 +1352,31 @@ let allData = {
 };
 let editingId = null;
 
+const defaultPageSettings = {
+    heroImage: '',
+    lifeTitle: 'Más allá del código',
+    lifeDescription: 'Mi vida me ha llevado a distintos lugares como el norte de Chile y Montevideo, Uruguay. Esto me ha dado una perspectiva distinta acerca de algunos aspectos de la vida. Cuando no estoy optimizando sistemas o creando dashboards o reportes, disfruto de los amigos, familia, música, videojuegos y series. Además me gusta dar largos paseos con mi perro.',
+    lifeImages: ['', '', '', '', ''],
+    contactEmail: 'vrabanales@rcapcorp.cl',
+    contactPhone: '+56 9 6668 2082',
+    contactWhatsapp: '56966682082',
+    contactLocation: 'Chile / Uruguay',
+    contactAvailability: 'Disponible para nuevos proyectos'
+};
+
+let pageSettings = { ...defaultPageSettings, lifeImages: [...defaultPageSettings.lifeImages] };
+
 const FIELD_SCHEMAS = {
     proyectos: [
+        { key: 'image', label: 'Ícono / Imagen', type: 'image' },
         { key: 'title', label: 'Título', type: 'text', required: true },
         { key: 'description', label: 'Descripción', type: 'text' },
         { key: 'company', label: 'Empresa', type: 'text', required: true },
         { key: 'type', label: 'Tipo', type: 'select', options: ['App', 'Web'], required: true },
         { key: 'status', label: 'Estado', type: 'select', options: ['Terminado', 'En Desarrollo'], required: true },
-        { key: 'year', label: 'Año', type: 'number', required: true }
+        { key: 'startDate', label: 'Inicio del proyecto', type: 'date', required: true },
+        { key: 'endDate', label: 'Fin del proyecto', type: 'date', showWhen: { field: 'status', equals: 'Terminado' } },
+        { key: 'visible', label: '¿Se muestra en la página web?', type: 'checkbox', default: true }
     ],
     trayectoria: [
         { key: 'title', label: 'Puesto', type: 'text', required: true },
@@ -1152,14 +1386,17 @@ const FIELD_SCHEMAS = {
         { key: 'badge', label: 'Etiqueta', type: 'text', required: true }
     ],
     habilidades: [
+        { key: 'image', label: 'Ícono', type: 'image' },
         { key: 'name', label: 'Nombre', type: 'text', required: true },
         { key: 'category', label: 'Categoría', type: 'text', required: true },
         { key: 'level', label: 'Nivel', type: 'select', options: ['Experto', 'Avanzado', 'Intermedio'], required: true }
     ],
     certificados: [
+        { key: 'image', label: 'Ícono / Imagen', type: 'image' },
         { key: 'title', label: 'Título', type: 'text', required: true },
         { key: 'issuer', label: 'Emisor', type: 'text', required: true },
-        { key: 'year', label: 'Año', type: 'number', required: true }
+        { key: 'year', label: 'Año', type: 'number', required: true },
+        { key: 'file', label: 'Archivo del certificado (PDF) — para descargar en la web', type: 'file' }
     ]
 };
 
@@ -1173,16 +1410,16 @@ const SECTION_LABELS = {
 // Datos por defecto
 const defaultData = {
     proyectos: [
-        { id: 1, title: 'Iencinas Analytics', description: 'Dashboard de BI', company: 'Iencinas', type: 'App', status: 'Terminado', year: 2024 },
-        { id: 2, title: 'Yencinas Bodega', description: 'Sistema de gestión de inventario', company: 'Yencinas', type: 'App', status: 'Terminado', year: 2024 },
-        { id: 3, title: 'TRAZA', description: 'Control documental y firmas', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024 },
-        { id: 4, title: 'Constructora PDS', description: 'Sitio corporativo', company: 'Constructora PDS', type: 'Web', status: 'Terminado', year: 2024 },
-        { id: 5, title: 'PokeTask', description: 'App de tareas gamificada', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024 },
-        { id: 6, title: 'Vortex', description: 'Sitio de descargas 3D cyberpunk', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', year: 2024 },
-        { id: 7, title: 'FamilyColab', description: 'App familiar multifuncional', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', year: 2024 },
-        { id: 8, title: 'NEXORA', description: 'Hero shooter AAA web', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', year: 2024 },
-        { id: 9, title: 'Plataforma Videojuegos', description: 'Distribución indie games', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', year: 2024 },
-        { id: 10, title: 'RecipeHub', description: 'Sitio de recetas monetizable', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', year: 2024 }
+        { id: 1, image: '/projects/analytics-logo.png', title: 'Iencinas Analytics', description: 'Dashboard de BI', company: 'Iencinas', type: 'App', status: 'Terminado', startDate: '2024-01-01', endDate: '2024-12-31', visible: true },
+        { id: 2, image: '', title: 'Yencinas Bodega', description: 'Sistema de gestión de inventario', company: 'Yencinas', type: 'App', status: 'Terminado', startDate: '2024-01-01', endDate: '2024-12-31', visible: true },
+        { id: 3, image: '/projects/traza-logo.png', title: 'TRAZA', description: 'Control documental y firmas', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', startDate: '2024-01-01', endDate: '', visible: true },
+        { id: 4, image: '', title: 'Constructora PDS', description: 'Sitio corporativo', company: 'Constructora PDS', type: 'Web', status: 'Terminado', startDate: '2024-01-01', endDate: '2024-12-31', visible: true },
+        { id: 5, image: '/projects/poketask-hero.png', title: 'PokeTask', description: 'App de tareas gamificada', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', startDate: '2024-01-01', endDate: '', visible: true },
+        { id: 6, image: '/projects/vortex-project-logo.png', title: 'Vortex', description: 'Sitio de descargas 3D cyberpunk', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', startDate: '2024-01-01', endDate: '2024-12-31', visible: true },
+        { id: 7, image: '', title: 'FamilyColab', description: 'App familiar multifuncional', company: 'Proyecto Personal', type: 'App', status: 'En Desarrollo', startDate: '2024-01-01', endDate: '', visible: true },
+        { id: 8, image: '', title: 'NEXORA', description: 'Hero shooter AAA web', company: 'Proyecto Personal', type: 'Web', status: 'Terminado', startDate: '2024-01-01', endDate: '2024-12-31', visible: true },
+        { id: 9, image: '', title: 'Plataforma Videojuegos', description: 'Distribución indie games', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', startDate: '2024-01-01', endDate: '', visible: true },
+        { id: 10, image: '', title: 'RecipeHub', description: 'Sitio de recetas monetizable', company: 'Proyecto Personal', type: 'Web', status: 'En Desarrollo', startDate: '2024-01-01', endDate: '', visible: true }
     ],
     trayectoria: [
         { id: 1, title: 'Área de Sistemas y Operaciones', company: 'Iencinas', startDate: '2026-05-05', endDate: '', badge: 'Actual' },
@@ -1194,22 +1431,22 @@ const defaultData = {
         { id: 7, title: 'Atención al Cliente', company: 'Empresa A', startDate: '2020-01-01', endDate: '2021-12-31', badge: 'Entrada' }
     ],
     habilidades: [
-        { id: 1, name: 'JavaScript', category: 'Lenguajes', level: 'Experto' },
-        { id: 2, name: 'SQL', category: 'Lenguajes', level: 'Avanzado' },
-        { id: 3, name: 'Python', category: 'Lenguajes', level: 'Avanzado' },
-        { id: 4, name: 'Power BI', category: 'BI', level: 'Experto' },
-        { id: 5, name: 'React', category: 'Frameworks', level: 'Experto' },
-        { id: 6, name: 'GitHub', category: 'Herramientas', level: 'Experto' },
-        { id: 7, name: 'Vercel', category: 'Deploy', level: 'Experto' },
-        { id: 8, name: 'Docker', category: 'DevOps', level: 'Avanzado' },
-        { id: 9, name: 'AWS', category: 'Cloud', level: 'Intermedio' }
+        { id: 1, image: '/skills/JavaScript-logo.png', name: 'JavaScript', category: 'Lenguajes', level: 'Experto' },
+        { id: 2, image: '/skills/Logo%20Sql%20Developer.png', name: 'SQL', category: 'Lenguajes', level: 'Avanzado' },
+        { id: 3, image: '/skills/python%20logo.png', name: 'Python', category: 'Lenguajes', level: 'Avanzado' },
+        { id: 4, image: '/skills/power%20bi%20logo.png', name: 'Power BI', category: 'BI', level: 'Experto' },
+        { id: 5, image: '', name: 'React', category: 'Frameworks', level: 'Experto' },
+        { id: 6, image: '/skills/github%20logo.png', name: 'GitHub', category: 'Herramientas', level: 'Experto' },
+        { id: 7, image: '/skills/vercel.png', name: 'Vercel', category: 'Deploy', level: 'Experto' },
+        { id: 8, image: '', name: 'Docker', category: 'DevOps', level: 'Avanzado' },
+        { id: 9, image: '', name: 'AWS', category: 'Cloud', level: 'Intermedio' }
     ],
     certificados: [
-        { id: 1, title: 'Excel Avanzado', issuer: 'Microsoft', year: 2022 },
-        { id: 2, title: 'Master Hardware', issuer: 'Certificación Técnica', year: 2022 },
-        { id: 3, title: 'Power BI', issuer: 'Microsoft', year: 2026 },
-        { id: 4, title: 'Project Management', issuer: 'PMI', year: 2022 },
-        { id: 5, title: 'Alibaba Trade', issuer: 'Alibaba', year: 2026 }
+        { id: 1, image: '/certificates/Certificados/Excel%20Avanzado.jpg', title: 'Excel Avanzado', issuer: 'Microsoft', year: 2022, file: '', fileName: '' },
+        { id: 2, image: '/certificates/Certificados/Master%20Hardware.jpg', title: 'Master Hardware', issuer: 'Certificación Técnica', year: 2022, file: '', fileName: '' },
+        { id: 3, image: '/certificates/Certificados/Power%20bi.jpg', title: 'Power BI', issuer: 'Microsoft', year: 2026, file: '', fileName: '' },
+        { id: 4, image: '/certificates/Certificados/Proyect%20Management-Gestion%20de%20Proyectos.jpg', title: 'Project Management', issuer: 'PMI', year: 2022, file: '', fileName: '' },
+        { id: 5, image: '/certificates/Certificados/alibaba.jpg', title: 'Alibaba Trade', issuer: 'Alibaba', year: 2026, file: '', fileName: '' }
     ]
 };
 
@@ -1248,6 +1485,7 @@ function loadData() {
     for (const [key, value] of Object.entries(defaultData)) {
         allData[key] = JSON.parse(localStorage.getItem(`portafolio_${key}`) || JSON.stringify(value));
     }
+    pageSettings = JSON.parse(localStorage.getItem('portafolio_settings') || JSON.stringify(defaultPageSettings));
 }
 
 function saveData() {
@@ -1266,32 +1504,178 @@ function openFormModal(section, id) {
         ? `✏️ Editar ${SECTION_LABELS[section]}`
         : `➕ Nuev${isFeminine ? 'a' : 'o'} ${SECTION_LABELS[section]}`;
 
+    const wrapConditional = (html, f) => {
+        if (!f.showWhen) return html;
+        return `<div class="conditional-field" data-show-field="${f.showWhen.field}" data-show-value="${f.showWhen.equals}">${html}</div>`;
+    };
+
     const fieldsHTML = schema.map(f => {
         const value = item ? (item[f.key] ?? '') : '';
         if (f.type === 'select') {
-            return `
+            return wrapConditional(`
                 <div class="form-row">
                     <label class="form-label">${f.label}${f.required ? ' *' : ''}</label>
-                    <select class="filter-select modal-field" id="field-${f.key}" ${f.required ? 'required' : ''}>
+                    <select class="filter-select modal-field" id="field-${f.key}" ${f.required ? 'required' : ''} onchange="handleConditionalFields()">
                         ${f.options.map(o => `<option value="${o}" ${value === o ? 'selected' : ''}>${o}</option>`).join('')}
                     </select>
-                </div>`;
+                </div>`, f);
         }
-        return `
+        if (f.type === 'checkbox') {
+            const checked = item ? (item[f.key] !== false) : (f.default !== false);
+            return wrapConditional(`
+                <div class="form-row form-row-checkbox">
+                    <label class="checkbox-label">
+                        <input type="checkbox" class="modal-checkbox" id="field-${f.key}" ${checked ? 'checked' : ''}>
+                        <span>${f.label}</span>
+                    </label>
+                </div>`, f);
+        }
+        if (f.type === 'image') {
+            return wrapConditional(`
+                <div class="form-row">
+                    <label class="form-label">${f.label}</label>
+                    <div class="image-upload-box" id="image-preview-${f.key}" onclick="document.getElementById('field-${f.key}-file').click()">
+                        ${value
+                            ? `<img src="${value}" alt="preview" class="image-upload-preview">`
+                            : `<div class="image-upload-placeholder">🖼️<br>Clic para subir imagen</div>`}
+                    </div>
+                    <input type="file" accept="image/*" id="field-${f.key}-file" style="display:none" onchange="handleImageUpload(event, '${f.key}')">
+                    <input type="hidden" class="modal-field" id="field-${f.key}" value="${value}">
+                    <button type="button" class="btn-remove-image" id="remove-btn-${f.key}" onclick="removeImage('${f.key}')" style="${value ? '' : 'display:none'}">✕ Quitar imagen</button>
+                </div>`, f);
+        }
+        if (f.type === 'file') {
+            const fileName = item ? (item[`${f.key}Name`] || '') : '';
+            return wrapConditional(`
+                <div class="form-row">
+                    <label class="form-label">${f.label}</label>
+                    <div class="file-upload-row">
+                        <button type="button" class="btn-file-upload" onclick="document.getElementById('field-${f.key}-file').click()">📄 Seleccionar archivo</button>
+                        <span class="file-name-label" id="file-name-${f.key}">${fileName || 'Sin archivo seleccionado'}</span>
+                    </div>
+                    <input type="file" accept="application/pdf,image/*" id="field-${f.key}-file" style="display:none" onchange="handleFileUpload(event, '${f.key}')">
+                    <input type="hidden" class="modal-field" id="field-${f.key}" value="${value}">
+                    <input type="hidden" id="field-${f.key}-namehidden" value="${fileName}">
+                    <button type="button" class="btn-remove-image" id="remove-file-btn-${f.key}" onclick="removeFile('${f.key}')" style="${value ? '' : 'display:none'}">✕ Quitar archivo</button>
+                </div>`, f);
+        }
+        return wrapConditional(`
             <div class="form-row">
                 <label class="form-label">${f.label}${f.required ? ' *' : ''}</label>
                 <input class="filter-input modal-field" type="${f.type}" id="field-${f.key}" value="${value}" ${f.required ? 'required' : ''}>
-            </div>`;
+            </div>`, f);
     }).join('');
 
     document.getElementById('modal-fields').innerHTML = fieldsHTML;
     document.getElementById('modal-overlay').dataset.section = section;
     document.getElementById('modal-overlay').classList.add('active');
+    handleConditionalFields();
+}
+
+function handleConditionalFields() {
+    document.querySelectorAll('.conditional-field').forEach(el => {
+        const fieldKey = el.dataset.showField;
+        const expectedValue = el.dataset.showValue;
+        const controllingEl = document.getElementById(`field-${fieldKey}`);
+        if (!controllingEl) return;
+        el.style.display = controllingEl.value === expectedValue ? '' : 'none';
+    });
 }
 
 function closeFormModal() {
     document.getElementById('modal-overlay').classList.remove('active');
     editingId = null;
+}
+
+// Sube el archivo al servidor (guardado real en web/public/uploads) y devuelve la URL pública.
+async function uploadFileToServer(dataUrl, filename) {
+    const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ dataUrl, filename })
+    });
+    if (!res.ok) throw new Error('Falló la subida del archivo');
+    const json = await res.json();
+    return json.url;
+}
+
+async function handleImageUpload(event, key) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Por favor selecciona un archivo de imagen válido');
+        return;
+    }
+
+    const previewBox = document.getElementById(`image-preview-${key}`);
+    previewBox.innerHTML = `<div class="image-upload-placeholder">⏳ Subiendo...</div>`;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const url = await uploadFileToServer(e.target.result, file.name);
+            document.getElementById(`field-${key}`).value = url;
+            previewBox.innerHTML = `<img src="${url}" alt="preview" class="image-upload-preview">`;
+
+            const removeBtn = document.getElementById(`remove-btn-${key}`);
+            if (removeBtn) removeBtn.style.display = 'block';
+        } catch (err) {
+            alert('No se pudo subir la imagen al servidor');
+            previewBox.innerHTML = `<div class="image-upload-placeholder">🖼️<br>Clic para subir imagen</div>`;
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeImage(key) {
+    document.getElementById(`field-${key}`).value = '';
+
+    const previewBox = document.getElementById(`image-preview-${key}`);
+    previewBox.innerHTML = `<div class="image-upload-placeholder">🖼️<br>Clic para subir imagen</div>`;
+
+    const fileInput = document.getElementById(`field-${key}-file`);
+    if (fileInput) fileInput.value = '';
+
+    const removeBtn = document.getElementById(`remove-btn-${key}`);
+    if (removeBtn) removeBtn.style.display = 'none';
+}
+
+async function handleFileUpload(event, key) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const label = document.getElementById(`file-name-${key}`);
+    label.textContent = '⏳ Subiendo...';
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const url = await uploadFileToServer(e.target.result, file.name);
+            document.getElementById(`field-${key}`).value = url;
+            document.getElementById(`field-${key}-namehidden`).value = file.name;
+            label.textContent = file.name;
+
+            const removeBtn = document.getElementById(`remove-file-btn-${key}`);
+            if (removeBtn) removeBtn.style.display = 'inline-block';
+        } catch (err) {
+            alert('No se pudo subir el archivo al servidor');
+            label.textContent = 'Sin archivo seleccionado';
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeFile(key) {
+    document.getElementById(`field-${key}`).value = '';
+    document.getElementById(`field-${key}-namehidden`).value = '';
+    document.getElementById(`file-name-${key}`).textContent = 'Sin archivo seleccionado';
+
+    const fileInput = document.getElementById(`field-${key}-file`);
+    if (fileInput) fileInput.value = '';
+
+    const removeBtn = document.getElementById(`remove-file-btn-${key}`);
+    if (removeBtn) removeBtn.style.display = 'none';
 }
 
 function submitFormModal(e) {
@@ -1302,13 +1686,27 @@ function submitFormModal(e) {
 
     for (const f of schema) {
         const el = document.getElementById(`field-${f.key}`);
+
+        if (f.type === 'checkbox') {
+            values[f.key] = el.checked;
+            continue;
+        }
+
+        const wrapper = el.closest('.conditional-field');
+        const isHidden = wrapper && wrapper.style.display === 'none';
+
         let val = el.value.trim();
-        if (f.required && !val) {
+        if (f.required && !isHidden && !val) {
             alert(`El campo "${f.label}" es obligatorio`);
             return;
         }
         if (f.type === 'number') val = val === '' ? '' : Number(val);
         values[f.key] = val;
+
+        if (f.type === 'file') {
+            const nameEl = document.getElementById(`field-${f.key}-namehidden`);
+            values[`${f.key}Name`] = nameEl ? nameEl.value : '';
+        }
     }
 
     if (editingId !== null) {
@@ -1337,7 +1735,8 @@ function switchSection(section) {
         proyectos: 'Proyectos',
         trayectoria: 'Trayectoria Profesional',
         habilidades: 'Habilidades Técnicas',
-        certificados: 'Certificados'
+        certificados: 'Certificados',
+        pagina: 'Configuración de Página'
     };
     document.getElementById('section-title').textContent = titles[section];
 
@@ -1398,7 +1797,7 @@ function renderFilters() {
                 <label>Año:</label>
                 <select class="filter-select" id="filter-año" onchange="applyFilters()">
                     <option value="">Todos</option>
-                    ${[...new Set(allData.proyectos.map(p => p.year))].sort().map(year => `<option value="${year}" ${currentFilters.año === String(year) ? 'selected' : ''}>${year}</option>`).join('')}
+                    ${[...new Set(allData.proyectos.map(p => projectYear(p)))].filter(Boolean).sort().map(year => `<option value="${year}" ${currentFilters.año === String(year) ? 'selected' : ''}>${year}</option>`).join('')}
                 </select>
             </div>
         `;
@@ -1521,7 +1920,7 @@ function getFilteredItems() {
     if (currentSection === 'proyectos') {
         items = items.filter(item =>
             (currentFilters.nombre === '' || item.title.toLowerCase().includes(currentFilters.nombre.toLowerCase())) &&
-            (currentFilters.año === '' || String(item.year) === currentFilters.año)
+            (currentFilters.año === '' || String(projectYear(item)) === currentFilters.año)
         );
     } else if (currentSection === 'trayectoria') {
         items = items.filter(item => {
@@ -1548,6 +1947,12 @@ function getFilteredItems() {
 }
 
 function renderContent() {
+    if (currentSection === 'pagina') {
+        document.getElementById('filters-section').innerHTML = '';
+        renderPaginaSettings();
+        return;
+    }
+
     renderFilters();
     const contentArea = document.getElementById('content-area');
     const items = getFilteredItems();
@@ -1564,12 +1969,176 @@ function renderContent() {
     }
 }
 
+function renderPaginaSettings() {
+    const contentArea = document.getElementById('content-area');
+    contentArea.innerHTML = `
+        <div class="settings-wrapper">
+            <div class="settings-card">
+                <h3 class="settings-card-title">🖼️ Hero — Mi foto</h3>
+                <p class="settings-card-desc">Imagen principal que aparece en el inicio del sitio.</p>
+                <div class="form-row">
+                    <div class="image-upload-box" id="image-preview-heroImage" onclick="document.getElementById('field-heroImage-file').click()">
+                        ${pageSettings.heroImage
+                            ? `<img src="${pageSettings.heroImage}" alt="preview" class="image-upload-preview">`
+                            : `<div class="image-upload-placeholder">🖼️<br>Clic para subir foto</div>`}
+                    </div>
+                    <input type="file" accept="image/*" id="field-heroImage-file" style="display:none" onchange="handleSettingsImageUpload(event, 'heroImage')">
+                    <button type="button" class="btn-remove-image" id="remove-btn-heroImage" onclick="removeSettingsImage('heroImage')" style="${pageSettings.heroImage ? '' : 'display:none'}">✕ Quitar imagen</button>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h3 class="settings-card-title">✨ Más allá del código</h3>
+                <p class="settings-card-desc">Sección de vida personal que aparece en el inicio del sitio.</p>
+                <div class="form-row">
+                    <label class="form-label">Título</label>
+                    <input class="filter-input" style="width:100%" id="field-lifeTitle" value="${pageSettings.lifeTitle}">
+                </div>
+                <div class="form-row">
+                    <label class="form-label">Descripción</label>
+                    <textarea class="filter-input" style="width:100%; resize:vertical" rows="4" id="field-lifeDescription">${pageSettings.lifeDescription}</textarea>
+                </div>
+                <div class="form-row">
+                    <label class="form-label">Imágenes (5)</label>
+                    <div class="settings-image-grid">
+                        ${[0, 1, 2, 3, 4].map(i => `
+                            <div>
+                                <div class="image-upload-box image-upload-box-sm" id="image-preview-lifeImage${i}" onclick="document.getElementById('field-lifeImage${i}-file').click()">
+                                    ${pageSettings.lifeImages[i]
+                                        ? `<img src="${pageSettings.lifeImages[i]}" alt="preview" class="image-upload-preview">`
+                                        : `<div class="image-upload-placeholder">🖼️</div>`}
+                                </div>
+                                <input type="file" accept="image/*" id="field-lifeImage${i}-file" style="display:none" onchange="handleSettingsImageUpload(event, 'lifeImage${i}')">
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-card">
+                <h3 class="settings-card-title">📞 Contactabilidad</h3>
+                <p class="settings-card-desc">Datos usados en el formulario de contacto de la web.</p>
+                <div class="settings-grid-2">
+                    <div class="form-row">
+                        <label class="form-label">Email</label>
+                        <input class="filter-input" style="width:100%" id="field-contactEmail" value="${pageSettings.contactEmail}">
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">Teléfono</label>
+                        <input class="filter-input" style="width:100%" id="field-contactPhone" value="${pageSettings.contactPhone}">
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">WhatsApp (solo números)</label>
+                        <input class="filter-input" style="width:100%" id="field-contactWhatsapp" value="${pageSettings.contactWhatsapp}">
+                    </div>
+                    <div class="form-row">
+                        <label class="form-label">Ubicación</label>
+                        <input class="filter-input" style="width:100%" id="field-contactLocation" value="${pageSettings.contactLocation}">
+                    </div>
+                    <div class="form-row" style="grid-column: 1 / -1">
+                        <label class="form-label">Disponibilidad</label>
+                        <input class="filter-input" style="width:100%" id="field-contactAvailability" value="${pageSettings.contactAvailability}">
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" class="btn-primary" style="max-width:260px" onclick="savePaginaSettings()">💾 Guardar Cambios</button>
+        </div>
+    `;
+}
+
+async function handleSettingsImageUpload(event, key) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+        alert('Por favor selecciona un archivo de imagen válido');
+        return;
+    }
+
+    const previewBox = document.getElementById(`image-preview-${key}`);
+    previewBox.innerHTML = `<div class="image-upload-placeholder">⏳ Subiendo...</div>`;
+
+    const reader = new FileReader();
+    reader.onload = async (e) => {
+        try {
+            const url = await uploadFileToServer(e.target.result, file.name);
+            if (key.startsWith('lifeImage')) {
+                const idx = parseInt(key.replace('lifeImage', ''), 10);
+                pageSettings.lifeImages[idx] = url;
+            } else {
+                pageSettings[key] = url;
+            }
+
+            previewBox.innerHTML = `<img src="${url}" alt="preview" class="image-upload-preview">`;
+
+            const removeBtn = document.getElementById(`remove-btn-${key}`);
+            if (removeBtn) removeBtn.style.display = 'block';
+        } catch (err) {
+            alert('No se pudo subir la imagen al servidor');
+            previewBox.innerHTML = `<div class="image-upload-placeholder">🖼️<br>Clic para subir foto</div>`;
+        }
+    };
+    reader.readAsDataURL(file);
+}
+
+function removeSettingsImage(key) {
+    pageSettings[key] = '';
+
+    const previewBox = document.getElementById(`image-preview-${key}`);
+    previewBox.innerHTML = `<div class="image-upload-placeholder">🖼️<br>Clic para subir foto</div>`;
+
+    const fileInput = document.getElementById(`field-${key}-file`);
+    if (fileInput) fileInput.value = '';
+
+    const removeBtn = document.getElementById(`remove-btn-${key}`);
+    if (removeBtn) removeBtn.style.display = 'none';
+}
+
+function savePaginaSettings() {
+    pageSettings.lifeTitle = document.getElementById('field-lifeTitle').value.trim();
+    pageSettings.lifeDescription = document.getElementById('field-lifeDescription').value.trim();
+    pageSettings.contactEmail = document.getElementById('field-contactEmail').value.trim();
+    pageSettings.contactPhone = document.getElementById('field-contactPhone').value.trim();
+    pageSettings.contactWhatsapp = document.getElementById('field-contactWhatsapp').value.trim();
+    pageSettings.contactLocation = document.getElementById('field-contactLocation').value.trim();
+    pageSettings.contactAvailability = document.getElementById('field-contactAvailability').value.trim();
+
+    localStorage.setItem('portafolio_settings', JSON.stringify(pageSettings));
+    alert('✅ Cambios guardados correctamente');
+}
+
 function renderGridView(container, items) {
     container.innerHTML = `<div class="grid-view">${items.map(item => createCard(item)).join('')}</div>`;
 }
 
 function renderListView(container, items) {
     container.innerHTML = `<div class="list-view">${items.map(item => createListItem(item)).join('')}</div>`;
+}
+
+const SECTION_EMOJI = {
+    proyectos: '🎨',
+    trayectoria: '📍',
+    habilidades: '💻',
+    certificados: '🎓'
+};
+
+function thumbHTML(item) {
+    return item.image
+        ? `<img src="${item.image}" alt="" class="card-thumb">`
+        : `<div class="card-thumb card-thumb-placeholder">${SECTION_EMOJI[currentSection]}</div>`;
+}
+
+function projectYear(item) {
+    return item.startDate ? item.startDate.slice(0, 4) : '';
+}
+
+function projectDateRange(item) {
+    if (!item.startDate) return '';
+    const start = item.startDate;
+    if (item.status === 'Terminado' && item.endDate) return `${start} → ${item.endDate}`;
+    if (item.status === 'Terminado') return start;
+    return `${start} → En curso`;
 }
 
 function createCard(item) {
@@ -1579,7 +2148,8 @@ function createCard(item) {
             <div class="card-title">${item.title}</div>
             <div class="card-meta">
                 <div class="meta-line"><span>${item.company}</span> <span class="badge badge-primary">${item.type}</span></div>
-                <div class="meta-line"><span>${item.year}</span> <span class="badge ${item.status === 'Terminado' ? 'badge-success' : 'badge-warning'}">${item.status}</span></div>
+                <div class="meta-line"><span>${projectDateRange(item)}</span> <span class="badge ${item.status === 'Terminado' ? 'badge-success' : 'badge-warning'}">${item.status}</span></div>
+                <span class="badge ${item.visible !== false ? 'badge-success' : 'badge-hidden'}" style="width:fit-content">${item.visible !== false ? '👁️ Visible en la web' : '🚫 Oculto'}</span>
             </div>
         `;
     } else if (currentSection === 'trayectoria') {
@@ -1604,15 +2174,18 @@ function createCard(item) {
             <div class="card-meta">
                 <div class="meta-line"><span>${item.issuer}</span></div>
                 <div class="meta-line"><span>Año: ${item.year}</span></div>
+                ${item.file ? `<a href="${item.file}" download="${item.fileName || 'certificado'}" class="badge-download">📄 ${item.fileName || 'Descargar'}</a>` : ''}
             </div>
         `;
     }
+
+    const showThumb = currentSection === 'proyectos' || currentSection === 'habilidades' || currentSection === 'certificados';
 
     return `
         <div class="card">
             <div class="card-top-bar"></div>
             <div class="card-content">
-                ${content}
+                ${showThumb ? `<div class="card-header-row">${thumbHTML(item)}<div style="flex:1;min-width:0">${content}</div></div>` : content}
                 <div class="card-actions">
                     <button class="btn-sm" onclick="openFormModal('${currentSection}', ${item.id})">✏️ Editar</button>
                     <button class="btn-sm btn-sm-delete" onclick="deleteItem('${currentSection}', ${item.id})">🗑️ Eliminar</button>
@@ -1626,7 +2199,7 @@ function createListItem(item) {
     let title = '', detail = '';
     if (currentSection === 'proyectos') {
         title = item.title;
-        detail = `${item.company} • ${item.type} • ${item.status}`;
+        detail = `${item.company} • ${item.type} • ${item.status} • ${projectDateRange(item)} • ${item.visible !== false ? '👁️ Visible' : '🚫 Oculto'}`;
     } else if (currentSection === 'trayectoria') {
         title = item.title;
         detail = `${item.company} • ${item.startDate} - ${item.endDate || 'Actual'}`;
@@ -1635,11 +2208,17 @@ function createListItem(item) {
         detail = `${item.category} • ${item.level}`;
     } else if (currentSection === 'certificados') {
         title = item.title;
-        detail = `${item.issuer} • Año: ${item.year}`;
+        detail = `${item.issuer} • Año: ${item.year}${item.file ? ' • 📄 con archivo' : ''}`;
     }
+
+    const showThumb = currentSection === 'proyectos' || currentSection === 'habilidades' || currentSection === 'certificados';
+    const thumb = item.image
+        ? `<img src="${item.image}" alt="" class="list-item-thumb">`
+        : `<div class="list-item-thumb card-thumb-placeholder">${SECTION_EMOJI[currentSection]}</div>`;
 
     return `
         <div class="list-item">
+            ${showThumb ? thumb : ''}
             <div class="list-item-info">
                 <div class="list-item-title">${title}</div>
                 <div class="list-item-detail">${detail}</div>
