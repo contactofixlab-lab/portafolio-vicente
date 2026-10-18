@@ -1,0 +1,1052 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Console - Portafolio Vicente</title>
+    <style>
+        :root {
+            --bg-0: #050c16;
+            --glass: rgba(14, 31, 52, 0.66);
+            --glass-strong: rgba(12, 27, 46, 0.9);
+            --border: rgba(255, 255, 255, 0.085);
+            --border-2: rgba(255, 255, 255, 0.15);
+            --text: #f4f7fb;
+            --muted: #94a5b9;
+            --dim: #66788e;
+            --accent: #f97316;
+            --accent-2: #fb923c;
+            --accent-deep: #ea580c;
+            --accent-soft: rgba(249, 115, 22, 0.14);
+            --ok: #22c55e;
+            --danger: #f87171;
+            --shadow: 0 1px 0 rgba(255, 255, 255, 0.06) inset, 0 -1px 0 rgba(0, 0, 0, 0.3) inset, 0 22px 50px rgba(0, 0, 0, 0.42), 0 4px 14px rgba(0, 0, 0, 0.28);
+            --r-card: 18px;
+            --r-field: 12px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { min-height: 100%; }
+        body {
+            font-family: 'Segoe UI', Inter, system-ui, sans-serif;
+            color: var(--text);
+            background:
+                radial-gradient(900px 620px at -8% -12%, rgba(249, 115, 22, 0.17), transparent 60%),
+                radial-gradient(820px 620px at 112% 112%, rgba(56, 189, 248, 0.11), transparent 60%),
+                linear-gradient(160deg, #07111f 0%, #0a1a2c 55%, #071323 100%);
+            background-attachment: fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 48px 48px;
+            z-index: 0;
+        }
+        .hidden { display: none !important; }
+        button { font-family: inherit; }
+        svg.i { width: 17px; height: 17px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+        .logo-tile {
+            width: 42px; height: 42px; border-radius: 13px;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-deep));
+            display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 20px;
+            box-shadow: 0 10px 28px rgba(249, 115, 22, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
+        }
+
+        .login { min-height: 100vh; display: grid; place-items: center; padding: 20px; position: relative; z-index: 1; }
+        .login-card {
+            width: 100%; max-width: 400px;
+            background: var(--glass-strong);
+            border: 1px solid var(--border-2);
+            border-radius: 24px;
+            padding: 34px 30px 26px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(26px);
+            -webkit-backdrop-filter: blur(26px);
+        }
+        .login-card h1 { font-size: 22px; font-weight: 700; margin-top: 18px; letter-spacing: -0.01em; }
+        .login-card .sub { color: var(--muted); font-size: 14px; margin: 4px 0 22px; }
+        .field-label { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 14px 0 7px; }
+        .input-wrap { position: relative; }
+        .input-wrap > svg.i { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--dim); pointer-events: none; }
+        .input-wrap .eye { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); background: transparent; border: 0; color: var(--dim); cursor: pointer; width: 32px; height: 32px; border-radius: 8px; display: grid; place-items: center; }
+        .input-wrap .eye:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+        .login-card input.fld {
+            width: 100%; padding: 12px 42px 12px 40px;
+            background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border); border-radius: var(--r-field);
+            color: var(--text); font: inherit; font-size: 14.5px;
+        }
+        .login-card input.fld:focus { outline: none; border-color: rgba(249, 115, 22, 0.6); box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.14); }
+        .btn-login {
+            width: 100%; margin-top: 22px; padding: 13px; border: 0; border-radius: 13px; color: #fff;
+            font-weight: 700; font-size: 15px; cursor: pointer;
+            background: linear-gradient(135deg, var(--accent-2), var(--accent-deep));
+            box-shadow: 0 12px 30px rgba(249, 115, 22, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            transition: transform 0.15s, filter 0.15s;
+        }
+        .btn-login:hover { filter: brightness(1.06); }
+        .btn-login:active { transform: scale(0.99); }
+        .login-error { color: var(--danger); font-size: 13px; margin-top: 12px; min-height: 18px; text-align: center; }
+        .login-foot { margin-top: 16px; font-size: 12px; color: var(--dim); text-align: center; }
+
+        .app { display: grid; grid-template-columns: 262px 1fr; min-height: 100vh; position: relative; z-index: 1; }
+        .sidebar {
+            position: sticky; top: 14px; height: calc(100vh - 28px); margin: 14px 0 14px 14px;
+            background: var(--glass-strong); border: 1px solid var(--border); border-radius: 22px;
+            box-shadow: var(--shadow); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+            padding: 18px 12px; display: flex; flex-direction: column; overflow-y: auto;
+        }
+        .brand { display: flex; align-items: center; gap: 12px; padding: 4px 8px 16px; }
+        .brand .logo-tile { width: 40px; height: 40px; border-radius: 12px; font-size: 19px; }
+        .brand b { display: block; font-size: 15px; letter-spacing: -0.01em; }
+        .brand span { font-size: 12px; color: var(--muted); }
+        .group-label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--dim); padding: 18px 12px 7px; font-weight: 700; }
+        .nav-item {
+            display: flex; align-items: center; gap: 11px; width: 100%; text-align: left;
+            background: transparent; border: 0; color: #c3cfdd; padding: 10px 12px; border-radius: 12px;
+            font-size: 14.5px; cursor: pointer; transition: background 0.15s, color 0.15s;
+        }
+        .nav-item::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--dim); flex-shrink: 0; transition: background 0.15s, box-shadow 0.15s; }
+        .nav-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.22), rgba(249, 115, 22, 0.05));
+            color: #fff; font-weight: 600; box-shadow: inset 0 0 0 1px rgba(249, 115, 22, 0.34);
+        }
+        .nav-item.active::before { background: var(--accent); box-shadow: 0 0 10px rgba(249, 115, 22, 0.85); }
+        .sidebar-foot { margin-top: auto; padding: 14px 8px 2px; border-top: 1px solid var(--border); }
+        .sidebar-foot .user { display: flex; align-items: center; gap: 10px; margin-bottom: 11px; font-size: 13px; color: var(--muted); }
+        .sidebar-foot .user b { color: var(--text); display: block; font-size: 13.5px; }
+        .avatar { width: 34px; height: 34px; border-radius: 50%; background: linear-gradient(135deg, #3b4a63, #1e2a3e); display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 13px; flex-shrink: 0; }
+        .btn-wide { width: 100%; padding: 9px; border-radius: 11px; border: 1px solid var(--border-2); background: transparent; color: var(--text); cursor: pointer; font-size: 13px; display: inline-flex; align-items: center; justify-content: center; gap: 7px; }
+        .btn-wide:hover { background: rgba(255, 255, 255, 0.05); }
+
+        .main { display: flex; flex-direction: column; min-width: 0; padding: 14px 16px 0 16px; }
+        .topbar {
+            position: sticky; top: 14px; z-index: 5;
+            display: flex; align-items: center; gap: 14px; padding: 13px 18px;
+            background: var(--glass-strong); border: 1px solid var(--border); border-radius: 18px;
+            box-shadow: var(--shadow); backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+            margin-bottom: 18px; flex-wrap: wrap;
+        }
+        .title-wrap { flex: 1; min-width: 180px; }
+        .crumb { font-size: 11.5px; color: var(--dim); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; }
+        .topbar h1 { font-size: 19px; font-weight: 700; letter-spacing: -0.01em; margin-top: 2px; }
+        .status-pill {
+            display: inline-flex; align-items: center; gap: 8px; font-size: 12.5px; padding: 6px 12px; border-radius: 999px;
+            border: 1px solid var(--border); color: var(--muted); background: rgba(255, 255, 255, 0.03);
+        }
+        .status-pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--dim); }
+        .status-pill.dirty { color: #fdba74; border-color: rgba(249, 115, 22, 0.38); background: rgba(249, 115, 22, 0.1); }
+        .status-pill.dirty::before { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+        .status-pill.ok { color: #86efac; border-color: rgba(34, 197, 94, 0.3); }
+        .status-pill.ok::before { background: var(--ok); }
+        .status-pill.error { color: #fca5a5; border-color: rgba(248, 113, 113, 0.38); }
+        .status-pill.error::before { background: var(--danger); }
+        .btn {
+            padding: 9px 15px; border-radius: 11px; border: 1px solid var(--border-2); background: rgba(255, 255, 255, 0.04);
+            color: var(--text); font-size: 13.5px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 7px;
+            transition: background 0.15s, transform 0.15s, filter 0.15s;
+        }
+        .btn:hover { background: rgba(255, 255, 255, 0.08); }
+        .btn.primary { background: linear-gradient(135deg, var(--accent-2), var(--accent-deep)); border-color: transparent; color: #fff; font-weight: 600; box-shadow: 0 8px 24px rgba(249, 115, 22, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+        .btn.primary:hover { filter: brightness(1.06); }
+        .btn.primary:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; filter: none; }
+        .btn.small { padding: 6px 11px; font-size: 12.5px; border-radius: 9px; }
+        .btn.danger { color: #fca5a5; border-color: rgba(248, 113, 113, 0.3); }
+        .btn.ghost { background: transparent; }
+
+        .page { width: 100%; max-width: 1040px; padding: 0 4px 100px; }
+        .tabs {
+            display: inline-flex; max-width: 100%; gap: 4px; padding: 5px; margin: 0 0 18px 2px;
+            border-radius: 999px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border);
+            overflow-x: auto; box-shadow: var(--shadow);
+        }
+        .tab {
+            padding: 8px 16px; border-radius: 999px; border: 0; background: transparent; color: var(--muted);
+            font-size: 13.5px; font-weight: 500; cursor: pointer; white-space: nowrap; transition: background 0.15s, color 0.15s;
+        }
+        .tab:hover { color: var(--text); background: rgba(255, 255, 255, 0.06); }
+        .tab.active { background: linear-gradient(135deg, var(--accent-2), var(--accent-deep)); color: #fff; font-weight: 600; box-shadow: 0 6px 18px rgba(249, 115, 22, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.25); }
+        .page-desc { color: var(--muted); font-size: 14px; line-height: 1.55; margin: 0 0 16px 2px; }
+        .section-card {
+            background: var(--glass); border: 1px solid var(--border); border-radius: var(--r-card); padding: 24px;
+            box-shadow: var(--shadow); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+        }
+        .group { margin-bottom: 24px; }
+        .group:last-child { margin-bottom: 0; }
+        .group-title { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-2); margin-bottom: 13px; display: flex; align-items: center; gap: 10px; }
+        .group-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(249, 115, 22, 0.35), transparent); }
+        .group-body { display: grid; gap: 14px; }
+        fieldset.obj { border: 1px solid var(--border); border-radius: 14px; padding: 16px; display: grid; gap: 14px; background: rgba(0, 0, 0, 0.14); }
+        fieldset.obj > legend { font-size: 13px; font-weight: 700; padding: 0 8px; color: var(--text); }
+
+        .field { display: grid; gap: 7px; }
+        .field > span { font-size: 12.5px; font-weight: 600; color: #cdd6e2; }
+        .field > span small { display: block; font-weight: 400; color: var(--dim); font-size: 12px; margin-top: 2px; }
+        input[type=text], input[type=number], input[type=date], textarea, select {
+            width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: var(--r-field);
+            background: rgba(255, 255, 255, 0.035); color: var(--text); font: inherit; font-size: 14px;
+            transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+        }
+        input::placeholder, textarea::placeholder { color: var(--dim); }
+        input:hover, textarea:hover, select:hover { border-color: var(--border-2); }
+        input:focus, textarea:focus, select:focus { outline: none; border-color: rgba(249, 115, 22, 0.6); box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.14); background: rgba(255, 255, 255, 0.05); }
+        select option { background: #0f2036; color: var(--text); }
+        textarea { min-height: 72px; resize: vertical; line-height: 1.5; }
+        .check { display: flex; align-items: center; gap: 11px; font-size: 14px; font-weight: 600; cursor: pointer; padding: 4px 0; }
+        .check input {
+            appearance: none; -webkit-appearance: none; width: 40px; height: 23px; border-radius: 999px; flex-shrink: 0;
+            background: rgba(255, 255, 255, 0.14); position: relative; cursor: pointer; transition: background 0.2s; border: 0; margin: 0; padding: 0;
+        }
+        .check input::after { content: ''; position: absolute; top: 3px; left: 3px; width: 17px; height: 17px; border-radius: 50%; background: #fff; transition: transform 0.2s; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4); }
+        .check input:checked { background: linear-gradient(135deg, var(--accent-2), var(--accent-deep)); }
+        .check input:checked::after { transform: translateX(17px); }
+        .check input:focus-visible { outline: none; box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.3); }
+
+        .list { display: grid; gap: 10px; }
+        .list-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 2px; flex-wrap: wrap; }
+        .list-label { font-size: 13px; font-weight: 700; }
+        .count-badge { display: inline-block; margin-left: 8px; font-size: 11px; padding: 2px 9px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-2); font-weight: 700; }
+        .item { border: 1px solid var(--border); border-radius: 14px; background: rgba(255, 255, 255, 0.025); transition: border-color 0.15s, background 0.15s; }
+        .item:hover { border-color: var(--border-2); }
+        .item.open { border-color: rgba(249, 115, 22, 0.36); background: rgba(249, 115, 22, 0.04); }
+        .item-head { display: flex; align-items: center; gap: 8px; padding: 10px 12px; }
+        .item-title { font-size: 14px; font-weight: 600; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .item-body { padding: 8px 16px 18px; display: grid; gap: 14px; border-top: 1px solid var(--border); }
+        .icon {
+            border: 1px solid var(--border); background: rgba(255, 255, 255, 0.04); color: var(--muted); border-radius: 9px;
+            min-width: 30px; height: 30px; padding: 0 9px; cursor: pointer; font-size: 12.5px; display: inline-grid; place-items: center;
+        }
+        .icon:hover:not(:disabled) { color: var(--text); border-color: var(--border-2); }
+        .icon:disabled { opacity: 0.3; cursor: not-allowed; }
+        .icon.danger:hover:not(:disabled) { color: #fca5a5; border-color: rgba(248, 113, 113, 0.4); }
+        .link { background: none; border: 0; cursor: pointer; color: var(--accent-2); width: 26px; height: 26px; font-size: 14px; display: grid; place-items: center; border-radius: 7px; }
+        .link:hover { background: rgba(249, 115, 22, 0.1); }
+        .empty { color: var(--dim); font-size: 13px; padding: 24px; border: 1px dashed var(--border-2); border-radius: 14px; text-align: center; }
+
+        .img-field { display: grid; grid-template-columns: 116px 1fr; gap: 14px; align-items: center; }
+        .thumb { width: 116px; height: 82px; border-radius: 12px; border: 1px dashed var(--border-2); background: rgba(255, 255, 255, 0.03); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .thumb span { font-size: 12px; color: var(--dim); }
+        .img-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+        .img-path { font-size: 11.5px; color: var(--dim); word-break: break-all; margin-top: 7px; }
+        .refs { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip-check { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--border); border-radius: 999px; padding: 6px 12px; font-size: 13px; cursor: pointer; background: rgba(255, 255, 255, 0.03); color: #cdd6e2; }
+        .chip-check:hover { border-color: var(--border-2); }
+        .chip-check input { accent-color: var(--accent); }
+
+        .toast {
+            position: fixed; bottom: 22px; right: 22px; z-index: 50;
+            background: var(--glass-strong); border: 1px solid var(--border-2); color: var(--text);
+            padding: 12px 16px; border-radius: 13px; font-size: 14px; box-shadow: var(--shadow);
+            backdrop-filter: blur(20px); opacity: 0; transform: translateY(12px); transition: all 0.25s; pointer-events: none; max-width: 360px;
+        }
+        .toast.show { opacity: 1; transform: none; }
+
+        @media (max-width: 860px) {
+            .app { grid-template-columns: 1fr; }
+            .sidebar { position: static; height: auto; margin: 10px; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 4px; padding: 10px; }
+            .brand { padding: 0 8px 0 4px; }
+            .brand span, .group-label, .sidebar-foot { display: none; }
+            .nav-item { width: auto; padding: 8px 10px; font-size: 13px; }
+            .main { padding: 8px 10px 0; }
+            .topbar { top: 8px; padding: 12px 14px; }
+            .page { padding: 0 0 90px; }
+            .img-field { grid-template-columns: 1fr; }
+            .section-card { padding: 16px; }
+            .page, .main, .app > * { min-width: 0; max-width: 100%; }
+            .item-head { flex-wrap: wrap; }
+            .item-title { flex-basis: 100%; order: -1; }
+            .list-head { flex-wrap: wrap; }
+            .topbar .btn.ghost { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div id="login" class="login">
+    <form class="login-card" id="login-form" autocomplete="off">
+        <div class="logo-tile">V</div>
+        <h1>Admin Console</h1>
+        <p class="sub">Portafolio Vicente · acceso privado</p>
+
+        <label class="field-label" for="user">Usuario</label>
+        <div class="input-wrap">
+            <svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg>
+            <input class="fld" id="user" type="text" placeholder="Tu usuario" required autofocus>
+        </div>
+
+        <label class="field-label" for="pass">Contraseña</label>
+        <div class="input-wrap">
+            <svg class="i" viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+            <input class="fld" id="pass" type="password" placeholder="Tu contraseña" required>
+            <button type="button" class="eye" id="pass-toggle" aria-label="Mostrar contraseña">
+                <svg class="i" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+        </div>
+
+        <button type="submit" class="btn-login">Entrar</button>
+        <div class="login-error" id="login-error"></div>
+        <div class="login-foot">Acceso privado · Portafolio Vicente</div>
+    </form>
+</div>
+
+<div id="app" class="app hidden">
+    <aside class="sidebar" id="sidebar"></aside>
+    <main class="main">
+        <div class="topbar">
+            <div class="title-wrap">
+                <div class="crumb" id="crumb">Consola</div>
+                <h1 id="page-title">Cargando…</h1>
+            </div>
+            <span class="status-pill" id="status"></span>
+            <a class="btn ghost" href="https://portfolio-vicente-seven.vercel.app" target="_blank" rel="noopener">Ver sitio</a>
+            <button class="btn primary" id="btn-save" disabled>Guardar cambios</button>
+        </div>
+        <div id="page" class="page"></div>
+    </main>
+</div>
+
+<input type="file" id="upload-input" class="hidden">
+<datalist id="badge-list">
+    <option value="Actual"></option>
+    <option value="Operaciones"></option>
+    <option value="Estrategia"></option>
+    <option value="Liderazgo"></option>
+    <option value="Aprendizaje"></option>
+    <option value="Entrada"></option>
+    <option value="Sistemas"></option>
+</datalist>
+<div class="toast" id="toast"></div>
+
+<script>
+
+let content = null;
+let dirty = false;
+let currentPage = 'header';
+const openKeys = new Set();
+const makers = {};
+let uploadTarget = null;
+
+const T = (key, label, extra = {}) => ({ type: 'text', key, label, ...extra });
+const TA = (key, label, extra = {}) => ({ type: 'textarea', key, label, ...extra });
+const N = (key, label, extra = {}) => ({ type: 'number', key, label, ...extra });
+const DATE = (key, label, extra = {}) => ({ type: 'date', key, label, ...extra });
+const SEL = (key, label, options) => ({ type: 'select', key, label, options });
+const CHK = (key, label) => ({ type: 'checkbox', key, label });
+const IMG = (key, label) => ({ type: 'image', key, label });
+const FILE = (key, label, extra = {}) => ({ type: 'file', key, label, ...extra });
+const LINES = (key, label, extra = {}) => ({ type: 'lines', key, label, ...extra });
+const PREFS = (key, label) => ({ type: 'projectRefs', key, label });
+const OBJ = (key, label, fields) => ({ type: 'object', key, label, fields });
+const LIST = (key, label, fields, opts = {}) => ({ type: 'list', key, label, fields, itemLabel: opts.itemLabel, make: opts.make, hint: opts.hint });
+const GROUP = (title, fields) => ({ type: 'group', title, fields });
+
+const nextId = (arr) => arr.reduce((m, x) => Math.max(m, Number(x.id) || 0), 0) + 1;
+
+const DETAIL_KEYS = ['backText', 'notFound', 'startLabel', 'endLabel', 'ongoing', 'stackLabel', 'phasesLabel', 'demoButton', 'githubButton', 'architectureTitle', 'reasonTitle', 'problemsTitle', 'solutionsTitle', 'whatWasDoneTitle', 'featuresTitle', 'phasesTitle', 'resultsTitle', 'techTitle', 'categoriesTitle', 'similarTitle', 'similarEmpty', 'similarLink'];
+const DETAIL_LABELS = {
+    backText: 'Botón volver', notFound: 'Texto "proyecto no encontrado"', startLabel: 'Etiqueta inicio', endLabel: 'Etiqueta fin',
+    ongoing: 'Texto "en curso"', stackLabel: 'Etiqueta stack', phasesLabel: 'Etiqueta fases', demoButton: 'Botón demo',
+    githubButton: 'Botón GitHub', architectureTitle: 'Título arquitectura', reasonTitle: 'Título "por qué"',
+    problemsTitle: 'Título problemas', solutionsTitle: 'Título soluciones', whatWasDoneTitle: 'Título funcionalidades',
+    featuresTitle: 'Título features', phasesTitle: 'Título fases', resultsTitle: 'Título resultados',
+    techTitle: 'Título tecnologías', categoriesTitle: 'Título categorías', similarTitle: 'Título similares',
+    similarEmpty: 'Texto sin similares', similarLink: 'Texto enlace similares'
+};
+
+/* Cada sección del menú lateral es un "módulo" (group). Sus subsecciones (tab) aparecen como pestañas arriba. */
+const PAGES = [
+    { id: 'header', group: 'Inicio', tab: 'Encabezado', title: 'Encabezado y menú', desc: 'Logo, texto de disponibilidad y enlaces del menú superior.', fields: [
+        OBJ('header', 'Encabezado', [
+            T('logoLetter', 'Letra del logo'),
+            T('logoText', 'Nombre en el menú'),
+            T('availability', 'Texto de disponibilidad'),
+            LIST('nav', 'Enlaces del menú', [T('label', 'Texto'), T('href', 'Enlace (ej: #proyectos)')], { itemLabel: 'label', make: () => ({ label: 'Nuevo', href: '#' }) })
+        ])
+    ]},
+    { id: 'hero', group: 'Inicio', tab: 'Hero', title: 'Hero (inicio)', desc: 'Lo primero que ve el visitante.', fields: [
+        OBJ('hero', 'Hero', [
+            T('badge', 'Etiqueta superior'),
+            T('title', 'Título'),
+            T('subtitle', 'Subtítulo'),
+            TA('description', 'Descripción'),
+            OBJ('primaryButton', 'Botón principal', [T('text', 'Texto'), T('href', 'Enlace')]),
+            OBJ('secondaryButton', 'Botón secundario', [T('text', 'Texto (vacío = oculto)'), T('href', 'Enlace')]),
+            IMG('photo', 'Foto (si está vacía se muestra el emoji)'),
+            LIST('floatingBadges', 'Etiquetas flotantes', [T('label', 'Texto'), T('icon', 'Icono (emoji)')], { itemLabel: 'label', make: () => ({ label: 'Nueva', icon: '⭐' }) })
+        ])
+    ]},
+    { id: 'life', group: 'Inicio', tab: 'Más allá del código', title: 'Más allá del código', desc: 'Sección personal: texto, pasiones y fotos.', fields: [
+        OBJ('life', 'Más allá del código', [
+            T('title', 'Título'),
+            TA('description', 'Descripción'),
+            T('hobbiesTitle', 'Título de pasiones'),
+            LIST('hobbies', 'Pasiones', [T('name', 'Nombre'), T('icon', 'Icono (emoji)'), T('description', 'Descripción')], { itemLabel: 'name', make: () => ({ name: 'Nueva pasión', icon: '⭐', description: '' }) }),
+            LIST('images', 'Fotos del grid (usa 5)', [IMG('src', 'Foto'), T('alt', 'Descripción de la foto')], { itemLabel: 'alt', make: () => ({ src: '', alt: 'Foto' }) })
+        ])
+    ]},
+    { id: 'projects', group: 'Proyectos', tab: 'Lista', title: 'Lista de proyectos', desc: 'Cada proyecto aparece en el inicio, en "Mis proyectos" y en su página de detalle. Desactiva "Mostrar en la página web" para ocultarlo sin borrarlo.', fields: [
+        LIST('projects', 'Proyectos', [
+            GROUP('Básico', [
+                T('title', 'Título'),
+                TA('description', 'Descripción corta'),
+                TA('longDescription', 'Descripción larga'),
+                IMG('image', 'Logo / imagen del proyecto'),
+                SEL('type', 'Tipo', ['App', 'Web']),
+                T('company', 'Empresa / cliente'),
+                SEL('status', 'Estado', ['En Desarrollo', 'Últimas Fases', 'Terminado']),
+                CHK('visible', 'Mostrar en la página web'),
+                DATE('startDate', 'Fecha de inicio'),
+                DATE('endDate', 'Fecha de fin (vacía = en curso)')
+            ]),
+            GROUP('Tecnologías y categorías', [
+                LINES('stack', 'Stack (una por línea)'),
+                LINES('tags', 'Categorías (una por línea)')
+            ]),
+            GROUP('Enlaces', [T('github', 'Enlace a GitHub'), T('demo', 'Enlace a la demo')]),
+            GROUP('Detalle', [
+                TA('reason', '¿Por qué se hizo?'),
+                LINES('whatWasDone', 'Funcionalidades implementadas (una por línea)'),
+                LINES('problems', 'Problemas identificados (una por línea)'),
+                LINES('solutions', 'Soluciones implementadas (una por línea)'),
+                LINES('features', 'Features principales (una por línea)'),
+                TA('results', 'Resultados e impacto (opcional)')
+            ]),
+            GROUP('Arquitectura', [
+                OBJ('architecture', 'Stack por capa', [T('frontend', 'Frontend'), T('backend', 'Backend'), T('database', 'Base de datos'), T('external', 'Servicios externos')])
+            ]),
+            LIST('phases', 'Fases', [T('name', 'Nombre'), T('duration', 'Duración'), T('description', 'Descripción')], { itemLabel: 'name', make: () => ({ name: 'Nueva fase', duration: '', description: '' }) })
+        ], {
+            itemLabel: 'title',
+            make: (arr) => ({
+                id: nextId(arr), visible: true, title: 'Nuevo proyecto', description: '', longDescription: '', image: '',
+                type: 'Web', company: '', stack: [], status: 'En Desarrollo', tags: [], github: '', demo: '',
+                startDate: '', endDate: '', reason: '', whatWasDone: [], problems: [], solutions: [], features: [],
+                architecture: { frontend: '', backend: '', database: '', external: '' }, phases: []
+            })
+        })
+    ]},
+    { id: 'projectsText', group: 'Proyectos', tab: 'Textos', title: 'Textos de proyectos', desc: 'Títulos y textos de la sección de proyectos y de la página de detalle.', fields: [
+        OBJ('projectsHome', 'Proyectos destacados (inicio)', [
+            T('title', 'Título'),
+            TA('subtitle', 'Subtítulo'),
+            N('count', 'Cantidad de proyectos en el inicio', { min: 1, max: 10 }),
+            T('linkText', 'Texto del enlace a la página'),
+            T('moreTitle', 'Texto "¿Quieres ver más proyectos?"'),
+            T('moreButton', 'Botón "Ver todos los proyectos"')
+        ]),
+        OBJ('projectsPage', 'Página "Mis proyectos"', [
+            T('badge', 'Etiqueta superior'),
+            T('title', 'Título'),
+            TA('subtitle', 'Subtítulo'),
+            T('stackLabel', 'Etiqueta stack'),
+            T('tagsLabel', 'Etiqueta categorías'),
+            T('linkText', 'Texto del enlace a la página'),
+            T('ctaTitle', 'Título de la llamada a colaborar'),
+            TA('ctaText', 'Texto de la llamada a colaborar'),
+            T('ctaButton', 'Botón de la llamada')
+        ]),
+        OBJ('projectDetail', 'Página de detalle de proyecto', DETAIL_KEYS.map(k => T(k, DETAIL_LABELS[k])))
+    ]},
+    { id: 'experiences', group: 'Trayectoria', tab: 'Experiencias', title: 'Experiencias', desc: 'Cargos de la trayectoria. La primera es la más reciente.', fields: [
+        LIST('experiences', 'Experiencias', [
+            T('title', 'Cargo'),
+            T('company', 'Empresa'),
+            TA('description', 'Descripción'),
+            T('startDate', 'Inicio (ej: 2024-07)'),
+            T('endDate', 'Fin (ej: 2026-02 o presente)'),
+            T('badge', 'Etiqueta (ej: Actual, Liderazgo)', { list: 'badge-list' })
+        ], {
+            itemLabel: 'title',
+            make: (arr) => ({ id: nextId(arr), title: 'Nuevo cargo', company: '', description: '', startDate: '', endDate: 'presente', badge: '' })
+        })
+    ]},
+    { id: 'experienceText', group: 'Trayectoria', tab: 'Textos', title: 'Textos de la sección', desc: 'Títulos y textos de la sección de trayectoria en el inicio y en la página completa.', fields: [
+        OBJ('experienceHome', 'Trayectoria (inicio)', [
+            T('title', 'Título'),
+            TA('subtitle', 'Subtítulo'),
+            T('buttonText', 'Texto del botón'),
+            N('count', 'Cantidad de experiencias en el inicio', { min: 1, max: 10 })
+        ]),
+        OBJ('trajectoryPage', 'Página trayectoria completa', [
+            T('backText', 'Botón volver'),
+            T('title', 'Título'),
+            TA('subtitle', 'Subtítulo'),
+            T('statsExperienceLabel', 'Etiqueta "experiencias"'),
+            T('statsYearsValue', 'Valor "años de experiencia"'),
+            T('statsYearsLabel', 'Etiqueta "años de experiencia"'),
+            T('statsCurrentLabel', 'Etiqueta "roles actuales"')
+        ])
+    ]},
+    { id: 'skillCats', group: 'Habilidades', tab: 'Categorías', title: 'Categorías y habilidades', desc: 'Categorías y habilidades. El nivel (%) define la barra; "Proyectos donde la uso" enlaza a cada proyecto.', fields: [
+        OBJ('skills', 'Categorías', [
+            LIST('categories', 'Categorías', [
+                T('name', 'Nombre de la categoría'),
+                T('icon', 'Icono (emoji)'),
+                LIST('skills', 'Habilidades', [
+                    T('name', 'Nombre'),
+                    IMG('image', 'Logo'),
+                    N('percent', 'Nivel (%)', { min: 0, max: 100 }),
+                    TA('description', 'Descripción (opcional)'),
+                    PREFS('projects', 'Proyectos donde la uso')
+                ], { itemLabel: 'name', make: () => ({ name: 'Nueva habilidad', image: '', percent: 50, description: '', projects: [] }) })
+            ], { itemLabel: 'name', make: () => ({ name: 'Nueva categoría', icon: '✨', skills: [] }) })
+        ])
+    ]},
+    { id: 'skillText', group: 'Habilidades', tab: 'Textos', title: 'Textos de la sección', desc: 'Títulos y textos de la sección de habilidades en el inicio y en la página completa.', fields: [
+        OBJ('skills', 'Textos de la sección', [
+            T('homeTitle', 'Título (inicio)'),
+            T('homeSubtitle', 'Subtítulo (inicio)'),
+            T('homeButton', 'Botón "Ver todas"'),
+            T('fullTitle', 'Título de la página completa'),
+            TA('fullSubtitle', 'Subtítulo de la página completa'),
+            T('backText', 'Botón volver')
+        ])
+    ]},
+    { id: 'certItems', group: 'Certificados', tab: 'Certificados', title: 'Certificados', desc: 'Certificados del carrusel. El PDF cargado aparece como botón de descarga.', fields: [
+        OBJ('certificates', 'Certificados', [
+            LIST('items', 'Certificados', [
+                T('name', 'Nombre'),
+                T('issuer', 'Emisor'),
+                TA('description', 'Descripción'),
+                N('year', 'Año', { min: 2000, max: 2100 }),
+                IMG('image', 'Imagen del certificado'),
+                IMG('logo', 'Logo / portada pequeña'),
+                FILE('file', 'Archivo PDF para descargar', { nameKey: 'fileName', accept: 'application/pdf' })
+            ], {
+                itemLabel: 'name',
+                make: () => ({ name: 'Nuevo certificado', issuer: '', description: '', year: new Date().getFullYear(), image: '', logo: '', file: '', fileName: '' })
+            })
+        ])
+    ]},
+    { id: 'certText', group: 'Certificados', tab: 'Textos', title: 'Textos de la sección', desc: 'Títulos, etiquetas y botones de la sección de certificados.', fields: [
+        OBJ('certificates', 'Textos de la sección', [
+            T('title', 'Título'),
+            TA('subtitle', 'Subtítulo'),
+            T('hint', 'Texto de ayuda'),
+            T('viewText', 'Botón "Ver certificado"'),
+            T('issuedText', 'Texto "certificado emitido"'),
+            T('verifiedText', 'Texto "verificado"'),
+            T('downloadText', 'Botón "Descargar PDF"')
+        ])
+    ]},
+    { id: 'contactData', group: 'Contacto', tab: 'Datos y textos', title: 'Datos y textos de contacto', desc: 'Los datos de contacto se usan en la home, en la página Contacto, en el footer y en el botón de WhatsApp.', fields: [
+        OBJ('contact', 'Contacto', [
+            GROUP('Datos de contacto (en todo el sitio)', [
+                T('email', 'Correo'),
+                T('phone', 'Teléfono'),
+                T('location', 'Ubicación'),
+                T('availability', 'Disponibilidad'),
+                T('whatsappNumber', 'WhatsApp', { hint: 'Solo números con código de país, ej: 56966682082' }),
+                TA('whatsappMessage', 'Mensaje predeterminado de WhatsApp'),
+                T('whatsappTooltip', 'Texto al pasar el mouse por el botón de WhatsApp')
+            ]),
+            OBJ('home', 'Sección de contacto (inicio)', [
+                T('title', 'Título'),
+                TA('subtitle', 'Subtítulo'),
+                T('emailTitle', 'Título tarjeta correo'),
+                T('emailButton', 'Botón tarjeta correo'),
+                T('phoneTitle', 'Título tarjeta teléfono'),
+                T('phoneButton', 'Botón tarjeta teléfono'),
+                T('directTitle', 'Título contacto directo'),
+                TA('directText', 'Texto contacto directo'),
+                T('directButton', 'Botón contacto directo')
+            ]),
+            OBJ('page', 'Página Contacto', [
+                T('backText', 'Botón volver'),
+                T('title', 'Título'),
+                TA('subtitle', 'Subtítulo'),
+                T('infoEyebrow', 'Etiqueta superior del panel'),
+                T('infoTitle', 'Título del panel'),
+                T('whatsappButton', 'Botón WhatsApp'),
+                T('footerLine', 'Línea bajo el botón'),
+                T('formTitle', 'Título del formulario (parte 1)'),
+                T('formHighlight', 'Título del formulario (parte destacada)'),
+                T('formSubtitle', 'Subtítulo del formulario'),
+                T('submitButton', 'Botón enviar'),
+                T('successTitle', 'Mensaje enviado: título'),
+                TA('successText', 'Mensaje enviado: texto'),
+                LINES('subjects', 'Temas del formulario (uno por línea)')
+            ])
+        ])
+    ]},
+    { id: 'faqs', group: 'Contacto', tab: 'Preguntas frecuentes', title: 'Preguntas frecuentes', desc: 'Preguntas y respuestas que aparecen en la página Contacto.', fields: [
+        OBJ('contact', 'Contacto', [
+            OBJ('page', 'Preguntas frecuentes', [
+                T('faqTitle', 'Título (parte 1)'),
+                T('faqHighlight', 'Título (parte destacada)'),
+                LIST('faqs', 'Preguntas', [T('q', 'Pregunta'), TA('a', 'Respuesta')], { itemLabel: 'q', make: () => ({ q: 'Nueva pregunta', a: '' }) })
+            ])
+        ])
+    ]},
+    { id: 'footer', group: 'Footer', tab: 'Footer', title: 'Footer', desc: 'Pie de página: logo, navegación, redes y copyright. Una red sin enlace se oculta.', fields: [
+        OBJ('footer', 'Footer', [
+            T('logoLetter', 'Letra del logo'),
+            T('name', 'Nombre'),
+            T('navTitle', 'Título de navegación'),
+            T('socialTitle', 'Título de redes'),
+            T('copyright', 'Texto de copyright (después del año)'),
+            LIST('nav', 'Enlaces de navegación', [T('label', 'Texto'), T('href', 'Enlace')], { itemLabel: 'label', make: () => ({ label: 'Nuevo', href: '#' }) }),
+            LIST('social', 'Redes y contacto', [T('label', 'Nombre (GitHub, LinkedIn, Email)'), T('href', 'Enlace (vacío = oculto)')], { itemLabel: 'label', make: () => ({ label: 'Nueva red', href: '' }) })
+        ])
+    ]}
+];
+
+const esc = (s) => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const normKey = (k) => k.replace(/\.\d+(?=\.|$)/g, '.*');
+const MODULES = [...new Set(PAGES.map(p => p.group))];
+const pageById = (id) => PAGES.find(p => p.id === id);
+
+function getIn(root, parts) {
+    return parts.reduce((cur, k) => (cur === undefined || cur === null ? undefined : cur[k]), root);
+}
+
+function setIn(root, parts, value) {
+    let cur = root;
+    for (let i = 0; i < parts.length - 1; i++) {
+        const k = parts[i];
+        const nextIsIndex = /^\d+$/.test(parts[i + 1]);
+        if (cur[k] === undefined || cur[k] === null || typeof cur[k] !== 'object') {
+            cur[k] = nextIsIndex ? [] : {};
+        }
+        cur = cur[k];
+    }
+    cur[parts[parts.length - 1]] = value;
+}
+
+function markDirty() {
+    dirty = true;
+    updateStatus();
+}
+
+function updateStatus(message, kind) {
+    const el = document.getElementById('status');
+    const btn = document.getElementById('btn-save');
+    btn.disabled = !dirty;
+    if (message) {
+        el.textContent = message;
+        el.className = 'status-pill ' + (kind || '');
+    } else {
+        el.textContent = dirty ? 'Cambios sin guardar' : 'Todo guardado';
+        el.className = 'status-pill ' + (dirty ? 'dirty' : 'ok');
+    }
+}
+
+function toast(text) {
+    const el = document.getElementById('toast');
+    el.textContent = text;
+    el.classList.add('show');
+    clearTimeout(toast._t);
+    toast._t = setTimeout(() => el.classList.remove('show'), 2800);
+}
+
+function labelWrap(s, control) {
+    const hint = s.hint ? `<small>${esc(s.hint)}</small>` : '';
+    return `<label class="field"><span>${esc(s.label)}${hint}</span>${control}</label>`;
+}
+
+function fieldsHTML(specs, base, obj) {
+    return specs.map(s => fieldHTML(s, base, obj || {})).join('');
+}
+
+function fieldHTML(s, base, obj) {
+    if (s.type === 'group') {
+        return `<div class="group"><div class="group-title">${esc(s.title)}</div><div class="group-body">${fieldsHTML(s.fields, base, obj)}</div></div>`;
+    }
+
+    const parts = [...base, s.key];
+    const key = parts.join('.');
+    const val = obj[s.key];
+
+    switch (s.type) {
+        case 'object': {
+            const v = val && typeof val === 'object' && !Array.isArray(val) ? val : {};
+            return `<fieldset class="obj"><legend>${esc(s.label)}</legend>${fieldsHTML(s.fields, parts, v)}</fieldset>`;
+        }
+        case 'list':
+            return listHTML(s, parts, Array.isArray(val) ? val : []);
+        case 'text':
+            return labelWrap(s, `<input type="text" data-t="text" data-p="${key}" value="${esc(val)}"${s.list ? ` list="${s.list}"` : ''}>`);
+        case 'textarea':
+            return labelWrap(s, `<textarea data-t="textarea" data-p="${key}" rows="3">${esc(val)}</textarea>`);
+        case 'number':
+            return labelWrap(s, `<input type="number" data-t="number" data-p="${key}" value="${esc(val)}"${s.min !== undefined ? ` min="${s.min}"` : ''}${s.max !== undefined ? ` max="${s.max}"` : ''}>`);
+        case 'date':
+            return labelWrap(s, `<input type="date" data-t="date" data-p="${key}" value="${esc(val)}">`);
+        case 'select':
+            return labelWrap(s, `<select data-t="select" data-p="${key}">${s.options.map(o => `<option value="${esc(o)}"${o === val ? ' selected' : ''}>${esc(o)}</option>`).join('')}</select>`);
+        case 'checkbox':
+            return `<label class="check"><input type="checkbox" data-t="checkbox" data-p="${key}"${val !== false ? ' checked' : ''}><span>${esc(s.label)}</span></label>`;
+        case 'lines':
+            return labelWrap(s, `<textarea data-t="lines" data-p="${key}" rows="4">${esc(Array.isArray(val) ? val.join('\n') : '')}</textarea>`);
+        case 'image':
+            return imageHTML(s, key, val);
+        case 'file':
+            return fileHTML(s, key, val, parts, obj);
+        case 'projectRefs': {
+            const selected = Array.isArray(val) ? val : [];
+            const options = (content.projects || []).map(p =>
+                `<label class="chip-check"><input type="checkbox" data-t="ref" data-p="${key}" data-id="${esc(p.id)}"${selected.includes(p.id) ? ' checked' : ''}>${esc(p.title)}</label>`
+            ).join('');
+            return `<div class="field"><span>${esc(s.label)}</span><div class="refs">${options || '<em style="color:var(--dim)">No hay proyectos todavía</em>'}</div></div>`;
+        }
+        default:
+            return '';
+    }
+}
+
+function imageHTML(s, key, val) {
+    return `<div class="field"><span>${esc(s.label)}</span>
+        <div class="img-field">
+            <div class="thumb">${val ? `<img src="${esc(val)}" alt="">` : '<span>Sin imagen</span>'}</div>
+            <div>
+                <div class="img-actions">
+                    <button type="button" class="btn small" data-action="pick" data-kind="image" data-p="${key}">Subir imagen</button>
+                    ${val ? `<button type="button" class="btn small danger" data-action="clear" data-p="${key}">Quitar</button>` : ''}
+                </div>
+                <div class="img-path">${esc(val || '')}</div>
+            </div>
+        </div></div>`;
+}
+
+function fileHTML(s, key, val, parts, obj) {
+    const nameKey = s.nameKey ? [...parts.slice(0, -1), s.nameKey].join('.') : '';
+    const name = s.nameKey ? obj[s.nameKey] : '';
+    return `<div class="field"><span>${esc(s.label)}</span>
+        <div class="img-actions">
+            <button type="button" class="btn small" data-action="pick" data-kind="file" data-p="${key}" data-name="${nameKey}" data-accept="${esc(s.accept || '')}">Subir archivo</button>
+            ${val ? `<button type="button" class="btn small danger" data-action="clear" data-p="${key}" data-name="${nameKey}">Quitar</button>` : ''}
+        </div>
+        <div class="img-path">${val ? esc(name || val) : 'Sin archivo'}</div></div>`;
+}
+
+function listHTML(s, parts, arr) {
+    const key = parts.join('.');
+    makers[normKey(key)] = s.make;
+    const items = arr.map((item, i) => {
+        const ip = [...parts, i];
+        const ik = ip.join('.');
+        const open = openKeys.has(ik);
+        const label = s.itemLabel && item && item[s.itemLabel] ? item[s.itemLabel] : `#${i + 1}`;
+        return `<div class="item${open ? ' open' : ''}" data-ip="${ik}" data-lk="${s.itemLabel || ''}">
+            <div class="item-head">
+                <button type="button" class="link" data-action="toggle" data-k="${ik}" aria-label="Expandir">${open ? '▾' : '▸'}</button>
+                <span class="item-title">${esc(label)}</span>
+                <button type="button" class="icon" data-action="up" data-k="${ik}" aria-label="Subir"${i === 0 ? ' disabled' : ''}>↑</button>
+                <button type="button" class="icon" data-action="down" data-k="${ik}" aria-label="Bajar"${i === arr.length - 1 ? ' disabled' : ''}>↓</button>
+                <button type="button" class="icon danger" data-action="del" data-k="${ik}">Eliminar</button>
+            </div>
+            ${open ? `<div class="item-body">${fieldsHTML(s.fields, ip, item || {})}</div>` : ''}
+        </div>`;
+    }).join('');
+    return `<div class="field"><div class="list">
+        <div class="list-head"><span class="list-label">${esc(s.label)}<span class="count-badge">${arr.length}</span></span>
+            <button type="button" class="btn small primary" data-action="add" data-k="${key}">+ Agregar</button></div>
+        ${items || '<div class="empty">Sin elementos todavía</div>'}
+    </div></div>`;
+}
+
+function renderSidebar() {
+    const sb = document.getElementById('sidebar');
+    const activeModule = pageById(currentPage).group;
+    sb.innerHTML = `<div class="brand"><div class="logo-tile">V</div><div><b>Portafolio</b><span>Consola de contenido</span></div></div>` +
+        `<div class="group-label">Secciones</div>` +
+        MODULES.map(m =>
+            `<button type="button" class="nav-item${m === activeModule ? ' active' : ''}" data-module="${esc(m)}">${esc(m)}</button>`
+        ).join('') +
+        `<div class="sidebar-foot">
+            <div class="user"><div class="avatar">A</div><div><b>admin</b>Sesión activa</div></div>
+            <button type="button" class="btn-wide" data-action="logout">Cerrar sesión</button>
+        </div>`;
+}
+
+function renderPage() {
+    const page = pageById(currentPage);
+    const subsections = PAGES.filter(p => p.group === page.group);
+    const tabs = subsections.length > 1
+        ? `<nav class="tabs" aria-label="Subsecciones de ${esc(page.group)}">${subsections.map(s =>
+            `<button type="button" class="tab${s.id === page.id ? ' active' : ''}" data-page="${s.id}"${s.id === page.id ? ' aria-current="page"' : ''}>${esc(s.tab || s.title)}</button>`
+          ).join('')}</nav>`
+        : '';
+    document.getElementById('page-title').textContent = page.title;
+    document.getElementById('crumb').textContent = page.group;
+    document.title = `${page.title} · Admin Console`;
+    document.getElementById('page').innerHTML =
+        tabs +
+        `<p class="page-desc">${esc(page.desc)}</p>` +
+        `<div class="section-card">${fieldsHTML(page.fields, [], content)}</div>`;
+    renderSidebar();
+}
+
+function rerender() {
+    const y = window.scrollY;
+    renderPage();
+    window.scrollTo(0, y);
+}
+
+let blobClient = null;
+
+async function uploadTargetFile(file) {
+    blobClient = blobClient || await import('https://esm.sh/@vercel/blob@2.8.2/client');
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]+/g, '-');
+    const blob = await blobClient.upload(`uploads/${safeName}`, file, {
+        access: 'public',
+        handleUploadUrl: '/api/blob'
+    });
+    return blob.url;
+}
+
+async function handleFileChosen(input) {
+    const file = input.files[0];
+    input.value = '';
+    if (!file || !uploadTarget) return;
+    const target = uploadTarget;
+    uploadTarget = null;
+    if (target.kind === 'image' && !file.type.startsWith('image/')) {
+        toast('Selecciona una imagen');
+        return;
+    }
+    if (target.kind === 'file' && target.accept && !file.type.startsWith(target.accept.split('/')[0])) {
+        toast('Selecciona un archivo válido');
+        return;
+    }
+    toast('Subiendo…');
+    try {
+        const url = await uploadTargetFile(file);
+        setIn(content, target.p.split('.'), url);
+        if (target.name) setIn(content, target.name.split('.'), file.name);
+        markDirty();
+        rerender();
+        toast('Archivo subido');
+    } catch (err) {
+        toast(err.message);
+    }
+}
+
+function handleAction(btn) {
+    const action = btn.dataset.action;
+    const k = btn.dataset.k;
+
+    if (action === 'toggle') {
+        openKeys.has(k) ? openKeys.delete(k) : openKeys.add(k);
+        rerender();
+        return;
+    }
+
+    if (action === 'add') {
+        const arrParts = k.split('.');
+        const arr = getIn(content, arrParts) || [];
+        const make = makers[normKey(k)];
+        const item = make ? make(arr) : {};
+        const next = [...arr, item];
+        setIn(content, arrParts, next);
+        openKeys.add(`${k}.${next.length - 1}`);
+        markDirty();
+        rerender();
+        return;
+    }
+
+    if (action === 'del' || action === 'up' || action === 'down') {
+        const parts = k.split('.');
+        const idx = Number(parts[parts.length - 1]);
+        const arrParts = parts.slice(0, -1);
+        const arr = [...(getIn(content, arrParts) || [])];
+        if (action === 'del') {
+            if (!confirm('¿Eliminar este elemento?')) return;
+            arr.splice(idx, 1);
+        } else {
+            const to = action === 'up' ? idx - 1 : idx + 1;
+            if (to < 0 || to >= arr.length) return;
+            [arr[idx], arr[to]] = [arr[to], arr[idx]];
+        }
+        setIn(content, arrParts, arr);
+        openKeys.clear();
+        markDirty();
+        rerender();
+        return;
+    }
+
+    if (action === 'pick') {
+        uploadTarget = { p: btn.dataset.p, kind: btn.dataset.kind, name: btn.dataset.name || '', accept: btn.dataset.accept || '' };
+        const input = document.getElementById('upload-input');
+        input.accept = btn.dataset.kind === 'image' ? 'image/*' : (btn.dataset.accept || 'application/pdf,image/*');
+        input.click();
+        return;
+    }
+
+    if (action === 'clear') {
+        setIn(content, btn.dataset.p.split('.'), '');
+        if (btn.dataset.name) setIn(content, btn.dataset.name.split('.'), '');
+        markDirty();
+        rerender();
+        return;
+    }
+
+    if (action === 'logout') {
+        if (dirty && !confirm('Hay cambios sin guardar. ¿Salir de todos modos?')) return;
+        fetch('/api/logout', { method: 'POST' }).finally(() => location.reload());
+    }
+}
+
+function onInput(e) {
+    const el = e.target;
+    const p = el.dataset.p;
+    if (!p) return;
+    const t = el.dataset.t;
+    const parts = p.split('.');
+
+    if (t === 'text' || t === 'textarea' || t === 'date') {
+        setIn(content, parts, el.value);
+    } else if (t === 'number') {
+        setIn(content, parts, el.value === '' ? 0 : Number(el.value));
+    } else if (t === 'lines') {
+        setIn(content, parts, el.value.split('\n').map(x => x.trim()).filter(Boolean));
+    } else {
+        return;
+    }
+    markDirty();
+
+    const item = el.closest('.item');
+    if (item && item.dataset.lk && p === `${item.dataset.ip}.${item.dataset.lk}`) {
+        const title = item.querySelector(':scope > .item-head .item-title');
+        if (title) title.textContent = el.value || `#${Number(item.dataset.ip.split('.').pop()) + 1}`;
+    }
+}
+
+function onChange(e) {
+    const el = e.target;
+    const t = el.dataset.t;
+    const p = el.dataset.p;
+    if (!p) return;
+    const parts = p.split('.');
+
+    if (t === 'checkbox') {
+        setIn(content, parts, el.checked);
+        markDirty();
+    } else if (t === 'select') {
+        setIn(content, parts, el.value);
+        markDirty();
+    } else if (t === 'ref') {
+        const arr = Array.isArray(getIn(content, parts)) ? getIn(content, parts) : [];
+        const id = Number(el.dataset.id);
+        setIn(content, parts, el.checked ? [...arr, id] : arr.filter(x => x !== id));
+        markDirty();
+    }
+}
+
+async function loadContent() {
+    updateStatus('Cargando contenido…');
+    const res = await fetch('/api/content');
+    if (!res.ok) throw new Error('No se pudo cargar el contenido');
+    content = await res.json();
+    dirty = false;
+    updateStatus();
+    renderPage();
+}
+
+async function saveContent() {
+    const btn = document.getElementById('btn-save');
+    btn.disabled = true;
+    updateStatus('Guardando…');
+    try {
+        const res = await fetch('/api/content', {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(content)
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || 'No se pudo guardar');
+        dirty = false;
+        updateStatus('Guardado', 'ok');
+        toast(json.deployTriggered
+            ? 'Guardado. El sitio se actualiza en aprox. 1 minuto.'
+            : 'Guardado. Falta configurar la actualización automática del sitio.');
+    } catch (err) {
+        updateStatus(err.message, 'error');
+        btn.disabled = false;
+    }
+}
+
+function showApp() {
+    document.getElementById('login').classList.add('hidden');
+    document.getElementById('app').classList.remove('hidden');
+    loadContent().catch(err => updateStatus(err.message, 'error'));
+}
+
+document.getElementById('pass-toggle').addEventListener('click', () => {
+    const input = document.getElementById('pass');
+    const show = input.type === 'password';
+    input.type = show ? 'text' : 'password';
+    document.getElementById('pass-toggle').setAttribute('aria-label', show ? 'Ocultar contraseña' : 'Mostrar contraseña');
+});
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const user = document.getElementById('user').value.trim();
+    const pass = document.getElementById('pass').value;
+    const res = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user, pass })
+    });
+    if (res.ok) {
+        document.getElementById('login-error').textContent = '';
+        document.getElementById('pass').value = '';
+        showApp();
+    } else {
+        const json = await res.json().catch(() => ({}));
+        document.getElementById('login-error').textContent = json.error || 'Usuario o contraseña incorrectos';
+    }
+});
+
+document.getElementById('sidebar').addEventListener('click', (e) => {
+    const mod = e.target.closest('[data-module]');
+    if (mod) {
+        const first = PAGES.find(p => p.group === mod.dataset.module);
+        currentPage = first.id;
+        openKeys.clear();
+        renderPage();
+        window.scrollTo(0, 0);
+        return;
+    }
+    const act = e.target.closest('[data-action]');
+    if (act) handleAction(act);
+});
+
+document.getElementById('page').addEventListener('click', (e) => {
+    const tab = e.target.closest('[data-page]');
+    if (tab) {
+        currentPage = tab.dataset.page;
+        openKeys.clear();
+        renderPage();
+        window.scrollTo(0, 0);
+        return;
+    }
+    const act = e.target.closest('[data-action]');
+    if (act) handleAction(act);
+});
+document.getElementById('page').addEventListener('input', onInput);
+document.getElementById('page').addEventListener('change', onChange);
+document.getElementById('btn-save').addEventListener('click', saveContent);
+document.getElementById('upload-input').addEventListener('change', (e) => handleFileChosen(e.target));
+
+window.addEventListener('beforeunload', (e) => {
+    if (dirty) {
+        e.preventDefault();
+        e.returnValue = '';
+    }
+});
+
+async function checkSession() {
+    const res = await fetch('/api/session');
+    if (res.ok) showApp();
+}
+checkSession();
+</script>
+</body>
+</html>
