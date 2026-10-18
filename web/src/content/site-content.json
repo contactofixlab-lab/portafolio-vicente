@@ -1,0 +1,1529 @@
+{
+  "header": {
+    "logoLetter": "V",
+    "logoText": "Vicente",
+    "availability": "🟢 Disponible",
+    "nav": [
+      {
+        "label": "Inicio",
+        "href": "#home"
+      },
+      {
+        "label": "Proyectos",
+        "href": "#proyectos"
+      },
+      {
+        "label": "Trayectoria",
+        "href": "#trayectoria"
+      },
+      {
+        "label": "Habilidades",
+        "href": "#habilidades"
+      },
+      {
+        "label": "Contacto",
+        "href": "#contacto"
+      }
+    ]
+  },
+  "hero": {
+    "badge": "🟢 Disponible para trabajar",
+    "title": "Hola, soy Vicente Rabanales",
+    "subtitle": "Ingeniero en Informática | Innovación & Desarrollo",
+    "description": "Especialista en transformación digital, infraestructura y soluciones innovadoras. Con experiencia en liderazgo de equipos y desarrollo de proyectos estratégicos que generan impacto empresarial.",
+    "primaryButton": {
+      "text": "Ver mis proyectos",
+      "href": "#proyectos"
+    },
+    "secondaryButton": {
+      "text": "Descargar CV",
+      "href": ""
+    },
+    "photo": "/mi foto.png",
+    "floatingBadges": [
+      {
+        "label": "Frontend",
+        "icon": "💻"
+      },
+      {
+        "label": "Backend",
+        "icon": "⚙️"
+      },
+      {
+        "label": "Data",
+        "icon": "📊"
+      }
+    ]
+  },
+  "life": {
+    "title": "Más allá del código",
+    "description": "Mi vida me ha llevado a distintos lugares como el norte de Chile y Montevideo, Uruguay. Esto me ha dado una perspectiva distinta acerca de algunos aspectos de la vida. Cuando no estoy optimizando sistemas o creando dashboards o reportes, disfruto de los amigos, familia, música, videojuegos y series. Además me gusta dar largos paseos con mi perro.",
+    "hobbiesTitle": "✨ Mis Pasiones",
+    "hobbies": [
+      {
+        "name": "Música",
+        "icon": "🎵",
+        "description": "Apasionado por la música en general"
+      },
+      {
+        "name": "Videojuegos",
+        "icon": "🎮",
+        "description": "Gamer en mis tiempos libres"
+      },
+      {
+        "name": "Series",
+        "icon": "📺",
+        "description": "Cinéfilo y amante de buenas historias"
+      },
+      {
+        "name": "Familia",
+        "icon": "👨‍👩‍👦",
+        "description": "Tiempo de calidad con seres queridos"
+      },
+      {
+        "name": "Paseos con perro",
+        "icon": "🐕",
+        "description": "Aventuras al aire libre"
+      }
+    ],
+    "images": [
+      {
+        "src": "",
+        "alt": "Vida fuera del código 1"
+      },
+      {
+        "src": "",
+        "alt": "Vida fuera del código 2"
+      },
+      {
+        "src": "",
+        "alt": "Vida fuera del código 3"
+      },
+      {
+        "src": "",
+        "alt": "Vida fuera del código 4"
+      },
+      {
+        "src": "",
+        "alt": "Vida fuera del código 5"
+      }
+    ]
+  },
+  "projectsHome": {
+    "title": "Proyectos Destacados",
+    "subtitle": "Desliza o navega a través de mis proyectos más recientes y relevantes",
+    "count": 3,
+    "linkText": "Ir a la Página del Proyecto",
+    "moreTitle": "¿Quieres ver más proyectos?",
+    "moreButton": "Ver Todos los Proyectos"
+  },
+  "projectsPage": {
+    "badge": "💼 Mi Portafolio",
+    "title": "Mis Proyectos",
+    "subtitle": "6 proyectos personales y profesionales que demuestran mi experiencia en desarrollo, design e innovación.",
+    "stackLabel": "Stack Tecnológico:",
+    "tagsLabel": "Categoría:",
+    "linkText": "Ir a la Página del Proyecto",
+    "ctaTitle": "¿Interesado en colaborar?",
+    "ctaText": "Siempre estoy abierto a nuevos proyectos y desafíos. Contáctame para discutir ideas y oportunidades.",
+    "ctaButton": "📧 Enviar Email"
+  },
+  "projectDetail": {
+    "backText": "Volver al inicio",
+    "notFound": "Proyecto no encontrado",
+    "startLabel": "Inicio",
+    "endLabel": "Fin",
+    "ongoing": "En curso",
+    "stackLabel": "Stack",
+    "phasesLabel": "Fases",
+    "demoButton": "Ver Demo en Vivo",
+    "githubButton": "Ver Código en GitHub",
+    "architectureTitle": "Stack Tecnológico",
+    "reasonTitle": "¿Por qué se hizo?",
+    "problemsTitle": "Problemas Identificados",
+    "solutionsTitle": "Soluciones Implementadas",
+    "whatWasDoneTitle": "Funcionalidades Implementadas",
+    "featuresTitle": "Features Principales",
+    "phasesTitle": "Fases del Proyecto",
+    "resultsTitle": "Resultados & Impacto",
+    "techTitle": "Tecnologías Utilizadas",
+    "categoriesTitle": "Categorías",
+    "similarTitle": "Proyectos Similares",
+    "similarEmpty": "No hay proyectos similares por el momento",
+    "similarLink": "Ver proyecto"
+  },
+  "projects": [
+    {
+      "id": 1,
+      "visible": true,
+      "title": "Iencinas Analytics",
+      "description": "Dashboard de BI para análisis de datos empresariales con reportes interactivos",
+      "longDescription": "Sistema completo de business intelligence con visualizaciones, reportes automáticos y análisis predictivos. Diseño moderno con framer-motion y glassmorphism.",
+      "image": "/projects/analytics-logo.png",
+      "type": "App",
+      "company": "Iencinas",
+      "stack": [
+        "React",
+        "Python",
+        "PostgreSQL",
+        "Power BI",
+        "Framer Motion",
+        "Tailwind"
+      ],
+      "status": "Terminado",
+      "tags": [
+        "analytics",
+        "business",
+        "dashboard"
+      ],
+      "github": "https://github.com/contactofixlab-lab/iencinas-analytics",
+      "demo": "https://iencinas-analytics.vercel.app",
+      "startDate": "2024-01-15",
+      "endDate": "2024-06-20",
+      "reason": "Consolidar datos empresariales dispersos para tomar decisiones basadas en datos",
+      "whatWasDone": [
+        "Dashboard interactivo",
+        "Reportes automáticos",
+        "Integración de datos",
+        "Análisis predictivos",
+        "Sistema de alertas",
+        "Exportación PDF/Excel"
+      ],
+      "problems": [
+        "Datos distribuidos",
+        "Sin visibilidad real-time",
+        "Reportes manuales largos",
+        "Inconsistencias de datos"
+      ],
+      "solutions": [
+        "ETL automático",
+        "BD centralizada",
+        "API REST",
+        "Validación de datos"
+      ],
+      "architecture": {
+        "frontend": "React 18 + Vite + Framer Motion + Tailwind",
+        "backend": "Python FastAPI + Pandas/NumPy",
+        "database": "PostgreSQL con triggers",
+        "external": "Power BI, APIs de terceros"
+      },
+      "features": [
+        "Dashboard personalizable",
+        "Reportes automáticos",
+        "Análisis real-time",
+        "Alertas",
+        "Exportación",
+        "Auditoría"
+      ],
+      "phases": [
+        {
+          "name": "Discovery",
+          "duration": "2 semanas",
+          "description": "Análisis de fuentes"
+        },
+        {
+          "name": "Backend",
+          "duration": "6 semanas",
+          "description": "ETL y API"
+        },
+        {
+          "name": "Frontend",
+          "duration": "5 semanas",
+          "description": "Dashboard"
+        },
+        {
+          "name": "QA y Deploy",
+          "duration": "2 semanas",
+          "description": "Testing y lanzamiento"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "visible": true,
+      "title": "Yencinas Bodega",
+      "description": "Sistema de gestión de inventario y asignación de insumos de oficina",
+      "longDescription": "App de inventario completa para control de insumos, asignación a empleados, reporte de stocks y compras automáticas.",
+      "image": "",
+      "type": "App",
+      "company": "Yencinas",
+      "stack": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Neon",
+        "Tailwind",
+        "Express"
+      ],
+      "status": "Terminado",
+      "tags": [
+        "inventory",
+        "management",
+        "warehouse"
+      ],
+      "github": "https://github.com/contactofixlab-lab/yencinas-bodega",
+      "demo": "https://yencinas-bodega.vercel.app",
+      "startDate": "2024-03-01",
+      "endDate": "2024-06-18",
+      "reason": "Automatizar la gestión de insumos de oficina y evitar desabastecimiento",
+      "whatWasDone": [
+        "CRUD de inventario",
+        "Asignación de insumos",
+        "Reportes automáticos",
+        "Alertas de stock",
+        "Integración con proveedores",
+        "Migración a Neon"
+      ],
+      "problems": [
+        "Control manual",
+        "Desabastecimiento",
+        "Pérdida de recursos",
+        "Sin visibilidad"
+      ],
+      "solutions": [
+        "Tracking automático",
+        "Alertas de reorden",
+        "Auditoría",
+        "Integración de proveedores"
+      ],
+      "architecture": {
+        "frontend": "React + Tailwind + Framer Motion",
+        "backend": "Node.js Express",
+        "database": "Neon PostgreSQL",
+        "external": "APIs de proveedores"
+      },
+      "features": [
+        "Gestión de inventario",
+        "Asignación",
+        "Reportes",
+        "Alertas",
+        "Auditoría",
+        "Exportación"
+      ],
+      "phases": [
+        {
+          "name": "Setup",
+          "duration": "1 semana",
+          "description": "Configuración"
+        },
+        {
+          "name": "Backend",
+          "duration": "3 semanas",
+          "description": "APIs"
+        },
+        {
+          "name": "Frontend",
+          "duration": "3 semanas",
+          "description": "UI"
+        },
+        {
+          "name": "Deploy",
+          "duration": "1 semana",
+          "description": "QA y lanzamiento"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "visible": true,
+      "title": "TRAZA",
+      "description": "Sistema de control documental y firmas digitales para resiliencias",
+      "longDescription": "Plataforma interna para gestión de documentos, firmas digitales, auditoría y reportería con diseño glassmorphism moderno.",
+      "image": "/projects/traza-logo.png",
+      "type": "App",
+      "company": "Proyecto Personal",
+      "stack": [
+        "React",
+        "Node.js",
+        "Neon",
+        "PostgreSQL",
+        "Tailwind",
+        "Framer Motion"
+      ],
+      "status": "En Desarrollo",
+      "tags": [
+        "documents",
+        "signatures",
+        "audit"
+      ],
+      "github": "https://github.com/contactofixlab-lab/traza",
+      "demo": "https://traza-app.vercel.app",
+      "startDate": "2024-04-10",
+      "endDate": "",
+      "reason": "Implementar control de documentos y firmas digitales para cumplimiento regulatorio",
+      "whatWasDone": [
+        "Gestión de documentos",
+        "Firmas digitales",
+        "Flujos de aprobación",
+        "Dashboard",
+        "Reportes",
+        "Interface 3D"
+      ],
+      "problems": [
+        "Documentos dispersos",
+        "Sin auditoría",
+        "Firmas inseguras",
+        "Incumplimiento regulatorio"
+      ],
+      "solutions": [
+        "Centralización",
+        "Blockchain",
+        "Auditoría automática",
+        "Cumplimiento normativo"
+      ],
+      "architecture": {
+        "frontend": "React + Glassmorphism + 3D",
+        "backend": "Node.js con JWT",
+        "database": "Neon PostgreSQL",
+        "external": "Blockchain, APIs de compliance"
+      },
+      "features": [
+        "Gestión documental",
+        "Firmas digitales",
+        "Flujos de aprobación",
+        "Auditoría",
+        "Reportería",
+        "SAML"
+      ],
+      "phases": [
+        {
+          "name": "Fase 1",
+          "duration": "3 semanas",
+          "description": "Core documental"
+        },
+        {
+          "name": "Fase 2",
+          "duration": "3 semanas",
+          "description": "Firmas y seguridad"
+        },
+        {
+          "name": "Fase 3",
+          "duration": "2 semanas",
+          "description": "Reportería"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "visible": true,
+      "title": "Constructora PDS",
+      "description": "Sitio corporativo para constructora con información de proyectos y equipo",
+      "longDescription": "Landing page moderna para constructora con portafolio de proyectos, información de equipo y contacto. Diseño profesional con animaciones.",
+      "image": "",
+      "type": "Web",
+      "company": "Constructora PDS",
+      "stack": [
+        "Next.js",
+        "React",
+        "Tailwind",
+        "Framer Motion",
+        "TypeScript"
+      ],
+      "status": "Terminado",
+      "tags": [
+        "website",
+        "construction",
+        "corporate"
+      ],
+      "github": "https://github.com/contactofixlab-lab/constructora-pds",
+      "demo": "https://constructora-pds.vercel.app",
+      "startDate": "2024-05-01",
+      "endDate": "2024-06-24",
+      "reason": "Crear presencia digital profesional para atraer clientes",
+      "whatWasDone": [
+        "Landing page",
+        "Galería de proyectos",
+        "Info de equipo",
+        "Formulario de contacto",
+        "SEO",
+        "Deploy Vercel"
+      ],
+      "problems": [
+        "Sin presencia digital",
+        "Dificultad mostrar proyectos",
+        "Contactos dispersos"
+      ],
+      "solutions": [
+        "Sitio profesional",
+        "Galería visual",
+        "Formulario centralizado"
+      ],
+      "architecture": {
+        "frontend": "Next.js 16 + React + TypeScript",
+        "backend": "Next.js API routes",
+        "database": "None",
+        "external": "Vercel deploy"
+      },
+      "features": [
+        "Landing",
+        "Portfolio",
+        "Team info",
+        "Contact form",
+        "SEO",
+        "Responsive"
+      ],
+      "phases": [
+        {
+          "name": "Design",
+          "duration": "1 semana",
+          "description": "Diseño visual"
+        },
+        {
+          "name": "Development",
+          "duration": "2 semanas",
+          "description": "Frontend"
+        },
+        {
+          "name": "Launch",
+          "duration": "3 días",
+          "description": "Deploy"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "visible": true,
+      "title": "PokeTask",
+      "description": "App de tareas con temática Pokémon y sistema de gamificación",
+      "longDescription": "Aplicación de productividad con tema Pokémon que convierte tareas en aventuras, con recompensas y badges de logro.",
+      "image": "/projects/poketask-hero.png",
+      "type": "App",
+      "company": "Proyecto Personal",
+      "stack": [
+        "React",
+        "Firebase",
+        "Tailwind",
+        "Framer Motion",
+        "TypeScript"
+      ],
+      "status": "En Desarrollo",
+      "tags": [
+        "productivity",
+        "gamification",
+        "tasks"
+      ],
+      "github": "https://github.com/contactofixlab-lab/poketask",
+      "demo": "https://poketask.vercel.app",
+      "startDate": "2024-02-15",
+      "endDate": "",
+      "reason": "Hacer que la gestión de tareas sea divertida y motivante",
+      "whatWasDone": [
+        "Sistema de tareas",
+        "Pokémon personalizados",
+        "Recompensas",
+        "Logros",
+        "Sincronización real-time",
+        "Gamificación"
+      ],
+      "problems": [
+        "Tareas aburridas",
+        "Falta de motivación",
+        "Procrastinación"
+      ],
+      "solutions": [
+        "Gamificación",
+        "Sistema de recompensas",
+        "Avatares evolucionables",
+        "Competencia amigable"
+      ],
+      "architecture": {
+        "frontend": "React + Tailwind + Framer Motion",
+        "backend": "Firebase Real-time DB",
+        "database": "Firestore",
+        "external": "Firebase Auth"
+      },
+      "features": [
+        "Task management",
+        "Gamification",
+        "Pokémon avatars",
+        "Rewards",
+        "Social",
+        "Analytics"
+      ],
+      "phases": [
+        {
+          "name": "Core",
+          "duration": "4 semanas",
+          "description": "Tareas básicas"
+        },
+        {
+          "name": "Gamificación",
+          "duration": "3 semanas",
+          "description": "Pokémon y rewards"
+        },
+        {
+          "name": "Social",
+          "duration": "2 semanas",
+          "description": "Competencia"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "visible": true,
+      "title": "Vortex",
+      "description": "Sitio web de descargas con estilo glassmorphism 3D cyberpunk",
+      "longDescription": "Plataforma de descargas para películas, series y anime con diseño futurista, visor 3D interactivo y admin panel integrado.",
+      "image": "/projects/vortex-project-logo.png",
+      "type": "Web",
+      "company": "Proyecto Personal",
+      "stack": [
+        "Next.js",
+        "React Three Fiber",
+        "Neon",
+        "PostgreSQL",
+        "Tailwind",
+        "TypeScript"
+      ],
+      "status": "Terminado",
+      "tags": [
+        "downloads",
+        "multimedia",
+        "streaming"
+      ],
+      "github": "https://github.com/contactofixlab-lab/vortex",
+      "demo": "https://vortex-downloads.vercel.app",
+      "startDate": "2024-04-01",
+      "endDate": "2024-06-30",
+      "reason": "Crear plataforma moderna de descargas con diseño 3D inmersivo",
+      "whatWasDone": [
+        "Landing 3D cyberpunk",
+        "Sistema de descargas",
+        "Visor 3D",
+        "Admin panel",
+        "Carrusel interactivo",
+        "Estados de seguimiento"
+      ],
+      "problems": [
+        "Interfaces aburridas",
+        "Sin estadísticas",
+        "Admin no intuitivo"
+      ],
+      "solutions": [
+        "Diseño 3D moderno",
+        "Dashboard de admin",
+        "Tracking de descargas",
+        "Experiencia inmersiva"
+      ],
+      "architecture": {
+        "frontend": "Next.js + React Three Fiber + Tailwind",
+        "backend": "Next.js API + Node.js",
+        "database": "Neon PostgreSQL",
+        "external": "Vercel deploy"
+      },
+      "features": [
+        "3D viewer",
+        "Download manager",
+        "Admin panel",
+        "Search",
+        "Watch tracking",
+        "Comments"
+      ],
+      "phases": [
+        {
+          "name": "Design 3D",
+          "duration": "3 semanas",
+          "description": "Modelado"
+        },
+        {
+          "name": "Frontend",
+          "duration": "4 semanas",
+          "description": "Interface"
+        },
+        {
+          "name": "Backend",
+          "duration": "2 semanas",
+          "description": "API y admin"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "visible": true,
+      "title": "FamilyColab",
+      "description": "App familiar con tareas, inventario, cocina y menú 3D flotante",
+      "longDescription": "Aplicación completa para familias: gestión de tareas, inventario del hogar, recetas, planificación de menú y menú 3D interactivo flotante.",
+      "image": "",
+      "type": "App",
+      "company": "Proyecto Personal",
+      "stack": [
+        "React",
+        "Firebase",
+        "Tailwind",
+        "Framer Motion",
+        "Three.js"
+      ],
+      "status": "En Desarrollo",
+      "tags": [
+        "family",
+        "productivity",
+        "household"
+      ],
+      "github": "https://github.com/contactofixlab-lab/familycolab",
+      "demo": "https://familycolab.vercel.app",
+      "startDate": "2024-03-15",
+      "endDate": "",
+      "reason": "Centralizar gestión familiar en una única app intuitiva",
+      "whatWasDone": [
+        "Sistema de tareas",
+        "Gestor de inventario",
+        "Recetas",
+        "Planificación de menú",
+        "Menú 3D flotante",
+        "Sincronización"
+      ],
+      "problems": [
+        "Tareas sin coordinar",
+        "Inventario disperso",
+        "Planificación caótica"
+      ],
+      "solutions": [
+        "Centralización",
+        "Inventario compartido",
+        "Planificación automática"
+      ],
+      "architecture": {
+        "frontend": "React + Three.js + Tailwind",
+        "backend": "Firebase Real-time DB",
+        "database": "Firestore",
+        "external": "Firebase Auth"
+      },
+      "features": [
+        "Task manager",
+        "Inventory",
+        "Recipes",
+        "Menu planner",
+        "3D menu",
+        "Family roles"
+      ],
+      "phases": [
+        {
+          "name": "Core",
+          "duration": "3 semanas",
+          "description": "Tareas e inventario"
+        },
+        {
+          "name": "Cocina",
+          "duration": "2 semanas",
+          "description": "Recetas y menú"
+        },
+        {
+          "name": "3D Menu",
+          "duration": "2 semanas",
+          "description": "Menú flotante"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "visible": true,
+      "title": "NEXORA",
+      "description": "Sitio web AAA para hero shooter estilo Paladins con 10 héroes únicos",
+      "longDescription": "Landing page de videojuego shooter competitivo con 10 héroes únicos, visor 3D interactivo, facciones y landing pages por héroe.",
+      "image": "",
+      "type": "Web",
+      "company": "Proyecto Personal",
+      "stack": [
+        "Next.js",
+        "React Three Fiber",
+        "Tailwind",
+        "Framer Motion",
+        "TypeScript"
+      ],
+      "status": "Terminado",
+      "tags": [
+        "gaming",
+        "esports",
+        "hero-shooter"
+      ],
+      "github": "https://github.com/contactofixlab-lab/nexora",
+      "demo": "https://nexora-game.vercel.app",
+      "startDate": "2024-05-20",
+      "endDate": "2024-07-16",
+      "reason": "Crear presencia digital de videojuego competitivo con diseño AAA",
+      "whatWasDone": [
+        "Landing page hero",
+        "10 héroes",
+        "Visor 3D",
+        "Páginas de facciones",
+        "Sistema de habilidades",
+        "Deploy Vercel"
+      ],
+      "problems": [
+        "Sin presencia digital",
+        "Presentación plana",
+        "Sin experiencia inmersiva"
+      ],
+      "solutions": [
+        "Landing AAA quality",
+        "Visor 3D",
+        "Diseño profesional"
+      ],
+      "architecture": {
+        "frontend": "Next.js + React Three Fiber",
+        "backend": "Next.js static",
+        "database": "None",
+        "external": "Vercel deploy"
+      },
+      "features": [
+        "Hero showcase",
+        "3D viewer",
+        "Abilities",
+        "Faction pages",
+        "Video backgrounds",
+        "Responsive"
+      ],
+      "phases": [
+        {
+          "name": "Design",
+          "duration": "2 semanas",
+          "description": "Diseño AAA"
+        },
+        {
+          "name": "Development",
+          "duration": "3 semanas",
+          "description": "Frontend y 3D"
+        },
+        {
+          "name": "Launch",
+          "duration": "1 semana",
+          "description": "Deploy"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "visible": true,
+      "title": "Plataforma Videojuegos",
+      "description": "Plataforma de distribución y gestión de videojuegos independientes",
+      "longDescription": "Plataforma para desarrolladores indies para publicar, vender y gestionar sus videojuegos con analytics y monetización integrada.",
+      "image": "",
+      "type": "Web",
+      "company": "Proyecto Personal",
+      "stack": [
+        "React",
+        "Node.js",
+        "PostgreSQL",
+        "Stripe",
+        "Tailwind"
+      ],
+      "status": "En Desarrollo",
+      "tags": [
+        "gaming",
+        "marketplace",
+        "indie"
+      ],
+      "github": "https://github.com/contactofixlab-lab/plataforma-videojuegos",
+      "demo": "https://plataforma-games.vercel.app",
+      "startDate": "2024-06-01",
+      "endDate": "",
+      "reason": "Democratizar la distribución de videojuegos indie",
+      "whatWasDone": [
+        "Gestión de juegos",
+        "Tienda",
+        "Pagos Stripe",
+        "Analytics",
+        "Valoraciones",
+        "Descargas"
+      ],
+      "problems": [
+        "Plataformas con altas comisiones",
+        "Sin herramientas para indies",
+        "Sin datos de ventas"
+      ],
+      "solutions": [
+        "Comisiones bajas",
+        "Dashboard de analytics",
+        "Herramientas de marketing"
+      ],
+      "architecture": {
+        "frontend": "React + Tailwind",
+        "backend": "Node.js Express",
+        "database": "PostgreSQL",
+        "external": "Stripe API, AWS S3"
+      },
+      "features": [
+        "Game store",
+        "Developer dashboard",
+        "Payment processing",
+        "Analytics",
+        "Reviews",
+        "Download manager"
+      ],
+      "phases": [
+        {
+          "name": "Marketplace",
+          "duration": "4 semanas",
+          "description": "Tienda y catálogo"
+        },
+        {
+          "name": "Developer Tools",
+          "duration": "3 semanas",
+          "description": "Dashboard y analytics"
+        },
+        {
+          "name": "Monetización",
+          "duration": "2 semanas",
+          "description": "Pagos"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "visible": true,
+      "title": "RecipeHub",
+      "description": "Sitio web de recetas monetizable con AdSense, primero en la red de proyectos",
+      "longDescription": "Plataforma especializada en recetas del mundo con SEO optimizado, AdSense integrado y estructura para monetización. Primer proyecto en la red de sitios web.",
+      "image": "",
+      "type": "Web",
+      "company": "Proyecto Personal",
+      "stack": [
+        "Next.js",
+        "React",
+        "PostgreSQL",
+        "Tailwind",
+        "MDX"
+      ],
+      "status": "En Desarrollo",
+      "tags": [
+        "recipes",
+        "food",
+        "seo"
+      ],
+      "github": "https://github.com/contactofixlab-lab/recipe-hub",
+      "demo": "https://mundo-al-plato.vercel.app",
+      "startDate": "2024-04-15",
+      "endDate": "",
+      "reason": "Crear primer sitio monetizable de la red de proyectos",
+      "whatWasDone": [
+        "Catálogo de recetas",
+        "SEO optimizado",
+        "AdSense integrado",
+        "Búsqueda avanzada",
+        "Recetas por ingredientes",
+        "Guías de cocina"
+      ],
+      "problems": [
+        "Recetas dispersas",
+        "Sin monetización",
+        "Sin estructura de red"
+      ],
+      "solutions": [
+        "Centralización",
+        "Monetización con AdSense",
+        "Red de sitios temáticos"
+      ],
+      "architecture": {
+        "frontend": "Next.js 16 + React",
+        "backend": "Next.js API routes",
+        "database": "PostgreSQL",
+        "external": "AdSense, Google Analytics"
+      },
+      "features": [
+        "Recipe catalog",
+        "Search",
+        "Ingredient filter",
+        "AdSense",
+        "SEO optimized",
+        "Comments"
+      ],
+      "phases": [
+        {
+          "name": "Setup",
+          "duration": "1 semana",
+          "description": "Estructura y tema"
+        },
+        {
+          "name": "Content",
+          "duration": "4 semanas",
+          "description": "Recetas y SEO"
+        },
+        {
+          "name": "Monetización",
+          "duration": "1 semana",
+          "description": "AdSense y analytics"
+        }
+      ]
+    }
+  ],
+  "experienceHome": {
+    "title": "Mi Trayectoria Profesional",
+    "subtitle": "Especialista en sistemas, innovación y transformación digital.",
+    "buttonText": "Ver Trayectoria Completa",
+    "count": 3
+  },
+  "trajectoryPage": {
+    "backText": "Volver al Inicio",
+    "title": "Trayectoria Profesional Completa",
+    "subtitle": "Mi experiencia profesional en transformación digital, sistemas, innovación e implementación de soluciones tecnológicas. Desde 2020 hasta hoy.",
+    "statsExperienceLabel": "Experiencias Profesionales",
+    "statsYearsValue": "6+",
+    "statsYearsLabel": "Años de Experiencia",
+    "statsCurrentLabel": "Roles Actuales"
+  },
+  "experiences": [
+    {
+      "id": 1,
+      "title": "Área de Sistemas y Operaciones",
+      "company": "Iencinas (Inmobiliaria)",
+      "description": "Implementación de sistemas, soporte técnico y análisis de datos. Desarrollo de herramientas de gestión, firma digital (TOPIQ), y aplicación de análisis de datos para rentas, finanzas y marketing. Área informática y operaciones.",
+      "startDate": "2026-05-05",
+      "endDate": "presente",
+      "badge": "Actual"
+    },
+    {
+      "id": 2,
+      "title": "Soporte y Operaciones en Proyectos Inmobiliarios",
+      "company": "Neo Edificios, Neo Yungai, NeoBrisas",
+      "description": "Soporte técnico y operaciones en sistemas de proyectos de edificios. Implementación de integraciones y mantenimiento de sistemas. Dando soporte en infraestructura informática y operaciones.",
+      "startDate": "2026-03",
+      "endDate": "presente",
+      "badge": "Operaciones"
+    },
+    {
+      "id": 3,
+      "title": "Ingeniero en Innovación",
+      "company": "Empresa C",
+      "description": "Desarrollo de soluciones innovadoras, automatización de procesos, arquitectura de sistemas",
+      "startDate": "2024-07",
+      "endDate": "2026-02",
+      "badge": "Estrategia"
+    },
+    {
+      "id": 4,
+      "title": "Jefe de Innovación",
+      "company": "Empresa C",
+      "description": "Dirección de proyectos de transformación digital, estrategia de innovación",
+      "startDate": "2023-01",
+      "endDate": "2024-06",
+      "badge": "Liderazgo"
+    },
+    {
+      "id": 5,
+      "title": "Jefe de Informática",
+      "company": "Empresa C",
+      "description": "Liderazgo de equipo de TI, gestión de infraestructura y proyectos tecnológicos",
+      "startDate": "2022-07",
+      "endDate": "2023-12",
+      "badge": "Liderazgo"
+    },
+    {
+      "id": 6,
+      "title": "Prácticas Profesionales",
+      "company": "Empresa B",
+      "description": "Desarrollo de features, implementación de buenas prácticas y code reviews",
+      "startDate": "2021-06",
+      "endDate": "2022-06",
+      "badge": "Aprendizaje"
+    },
+    {
+      "id": 7,
+      "title": "Atención al Cliente",
+      "company": "Empresa A",
+      "description": "Gestión de clientes, soporte técnico y resolución de incidentes",
+      "startDate": "2020-01",
+      "endDate": "2021-12",
+      "badge": "Entrada"
+    }
+  ],
+  "skills": {
+    "homeTitle": "Habilidades & Tecnologías",
+    "homeSubtitle": "Filtra por categoría y revisa dónde he usado cada una",
+    "homeButton": "Ver Todas las Habilidades",
+    "fullTitle": "Todas mis Habilidades & Tecnologías",
+    "fullSubtitle": "Stack completo de herramientas, lenguajes de programación y tecnologías que utilizo en mis proyectos y en mi trabajo diario.",
+    "backText": "Volver al Inicio",
+    "categories": [
+      {
+        "name": "Lenguajes de Programación",
+        "icon": "💻",
+        "skills": [
+          {
+            "name": "JavaScript",
+            "image": "/skills/JavaScript-logo.png",
+            "percent": 90,
+            "description": "Base del frontend: componentes, estado y lógica de interacción en React.",
+            "projects": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10
+            ]
+          },
+          {
+            "name": "SQL",
+            "image": "/skills/Logo Sql Developer.png",
+            "percent": 80,
+            "description": "Consultas, modelado y reportes sobre PostgreSQL.",
+            "projects": [
+              1,
+              2,
+              3,
+              6,
+              9,
+              10
+            ]
+          },
+          {
+            "name": "Java",
+            "image": "/skills/java logo.png",
+            "percent": 40,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Python",
+            "image": "/skills/python logo.png",
+            "percent": 65,
+            "description": "Procesamiento de datos y automatización de reportes.",
+            "projects": [
+              1
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Business Intelligence",
+        "icon": "📊",
+        "skills": [
+          {
+            "name": "Power BI",
+            "image": "/skills/power bi logo.png",
+            "percent": 85,
+            "description": "Modelos de datos, medidas DAX y tableros para gerencia.",
+            "projects": [
+              1
+            ]
+          },
+          {
+            "name": "Microsoft 365",
+            "image": "/skills/microsoft 365 logo.jpg",
+            "percent": 80,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Herramientas de Gestión",
+        "icon": "⚙️",
+        "skills": [
+          {
+            "name": "MobySuite",
+            "image": "/skills/mobysuite logo.png",
+            "percent": 70,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Transbank",
+            "image": "/skills/Transbank.png",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "GoFirmex",
+            "image": "/skills/gofirmex logo.png",
+            "percent": 55,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Herramientas Colaborativas",
+        "icon": "🤝",
+        "skills": [
+          {
+            "name": "Trello",
+            "image": "/skills/trello logo.png",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "GitHub",
+            "image": "/skills/github logo.png",
+            "percent": 85,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "ClickUp",
+            "image": "/skills/clickup logo.jfif",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Miro",
+            "image": "/skills/miro logo.png",
+            "percent": 55,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Gmail",
+            "image": "/skills/gmail.png",
+            "percent": 85,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Slack",
+            "image": "/skills/Slack.png",
+            "percent": 70,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Discord",
+            "image": "/skills/Discord.png",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Herramientas Modernas & IA",
+        "icon": "✨",
+        "skills": [
+          {
+            "name": "V0.dev",
+            "image": "/skills/vo.dev logo.png",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "ChatGPT",
+            "image": "/skills/chatgpt logo.jpg",
+            "percent": 70,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Claude",
+            "image": "/skills/claud logo.png",
+            "percent": 85,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Visual Studio Code",
+            "image": "/skills/Visual Studio Code.png",
+            "percent": 85,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Almacenamiento en la Nube",
+        "icon": "☁️",
+        "skills": [
+          {
+            "name": "Mega",
+            "image": "/skills/mega.png",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "OneDrive",
+            "image": "/skills/Onedrive.png",
+            "percent": 70,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Dropbox",
+            "image": "/skills/Dropbox.png",
+            "percent": 55,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Diseño",
+        "icon": "🎨",
+        "skills": [
+          {
+            "name": "Wix",
+            "image": "/skills/wix.png",
+            "percent": 65,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Sigma",
+            "image": "/skills/Gigma.png",
+            "percent": 55,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Soporte Técnico",
+        "icon": "🔧",
+        "skills": [
+          {
+            "name": "AnyDesk",
+            "image": "/skills/Anydesk.png",
+            "percent": 70,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Integraciones",
+        "icon": "🔌",
+        "skills": [
+          {
+            "name": "OpenAI",
+            "image": "/skills/openIA.png",
+            "percent": 70,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Bizagi",
+            "image": "/skills/bizagi modeler.png",
+            "percent": 50,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Zapier",
+            "image": "/skills/Zapier.png",
+            "percent": 60,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Microsoft Sharepoint",
+            "image": "/skills/Microsoft Sharepoint.png",
+            "percent": 65,
+            "description": "",
+            "projects": []
+          }
+        ]
+      },
+      {
+        "name": "Plataformas & Redes",
+        "icon": "🌐",
+        "skills": [
+          {
+            "name": "Vercel",
+            "image": "/skills/vercel.png",
+            "percent": 85,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Google Adsense",
+            "image": "/skills/google adsense logo.jpg",
+            "percent": 50,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Meta",
+            "image": "/about/Meta.png",
+            "percent": 50,
+            "description": "",
+            "projects": []
+          },
+          {
+            "name": "Alibaba",
+            "image": "/skills/Alibaba.png",
+            "percent": 40,
+            "description": "",
+            "projects": []
+          }
+        ]
+      }
+    ]
+  },
+  "certificates": {
+    "title": "🏆 Certificaciones & Credenciales",
+    "subtitle": "Explora mis certificados profesionales validados - desliza o usa las flechas",
+    "hint": "💡 Haz clic en cualquier certificado para ver los detalles completos",
+    "verifiedText": "✓ Verificado y Válido",
+    "downloadText": "Descargar PDF",
+    "viewText": "Ver Certificado",
+    "issuedText": "Certificado Emitido",
+    "items": [
+      {
+        "name": "Excel Avanzado",
+        "issuer": "Microsoft Office Specialist",
+        "description": "Dominio avanzado de Excel y análisis de datos",
+        "year": 2022,
+        "image": "/certificates/Certificados/Excel Avanzado.jpg",
+        "logo": "/certificates/Certificados/Excel avanzado imagen portada.jpg",
+        "file": "",
+        "fileName": ""
+      },
+      {
+        "name": "Master Hardware & Reparación",
+        "issuer": "Certificación Técnica",
+        "description": "Especialización en hardware, mantenimiento y reparación de equipos",
+        "year": 2022,
+        "image": "/certificates/Certificados/Master Hardware.jpg",
+        "logo": "/certificates/Certificados/hardware reparacion portada.jfif",
+        "file": "",
+        "fileName": ""
+      },
+      {
+        "name": "Power BI",
+        "issuer": "Microsoft Business Intelligence",
+        "description": "Análisis avanzado de datos y visualización con Power BI",
+        "year": 2026,
+        "image": "/certificates/Certificados/Power bi.jpg",
+        "logo": "/certificates/Certificados/power bi portada.jpg",
+        "file": "",
+        "fileName": ""
+      },
+      {
+        "name": "Project Management",
+        "issuer": "Gestión de Proyectos Profesional",
+        "description": "Certificación en metodologías y gestión de proyectos",
+        "year": 2022,
+        "image": "/certificates/Certificados/Proyect Management-Gestion de Proyectos.jpg",
+        "logo": "/certificates/Certificados/gestion proyectos portada.jfif",
+        "file": "",
+        "fileName": ""
+      },
+      {
+        "name": "Importación en Alibaba",
+        "issuer": "Alibaba International",
+        "description": "Especialización en procesos de importación y comercio electrónico",
+        "year": 2026,
+        "image": "/certificates/Certificados/alibaba.jpg",
+        "logo": "/certificates/Certificados/importacion alibaba portada.webp",
+        "file": "",
+        "fileName": ""
+      }
+    ]
+  },
+  "contact": {
+    "email": "vrabanales@rcapcorp.cl",
+    "phone": "+56 9 6668 2082",
+    "location": "Chile / Uruguay",
+    "availability": "Disponible para nuevos proyectos",
+    "whatsappNumber": "56966682082",
+    "whatsappMessage": "Hola Vicente, quisiera ponerme en contacto contigo...",
+    "whatsappTooltip": "Contactame por WhatsApp",
+    "home": {
+      "title": "Ponte en contacto",
+      "subtitle": "¿Tienes un proyecto en mente? Me encantaría escuchar tus ideas y colaborar en nuevas soluciones.",
+      "emailTitle": "Email",
+      "emailButton": "Enviar Email",
+      "phoneTitle": "Teléfono",
+      "phoneButton": "Llamar",
+      "directTitle": "📬 Prefiero contacto directo",
+      "directText": "Soy accesible y respondo rápidamente. No dudes en escribir para cualquier oportunidad o consulta.",
+      "directButton": "Contactarme Ahora"
+    },
+    "page": {
+      "backText": "Volver al Inicio",
+      "title": "Contáctame",
+      "subtitle": "¿Tienes un proyecto en mente o una oportunidad? Escríbeme y conversemos.",
+      "infoEyebrow": "Hablemos",
+      "infoTitle": "Información de Contacto",
+      "whatsappButton": "Escríbeme por WhatsApp",
+      "footerLine": "Vicente Rabanales · Chile / Uruguay",
+      "formTitle": "Envíame un",
+      "formHighlight": "Mensaje",
+      "formSubtitle": "Completa el formulario y te responderé pronto.",
+      "submitButton": "Enviar Mensaje",
+      "successTitle": "¡Mensaje enviado!",
+      "successText": "Te responderé a la brevedad.",
+      "subjects": [
+        "Consulta general",
+        "Propuesta de proyecto",
+        "Oportunidad laboral",
+        "Colaboración",
+        "Otro"
+      ],
+      "faqTitle": "Preguntas",
+      "faqHighlight": "Frecuentes",
+      "faqs": [
+        {
+          "q": "¿Qué tipo de proyectos desarrollas?",
+          "a": "Desarrollo dashboards de business intelligence, aplicaciones internas de gestión, sitios web corporativos y herramientas de automatización de procesos. Trabajo principalmente con React, Node.js y bases de datos SQL/PostgreSQL, integrando siempre foco en transformación digital y experiencia de usuario."
+        },
+        {
+          "q": "¿Cómo puedo contactarte para una colaboración?",
+          "a": "Puedes escribirme a través de este formulario, por WhatsApp o directamente a mi correo. Te responderé a la brevedad para conversar los detalles de tu proyecto o propuesta."
+        },
+        {
+          "q": "¿Trabajas de forma remota?",
+          "a": "Sí, trabajo de forma remota con clientes y equipos en Chile y Uruguay, coordinando avances mediante reuniones periódicas y entregas incrementales del proyecto."
+        },
+        {
+          "q": "¿Cuánto tiempo toma un proyecto típico?",
+          "a": "Depende del alcance: una app o dashboard funcional suele tomar entre 2 y 6 semanas. En la primera conversación definimos un cronograma claro y mantengo comunicación constante durante todo el desarrollo."
+        },
+        {
+          "q": "¿Estás disponible para nuevas oportunidades laborales?",
+          "a": "Sí, estoy abierto a evaluar nuevas oportunidades laborales y proyectos freelance relacionados con innovación, sistemas y desarrollo de software. Escríbeme y conversemos."
+        }
+      ]
+    }
+  },
+  "footer": {
+    "logoLetter": "V",
+    "name": "Vicente Rabanales",
+    "navTitle": "Navegación",
+    "socialTitle": "Sígueme",
+    "copyright": "Vicente Rabanales. Hecho con ❤️ usando React + Tailwind + Framer Motion",
+    "nav": [
+      {
+        "label": "Inicio",
+        "href": "#home"
+      },
+      {
+        "label": "Proyectos",
+        "href": "#proyectos"
+      },
+      {
+        "label": "Trayectoria",
+        "href": "#trayectoria"
+      },
+      {
+        "label": "Habilidades",
+        "href": "#habilidades"
+      },
+      {
+        "label": "Contacto",
+        "href": "#contacto"
+      }
+    ],
+    "social": [
+      {
+        "label": "GitHub",
+        "href": "https://github.com/contactofixlab-lab"
+      },
+      {
+        "label": "LinkedIn",
+        "href": ""
+      },
+      {
+        "label": "Email",
+        "href": "mailto:vrabanales@rcapcorp.cl"
+      }
+    ]
+  }
+}

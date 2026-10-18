@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
 import SkillImage from '../components/ui/SkillImage'
-import { skillsCategories } from '../data/skills'
+import { skills } from '../content'
 import { ArrowLeft } from 'lucide-react'
 
 export default function FullSkillsSection() {
@@ -13,7 +13,6 @@ export default function FullSkillsSection() {
           animate={{ opacity: 1, y: 0 }}
           className="space-y-12"
         >
-          {/* Header con botón volver */}
           <div className="space-y-4 text-center">
             <motion.a
               href="#home"
@@ -21,33 +20,30 @@ export default function FullSkillsSection() {
               className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-4"
             >
               <ArrowLeft size={20} />
-              Volver al Inicio
+              {skills.backText}
             </motion.a>
 
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">
-              Todas mis Habilidades & Tecnologías
+              {skills.fullTitle}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Stack completo de herramientas, lenguajes de programación y tecnologías que utilizo en mis proyectos y en mi trabajo diario.
+              {skills.fullSubtitle}
             </p>
           </div>
 
-          {/* All Categories - Centrado */}
           <div className="space-y-16">
-            {skillsCategories.map((category, idx) => (
+            {skills.categories.map((category, idx) => (
               <motion.div
-                key={category.id}
+                key={category.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: idx * 0.1 }}
                 className="space-y-6 flex flex-col items-center"
               >
-                {/* Category Title - Centrado */}
                 <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center">
                   {category.icon} {category.name}
                 </h2>
 
-                {/* Skills Grid - Centrado completamente */}
                 <div className="w-full flex justify-center">
                   <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4 w-full max-w-5xl">
                     {category.skills.map((skill, skillIdx) => (
@@ -75,7 +71,6 @@ export default function FullSkillsSection() {
             ))}
           </div>
 
-          {/* Back to Home Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -89,7 +84,7 @@ export default function FullSkillsSection() {
               className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
             >
               <ArrowLeft size={20} />
-              Volver al Inicio
+              {skills.backText}
             </motion.a>
           </motion.div>
         </motion.div>

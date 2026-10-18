@@ -2,47 +2,21 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Mail, Phone, MapPin, Clock, ChevronDown, Check, ArrowLeft, MessageCircle } from 'lucide-react'
 import Layout from '../components/Layout'
+import { contact } from '../content'
 
-const SUBJECT_OPTIONS = [
-  'Consulta general',
-  'Propuesta de proyecto',
-  'Oportunidad laboral',
-  'Colaboración',
-  'Otro'
-]
+const SUBJECT_OPTIONS = contact.page.subjects
 
 const contactInfo = {
-  email: 'vrabanales@rcapcorp.cl',
-  emailHref: 'mailto:vrabanales@rcapcorp.cl',
-  telefono: '+56 9 6668 2082',
-  telefonoHref: 'tel:+56966682082',
-  whatsapp: 'https://wa.me/56966682082?text=' + encodeURIComponent('Hola Vicente, quisiera ponerme en contacto contigo...'),
-  ubicacion: 'Chile / Uruguay',
-  disponibilidad: 'Disponible para nuevos proyectos'
+  email: contact.email,
+  emailHref: `mailto:${contact.email}`,
+  telefono: contact.phone,
+  telefonoHref: `tel:${contact.phone.replace(/\s+/g, '')}`,
+  whatsapp: `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`,
+  ubicacion: contact.location,
+  disponibilidad: contact.availability
 }
 
-const faqs = [
-  {
-    q: '¿Qué tipo de proyectos desarrollas?',
-    a: 'Desarrollo dashboards de business intelligence, aplicaciones internas de gestión, sitios web corporativos y herramientas de automatización de procesos. Trabajo principalmente con React, Node.js y bases de datos SQL/PostgreSQL, integrando siempre foco en transformación digital y experiencia de usuario.'
-  },
-  {
-    q: '¿Cómo puedo contactarte para una colaboración?',
-    a: 'Puedes escribirme a través de este formulario, por WhatsApp o directamente a mi correo. Te responderé a la brevedad para conversar los detalles de tu proyecto o propuesta.'
-  },
-  {
-    q: '¿Trabajas de forma remota?',
-    a: 'Sí, trabajo de forma remota con clientes y equipos en Chile y Uruguay, coordinando avances mediante reuniones periódicas y entregas incrementales del proyecto.'
-  },
-  {
-    q: '¿Cuánto tiempo toma un proyecto típico?',
-    a: 'Depende del alcance: una app o dashboard funcional suele tomar entre 2 y 6 semanas. En la primera conversación definimos un cronograma claro y mantengo comunicación constante durante todo el desarrollo.'
-  },
-  {
-    q: '¿Estás disponible para nuevas oportunidades laborales?',
-    a: 'Sí, estoy abierto a evaluar nuevas oportunidades laborales y proyectos freelance relacionados con innovación, sistemas y desarrollo de software. Escríbeme y conversemos.'
-  }
-]
+const faqs = contact.page.faqs
 
 function CustomSelect({ value, onChange }) {
   const [open, setOpen] = useState(false)
@@ -143,6 +117,8 @@ export default function Contacto() {
   const inputCls =
     'w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors text-sm'
 
+  const p = contact.page
+
   const contactItems = [
     { label: 'Email', value: contactInfo.email, href: contactInfo.emailHref, icon: Mail },
     { label: 'Teléfono', value: contactInfo.telefono, href: contactInfo.telefonoHref, icon: Phone },
@@ -153,7 +129,6 @@ export default function Contacto() {
   return (
     <Layout>
       <div className="bg-primary-50">
-        {/* Hero */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-4">
           <motion.a
             href="#home"
@@ -161,7 +136,7 @@ export default function Contacto() {
             className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold mb-6"
           >
             <ArrowLeft size={20} />
-            Volver al Inicio
+            {p.backText}
           </motion.a>
 
           <motion.div
@@ -170,15 +145,14 @@ export default function Contacto() {
             className="text-center max-w-2xl mx-auto mb-4"
           >
             <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent mb-4">
-              Contáctame
+              {p.title}
             </h1>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              ¿Tienes un proyecto en mente o una oportunidad? Escríbeme y conversemos.
+              {p.subtitle}
             </p>
           </motion.div>
         </section>
 
-        {/* Formulario + Info lateral */}
         <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -186,7 +160,6 @@ export default function Contacto() {
             viewport={{ once: true }}
             className="rounded-3xl overflow-hidden shadow-2xl dark:shadow-primary-900/10 grid md:grid-cols-5 border border-gray-200 dark:border-gray-800"
           >
-            {/* Sidebar de contacto */}
             <div className="md:col-span-2 bg-gradient-to-br from-primary-600 to-primary-700 relative overflow-hidden flex flex-col">
               <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/5 pointer-events-none" />
               <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-white/5 pointer-events-none" />
@@ -194,9 +167,9 @@ export default function Contacto() {
 
               <div className="relative p-8 md:p-10 flex flex-col h-full">
                 <div className="mb-8">
-                  <span className="text-accent text-xs font-bold uppercase tracking-widest mb-3 block">Hablemos</span>
+                  <span className="text-accent text-xs font-bold uppercase tracking-widest mb-3 block">{p.infoEyebrow}</span>
                   <h2 className="text-2xl font-bold text-white leading-tight">
-                    Información de<br />Contacto
+                    {p.infoTitle}
                   </h2>
                   <div className="w-12 h-1 bg-accent rounded-full mt-4" />
                 </div>
@@ -232,19 +205,18 @@ export default function Contacto() {
                     className="flex items-center justify-center gap-3 w-full bg-accent hover:bg-amber-400 text-gray-900 font-bold py-3 rounded-xl transition-colors text-sm"
                   >
                     <MessageCircle size={20} />
-                    Escríbeme por WhatsApp
+                    {p.whatsappButton}
                   </a>
-                  <p className="text-white/30 text-[11px] text-center mt-3">Vicente Rabanales · Chile / Uruguay</p>
+                  <p className="text-white/30 text-[11px] text-center mt-3">{p.footerLine}</p>
                 </div>
               </div>
             </div>
 
-            {/* Formulario */}
             <div className="md:col-span-3 bg-white p-8 md:p-10">
               <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                Envíame un <span className="text-primary-600 dark:text-primary-400">Mensaje</span>
+                {p.formTitle} <span className="text-primary-600 dark:text-primary-400">{p.formHighlight}</span>
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-7">Completa el formulario y te responderé pronto.</p>
+              <p className="text-gray-600 dark:text-gray-400 text-sm mb-7">{p.formSubtitle}</p>
 
               {submitted ? (
                 <motion.div
@@ -255,8 +227,8 @@ export default function Contacto() {
                   <div className="w-16 h-16 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4">
                     <Check size={32} className="text-primary-600 dark:text-primary-400" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">¡Mensaje enviado!</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">Te responderé a la brevedad.</p>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{p.successTitle}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">{p.successText}</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
@@ -300,7 +272,7 @@ export default function Contacto() {
                     whileTap={{ scale: 0.98 }}
                     className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3.5 rounded-lg transition-colors text-sm uppercase tracking-wider shadow-lg shadow-primary-500/20"
                   >
-                    Enviar Mensaje
+                    {p.submitButton}
                   </motion.button>
                 </form>
               )}
@@ -308,7 +280,6 @@ export default function Contacto() {
           </motion.div>
         </section>
 
-        {/* Preguntas Frecuentes */}
         <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -317,7 +288,7 @@ export default function Contacto() {
             className="text-center mb-12"
           >
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white inline-block">
-              Preguntas <span className="text-primary-600 dark:text-primary-400">Frecuentes</span>
+              {p.faqTitle} <span className="text-primary-600 dark:text-primary-400">{p.faqHighlight}</span>
             </h2>
             <div className="w-16 h-1 bg-primary-500 rounded-full mx-auto mt-4" />
           </motion.div>

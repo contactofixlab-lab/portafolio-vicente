@@ -1,53 +1,13 @@
 import { motion } from 'framer-motion'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { useState } from 'react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import CertificateCard from '../components/CertificateCard'
+import { certificates as c } from '../content'
 
 export default function CertificatesCanvas() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
-  const certificates = [
-    {
-      name: 'Excel Avanzado',
-      image: '/Certificados/Excel Avanzado.jpg',
-      logo: '/Certificados/Excel avanzado imagen portada.jpg',
-      issuer: 'Microsoft Office Specialist',
-      description: 'Dominio avanzado de Excel y análisis de datos',
-      year: 2022
-    },
-    {
-      name: 'Master Hardware & Reparación',
-      image: '/Certificados/Master Hardware.jpg',
-      logo: '/Certificados/hardware reparacion portada.jfif',
-      issuer: 'Certificación Técnica',
-      description: 'Especialización en hardware, mantenimiento y reparación de equipos',
-      year: 2022
-    },
-    {
-      name: 'Power BI',
-      image: '/Certificados/Power bi.jpg',
-      logo: '/Certificados/power bi portada.jpg',
-      issuer: 'Microsoft Business Intelligence',
-      description: 'Análisis avanzado de datos y visualización con Power BI',
-      year: 2026
-    },
-    {
-      name: 'Project Management',
-      image: '/Certificados/Proyect Management-Gestion de Proyectos.jpg',
-      logo: '/Certificados/gestion proyectos portada.jfif',
-      issuer: 'Gestión de Proyectos Profesional',
-      description: 'Certificación en metodologías y gestión de proyectos',
-      year: 2022
-    },
-    {
-      name: 'Importación en Alibaba',
-      image: '/Certificados/alibaba.jpg',
-      logo: '/Certificados/importacion alibaba portada.webp',
-      issuer: 'Alibaba International',
-      description: 'Especialización en procesos de importación y comercio electrónico',
-      year: 2026
-    }
-  ]
+  const certificates = c.items
 
   const itemsPerView = 3
   const maxIndex = Math.max(0, certificates.length - itemsPerView)
@@ -72,17 +32,15 @@ export default function CertificatesCanvas() {
         viewport={{ once: true }}
         className="space-y-12"
       >
-        {/* Header */}
         <div className="text-center space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-400 bg-clip-text text-transparent">
-            🏆 Certificaciones & Credenciales
+            {c.title}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Explora mis certificados profesionales validados - desliza o usa las flechas
+            {c.subtitle}
           </p>
         </div>
 
-        {/* Cards Grid - 3 Visible */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {visibleCertificates.map((cert) => (
             <motion.div
@@ -97,9 +55,7 @@ export default function CertificatesCanvas() {
           ))}
         </div>
 
-        {/* Navigation Controls */}
         <div className="flex items-center justify-center gap-8">
-          {/* Left Arrow */}
           <motion.button
             whileHover={{ scale: isAtStart ? 1 : 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -114,7 +70,6 @@ export default function CertificatesCanvas() {
             <ChevronLeft size={28} />
           </motion.button>
 
-          {/* Stats */}
           <div className="text-center min-w-40">
             <div className="text-lg font-bold text-gray-900">
               {currentIndex + 1} - {Math.min(currentIndex + itemsPerView, certificates.length)}
@@ -124,7 +79,6 @@ export default function CertificatesCanvas() {
             </div>
           </div>
 
-          {/* Right Arrow */}
           <motion.button
             whileHover={{ scale: isAtEnd ? 1 : 1.1 }}
             whileTap={{ scale: 0.95 }}
@@ -140,9 +94,8 @@ export default function CertificatesCanvas() {
           </motion.button>
         </div>
 
-        {/* Indicators */}
         <div className="flex gap-2 justify-center">
-          {Array.from({ length: certificates.length - itemsPerView + 1 }).map((_, idx) => (
+          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
             <motion.button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
@@ -157,14 +110,13 @@ export default function CertificatesCanvas() {
           ))}
         </div>
 
-        {/* Info */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           className="text-center text-sm text-gray-600 pt-4"
         >
-          💡 Haz clic en cualquier certificado para ver los detalles completos
+          {c.hint}
         </motion.div>
       </motion.div>
     </section>

@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
-import { projects } from '../data/projects'
+import { visibleProjects, projectsPage, contact } from '../content'
 import { ExternalLink, Github } from 'lucide-react'
 
 export default function ProjectsPageSection() {
@@ -21,13 +21,13 @@ export default function ProjectsPageSection() {
         {/* Header */}
         <div className="text-center space-y-4 max-w-2xl mx-auto">
           <Badge variant="primary" animated>
-            💼 Mi Portafolio
+            {projectsPage.badge}
           </Badge>
           <h1 className="text-5xl font-bold text-gray-900">
-            Mis Proyectos
+            {projectsPage.title}
           </h1>
           <p className="text-xl text-gray-600">
-            6 proyectos personales y profesionales que demuestran mi experiencia en desarrollo, design e innovación.
+            {projectsPage.subtitle}
           </p>
         </div>
 
@@ -56,7 +56,7 @@ export default function ProjectsPageSection() {
 
           {/* Projects Timeline */}
           <div className="space-y-12">
-            {projects.map((project, idx) => (
+            {visibleProjects.map((project, idx) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -90,7 +90,7 @@ export default function ProjectsPageSection() {
 
                       {/* Stack */}
                       <div className="space-y-2">
-                        <p className="text-sm font-semibold text-gray-700">Stack Tecnológico:</p>
+                        <p className="text-sm font-semibold text-gray-700">{projectsPage.stackLabel}</p>
                         <div className="flex flex-wrap gap-2">
                           {project.stack.map((tech) => (
                             <Badge key={tech} variant="primary" className="text-xs">
@@ -102,7 +102,7 @@ export default function ProjectsPageSection() {
 
                       {/* Tags */}
                       <div className="space-y-2">
-                        <p className="text-sm font-semibold text-gray-700">Categoría:</p>
+                        <p className="text-sm font-semibold text-gray-700">{projectsPage.tagsLabel}</p>
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag) => (
                             <Badge key={tag} variant="accent" className="text-xs">
@@ -133,7 +133,7 @@ export default function ProjectsPageSection() {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <span>Ir a la Página del Proyecto</span>
+                          <span>{projectsPage.linkText}</span>
                           <ExternalLink size={18} />
                         </motion.a>
                       </div>
@@ -167,17 +167,17 @@ export default function ProjectsPageSection() {
           className="text-center mt-16 pt-12 border-t border-gray-200"
         >
           <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            ¿Interesado en colaborar?
+            {projectsPage.ctaTitle}
           </h3>
           <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            Siempre estoy abierto a nuevos proyectos y desafíos. Contáctame para discutir ideas y oportunidades.
+            {projectsPage.ctaText}
           </p>
           <motion.a
-            href="mailto:vrabanales@rcapcorp.cl"
+            href={`mailto:${contact.email}`}
             whileHover={{ scale: 1.05 }}
             className="inline-flex items-center gap-2 px-8 py-3 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors"
           >
-            📧 Enviar Email
+            {projectsPage.ctaButton}
           </motion.a>
         </motion.div>
       </motion.div>

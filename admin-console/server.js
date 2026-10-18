@@ -11,6 +11,9 @@ const PORT = 3001;
 const FILE_PATH = path.join(__dirname, 'index.html');
 const PUBLIC_DIR = path.join(__dirname, '..', 'web', 'public');
 const UPLOADS_DIR = path.join(PUBLIC_DIR, 'uploads');
+const CONTENT_FILE = path.join(__dirname, '..', 'web', 'src', 'content', 'site-content.json');
+const REQUIRED_KEYS = ['header', 'hero', 'life', 'projectsHome', 'projectsPage', 'projectDetail', 'projects', 'experienceHome', 'trajectoryPage', 'experiences', 'skills', 'certificates', 'contact', 'footer'];
+const MAX_CONTENT_BYTES = 5 * 1024 * 1024;
 
 if (!fs.existsSync(UPLOADS_DIR)) {
   fs.mkdirSync(UPLOADS_DIR, { recursive: true });
@@ -64,12 +67,75 @@ function handleUpload(req, res) {
   });
 }
 
+function sendJson(res, status, payload) {
+  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8' });
+  res.end(JSON.stringify(payload));
+}
+
+function handleGetContent(res) {
+  fs.readFile(CONTENT_FILE, 'utf8', (err, data) => {
+    if (err) {
+      sendJson(res, 500, { error: 'No se pudo leer el contenido del sitio' });
+      return;
+    }
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(data);
+  });
+}
+
+function handlePutContent(req, res) {
+  let body = '';
+  let tooLarge = false;
+
+  req.on('data', (chunk) => {
+    body += chunk;
+    if (body.length > MAX_CONTENT_BYTES) {
+      tooLarge = true;
+      req.destroy();
+    }
+  });
+
+  req.on('end', () => {
+    if (tooLarge) return;
+    let content;
+    try {
+      content = JSON.parse(body);
+    } catch {
+      sendJson(res, 400, { error: 'El contenido no es JSON válido' });
+      return;
+    }
+    const missing = REQUIRED_KEYS.filter((key) => !(key in content));
+    if (missing.length > 0) {
+      sendJson(res, 400, { error: `Faltan secciones: ${missing.join(', ')}` });
+      return;
+    }
+    fs.writeFile(CONTENT_FILE, JSON.stringify(content, null, 2) + '\n', 'utf8', (err) => {
+      if (err) {
+        sendJson(res, 500, { error: 'No se pudo guardar el contenido' });
+        return;
+      }
+      sendJson(res, 200, { ok: true, savedAt: new Date().toISOString() });
+    });
+  });
+}
+
 const server = http.createServer((req, res) => {
   const urlPath = decodeURIComponent(req.url.split('?')[0]);
 
   if (req.method === 'POST' && urlPath === '/api/upload') {
     handleUpload(req, res);
     return;
+  }
+
+  if (urlPath === '/api/content') {
+    if (req.method === 'GET') {
+      handleGetContent(res);
+      return;
+    }
+    if (req.method === 'PUT') {
+      handlePutContent(req, res);
+      return;
+    }
   }
 
   if (urlPath === '/' || urlPath === '') {

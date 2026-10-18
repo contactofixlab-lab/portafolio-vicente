@@ -1,10 +1,9 @@
 import { motion } from 'framer-motion'
 import { MessageCircle } from 'lucide-react'
+import { contact } from '../content'
 
 export default function FloatingWhatsApp() {
-  const phoneNumber = '56966682082'
-  const message = 'Hola Vicente, quisiera ponerme en contacto contigo...'
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`
+  const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
   return (
     <motion.div
@@ -38,7 +37,7 @@ export default function FloatingWhatsApp() {
         transition={{ duration: 0.2 }}
         className="absolute bottom-20 right-0 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap pointer-events-none"
       >
-        Contactame por WhatsApp
+        {contact.whatsappTooltip}
         <div className="absolute bottom-0 right-4 w-2 h-2 bg-gray-900 transform rotate-45 -mb-1"></div>
       </motion.div>
     </motion.div>

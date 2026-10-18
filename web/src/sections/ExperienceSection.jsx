@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import Badge from '../components/ui/Badge'
-import { experiences } from '../data/experiences'
+import { experiences, experienceHome } from '../content'
 
 export default function ExperienceSection() {
   const badgeVariants = {
@@ -13,8 +13,7 @@ export default function ExperienceSection() {
     Actual: 'success'
   }
 
-  // Mostrar solo las últimas 3 experiencias
-  const recentExperiences = experiences.slice(0, 3)
+  const recentExperiences = experiences.slice(0, experienceHome.count)
 
   return (
     <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -27,10 +26,10 @@ export default function ExperienceSection() {
         {/* Header */}
         <div className="space-y-4">
           <h2 className="text-4xl font-bold text-gray-900">
-            Mi Trayectoria Profesional
+            {experienceHome.title}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl">
-            Especialista en sistemas, innovación y transformación digital.
+            {experienceHome.subtitle}
           </p>
         </div>
 
@@ -163,7 +162,7 @@ export default function ExperienceSection() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
           >
-            Ver Trayectoria Completa
+            {experienceHome.buttonText}
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

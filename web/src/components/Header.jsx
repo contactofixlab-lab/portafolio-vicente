@@ -2,17 +2,12 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import Badge from './ui/Badge'
+import { header } from '../content'
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false)
 
-  const navItems = [
-    { label: 'Inicio', href: '#home' },
-    { label: 'Proyectos', href: '#proyectos' },
-    { label: 'Trayectoria', href: '#trayectoria' },
-    { label: 'Habilidades', href: '#habilidades' },
-    { label: 'Contacto', href: '#contacto' }
-  ]
+  const navItems = header.nav
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -20,23 +15,21 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-primary-500 border-b border-primary-600 shadow-sm transition-colors" role="banner">
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Navegación principal">
         <div className="flex justify-between items-center">
-          {/* Logo */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="flex items-center gap-2"
           >
             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-primary-600 font-bold text-lg">V</span>
+              <span className="text-primary-600 font-bold text-lg">{header.logoLetter}</span>
             </div>
-            <span className="font-bold text-lg text-white">Vicente</span>
+            <span className="font-bold text-lg text-white">{header.logoText}</span>
           </motion.div>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item, idx) => (
               <motion.a
-                key={item.href}
+                key={item.href + item.label}
                 href={item.href}
                 className="text-white/90 hover:text-white transition-colors font-medium"
                 initial={{ opacity: 0, y: -10 }}
@@ -49,11 +42,10 @@ export default function Header() {
             ))}
 
             <Badge variant="success" animated>
-              🟢 Disponible
+              {header.availability}
             </Badge>
           </div>
 
-          {/* Mobile Menu Button */}
           <motion.button
             onClick={toggleMenu}
             className="md:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
@@ -70,7 +62,6 @@ export default function Header() {
           </motion.button>
         </div>
 
-        {/* Mobile Drawer */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
@@ -85,7 +76,7 @@ export default function Header() {
             >
               {navItems.map((item) => (
                 <motion.a
-                  key={item.href}
+                  key={item.href + item.label}
                   href={item.href}
                   className="block text-white/90 hover:text-white py-2 font-medium"
                   onClick={() => setIsOpen(false)}
@@ -96,7 +87,7 @@ export default function Header() {
               ))}
               <div className="pt-4">
                 <Badge variant="success" animated>
-                  🟢 Disponible
+                  {header.availability}
                 </Badge>
               </div>
             </motion.div>

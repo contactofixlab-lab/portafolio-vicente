@@ -2,7 +2,7 @@ import { useState, useRef } from 'react'
 import { motion } from 'framer-motion'
 import Badge from '../components/ui/Badge'
 import { ChevronLeft, ChevronRight, ArrowRight, ExternalLink, Github } from 'lucide-react'
-import { projects } from '../data/projects'
+import { visibleProjects, projectsHome } from '../content'
 
 export default function ProjectsCanvas() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -10,7 +10,7 @@ export default function ProjectsCanvas() {
   const [dragX, setDragX] = useState(0)
   const containerRef = useRef(null)
 
-  const featuredProjects = projects.slice(0, 3)
+  const featuredProjects = visibleProjects.slice(0, projectsHome.count)
   const currentProject = featuredProjects[currentIndex]
 
   const badgeVariants = {
@@ -38,10 +38,10 @@ export default function ProjectsCanvas() {
         {/* Header */}
         <div className="text-center space-y-4">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">
-            Proyectos Destacados
+            {projectsHome.title}
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Desliza o navega a través de mis proyectos más recientes y relevantes
+            {projectsHome.subtitle}
           </p>
         </div>
 
@@ -134,7 +134,7 @@ export default function ProjectsCanvas() {
                           href={`#proyecto/${currentProject.id}`}
                           className="inline-flex items-center gap-2 px-6 py-3 bg-primary-600 hover:bg-primary-700 text-white font-bold text-sm rounded-lg transition-all duration-300 group/btn"
                         >
-                          Ir a la Página del Proyecto
+                          {projectsHome.linkText}
                           <motion.div className="transition-transform group-hover/btn:translate-x-2">
                             <ArrowRight size={18} />
                           </motion.div>
@@ -221,7 +221,7 @@ export default function ProjectsCanvas() {
           className="text-center pt-8"
         >
           <p className="text-gray-600 mb-6 text-lg">
-            ¿Quieres ver más proyectos?
+            {projectsHome.moreTitle}
           </p>
           <motion.a
             href="#proyectos"
@@ -229,7 +229,7 @@ export default function ProjectsCanvas() {
             whileTap={{ scale: 0.95 }}
             className="inline-flex items-center gap-3 px-10 py-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-full font-bold text-lg shadow-xl hover:shadow-2xl transition-all duration-300"
           >
-            Ver Todos los Proyectos
+            {projectsHome.moreButton}
             <ArrowRight size={24} />
           </motion.a>
         </motion.div>

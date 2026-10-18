@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Card from '../components/ui/Card'
 import Badge from '../components/ui/Badge'
-import { experiences } from '../data/experiences'
+import { experiences, trajectoryPage as t } from '../content'
 import { ArrowLeft } from 'lucide-react'
 
 export default function TrajectorySection() {
@@ -30,14 +30,14 @@ export default function TrajectorySection() {
             className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-4"
           >
             <ArrowLeft size={20} />
-            Volver al Inicio
+            {t.backText}
           </motion.a>
 
           <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">
-            Trayectoria Profesional Completa
+            {t.title}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl">
-            Mi experiencia profesional en transformación digital, sistemas, innovación e implementación de soluciones tecnológicas. Desde 2020 hasta hoy.
+            {t.subtitle}
           </p>
         </div>
 
@@ -165,21 +165,21 @@ export default function TrajectorySection() {
             <div className="text-4xl font-bold text-primary-600">
               {experiences.length}
             </div>
-            <p className="text-gray-600 dark:text-gray-400">Experiencias Profesionales</p>
+            <p className="text-gray-600 dark:text-gray-400">{t.statsExperienceLabel}</p>
           </div>
 
           <div className="text-center space-y-2">
             <div className="text-4xl font-bold text-primary-600">
-              6+
+              {t.statsYearsValue}
             </div>
-            <p className="text-gray-600 dark:text-gray-400">Años de Experiencia</p>
+            <p className="text-gray-600 dark:text-gray-400">{t.statsYearsLabel}</p>
           </div>
 
           <div className="text-center space-y-2">
             <div className="text-4xl font-bold text-primary-600">
               {experiences.filter(e => e.badge === 'Actual').length}
             </div>
-            <p className="text-gray-600 dark:text-gray-400">Roles Actuales</p>
+            <p className="text-gray-600 dark:text-gray-400">{t.statsCurrentLabel}</p>
           </div>
         </motion.div>
 
@@ -197,7 +197,7 @@ export default function TrajectorySection() {
             className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
           >
             <ArrowLeft size={20} />
-            Volver al Inicio
+            {t.backText}
           </motion.a>
         </motion.div>
       </motion.div>
