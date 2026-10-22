@@ -348,10 +348,10 @@ const GROUP = (title, fields) => ({ type: 'group', title, fields });
 
 const nextId = (arr) => arr.reduce((m, x) => Math.max(m, Number(x.id) || 0), 0) + 1;
 
-const DETAIL_KEYS = ['backText', 'notFound', 'startLabel', 'endLabel', 'ongoing', 'stackLabel', 'phasesLabel', 'demoButton', 'githubButton', 'architectureTitle', 'reasonTitle', 'problemsTitle', 'solutionsTitle', 'whatWasDoneTitle', 'featuresTitle', 'phasesTitle', 'resultsTitle', 'techTitle', 'categoriesTitle', 'similarTitle', 'similarEmpty', 'similarLink'];
+const DETAIL_KEYS = ['backText', 'notFound', 'startLabel', 'endLabel', 'ongoing', 'stackLabel', 'phasesLabel', 'githubButton', 'architectureTitle', 'reasonTitle', 'problemsTitle', 'solutionsTitle', 'whatWasDoneTitle', 'featuresTitle', 'phasesTitle', 'resultsTitle', 'techTitle', 'categoriesTitle', 'similarTitle', 'similarEmpty', 'similarLink'];
 const DETAIL_LABELS = {
     backText: 'Botón volver', notFound: 'Texto "proyecto no encontrado"', startLabel: 'Etiqueta inicio', endLabel: 'Etiqueta fin',
-    ongoing: 'Texto "en curso"', stackLabel: 'Etiqueta stack', phasesLabel: 'Etiqueta fases', demoButton: 'Botón demo',
+    ongoing: 'Texto "en curso"', stackLabel: 'Etiqueta stack', phasesLabel: 'Etiqueta fases',
     githubButton: 'Botón GitHub', architectureTitle: 'Título arquitectura', reasonTitle: 'Título "por qué"',
     problemsTitle: 'Título problemas', solutionsTitle: 'Título soluciones', whatWasDoneTitle: 'Título funcionalidades',
     featuresTitle: 'Título features', phasesTitle: 'Título fases', resultsTitle: 'Título resultados',
@@ -425,7 +425,7 @@ const PAGES = [
                 LINES('stack', 'Stack (una por línea)'),
                 LINES('tags', 'Categorías (una por línea)')
             ]),
-            GROUP('Enlaces', [T('github', 'Enlace a GitHub'), T('demo', 'Enlace a la demo')]),
+            GROUP('Enlaces', [T('github', 'Enlace a GitHub')]),
             GROUP('Detalle', [
                 TA('reason', '¿Por qué se hizo?'),
                 LINES('whatWasDone', 'Funcionalidades implementadas (una por línea)'),
@@ -442,7 +442,7 @@ const PAGES = [
             itemLabel: 'title',
             make: (arr) => ({
                 id: nextId(arr), visible: true, title: 'Nuevo proyecto', description: '', longDescription: '', image: '',
-                type: 'Web', company: '', stack: [], status: 'En Desarrollo', tags: [], github: '', demo: '',
+                type: 'Web', company: '', stack: [], status: 'En Desarrollo', tags: [], github: '',
                 startDate: '', endDate: '', reason: '', whatWasDone: [], problems: [], solutions: [], features: [],
                 architecture: { frontend: '', backend: '', database: '', external: '' }, phases: []
             })

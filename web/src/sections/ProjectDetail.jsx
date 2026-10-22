@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { Code2, Zap, Calendar, Target, CheckCircle2, AlertCircle, GitBranch, BarChart3, ExternalLink, Github, ArrowUpRight, Layers } from 'lucide-react'
+import { Code2, Zap, Calendar, Target, CheckCircle2, AlertCircle, GitBranch, BarChart3, Github, ArrowUpRight, Layers } from 'lucide-react'
 import Section from '../components/ui/Section'
 import PageHero from '../components/ui/PageHero'
 import Button from '../components/ui/Button'
@@ -69,14 +69,8 @@ export default function ProjectDetail({ projectId }) {
     <>
       <PageHero eyebrow={`${project.type} · ${project.status}`} title={project.title} subtitle={project.description} backHref="#proyectos" backText={t.backText}>
         <div className="flex flex-wrap items-center gap-4">
-          {project.demo && project.demo !== '#' && (
-            <Button href={project.demo} target="_blank" variant="light" size="lg" shine={false}>
-              <ExternalLink size={20} />
-              {t.demoButton}
-            </Button>
-          )}
           {project.github && project.github !== '#' && (
-            <Button href={project.github} target="_blank" variant="outline" size="lg" shine={false}>
+            <Button href={project.github} target="_blank" variant="light" size="lg" shine={false}>
               <Github size={20} />
               {t.githubButton}
             </Button>
