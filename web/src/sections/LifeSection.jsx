@@ -1,94 +1,87 @@
 import { motion } from 'framer-motion'
-import { life } from '../content'
+import Section from '../components/ui/Section'
+import SectionHeading from '../components/ui/SectionHeading'
+import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
+import { life, ui } from '../content'
+
+const PLACEHOLDERS = [
+  { gradient: 'from-primary-300 to-accent-300', emoji: '🏔️' },
+  { gradient: 'from-accent-300 to-primary-400', emoji: '🌊' },
+  { gradient: 'from-primary-200 to-primary-400', emoji: '🌿' },
+  { gradient: 'from-primary-400 to-primary-600', emoji: '🎮' },
+  { gradient: 'from-accent-200 to-primary-300', emoji: '🐕' }
+]
+
+const SPANS = ['row-span-1', 'row-span-2', 'row-span-1', 'row-span-2', 'row-span-2']
+const TILTS = [-2.5, 2, -1.5, 2.5, -2]
+
+function Tile({ image, index }) {
+  const placeholder = PLACEHOLDERS[index % PLACEHOLDERS.length]
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8, rotate: TILTS[index] * 2 }}
+      whileInView={{ opacity: 1, scale: 1, rotate: TILTS[index] }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ delay: index * 0.12, type: 'spring', stiffness: 160, damping: 16 }}
+      whileHover={{ scale: 1.06, rotate: 0, zIndex: 20 }}
+      className={`group relative cursor-pointer overflow-hidden rounded-3xl border-4 border-white bg-white shadow-soft ${SPANS[index]}`}
+    >
+      {image.src ? (
+        <img src={image.src} alt={image.alt} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+      ) : (
+        <div className={`grid h-full w-full place-items-center bg-gradient-to-br ${placeholder.gradient}`}>
+          <span className="text-5xl transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12">{placeholder.emoji}</span>
+        </div>
+      )}
+      <div className="absolute inset-0 bg-gradient-to-t from-primary-900/40 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+    </motion.div>
+  )
+}
 
 export default function LifeSection() {
   const images = life.images.slice(0, 5)
 
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="grid md:grid-cols-2 gap-12 items-center"
-      >
-        <div className="space-y-8 order-2 md:order-1">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900">{life.title}</h2>
-          </motion.div>
+    <Section id="vida" bg="white" next="peach">
+      <SectionHeading eyebrow={ui.eyebrows.life} title={life.title} />
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="space-y-4 text-gray-600"
-          >
-            <p>{life.description}</p>
-          </motion.div>
+      <div className="grid items-center gap-14 lg:grid-cols-2">
+        <div className="space-y-10">
+          <Reveal>
+            <p className="text-xl leading-relaxed text-ink-soft">{life.description}</p>
+          </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="space-y-6 bg-gradient-to-br from-accent-50 to-primary-50 p-8 rounded-2xl border-2 border-accent-200"
-          >
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900">{life.hobbiesTitle}</h3>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {life.hobbies.map((hobby, idx) => (
-                <motion.div
-                  key={`${hobby.name}-${idx}`}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.05 }}
-                  whileHover={{ scale: 1.08, y: -4 }}
-                  className="flex items-center justify-center"
-                >
-                  <div className="w-full bg-white rounded-xl p-4 border-2 border-accent-300 hover:border-primary-400 shadow-md hover:shadow-lg transition-all text-center">
-                    <div className="text-4xl mb-2">{hobby.icon}</div>
-                    <p className="text-sm font-semibold text-gray-800">{hobby.name}</p>
-                  </div>
-                </motion.div>
-              ))}
+          <Reveal delay={0.1}>
+            <div className="relative overflow-hidden rounded-[2rem] border-2 border-primary-200 bg-gradient-to-br from-primary-50 to-accent-50 p-8 shadow-card">
+              <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-primary-300/30 blur-2xl" />
+              <h3 className="relative mb-6 font-display text-2xl font-extrabold text-ink md:text-3xl">{life.hobbiesTitle}</h3>
+              <StaggerGroup className="relative grid grid-cols-2 gap-4 md:grid-cols-3">
+                {life.hobbies.map((hobby, idx) => (
+                  <StaggerItem key={`${hobby.name}-${idx}`}>
+                    <motion.div
+                      whileHover={{ y: -8, rotate: idx % 2 ? 3 : -3, scale: 1.06 }}
+                      transition={{ type: 'spring', stiffness: 320, damping: 14 }}
+                      title={hobby.description}
+                      className="rounded-2xl border border-white bg-white p-3 text-center shadow-card sm:p-4"
+                    >
+                      <motion.div whileHover={{ scale: 1.3 }} className="mb-2 text-4xl">
+                        {hobby.icon}
+                      </motion.div>
+                      <p className="break-words text-xs font-bold text-ink min-[400px]:text-sm">{hobby.name}</p>
+                    </motion.div>
+                  </StaggerItem>
+                ))}
+              </StaggerGroup>
             </div>
-          </motion.div>
+          </Reveal>
         </div>
 
-        <div className="order-1 md:order-2">
-          <div className="grid grid-cols-2 grid-rows-4 gap-4 h-full rounded-2xl overflow-hidden">
-            {images.map((image, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                whileHover={{ scale: 1.02 }}
-                className={`border-2 border-gray-200 rounded-lg overflow-hidden cursor-pointer group hover:border-primary-300 transition-all bg-gray-100 ${
-                  idx === 1 || idx === 3 || idx === 4 ? 'row-span-2' : 'row-span-1'
-                }`}
-              >
-                {image.src ? (
-                  <img
-                    src={image.src}
-                    alt={image.alt}
-                    className="w-full h-full object-cover group-hover:brightness-110 transition-all"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-3xl text-gray-400">🖼️</div>
-                )}
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid h-[34rem] grid-cols-2 grid-rows-4 gap-4 sm:h-[40rem]">
+          {images.map((image, idx) => (
+            <Tile key={idx} image={image} index={idx} />
+          ))}
         </div>
-      </motion.div>
-    </section>
+      </div>
+    </Section>
   )
 }

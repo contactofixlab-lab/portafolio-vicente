@@ -1,186 +1,117 @@
-import { motion } from 'framer-motion'
-import Card from '../components/ui/Card'
-import Badge from '../components/ui/Badge'
-import { visibleProjects, projectsPage, contact } from '../content'
-import { ExternalLink, Github } from 'lucide-react'
+import { forwardRef, useMemo, useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ArrowUpRight } from 'lucide-react'
+import Section from '../components/ui/Section'
+import PageHero from '../components/ui/PageHero'
+import Tilt from '../components/ui/Tilt'
+import Button from '../components/ui/Button'
+import { Reveal } from '../components/ui/Reveal'
+import { visibleProjects, projectsPage, contact, ui } from '../content'
+
+const STATUS_STYLES = {
+  'En Desarrollo': 'bg-amber-100 text-amber-800',
+  'Últimas Fases': 'bg-emerald-100 text-emerald-800',
+  Terminado: 'bg-emerald-100 text-emerald-800'
+}
+
+const GRADIENTS = [
+  'from-primary-400 to-accent-400',
+  'from-primary-500 to-primary-700',
+  'from-accent-400 to-primary-500',
+  'from-primary-300 to-primary-600'
+]
+
+const ProjectCard = forwardRef(function ProjectCard({ project, index }, ref) {
+  return (
+    <motion.article
+      ref={ref}
+      layout
+      initial={{ opacity: 0, y: 40, scale: 0.94 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: (index % 6) * 0.05 }}
+    >
+      <Tilt max={7} scale={1.025} className="h-full rounded-[2rem]">
+        <a href={`#proyecto/${project.id}`} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
+          <div className={`relative grid h-52 place-items-center overflow-hidden bg-gradient-to-br ${GRADIENTS[index % GRADIENTS.length]} p-6`}>
+            <div className="absolute inset-0 dots opacity-40" />
+            <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-white/25 blur-xl" />
+            {project.image ? (
+              <img src={project.image} alt={project.title} className="relative max-h-36 max-w-full object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3" />
+            ) : (
+              <span className="relative font-display text-7xl font-extrabold text-white/90 transition-transform duration-500 group-hover:scale-110">{project.title.charAt(0)}</span>
+            )}
+            <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-primary-700">{project.type}</span>
+            <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white text-primary-600 opacity-0 transition-all duration-300 group-hover:rotate-12 group-hover:opacity-100">
+              <ArrowUpRight size={20} />
+            </span>
+          </div>
+
+          <div className="flex flex-1 flex-col gap-4 p-6">
+            <div className="flex items-start justify-between gap-3">
+              <h3 className="font-display text-2xl font-extrabold leading-tight text-ink transition-colors group-hover:text-primary-600">{project.title}</h3>
+              <span className={`shrink-0 rounded-full px-3 py-1 text-xs font-bold ${STATUS_STYLES[project.status] || 'bg-gray-100 text-gray-700'}`}>{project.status}</span>
+            </div>
+            <p className="line-clamp-3 text-ink-soft">{project.description}</p>
+            <div className="mt-auto flex flex-wrap gap-1.5">
+              {project.stack.slice(0, 4).map((tech) => (
+                <span key={tech} className="rounded-lg bg-primary-50 px-2.5 py-1 text-xs font-bold text-primary-800">
+                  {tech}
+                </span>
+              ))}
+              {project.stack.length > 4 && <span className="rounded-lg bg-gray-100 px-2.5 py-1 text-xs font-bold text-gray-600">+{project.stack.length - 4}</span>}
+            </div>
+          </div>
+        </a>
+      </Tilt>
+    </motion.article>
+  )
+})
 
 export default function ProjectsPageSection() {
-  const badgeVariants = {
-    'Terminado': 'success',
-    'En Desarrollo': 'warning'
-  }
+  const [filter, setFilter] = useState(ui.projects.filterAll)
+
+  const filters = useMemo(() => [ui.projects.filterAll, ...new Set(visibleProjects.map((p) => p.type))], [])
+  const shown = filter === ui.projects.filterAll ? visibleProjects : visibleProjects.filter((p) => p.type === filter)
 
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="space-y-12"
-      >
-        {/* Header */}
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <Badge variant="primary" animated>
-            {projectsPage.badge}
-          </Badge>
-          <h1 className="text-5xl font-bold text-gray-900">
-            {projectsPage.title}
-          </h1>
-          <p className="text-xl text-gray-600">
-            {projectsPage.subtitle}
-          </p>
+    <>
+      <PageHero eyebrow={projectsPage.badge} title={projectsPage.title} subtitle={projectsPage.subtitle} />
+
+      <Section bg="cream" className="-mt-px">
+        <div className="mb-12 flex flex-wrap justify-center gap-3">
+          {filters.map((f) => (
+            <button
+              key={f}
+              type="button"
+              onClick={() => setFilter(f)}
+              className={`relative rounded-full px-6 py-2.5 text-sm font-bold transition-colors ${filter === f ? 'text-white' : 'bg-white text-ink-soft hover:text-primary-700'}`}
+            >
+              {filter === f && <motion.span layoutId="projects-filter" className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 shadow-glow" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />}
+              <span className="relative">{f}</span>
+            </button>
+          ))}
         </div>
 
-        {/* Timeline */}
-        <div className="relative">
-          {/* Timeline Line SVG */}
-          <svg
-            className="hidden md:block absolute left-1/2 top-0 bottom-0 w-1 -ml-0.5"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 4 2000"
-          >
-            <motion.line
-              x1="2"
-              y1="0"
-              x2="2"
-              y2="2000"
-              stroke="#f97316"
-              strokeWidth="2"
-              strokeDasharray="10,10"
-              initial={{ pathLength: 0 }}
-              whileInView={{ pathLength: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 2 }}
-            />
-          </svg>
-
-          {/* Projects Timeline */}
-          <div className="space-y-12">
-            {visibleProjects.map((project, idx) => (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className={`md:flex ${idx % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-              >
-                {/* Content */}
-                <div className="md:w-1/2 px-4">
-                  <Card hoverable className="h-full">
-                    <div className="space-y-4">
-                      {/* Image Placeholder */}
-                      <div className="h-32 text-center mb-4 flex items-center justify-center">
-                        {project.image.startsWith('/') ? (
-                          <img src={project.image} alt={project.title} className="max-h-full max-w-full object-contain" />
-                        ) : (
-                          <span className="text-6xl">{project.image}</span>
-                        )}
-                      </div>
-
-                      {/* Title */}
-                      <div>
-                        <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                          {project.title}
-                        </h3>
-                        <p className="text-gray-600 font-medium">
-                          {project.longDescription}
-                        </p>
-                      </div>
-
-                      {/* Stack */}
-                      <div className="space-y-2">
-                        <p className="text-sm font-semibold text-gray-700">{projectsPage.stackLabel}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.stack.map((tech) => (
-                            <Badge key={tech} variant="primary" className="text-xs">
-                              {tech}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Tags */}
-                      <div className="space-y-2">
-                        <p className="text-sm font-semibold text-gray-700">{projectsPage.tagsLabel}</p>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tags.map((tag) => (
-                            <Badge key={tag} variant="accent" className="text-xs">
-                              #{tag}
-                            </Badge>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Status & Links */}
-                      <div className="border-t border-gray-200 pt-4 space-y-4">
-                        <div className="flex items-center gap-3">
-                          <Badge
-                            variant={badgeVariants[project.status]}
-                            className="text-sm"
-                          >
-                            {project.status === 'Terminado' ? '✓' : '⏱'} {project.status}
-                          </Badge>
-                          <span className="text-sm text-gray-500">
-                            Proyecto {project.status === 'Terminado' ? 'completado' : 'en desarrollo'}
-                          </span>
-                        </div>
-
-                        {/* Action Button */}
-                        <motion.a
-                          href={`#proyecto/${project.id}`}
-                          className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg hover:shadow-lg transition-all font-medium"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <span>{projectsPage.linkText}</span>
-                          <ExternalLink size={18} />
-                        </motion.a>
-                      </div>
-                    </div>
-                  </Card>
-                </div>
-
-                {/* Timeline Dot */}
-                <div className="hidden md:flex md:w-0 justify-center items-start pt-8">
-                  <motion.div
-                    className="w-5 h-5 bg-primary-500 rounded-full border-4 border-white shadow-lg"
-                    whileHover={{ scale: 1.6 }}
-                    transition={{ type: 'spring', stiffness: 400 }}
-                  >
-                    <div className="absolute inset-0 bg-primary-500 rounded-full animate-ping opacity-75" style={{ width: '20px', height: '20px', marginLeft: '-2px', marginTop: '-2px' }} />
-                  </motion.div>
-                </div>
-
-                {/* Spacer */}
-                <div className="md:w-1/2" />
-              </motion.div>
+        <motion.div layout className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <AnimatePresence mode="popLayout">
+            {shown.map((project, i) => (
+              <ProjectCard key={project.id} project={project} index={i} />
             ))}
-          </div>
-        </div>
-
-        {/* CTA Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-16 pt-12 border-t border-gray-200"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-4">
-            {projectsPage.ctaTitle}
-          </h3>
-          <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-            {projectsPage.ctaText}
-          </p>
-          <motion.a
-            href={`mailto:${contact.email}`}
-            whileHover={{ scale: 1.05 }}
-            className="inline-flex items-center gap-2 px-8 py-3 bg-primary-500 text-white rounded-lg font-semibold hover:bg-primary-600 transition-colors"
-          >
-            {projectsPage.ctaButton}
-          </motion.a>
+          </AnimatePresence>
         </motion.div>
-      </motion.div>
-    </section>
+
+        <Reveal className="mt-24">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-primary-500 to-primary-700 px-8 py-14 text-center text-white">
+            <div className="absolute inset-0 dots opacity-25" />
+            <h3 className="relative font-display text-3xl font-extrabold md:text-5xl">{projectsPage.ctaTitle}</h3>
+            <p className="relative mx-auto mb-8 mt-4 max-w-2xl text-lg text-white/90">{projectsPage.ctaText}</p>
+            <Button href={`mailto:${contact.email}`} variant="light" size="lg" shine={false} className="relative">
+              {projectsPage.ctaButton}
+            </Button>
+          </div>
+        </Reveal>
+      </Section>
+    </>
   )
 }

@@ -1,5 +1,6 @@
 import site from './site-content.json'
 
+export { ui, seo } from './ui'
 export const content = site
 export const { header, hero, life, projectsHome, projectsPage, projectDetail, experienceHome, trajectoryPage, skills, certificates, contact, footer } = site
 export const experiences = site.experiences

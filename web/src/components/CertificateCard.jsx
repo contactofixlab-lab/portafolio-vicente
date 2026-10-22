@@ -1,8 +1,7 @@
-import { motion, AnimatePresence } from 'framer-motion'
-import { X, ExternalLink, Download } from 'lucide-react'
 import { useState } from 'react'
-import Card from './ui/Card'
-import Badge from './ui/Badge'
+import { motion, AnimatePresence } from 'framer-motion'
+import { X, Eye, Download, Calendar, BadgeCheck } from 'lucide-react'
+import Tilt from './ui/Tilt'
 import { certificates as c } from '../content'
 
 export default function CertificateCard({ certificate }) {
@@ -10,56 +9,43 @@ export default function CertificateCard({ certificate }) {
 
   return (
     <>
-      <motion.div
-        whileHover={{ scale: 1.05, y: -8 }}
-        whileTap={{ scale: 0.98 }}
-        className="group cursor-pointer"
-      >
-        <Card className="h-full flex flex-col overflow-hidden hover:shadow-2xl transition-all bg-gradient-to-br from-white to-gray-50 border-2 border-gray-100 hover:border-primary-300">
-          <div className="bg-gradient-to-br from-primary-50 to-accent-50 p-8 flex items-center justify-center h-40">
+      <Tilt max={8} scale={1.03} className="h-full rounded-[2rem]">
+        <div className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
+          <div className="relative grid h-44 place-items-center overflow-hidden bg-gradient-to-br from-primary-400 via-primary-500 to-accent-400 p-6">
+            <div className="absolute inset-0 dots opacity-40" />
+            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-white/25 blur-xl" />
             {certificate.logo && (
-              <motion.img
-                src={certificate.logo}
-                alt={certificate.issuer}
-                className="h-20 object-contain group-hover:scale-110 transition-transform"
-              />
+              <img src={certificate.logo} alt={certificate.issuer} className="relative h-24 max-w-full rounded-2xl bg-white object-contain p-3 shadow-soft transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3" />
             )}
+            <span className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-primary-700">
+              <Calendar size={12} />
+              {certificate.year}
+            </span>
           </div>
 
-          <div className="flex-1 flex flex-col justify-between p-6">
-            <div className="space-y-3">
-              <div>
-                <h4 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition-colors">
-                  {certificate.name}
-                </h4>
-                <p className="text-sm text-gray-600 mt-1">{certificate.issuer}</p>
-              </div>
-
-              {certificate.description && (
-                <p className="text-sm text-gray-600">
-                  {certificate.description}
-                </p>
-              )}
-
-              <div className="flex items-center gap-2 pt-2">
-                <Badge variant="accent" className="text-xs">
-                  📅 {certificate.year}
-                </Badge>
-              </div>
+          <div className="flex flex-1 flex-col justify-between gap-5 p-6">
+            <div className="space-y-2">
+              <h4 className="font-display text-xl font-extrabold leading-tight text-ink transition-colors group-hover:text-primary-600">{certificate.name}</h4>
+              <p className="flex items-center gap-1.5 text-sm font-bold text-primary-600">
+                <BadgeCheck size={16} />
+                {certificate.issuer}
+              </p>
+              {certificate.description && <p className="text-sm leading-relaxed text-ink-soft">{certificate.description}</p>}
             </div>
 
             <motion.button
+              type="button"
               onClick={() => setIsOpen(true)}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="mt-6 w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg hover:shadow-lg transition-all font-medium group-hover:from-primary-600 group-hover:to-primary-700"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.96 }}
+              className="btn-shine flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 px-4 py-3 font-bold text-white shadow-glow"
             >
-              <ExternalLink size={18} />
+              <Eye size={18} />
               {c.viewText}
             </motion.button>
           </div>
-        </Card>
-      </motion.div>
+        </div>
+      </Tilt>
 
       <AnimatePresence>
         {isOpen && (
@@ -68,57 +54,54 @@ export default function CertificateCard({ certificate }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={() => setIsOpen(false)}
-            className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 z-[80] flex items-center justify-center bg-ink/70 p-4 backdrop-blur-md"
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 24 }}
               onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-auto shadow-2xl relative"
+              className="relative max-h-[92vh] w-full max-w-4xl overflow-auto rounded-[2rem] bg-white shadow-2xl"
             >
               <motion.button
-                whileHover={{ rotate: 90 }}
+                type="button"
+                whileHover={{ rotate: 90, scale: 1.1 }}
                 onClick={() => setIsOpen(false)}
-                className="absolute top-6 right-6 z-10 bg-gray-100 hover:bg-gray-200 p-2 rounded-full transition-colors"
+                aria-label="Cerrar"
+                className="absolute right-5 top-5 z-10 grid h-11 w-11 place-items-center rounded-full bg-white text-ink shadow-soft"
               >
-                <X size={24} className="text-gray-700" />
+                <X size={22} />
               </motion.button>
 
-              <div className="bg-gradient-to-r from-primary-50 to-accent-50 p-8 border-b border-gray-200">
-                <div className="flex items-center gap-4">
-                  {certificate.logo && (
-                    <img src={certificate.logo} alt={certificate.issuer} className="h-16 object-contain" />
-                  )}
+              <div className="bg-gradient-to-r from-primary-500 to-primary-600 p-8 text-white">
+                <div className="flex items-center gap-4 pr-12">
+                  {certificate.logo && <img src={certificate.logo} alt={certificate.issuer} className="h-16 rounded-2xl bg-white object-contain p-2" />}
                   <div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      {certificate.name}
-                    </h3>
-                    <p className="text-gray-600">{certificate.issuer}</p>
+                    <h3 className="font-display text-2xl font-extrabold md:text-3xl">{certificate.name}</h3>
+                    <p className="text-white/85">{certificate.issuer}</p>
                   </div>
                 </div>
               </div>
 
               {certificate.image && (
-                <div className="p-8 bg-gray-50">
+                <div className="bg-primary-50 p-6 md:p-8">
                   <motion.img
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     src={certificate.image}
                     alt={certificate.name}
-                    className="w-full max-h-[70vh] object-contain rounded-lg shadow-lg"
+                    className="max-h-[65vh] w-full rounded-2xl object-contain shadow-soft"
                   />
                 </div>
               )}
 
-              <div className="p-8 border-t border-gray-200 bg-white flex items-center justify-between flex-wrap gap-4">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-t border-primary-100 p-6 md:p-8">
                 <div>
-                  <p className="text-sm text-gray-600">{c.issuedText}</p>
-                  <p className="text-lg font-bold text-gray-900">{certificate.year}</p>
+                  <p className="text-sm text-ink-soft">{c.issuedText}</p>
+                  <p className="font-display text-xl font-extrabold text-ink">{certificate.year}</p>
                 </div>
-                <Badge variant="success" className="text-base">
-                  {c.verifiedText}
-                </Badge>
+                <span className="rounded-full bg-emerald-100 px-4 py-2 font-bold text-emerald-800">{c.verifiedText}</span>
                 <div className="flex items-center gap-3">
                   {certificate.file && (
                     <motion.a
@@ -126,17 +109,18 @@ export default function CertificateCard({ certificate }) {
                       download={certificate.fileName || certificate.name}
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                      className="flex items-center gap-2 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 px-6 py-2.5 font-bold text-white shadow-glow"
                     >
                       <Download size={18} />
                       {c.downloadText}
                     </motion.a>
                   )}
                   <motion.button
+                    type="button"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setIsOpen(false)}
-                    className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-medium"
+                    className="rounded-full bg-ink px-6 py-2.5 font-bold text-white"
                   >
                     Cerrar
                   </motion.button>

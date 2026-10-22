@@ -1,149 +1,74 @@
 import { motion } from 'framer-motion'
+import { Mail, Phone, ArrowRight } from 'lucide-react'
+import Section from '../components/ui/Section'
+import SectionHeading from '../components/ui/SectionHeading'
 import Button from '../components/ui/Button'
-import Card from '../components/ui/Card'
-import { Mail, Phone } from 'lucide-react'
-import { contact } from '../content'
+import Tilt from '../components/ui/Tilt'
+import WhatsAppIcon from '../components/ui/WhatsAppIcon'
+import Wave from '../components/ui/Wave'
+import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
+import { contact, ui } from '../content'
 
 export default function ContactSection() {
   const h = contact.home
+  const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
-  const contactItems = [
-    {
-      id: 1,
-      title: h.emailTitle,
-      value: contact.email,
-      icon: Mail,
-      color: 'from-blue-500 to-blue-400',
-      href: `mailto:${contact.email}`,
-      buttonText: h.emailButton
-    },
-    {
-      id: 2,
-      title: h.phoneTitle,
-      value: contact.phone,
-      icon: Phone,
-      color: 'from-green-500 to-green-400',
-      href: `tel:${contact.phone.replace(/\s+/g, '')}`,
-      buttonText: h.phoneButton
-    }
+  const items = [
+    { id: 1, title: h.emailTitle, value: contact.email, icon: Mail, gradient: 'from-sky-500 to-blue-600', href: `mailto:${contact.email}`, button: h.emailButton },
+    { id: 2, title: h.phoneTitle, value: contact.phone, icon: Phone, gradient: 'from-emerald-500 to-green-600', href: `tel:${contact.phone.replace(/\s+/g, '')}`, button: h.phoneButton }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
-  }
-
   return (
-    <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20" id="contacto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="space-y-12"
-      >
-        <div className="text-center space-y-4 max-w-2xl mx-auto">
-          <h2 className="text-4xl font-bold text-gray-900">
-            {h.title}
-          </h2>
-          <p className="text-xl text-gray-600">
-            {h.subtitle}
-          </p>
-        </div>
+    <Section id="contacto" bg="cream">
+      <SectionHeading eyebrow={ui.eyebrows.contact} title={h.title} subtitle={h.subtitle} />
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-        >
-          {contactItems.map((item) => {
-            const Icon = item.icon
-            return (
-              <motion.div key={item.id} variants={itemVariants}>
-                <motion.div
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                  className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-gray-50 dark:from-gray-800 dark:to-gray-900 border-2 border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300"
-                >
-                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${item.color}`}></div>
+      <Reveal>
+        <div className="relative overflow-hidden rounded-[3rem] bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 px-6 pb-36 pt-16 text-center text-white shadow-[0_50px_100px_-40px_rgba(154,52,18,0.8)] sm:px-14">
+          <div className="absolute inset-0 dots opacity-25" />
+          <motion.div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-accent-400/40 blur-3xl animate-morph" animate={{ x: [0, 30, 0] }} transition={{ duration: 12, repeat: Infinity }} />
+          <div className="absolute -right-10 top-10 hidden h-40 w-40 rounded-full border-[14px] border-white/20 animate-float md:block" />
 
-                  <div className="p-8 space-y-6">
-                    <motion.div
-                      whileHover={{ scale: 1.15, rotate: 5 }}
-                      transition={{ type: 'spring', stiffness: 400 }}
-                      className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.color} flex items-center justify-center shadow-lg`}
-                    >
-                      <Icon size={32} className="text-white" />
-                    </motion.div>
-
-                    <div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-gray-600 dark:text-gray-300 font-semibold break-all text-lg">
-                        {item.value}
-                      </p>
-                    </div>
-
-                    <div className="h-0.5 bg-gradient-to-r from-gray-200 to-transparent dark:from-gray-700"></div>
-
-                    <motion.a
-                      href={item.href}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg hover:shadow-lg transition-all font-semibold"
-                    >
-                      {item.buttonText}
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                      </svg>
-                    </motion.a>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )
-          })}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="mx-auto max-w-2xl"
-        >
-          <Card hoverable className="bg-gradient-to-r from-primary-50 to-accent-50 border-2 border-primary-200">
-            <div className="text-center space-y-4">
-              <h3 className="text-2xl font-bold text-gray-900">
-                {h.directTitle}
-              </h3>
-              <p className="text-gray-600">
-                {h.directText}
-              </p>
-              <motion.a
-                href={`mailto:${contact.email}`}
-                whileHover={{ scale: 1.05 }}
-                className="inline-block"
-              >
-                <Button variant="primary" size="lg">
-                  {h.directButton}
-                </Button>
-              </motion.a>
+          <div className="relative">
+            <h3 className="mx-auto max-w-3xl font-display text-4xl font-extrabold leading-tight md:text-6xl">{h.directTitle}</h3>
+            <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90 md:text-xl">{h.directText}</p>
+            <div className="mt-9 flex flex-wrap justify-center gap-4">
+              <Button href="#contacto" variant="light" size="lg" shine={false}>
+                {h.directButton}
+                <ArrowRight size={20} />
+              </Button>
+              <Button href={whatsappUrl} target="_blank" variant="whatsapp" size="lg" shine={false}>
+                <WhatsAppIcon size={22} />
+                WhatsApp
+              </Button>
             </div>
-          </Card>
-        </motion.div>
-      </motion.div>
-    </section>
+          </div>
+          <Wave fill="#fff7ed" height={90} />
+        </div>
+      </Reveal>
+
+      <StaggerGroup className="mx-auto mt-14 grid max-w-4xl gap-6 md:grid-cols-2">
+        {items.map((item) => {
+          const Icon = item.icon
+          return (
+            <StaggerItem key={item.id}>
+              <Tilt max={7} scale={1.03} className="rounded-3xl">
+                <div className="relative overflow-hidden rounded-3xl border-2 border-white bg-white p-8 shadow-card">
+                  <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${item.gradient}`} />
+                  <motion.div whileHover={{ rotate: 8, scale: 1.12 }} className={`mb-6 grid h-16 w-16 place-items-center rounded-2xl bg-gradient-to-br ${item.gradient} shadow-soft`}>
+                    <Icon size={30} className="text-white" />
+                  </motion.div>
+                  <h3 className="font-display text-2xl font-extrabold text-ink">{item.title}</h3>
+                  <p className="mb-6 mt-1 break-all text-lg font-semibold text-ink-soft">{item.value}</p>
+                  <Button href={item.href} className="w-full" shine={false}>
+                    {item.button}
+                    <ArrowRight size={18} />
+                  </Button>
+                </div>
+              </Tilt>
+            </StaggerItem>
+          )
+        })}
+      </StaggerGroup>
+    </Section>
   )
 }

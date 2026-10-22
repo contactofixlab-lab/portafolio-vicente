@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:wght@300;400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Custom base styles */
 * {
   margin: 0;
   padding: 0;
@@ -17,76 +16,127 @@ html {
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background-color: #ffffff;
-  color: #1f2937;
+  background-color: #fff7ed;
+  color: #2b1608;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* Custom animations */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+h1, h2, h3 {
+  font-family: 'Bricolage Grotesque', 'DM Sans', sans-serif;
+  letter-spacing: -0.02em;
 }
 
+/* ───────── Ondas animadas entre secciones ───────── */
+@keyframes wave-x {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.wave-a { animation: wave-x 26s linear infinite; }
+.wave-b { animation: wave-x 17s linear infinite reverse; }
+.wave-c { animation: wave-x 34s linear infinite; }
+
+/* ───────── Brillo que cruza los botones ───────── */
+@keyframes shine-sweep {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  60%, 100% { transform: translateX(260%) skewX(-20deg); }
+}
+
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 40%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: translateX(-120%) skewX(-20deg);
+  animation: shine-sweep 3.6s ease-in-out infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ───────── Texto con degradé animado ───────── */
+@keyframes gradient-pan {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+
+.text-gradient {
+  background-image: linear-gradient(90deg, #ea580c, #f97316, #fbbf24, #f97316, #ea580c);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-pan 6s linear infinite;
+}
+
+/* ───────── Vidrio ───────── */
+.glass {
+  background: rgba(255, 255, 255, 0.62);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+}
+
+/* ───────── Patrón de puntos decorativo ───────── */
+.dots {
+  background-image: radial-gradient(rgba(234, 88, 12, 0.22) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+/* ───────── Subrayado ondulado bajo palabras destacadas ───────── */
+@keyframes draw-line {
+  to { stroke-dashoffset: 0; }
+}
+
+.squiggle path {
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: draw-line 1.4s 0.9s ease-out forwards;
+}
+
+/* ───────── Utilidades heredadas ───────── */
 @keyframes pulse-scale {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.15);
-  }
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
 }
 
 @keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-/* Utility classes */
 .shimmer {
   background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
 }
 
-.pulse-custom {
-  animation: pulse-scale 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
+.pulse-custom { animation: pulse-scale 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+.fade-in-up { animation: fade-in-up 0.6s ease-out; }
 
-.fade-in-up {
-  animation: fade-in-up 0.6s ease-out;
-}
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #fff7ed; }
+::-webkit-scrollbar-thumb { background: #f97316; border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: #ea580c; }
 
-/* Scrollbar customization */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #f97316;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #ea580c;
-}
-
-/* Selection color */
 ::selection {
   background-color: #f97316;
   color: white;
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

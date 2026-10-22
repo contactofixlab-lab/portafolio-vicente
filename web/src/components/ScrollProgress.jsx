@@ -1,0 +1,15 @@
+import { motion, useScroll, useSpring } from 'framer-motion'
+
+/** Línea fina en la parte superior que avanza con el scroll. */
+export default function ScrollProgress() {
+  const { scrollYProgress } = useScroll()
+  const scaleX = useSpring(scrollYProgress, { stiffness: 120, damping: 28, restDelta: 0.001 })
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="fixed left-0 right-0 top-0 z-[90] h-1 origin-left bg-gradient-to-r from-accent-400 via-primary-500 to-primary-700"
+      style={{ scaleX }}
+    />
+  )
+}

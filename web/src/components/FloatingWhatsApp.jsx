@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { MessageCircle } from 'lucide-react'
+import WhatsAppIcon from './ui/WhatsAppIcon'
 import { contact } from '../content'
 
 export default function FloatingWhatsApp() {
@@ -9,37 +9,25 @@ export default function FloatingWhatsApp() {
     <motion.div
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-      className="fixed bottom-8 right-8 z-40"
+      transition={{ type: 'spring', stiffness: 300, damping: 16, delay: 2 }}
+      className="group fixed bottom-6 right-6 z-40 sm:bottom-8 sm:right-8"
     >
+      <span className="absolute inset-0 rounded-full bg-whatsapp animate-pulse-ring" />
       <motion.a
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        className="flex items-center justify-center w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 text-white rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 group"
+        aria-label={contact.whatsappTooltip}
+        whileHover={{ scale: 1.12, rotate: -6 }}
+        whileTap={{ scale: 0.92 }}
+        className="relative grid h-16 w-16 place-items-center rounded-full bg-whatsapp text-white shadow-[0_18px_44px_-10px_rgba(37,211,102,0.75)]"
       >
-        <MessageCircle size={28} className="group-hover:scale-110 transition-transform" />
-
-        {/* Pulse Animation */}
-        <motion.div
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute inset-0 bg-green-500 rounded-full opacity-20"
-        />
+        <WhatsAppIcon size={34} />
       </motion.a>
 
-      {/* Tooltip */}
-      <motion.div
-        initial={{ opacity: 0, x: 10 }}
-        whileHover={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.2 }}
-        className="absolute bottom-20 right-0 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap pointer-events-none"
-      >
+      <span className="pointer-events-none absolute bottom-1/2 right-[calc(100%+14px)] translate-x-2 translate-y-1/2 whitespace-nowrap rounded-xl bg-ink px-4 py-2 text-sm font-semibold text-white opacity-0 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100">
         {contact.whatsappTooltip}
-        <div className="absolute bottom-0 right-4 w-2 h-2 bg-gray-900 transform rotate-45 -mb-1"></div>
-      </motion.div>
+      </span>
     </motion.div>
   )
 }

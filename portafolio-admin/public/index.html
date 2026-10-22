@@ -359,6 +359,23 @@ const DETAIL_LABELS = {
     similarEmpty: 'Texto sin similares', similarLink: 'Texto enlace similares'
 };
 
+
+/* Valores por defecto de los textos de interfaz: se muestran como sugerencia; si el campo queda vacío, el sitio usa este valor. */
+const UI_DEFAULTS = {
+    eyebrows: { life: 'Quién soy', projects: 'Portafolio', experience: 'Experiencia', skills: 'Stack', certificates: 'Credenciales', contact: 'Contacto', trajectoryPage: 'Experiencia', skillsPage: 'Stack completo' },
+    hero: { statYears: 'Años de experiencia', statProjects: 'Proyectos', statCertificates: 'Certificaciones' },
+    skills: { usedIn: 'Lo he usado en', levelAdvanced: 'Avanzado', levelIntermediate: 'Intermedio', levelBasic: 'Básico' },
+    projects: { filterAll: 'Todos' },
+    footer: { marquee: 'Hablemos', backToTop: 'Volver arriba' },
+    form: { nameLabel: 'Nombre', emailLabel: 'Email', phoneLabel: 'Teléfono (opcional)', messageLabel: 'Mensaje', subjectLabel: '¿Sobre qué quieres hablar?', subjectError: 'Elige un tema para continuar.', sendingText: 'Enviando…', faqEyebrow: 'Dudas comunes', faqMoreText: '¿Sigues con dudas?' }
+};
+const SEO_DEFAULTS = {
+    title: 'Vicente Rabanales - Ingeniero en Informática | Portafolio',
+    description: 'Portafolio profesional de Vicente Rabanales. Ingeniero en Informática especializado en transformación digital, innovación y desarrollo de soluciones empresariales.',
+    keywords: 'Ingeniero Informática, Portafolio, React, Node.js, Transformación Digital, Innovación'
+};
+const U = (group, key, label) => T(key, label, { placeholder: UI_DEFAULTS[group][key] });
+
 /* Cada sección del menú lateral es un "módulo" (group). Sus subsecciones (tab) aparecen como pestañas arriba. */
 const PAGES = [
     { id: 'header', group: 'Inicio', tab: 'Encabezado', title: 'Encabezado y menú', desc: 'Logo, texto de disponibilidad y enlaces del menú superior.', fields: [
@@ -376,7 +393,7 @@ const PAGES = [
             T('subtitle', 'Subtítulo'),
             TA('description', 'Descripción'),
             OBJ('primaryButton', 'Botón principal', [T('text', 'Texto'), T('href', 'Enlace')]),
-            OBJ('secondaryButton', 'Botón secundario', [T('text', 'Texto (vacío = oculto)'), T('href', 'Enlace')]),
+            OBJ('secondaryButton', 'Botón de descarga del CV', [T('text', 'Texto (vacío = oculto)'), FILE('href', 'Archivo del CV (PDF). Sin archivo, el botón no se muestra', { accept: 'application/pdf' })]),
             IMG('photo', 'Foto (si está vacía se muestra el emoji)'),
             LIST('floatingBadges', 'Etiquetas flotantes', [T('label', 'Texto'), T('icon', 'Icono (emoji)')], { itemLabel: 'label', make: () => ({ label: 'Nueva', icon: '⭐' }) })
         ])
@@ -594,6 +611,58 @@ const PAGES = [
             LIST('nav', 'Enlaces de navegación', [T('label', 'Texto'), T('href', 'Enlace')], { itemLabel: 'label', make: () => ({ label: 'Nuevo', href: '#' }) }),
             LIST('social', 'Redes y contacto', [T('label', 'Nombre (GitHub, LinkedIn, Email)'), T('href', 'Enlace (vacío = oculto)')], { itemLabel: 'label', make: () => ({ label: 'Nueva red', href: '' }) })
         ])
+    ]},
+    { id: 'seo', group: 'Textos y SEO', tab: 'Google y pestaña', title: 'Google y pestaña del navegador', desc: 'Título de la pestaña, descripción que aparece en Google y al compartir el enlace, y palabras clave. Si un campo queda vacío se usa el texto por defecto.', fields: [
+        OBJ('seo', 'SEO', [
+            T('title', 'Título de la pestaña', { placeholder: SEO_DEFAULTS.title }),
+            TA('description', 'Descripción para Google y vistas previas', { placeholder: SEO_DEFAULTS.description }),
+            T('keywords', 'Palabras clave (separadas por coma)', { placeholder: SEO_DEFAULTS.keywords })
+        ])
+    ]},
+    { id: 'uiLabels', group: 'Textos y SEO', tab: 'Etiquetas y botones', title: 'Etiquetas y botones del sitio', desc: 'Pequeños textos que aparecen en distintas secciones. Si un campo queda vacío se usa el texto por defecto (en gris).', fields: [
+        OBJ('ui', 'Textos de interfaz', [
+            OBJ('eyebrows', 'Etiquetas sobre los títulos de cada sección', [
+                U('eyebrows', 'life', 'Más allá del código'),
+                U('eyebrows', 'projects', 'Proyectos (inicio)'),
+                U('eyebrows', 'experience', 'Trayectoria (inicio)'),
+                U('eyebrows', 'skills', 'Habilidades (inicio)'),
+                U('eyebrows', 'certificates', 'Certificados'),
+                U('eyebrows', 'contact', 'Contacto (inicio)'),
+                U('eyebrows', 'trajectoryPage', 'Página de trayectoria'),
+                U('eyebrows', 'skillsPage', 'Página de habilidades')
+            ]),
+            OBJ('hero', 'Cifras del hero (inicio)', [
+                U('hero', 'statYears', 'Etiqueta de años de experiencia'),
+                U('hero', 'statProjects', 'Etiqueta de proyectos'),
+                U('hero', 'statCertificates', 'Etiqueta de certificaciones')
+            ]),
+            OBJ('skills', 'Habilidades', [
+                U('skills', 'usedIn', 'Texto "Lo he usado en"'),
+                U('skills', 'levelAdvanced', 'Nivel alto (80% o más)'),
+                U('skills', 'levelIntermediate', 'Nivel medio (50% a 79%)'),
+                U('skills', 'levelBasic', 'Nivel básico (menos de 50%)')
+            ]),
+            OBJ('projects', 'Página de proyectos', [U('projects', 'filterAll', 'Filtro "Todos"')]),
+            OBJ('footer', 'Footer', [
+                U('footer', 'marquee', 'Texto que se desplaza en el footer'),
+                U('footer', 'backToTop', 'Botón "Volver arriba"')
+            ])
+        ])
+    ]},
+    { id: 'uiForm', group: 'Textos y SEO', tab: 'Formulario de contacto', title: 'Textos del formulario de contacto', desc: 'Etiquetas del formulario y de la sección de dudas de la página Contacto. Si un campo queda vacío se usa el texto por defecto (en gris).', fields: [
+        OBJ('ui', 'Textos de interfaz', [
+            OBJ('form', 'Formulario', [
+                U('form', 'nameLabel', 'Campo nombre'),
+                U('form', 'emailLabel', 'Campo email'),
+                U('form', 'phoneLabel', 'Campo teléfono'),
+                U('form', 'messageLabel', 'Campo mensaje'),
+                U('form', 'subjectLabel', 'Pregunta de los temas'),
+                U('form', 'subjectError', 'Aviso si no elige tema'),
+                U('form', 'sendingText', 'Texto mientras se envía'),
+                U('form', 'faqEyebrow', 'Etiqueta sobre "Preguntas frecuentes"'),
+                U('form', 'faqMoreText', 'Texto sobre el botón de WhatsApp final')
+            ])
+        ])
     ]}
 ];
 
@@ -671,9 +740,9 @@ function fieldHTML(s, base, obj) {
         case 'list':
             return listHTML(s, parts, Array.isArray(val) ? val : []);
         case 'text':
-            return labelWrap(s, `<input type="text" data-t="text" data-p="${key}" value="${esc(val)}"${s.list ? ` list="${s.list}"` : ''}>`);
+            return labelWrap(s, `<input type="text" data-t="text" data-p="${key}" value="${esc(val)}"${s.placeholder ? ` placeholder="${esc(s.placeholder)}"` : ''}${s.list ? ` list="${s.list}"` : ''}>`);
         case 'textarea':
-            return labelWrap(s, `<textarea data-t="textarea" data-p="${key}" rows="3">${esc(val)}</textarea>`);
+            return labelWrap(s, `<textarea data-t="textarea" data-p="${key}" rows="3"${s.placeholder ? ` placeholder="${esc(s.placeholder)}"` : ''}>${esc(val)}</textarea>`);
         case 'number':
             return labelWrap(s, `<input type="number" data-t="number" data-p="${key}" value="${esc(val)}"${s.min !== undefined ? ` min="${s.min}"` : ''}${s.max !== undefined ? ` max="${s.max}"` : ''}>`);
         case 'date':

@@ -1,338 +1,259 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Phone, MapPin, Clock, ChevronDown, Check, ArrowLeft, MessageCircle } from 'lucide-react'
-import Layout from '../components/Layout'
-import { contact } from '../content'
+import { Mail, Phone, MapPin, Clock, Plus, Send, Loader2 } from 'lucide-react'
+import Section from '../components/ui/Section'
+import PageHero from '../components/ui/PageHero'
+import Button from '../components/ui/Button'
+import WhatsAppIcon from '../components/ui/WhatsAppIcon'
+import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
+import { contact, ui } from '../content'
 
-const SUBJECT_OPTIONS = contact.page.subjects
+const p = contact.page
+const faqs = p.faqs
+const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
-const contactInfo = {
-  email: contact.email,
-  emailHref: `mailto:${contact.email}`,
-  telefono: contact.phone,
-  telefonoHref: `tel:${contact.phone.replace(/\s+/g, '')}`,
-  whatsapp: `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`,
-  ubicacion: contact.location,
-  disponibilidad: contact.availability
-}
+const fieldBase =
+  'peer w-full rounded-2xl border-2 border-primary-100 bg-primary-50/60 px-4 pb-2.5 pt-6 text-ink outline-none transition-all placeholder-transparent hover:border-primary-200 focus:border-primary-500 focus:bg-white focus:shadow-[0_0_0_5px_rgba(249,115,22,0.15)]'
 
-const faqs = contact.page.faqs
+const labelBase =
+  'pointer-events-none absolute left-4 top-1.5 text-xs font-bold uppercase tracking-wide text-primary-600 transition-all peer-placeholder-shown:top-[1.1rem] peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-ink-soft peer-focus:top-1.5 peer-focus:text-xs peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wide peer-focus:text-primary-600'
 
-function CustomSelect({ value, onChange }) {
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-
-  useEffect(() => {
-    const handler = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [])
-
+function Field({ label, name, type = 'text', value, onChange, required = false, textarea = false }) {
+  const Tag = textarea ? 'textarea' : 'input'
   return (
-    <div ref={ref} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen((o) => !o)}
-        className={`w-full px-4 py-3 border-2 rounded-lg bg-gray-50 dark:bg-gray-800 transition-colors text-sm flex items-center justify-between text-left ${
-          open
-            ? 'border-primary-500 ring-2 ring-primary-500/20'
-            : 'border-gray-200 dark:border-gray-700 hover:border-primary-300 dark:hover:border-primary-700'
-        } ${value ? 'text-gray-900 dark:text-white' : 'text-gray-500 dark:text-gray-400'}`}
-      >
-        <span>{value || 'Selecciona un tema'}</span>
-        <ChevronDown
-          size={16}
-          className={`flex-shrink-0 transition-transform duration-200 ${open ? 'rotate-180 text-primary-500' : 'text-gray-400'}`}
-        />
-      </button>
-
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.15 }}
-            className="absolute left-0 right-0 top-full mt-1.5 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 shadow-xl z-20 overflow-hidden py-1"
-          >
-            {SUBJECT_OPTIONS.map((opt) => {
-              const selected = value === opt
-              return (
-                <button
-                  key={opt}
-                  type="button"
-                  onClick={() => {
-                    onChange(opt)
-                    setOpen(false)
-                  }}
-                  className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left transition-colors ${
-                    selected
-                      ? 'bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 font-semibold'
-                      : 'text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  }`}
-                >
-                  <span
-                    className={`w-4 h-4 flex-shrink-0 flex items-center justify-center rounded-full border transition-colors ${
-                      selected ? 'border-primary-500 bg-primary-500' : 'border-gray-300 dark:border-gray-600 bg-transparent'
-                    }`}
-                  >
-                    {selected && <Check size={10} className="text-white" />}
-                  </span>
-                  {opt}
-                </button>
-              )
-            })}
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <div className="relative">
+      <Tag
+        id={name}
+        name={name}
+        type={textarea ? undefined : type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        placeholder=" "
+        rows={textarea ? 5 : undefined}
+        className={`${fieldBase} ${textarea ? 'resize-none' : ''}`}
+      />
+      <label htmlFor={name} className={labelBase}>
+        {label}
+        {required ? ' *' : ''}
+      </label>
     </div>
   )
 }
 
+function SuccessCheck() {
+  return (
+    <svg viewBox="0 0 52 52" className="h-24 w-24" fill="none">
+      <motion.circle cx="26" cy="26" r="24" stroke="#f97316" strokeWidth="3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6 }} />
+      <motion.path d="M14 27 l8 8 l16 -17" stroke="#f97316" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.5 }} />
+    </svg>
+  )
+}
+
+function FaqItem({ faq, index, open, onToggle }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-40px' }}
+      transition={{ duration: 0.6, delay: index * 0.07, ease: [0.16, 1, 0.3, 1] }}
+      className={`overflow-hidden rounded-3xl border-2 transition-all duration-300 ${open ? 'border-primary-400 bg-white shadow-glow' : 'border-white bg-white shadow-card hover:border-primary-200'}`}
+    >
+      <button type="button" onClick={onToggle} aria-expanded={open} className="flex w-full items-center gap-4 p-5 text-left md:p-6">
+        <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl font-display text-lg font-extrabold transition-colors duration-300 ${open ? 'bg-gradient-to-br from-primary-500 to-primary-600 text-white' : 'bg-primary-100 text-primary-700'}`}>
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <span className="flex-1 font-display text-lg font-bold text-ink md:text-xl">{faq.q}</span>
+        <motion.span animate={{ rotate: open ? 135 : 0 }} transition={{ type: 'spring', stiffness: 300, damping: 18 }} className={`grid h-10 w-10 shrink-0 place-items-center rounded-full ${open ? 'bg-primary-500 text-white' : 'bg-primary-50 text-primary-600'}`}>
+          <Plus size={20} />
+        </motion.span>
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }} className="overflow-hidden">
+            <p className="px-5 pb-6 pl-[4.75rem] text-lg leading-relaxed text-ink-soft md:px-6 md:pl-[5.5rem]">{faq.a}</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
+  )
+}
+
 export default function Contacto() {
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
-  const [submitted, setSubmitted] = useState(false)
-  const [openFaq, setOpenFaq] = useState(null)
+  const [status, setStatus] = useState('idle')
+  const [subjectError, setSubjectError] = useState(false)
+  const [openFaq, setOpenFaq] = useState(0)
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value })
-  }
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    if (!formData.subject) return
-    setSubmitted(true)
+    if (!formData.subject) {
+      setSubjectError(true)
+      return
+    }
+    setStatus('sending')
     setTimeout(() => {
-      setSubmitted(false)
-      setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-    }, 4000)
+      setStatus('sent')
+      setTimeout(() => {
+        setStatus('idle')
+        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
+      }, 5000)
+    }, 1300)
   }
 
-  const inputCls =
-    'w-full px-4 py-3 border-2 border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors text-sm'
-
-  const p = contact.page
-
-  const contactItems = [
-    { label: 'Email', value: contactInfo.email, href: contactInfo.emailHref, icon: Mail },
-    { label: 'Teléfono', value: contactInfo.telefono, href: contactInfo.telefonoHref, icon: Phone },
-    { label: 'Ubicación', value: contactInfo.ubicacion, href: null, icon: MapPin },
-    { label: 'Disponibilidad', value: contactInfo.disponibilidad, href: null, icon: Clock }
+  const infoItems = [
+    { label: 'Email', value: contact.email, href: `mailto:${contact.email}`, icon: Mail },
+    { label: 'Teléfono', value: contact.phone, href: `tel:${contact.phone.replace(/\s+/g, '')}`, icon: Phone },
+    { label: 'Ubicación', value: contact.location, href: null, icon: MapPin },
+    { label: 'Disponibilidad', value: contact.availability, href: null, icon: Clock }
   ]
 
   return (
-    <Layout>
-      <div className="bg-primary-50">
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-4">
-          <motion.a
-            href="#home"
-            whileHover={{ x: -4 }}
-            className="inline-flex items-center gap-2 text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 font-semibold mb-6"
-          >
-            <ArrowLeft size={20} />
-            {p.backText}
-          </motion.a>
+    <>
+      <PageHero eyebrow={p.infoEyebrow} title={p.title} subtitle={p.subtitle} backText={p.backText} />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center max-w-2xl mx-auto mb-4"
-          >
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent mb-4">
-              {p.title}
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400">
-              {p.subtitle}
-            </p>
-          </motion.div>
-        </section>
+      <Section bg="cream" className="-mt-px">
+        <Reveal>
+          <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_50px_100px_-40px_rgba(154,52,18,0.45)] lg:grid-cols-5">
+            <div className="relative overflow-hidden bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 p-8 text-white md:p-10 lg:col-span-2">
+              <div className="absolute inset-0 dots opacity-25" />
+              <motion.div className="absolute -right-16 -top-16 h-64 w-64 bg-accent-400/40 blur-2xl animate-morph" animate={{ rotate: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity }} />
+              <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full border-[18px] border-white/10 animate-float-slow" />
 
-        <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="rounded-3xl overflow-hidden shadow-2xl dark:shadow-primary-900/10 grid md:grid-cols-5 border border-gray-200 dark:border-gray-800"
-          >
-            <div className="md:col-span-2 bg-gradient-to-br from-primary-600 to-primary-700 relative overflow-hidden flex flex-col">
-              <div className="absolute -top-16 -right-16 w-64 h-64 rounded-full bg-white/5 pointer-events-none" />
-              <div className="absolute -bottom-20 -left-20 w-72 h-72 rounded-full bg-white/5 pointer-events-none" />
-              <div className="absolute top-1/2 right-0 w-32 h-32 rounded-full bg-accent/10 pointer-events-none" />
+              <div className="relative flex h-full flex-col">
+                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.2em] text-accent-200">{p.infoEyebrow}</span>
+                <h2 className="font-display text-3xl font-extrabold leading-tight md:text-4xl">{p.infoTitle}</h2>
+                <div className="mt-4 h-1.5 w-14 rounded-full bg-accent-300" />
 
-              <div className="relative p-8 md:p-10 flex flex-col h-full">
-                <div className="mb-8">
-                  <span className="text-accent text-xs font-bold uppercase tracking-widest mb-3 block">{p.infoEyebrow}</span>
-                  <h2 className="text-2xl font-bold text-white leading-tight">
-                    {p.infoTitle}
-                  </h2>
-                  <div className="w-12 h-1 bg-accent rounded-full mt-4" />
-                </div>
-
-                <div className="space-y-5 flex-1">
-                  {contactItems.map((item) => {
+                <StaggerGroup className="mt-9 flex-1 space-y-5">
+                  {infoItems.map((item) => {
                     const Icon = item.icon
                     return (
-                      <div key={item.label} className="flex items-start gap-4 group">
-                        <div className="w-11 h-11 rounded-xl bg-white/10 group-hover:bg-accent/20 flex items-center justify-center flex-shrink-0 transition-colors duration-200">
-                          <Icon size={20} className="text-accent" />
+                      <StaggerItem key={item.label}>
+                        <div className="group flex items-start gap-4">
+                          <motion.div whileHover={{ rotate: -10, scale: 1.12 }} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white/15 backdrop-blur transition-colors group-hover:bg-white group-hover:text-primary-600">
+                            <Icon size={22} />
+                          </motion.div>
+                          <div className="min-w-0">
+                            <p className="mb-0.5 text-[11px] font-bold uppercase tracking-widest text-white/60">{item.label}</p>
+                            {item.href ? (
+                              <a href={item.href} className="break-all font-semibold transition-colors hover:text-accent-200">
+                                {item.value}
+                              </a>
+                            ) : (
+                              <p className="font-semibold">{item.value}</p>
+                            )}
+                          </div>
                         </div>
-                        <div className="min-w-0">
-                          <p className="text-white/50 text-[10px] font-bold uppercase tracking-widest mb-1">{item.label}</p>
-                          {item.href ? (
-                            <a href={item.href} className="text-white group-hover:text-accent transition-colors font-semibold text-sm break-all">
-                              {item.value}
-                            </a>
-                          ) : (
-                            <p className="text-white font-semibold text-sm">{item.value}</p>
-                          )}
-                        </div>
-                      </div>
+                      </StaggerItem>
                     )
                   })}
-                </div>
+                </StaggerGroup>
 
-                <div className="mt-8 pt-6 border-t border-white/10">
-                  <a
-                    href={contactInfo.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center justify-center gap-3 w-full bg-accent hover:bg-amber-400 text-gray-900 font-bold py-3 rounded-xl transition-colors text-sm"
-                  >
-                    <MessageCircle size={20} />
+                <div className="mt-9 border-t border-white/20 pt-7">
+                  <Button href={whatsappUrl} target="_blank" variant="whatsapp" size="lg" shine={false} className="w-full">
+                    <WhatsAppIcon size={24} />
                     {p.whatsappButton}
-                  </a>
-                  <p className="text-white/30 text-[11px] text-center mt-3">{p.footerLine}</p>
+                  </Button>
+                  <p className="mt-4 text-center text-xs text-white/60">{p.footerLine}</p>
                 </div>
               </div>
             </div>
 
-            <div className="md:col-span-3 bg-white p-8 md:p-10">
-              <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                {p.formTitle} <span className="text-primary-600 dark:text-primary-400">{p.formHighlight}</span>
+            <div className="p-8 md:p-12 lg:col-span-3">
+              <h2 className="font-display text-3xl font-extrabold text-ink md:text-4xl">
+                {p.formTitle} <span className="text-gradient">{p.formHighlight}</span>
               </h2>
-              <p className="text-gray-600 dark:text-gray-400 text-sm mb-7">{p.formSubtitle}</p>
+              <p className="mb-8 mt-2 text-ink-soft">{p.formSubtitle}</p>
 
-              {submitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center py-16"
-                >
-                  <div className="w-16 h-16 rounded-full bg-primary-50 dark:bg-primary-900/30 flex items-center justify-center mb-4">
-                    <Check size={32} className="text-primary-600 dark:text-primary-400" />
-                  </div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">{p.successTitle}</h3>
-                  <p className="text-gray-600 dark:text-gray-400 text-sm">{p.successText}</p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-1.5">Nombre *</label>
-                      <input type="text" name="name" placeholder="Juan Pérez" value={formData.name} onChange={handleChange} required className={inputCls} />
+              <AnimatePresence mode="wait" initial={false}>
+                {status === 'sent' ? (
+                  <motion.div key="sent" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center justify-center py-16 text-center">
+                    <SuccessCheck />
+                    <h3 className="mt-6 font-display text-3xl font-extrabold text-ink">{p.successTitle}</h3>
+                    <p className="mt-2 text-lg text-ink-soft">{p.successText}</p>
+                  </motion.div>
+                ) : (
+                  <motion.form key="form" onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-5">
+                    <div className="grid gap-5 sm:grid-cols-2">
+                      <Field label={ui.form.nameLabel} name="name" value={formData.name} onChange={handleChange} required />
+                      <Field label={ui.form.emailLabel} name="email" type="email" value={formData.email} onChange={handleChange} required />
                     </div>
+                    <Field label={ui.form.phoneLabel} name="phone" type="tel" value={formData.phone} onChange={handleChange} />
+
                     <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-1.5">Email *</label>
-                      <input type="email" name="email" placeholder="juan@ejemplo.cl" value={formData.email} onChange={handleChange} required className={inputCls} />
+                      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-primary-600">{ui.form.subjectLabel} *</p>
+                      <motion.div animate={subjectError ? { x: [0, -8, 8, -6, 6, 0] } : {}} transition={{ duration: 0.4 }} className="flex flex-wrap gap-2.5">
+                        {p.subjects.map((subject) => {
+                          const active = formData.subject === subject
+                          return (
+                            <button
+                              key={subject}
+                              type="button"
+                              onClick={() => {
+                                setFormData({ ...formData, subject })
+                                setSubjectError(false)
+                              }}
+                              className={`relative rounded-full border-2 px-5 py-2.5 text-sm font-bold transition-colors ${active ? 'border-transparent text-white' : 'border-primary-100 bg-white text-ink-soft hover:border-primary-300 hover:text-primary-700'}`}
+                            >
+                              {active && <motion.span layoutId="subject-pill" className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 shadow-glow" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />}
+                              <span className="relative">{subject}</span>
+                            </button>
+                          )
+                        })}
+                      </motion.div>
+                      {subjectError && <p className="mt-2 text-sm font-semibold text-rose-600">{ui.form.subjectError}</p>}
                     </div>
-                  </div>
-                  <div className="grid sm:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-1.5">
-                        Teléfono <span className="normal-case font-normal text-gray-400">(opcional)</span>
-                      </label>
-                      <input type="tel" name="phone" placeholder="+56 9 xxxx xxxx" value={formData.phone} onChange={handleChange} className={inputCls} />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-1.5">Asunto *</label>
-                      <CustomSelect value={formData.subject} onChange={(val) => setFormData({ ...formData, subject: val })} />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 uppercase tracking-wide mb-1.5">Mensaje *</label>
-                    <textarea
-                      name="message"
-                      placeholder="Cuéntame sobre tu consulta o proyecto…"
-                      value={formData.message}
-                      onChange={handleChange}
-                      required
-                      rows={6}
-                      className={inputCls + ' resize-none'}
-                    />
-                  </div>
-                  <motion.button
-                    type="submit"
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-primary-500 hover:bg-primary-600 text-white font-bold py-3.5 rounded-lg transition-colors text-sm uppercase tracking-wider shadow-lg shadow-primary-500/20"
-                  >
-                    {p.submitButton}
-                  </motion.button>
-                </form>
-              )}
+
+                    <Field label={ui.form.messageLabel} name="message" value={formData.message} onChange={handleChange} required textarea />
+
+                    <Button type="submit" size="lg" className="w-full" disabled={status === 'sending'}>
+                      {status === 'sending' ? (
+                        <>
+                          <Loader2 size={20} className="animate-spin" />
+                          {ui.form.sendingText}
+                        </>
+                      ) : (
+                        <>
+                          {p.submitButton}
+                          <Send size={18} />
+                        </>
+                      )}
+                    </Button>
+                  </motion.form>
+                )}
+              </AnimatePresence>
             </div>
-          </motion.div>
-        </section>
+          </div>
+        </Reveal>
 
-        <section className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white inline-block">
-              {p.faqTitle} <span className="text-primary-600 dark:text-primary-400">{p.faqHighlight}</span>
-            </h2>
-            <div className="w-16 h-1 bg-primary-500 rounded-full mx-auto mt-4" />
-          </motion.div>
+        <div className="mx-auto mt-28 max-w-3xl">
+          <div className="mb-12 text-center">
+            <Reveal>
+              <span className="mb-4 inline-flex rounded-full bg-primary-100 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-primary-700">{ui.form.faqEyebrow}</span>
+              <h2 className="font-display text-4xl font-extrabold text-ink md:text-6xl">
+                {p.faqTitle} <span className="text-gradient">{p.faqHighlight}</span>
+              </h2>
+            </Reveal>
+          </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {faqs.map((faq, i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden"
-              >
-                <button
-                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-4 text-left hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors"
-                >
-                  <span className="font-semibold text-gray-900 dark:text-white pr-4 text-sm">{faq.q}</span>
-                  <ChevronDown
-                    size={20}
-                    className={`text-primary-500 flex-shrink-0 transition-transform ${openFaq === i ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {openFaq === i && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-5 text-gray-600 dark:text-gray-400 text-sm leading-relaxed border-t border-gray-100 dark:border-gray-700 pt-4">
-                        {faq.a}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
+              <FaqItem key={faq.q} faq={faq} index={i} open={openFaq === i} onToggle={() => setOpenFaq(openFaq === i ? -1 : i)} />
             ))}
           </div>
-        </section>
-      </div>
-    </Layout>
+
+          <Reveal className="mt-12 text-center">
+            <p className="mb-4 text-lg font-semibold text-ink-soft">{ui.form.faqMoreText}</p>
+            <Button href={whatsappUrl} target="_blank" variant="whatsapp" size="lg" shine={false}>
+              <WhatsAppIcon size={22} />
+              {p.whatsappButton}
+            </Button>
+          </Reveal>
+        </div>
+      </Section>
+    </>
   )
 }

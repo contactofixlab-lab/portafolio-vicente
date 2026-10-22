@@ -1,94 +1,55 @@
 import { motion } from 'framer-motion'
-import Card from '../components/ui/Card'
+import Section from '../components/ui/Section'
+import PageHero from '../components/ui/PageHero'
 import SkillImage from '../components/ui/SkillImage'
-import { skills } from '../content'
-import { ArrowLeft } from 'lucide-react'
+import Tilt from '../components/ui/Tilt'
+import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
+import { skills, ui } from '../content'
 
 export default function FullSkillsSection() {
   return (
-    <div className="w-full py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="space-y-12"
-        >
-          <div className="space-y-4 text-center">
-            <motion.a
-              href="#home"
-              whileHover={{ x: -4 }}
-              className="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-semibold mb-4"
-            >
-              <ArrowLeft size={20} />
-              {skills.backText}
-            </motion.a>
+    <>
+      <PageHero eyebrow={ui.eyebrows.skillsPage} title={skills.fullTitle} subtitle={skills.fullSubtitle} backText={skills.backText} />
 
-            <h1 className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-primary-600 to-primary-400 bg-clip-text text-transparent">
-              {skills.fullTitle}
-            </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              {skills.fullSubtitle}
-            </p>
-          </div>
-
-          <div className="space-y-16">
-            {skills.categories.map((category, idx) => (
-              <motion.div
-                key={category.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: idx * 0.1 }}
-                className="space-y-6 flex flex-col items-center"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center">
-                  {category.icon} {category.name}
-                </h2>
-
-                <div className="w-full flex justify-center">
-                  <div className="grid md:grid-cols-5 sm:grid-cols-3 grid-cols-2 gap-4 w-full max-w-5xl">
-                    {category.skills.map((skill, skillIdx) => (
-                      <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: idx * 0.1 + skillIdx * 0.05 }}
-                        whileHover={{ y: -4, scale: 1.05 }}
-                        className="w-full flex justify-center"
-                      >
-                        <Card className="h-full w-full flex flex-col items-center justify-center py-6 px-4 bg-gradient-to-br from-primary-50 to-primary-100 dark:from-gray-800 dark:to-gray-700 border-2 border-transparent hover:border-primary-300 hover:shadow-xl transition-all cursor-pointer group">
-                          <div className="mb-3 group-hover:scale-110 transition-transform">
-                            <SkillImage name={skill.name} size="lg" />
-                          </div>
-                          <h4 className="font-bold text-gray-900 dark:text-white text-center text-sm leading-tight">
-                            {skill.name}
-                          </h4>
-                        </Card>
-                      </motion.div>
-                    ))}
-                  </div>
+      <Section bg="cream" className="-mt-px">
+        <div className="space-y-20">
+          {skills.categories.map((category) => (
+            <div key={category.name}>
+              <Reveal>
+                <div className="mb-8 flex items-center gap-4">
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 text-2xl shadow-glow">{category.icon}</span>
+                  <h2 className="font-display text-3xl font-extrabold text-ink md:text-4xl">{category.name}</h2>
+                  <span className="h-px flex-1 bg-gradient-to-r from-primary-300 to-transparent" />
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </Reveal>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="text-center pt-8"
-          >
-            <motion.a
-              href="#home"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-primary-500 to-primary-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all"
-            >
-              <ArrowLeft size={20} />
-              {skills.backText}
-            </motion.a>
-          </motion.div>
-        </motion.div>
-      </div>
-    </div>
+              <StaggerGroup className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-5">
+                {category.skills.map((skill) => (
+                  <StaggerItem key={skill.name}>
+                    <Tilt max={10} scale={1.06} className="rounded-3xl">
+                      <div className="group flex h-full flex-col items-center justify-center gap-4 rounded-3xl border-2 border-white bg-white px-4 py-7 text-center shadow-card transition-colors hover:border-primary-300">
+                        <motion.div whileHover={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 0.5 }} className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100">
+                          <SkillImage name={skill.name} size="lg" />
+                        </motion.div>
+                        <h3 className="font-display text-base font-bold leading-tight text-ink">{skill.name}</h3>
+                        <div className="h-1.5 w-full overflow-hidden rounded-full bg-primary-100">
+                          <motion.div
+                            className="h-full rounded-full bg-gradient-to-r from-primary-400 to-primary-600"
+                            initial={{ width: 0 }}
+                            whileInView={{ width: `${skill.percent}%` }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                          />
+                        </div>
+                      </div>
+                    </Tilt>
+                  </StaggerItem>
+                ))}
+              </StaggerGroup>
+            </div>
+          ))}
+        </div>
+      </Section>
+    </>
   )
 }

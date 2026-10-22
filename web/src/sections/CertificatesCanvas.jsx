@@ -1,124 +1,84 @@
-import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import Section from '../components/ui/Section'
+import SectionHeading from '../components/ui/SectionHeading'
+import { Reveal } from '../components/ui/Reveal'
 import CertificateCard from '../components/CertificateCard'
-import { certificates as c } from '../content'
+import { certificates as c, ui } from '../content'
+
+const ITEMS_PER_VIEW = 3
 
 export default function CertificatesCanvas() {
   const [currentIndex, setCurrentIndex] = useState(0)
-
   const certificates = c.items
-
-  const itemsPerView = 3
-  const maxIndex = Math.max(0, certificates.length - itemsPerView)
-
-  const goNext = () => {
-    setCurrentIndex(Math.min(currentIndex + 1, maxIndex))
-  }
-
-  const goPrev = () => {
-    setCurrentIndex(Math.max(currentIndex - 1, 0))
-  }
-
-  const visibleCertificates = certificates.slice(currentIndex, currentIndex + itemsPerView)
+  const maxIndex = Math.max(0, certificates.length - ITEMS_PER_VIEW)
+  const visible = certificates.slice(currentIndex, currentIndex + ITEMS_PER_VIEW)
   const isAtStart = currentIndex === 0
   const isAtEnd = currentIndex === maxIndex
 
   return (
-    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <Section id="certificados" bg="peach" next="cream" wide>
+      <SectionHeading eyebrow={ui.eyebrows.certificates} title={c.title} subtitle={c.subtitle} />
+
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="space-y-12"
+        key={currentIndex}
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="grid grid-cols-1 gap-7 md:grid-cols-3"
       >
-        <div className="text-center space-y-4">
-          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary-600 to-accent-400 bg-clip-text text-transparent">
-            {c.title}
-          </h2>
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            {c.subtitle}
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {visibleCertificates.map((cert) => (
-            <motion.div
-              key={cert.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.3 }}
-            >
-              <CertificateCard certificate={cert} />
-            </motion.div>
-          ))}
-        </div>
-
-        <div className="flex items-center justify-center gap-8">
-          <motion.button
-            whileHover={{ scale: isAtStart ? 1 : 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={goPrev}
-            disabled={isAtStart}
-            className={`p-3 rounded-full transition-all ${
-              isAtStart
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg active:shadow-md'
-            }`}
-          >
-            <ChevronLeft size={28} />
-          </motion.button>
-
-          <div className="text-center min-w-40">
-            <div className="text-lg font-bold text-gray-900">
-              {currentIndex + 1} - {Math.min(currentIndex + itemsPerView, certificates.length)}
-            </div>
-            <div className="text-sm text-gray-600">
-              de {certificates.length} certificados
-            </div>
-          </div>
-
-          <motion.button
-            whileHover={{ scale: isAtEnd ? 1 : 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={goNext}
-            disabled={isAtEnd}
-            className={`p-3 rounded-full transition-all ${
-              isAtEnd
-                ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-                : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-lg active:shadow-md'
-            }`}
-          >
-            <ChevronRight size={28} />
-          </motion.button>
-        </div>
-
-        <div className="flex gap-2 justify-center">
-          {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
-            <motion.button
-              key={idx}
-              onClick={() => setCurrentIndex(idx)}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.95 }}
-              className={`h-3 rounded-full transition-all ${
-                currentIndex === idx
-                  ? 'bg-primary-600 w-8'
-                  : 'bg-gray-300 w-3 hover:bg-gray-400'
-              }`}
-            />
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-center text-sm text-gray-600 pt-4"
-        >
-          {c.hint}
-        </motion.div>
+        {visible.map((cert) => (
+          <CertificateCard key={cert.name} certificate={cert} />
+        ))}
       </motion.div>
-    </section>
+
+      <div className="mt-12 flex items-center justify-center gap-8">
+        <motion.button
+          type="button"
+          whileHover={{ scale: isAtStart ? 1 : 1.12 }}
+          whileTap={{ scale: 0.92 }}
+          onClick={() => setCurrentIndex(Math.max(currentIndex - 1, 0))}
+          disabled={isAtStart}
+          aria-label="Certificados anteriores"
+          className={`grid h-14 w-14 place-items-center rounded-full transition-all ${isAtStart ? 'cursor-not-allowed bg-white/60 text-gray-400' : 'bg-white text-primary-600 shadow-glow'}`}
+        >
+          <ChevronLeft size={28} />
+        </motion.button>
+
+        <div className="min-w-40 text-center">
+          <div className="font-display text-2xl font-extrabold text-ink">
+            {currentIndex + 1} - {Math.min(currentIndex + ITEMS_PER_VIEW, certificates.length)}
+          </div>
+          <div className="text-sm font-semibold text-ink-soft">de {certificates.length} certificados</div>
+        </div>
+
+        <motion.button
+          type="button"
+          whileHover={{ scale: isAtEnd ? 1 : 1.12 }}
+          whileTap={{ scale: 0.92 }}
+          onClick={() => setCurrentIndex(Math.min(currentIndex + 1, maxIndex))}
+          disabled={isAtEnd}
+          aria-label="Certificados siguientes"
+          className={`grid h-14 w-14 place-items-center rounded-full transition-all ${isAtEnd ? 'cursor-not-allowed bg-white/60 text-gray-400' : 'bg-white text-primary-600 shadow-glow'}`}
+        >
+          <ChevronRight size={28} />
+        </motion.button>
+      </div>
+
+      <div className="mt-6 flex justify-center gap-2">
+        {Array.from({ length: maxIndex + 1 }).map((_, idx) => (
+          <button
+            key={idx}
+            type="button"
+            onClick={() => setCurrentIndex(idx)}
+            aria-label={`Ir al grupo ${idx + 1}`}
+            className={`h-3 rounded-full transition-all duration-300 ${currentIndex === idx ? 'w-9 bg-primary-600' : 'w-3 bg-primary-300 hover:bg-primary-400'}`}
+          />
+        ))}
+      </div>
+
+      <Reveal className="mt-8 text-center text-sm font-semibold text-ink-soft">{c.hint}</Reveal>
+    </Section>
   )
 }
