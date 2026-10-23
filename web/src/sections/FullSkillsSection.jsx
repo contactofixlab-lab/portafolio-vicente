@@ -29,7 +29,7 @@ export default function FullSkillsSection() {
                     <Tilt max={10} scale={1.06} className="rounded-3xl">
                       <div className="group flex h-full flex-col items-center justify-center gap-4 rounded-3xl border-2 border-white bg-white px-4 py-7 text-center shadow-card transition-colors hover:border-primary-300">
                         <motion.div whileHover={{ rotate: [0, -8, 8, 0] }} transition={{ duration: 0.5 }} className="grid h-20 w-20 place-items-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100">
-                          <SkillImage name={skill.name} size="lg" />
+                          <SkillImage name={skill.name} src={skill.image} size="lg" />
                         </motion.div>
                         <h3 className="font-display text-base font-bold leading-tight text-ink">{skill.name}</h3>
                         <div className="h-1.5 w-full overflow-hidden rounded-full bg-primary-100">

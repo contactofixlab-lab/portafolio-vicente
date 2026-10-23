@@ -67,11 +67,12 @@ const emojiMap = {
   'Jenkins': '🔄'
 }
 
-export default function SkillImage({ name, size = 'md', showFallback = true }) {
+export default function SkillImage({ name, src, size = 'md', showFallback = true }) {
   const [imageError, setImageError] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
 
-  const logoFile = logoMap[name]
+  // El logo cargado en el admin manda; el mapa fijo solo respalda a las habilidades antiguas
+  const imageSrc = src || (logoMap[name] ? `/skills/${logoMap[name]}` : '')
   const emoji = emojiMap[name] || '🛠️'
 
   // Tamaños
@@ -87,7 +88,7 @@ export default function SkillImage({ name, size = 'md', showFallback = true }) {
   const sizeClass = sizeClasses[size] || sizeClasses.md
 
   // Si no hay logo mapeado o hubo error, mostrar emoji
-  if (!logoFile || imageError) {
+  if (!imageSrc || imageError) {
     if (showFallback) {
       return (
         <span className={`inline-flex items-center justify-center text-${size}`} title={name}>
@@ -101,7 +102,7 @@ export default function SkillImage({ name, size = 'md', showFallback = true }) {
   return (
     <div className={`inline-flex items-center justify-center ${sizeClass}`} title={name}>
       <img
-        src={`/${logoFile}`}
+        src={imageSrc}
         alt={name}
         className={`${sizeClass} object-contain`}
         onError={() => setImageError(true)}

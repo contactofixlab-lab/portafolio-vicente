@@ -18,7 +18,7 @@ const levelOf = (percent) => (percent >= 80 ? ui.skills.levelAdvanced : percent 
 function LogoChip({ skill }) {
   return (
     <div className="flex items-center gap-3 rounded-2xl border-2 border-primary-100 bg-white px-5 py-3 shadow-card">
-      <SkillImage name={skill.name} size="sm" />
+      <SkillImage name={skill.name} src={skill.image} size="sm" />
       <span className="whitespace-nowrap text-sm font-bold text-ink">{skill.name}</span>
     </div>
   )
@@ -91,7 +91,7 @@ export default function SkillsSection() {
               >
                 <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center">
                   <div className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-primary-50 to-primary-100">
-                    <SkillImage name={s.name} size="md" />
+                    <SkillImage name={s.name} src={s.image} size="md" />
                   </div>
                   <div className="min-w-0 max-w-full">
                     <p className="break-words font-bold text-ink sm:truncate">{s.name}</p>
@@ -123,7 +123,7 @@ export default function SkillsSection() {
         <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full bg-primary-200/50 blur-2xl" />
         <div className="relative flex flex-col gap-6 md:flex-row md:items-center">
           <div className="grid h-24 w-24 shrink-0 place-items-center rounded-3xl bg-white shadow-soft">
-            <SkillImage name={skill.name} size="xl" />
+            <SkillImage name={skill.name} src={skill.image} size="xl" />
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex flex-wrap items-baseline gap-3">
