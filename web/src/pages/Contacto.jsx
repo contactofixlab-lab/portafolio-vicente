@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mail, Phone, MapPin, Clock, Plus, Send, Loader2 } from 'lucide-react'
+import { Mail, Phone, MapPin, Clock, Plus, ArrowUpRight } from 'lucide-react'
 import Section from '../components/ui/Section'
 import PageHero from '../components/ui/PageHero'
 import Button from '../components/ui/Button'
+import Tilt from '../components/ui/Tilt'
 import WhatsAppIcon from '../components/ui/WhatsAppIcon'
 import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
 import { contact, ui } from '../content'
@@ -12,41 +13,37 @@ const p = contact.page
 const faqs = p.faqs
 const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
-const fieldBase =
-  'peer w-full rounded-2xl border-2 border-primary-100 bg-primary-50/60 px-4 pb-2.5 pt-6 text-ink outline-none transition-all placeholder-transparent hover:border-primary-200 focus:border-primary-500 focus:bg-white focus:shadow-[0_0_0_5px_rgba(74,75,240,0.2)]'
-
-const labelBase =
-  'pointer-events-none absolute left-4 top-1.5 text-xs font-bold uppercase tracking-wide text-primary-600 transition-all peer-placeholder-shown:top-[1.1rem] peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-ink-soft peer-focus:top-1.5 peer-focus:text-xs peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wide peer-focus:text-primary-600'
-
-function Field({ label, name, type = 'text', value, onChange, required = false, textarea = false }) {
-  const Tag = textarea ? 'textarea' : 'input'
-  return (
-    <div className="relative">
-      <Tag
-        id={name}
-        name={name}
-        type={textarea ? undefined : type}
-        value={value}
-        onChange={onChange}
-        required={required}
-        placeholder=" "
-        rows={textarea ? 5 : undefined}
-        className={`${fieldBase} ${textarea ? 'resize-none' : ''}`}
-      />
-      <label htmlFor={name} className={labelBase}>
-        {label}
-        {required ? ' *' : ''}
-      </label>
-    </div>
+/** Tarjeta grande de contacto: con acción (enlace) o solo informativa. */
+function ContactCard({ icon: Icon, label, value, href, action, gradient, span = 'lg:col-span-2', external = false, whatsapp = false }) {
+  const body = (
+    <Tilt max={6} scale={1.025} className="h-full rounded-[2rem]">
+      <div className="led-hover relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white p-8 shadow-card md:p-9">
+        <div className={`absolute inset-x-0 top-0 h-2 bg-gradient-to-r ${gradient}`} />
+        <motion.div whileHover={{ rotate: 8, scale: 1.12 }} className={`mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-gradient-to-br ${gradient} text-white shadow-soft`}>
+          {whatsapp ? <WhatsAppIcon size={38} /> : <Icon size={38} />}
+        </motion.div>
+        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-600">{label}</p>
+        <p className="break-words font-display text-2xl font-extrabold leading-tight text-ink md:text-3xl">{value}</p>
+        {action && (
+          <span className="mt-8 inline-flex items-center gap-2 self-start rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition-colors group-hover:bg-primary-600">
+            {action}
+            <ArrowUpRight size={18} />
+          </span>
+        )}
+      </div>
+    </Tilt>
   )
-}
 
-function SuccessCheck() {
   return (
-    <svg viewBox="0 0 52 52" className="h-24 w-24" fill="none">
-      <motion.circle cx="26" cy="26" r="24" stroke="#4a4bf0" strokeWidth="3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6 }} />
-      <motion.path d="M14 27 l8 8 l16 -17" stroke="#4a4bf0" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.5 }} />
-    </svg>
+    <StaggerItem className={span}>
+      {href ? (
+        <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} className="group block h-full">
+          {body}
+        </a>
+      ) : (
+        <div className="h-full">{body}</div>
+      )}
+    </StaggerItem>
   )
 }
 
@@ -80,35 +77,8 @@ function FaqItem({ faq, index, open, onToggle }) {
 }
 
 export default function Contacto() {
-  const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' })
-  const [status, setStatus] = useState('idle')
-  const [subjectError, setSubjectError] = useState(false)
   const [openFaq, setOpenFaq] = useState(0)
-
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value })
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!formData.subject) {
-      setSubjectError(true)
-      return
-    }
-    setStatus('sending')
-    setTimeout(() => {
-      setStatus('sent')
-      setTimeout(() => {
-        setStatus('idle')
-        setFormData({ name: '', email: '', phone: '', subject: '', message: '' })
-      }, 5000)
-    }, 1300)
-  }
-
-  const infoItems = [
-    { label: 'Email', value: contact.email, href: `mailto:${contact.email}`, icon: Mail },
-    { label: 'Teléfono', value: contact.phone, href: `tel:${contact.phone.replace(/\s+/g, '')}`, icon: Phone },
-    { label: 'Ubicación', value: contact.location, href: null, icon: MapPin },
-    { label: 'Disponibilidad', value: contact.availability, href: null, icon: Clock }
-  ]
+  const cards = ui.contactCards
 
   return (
     <>
@@ -116,117 +86,19 @@ export default function Contacto() {
 
       <Section bg="cream" className="-mt-px">
         <Reveal>
-          <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_50px_100px_-40px_rgba(30,36,160,0.4)] lg:grid-cols-5">
-            <div className="relative overflow-hidden bg-gradient-to-br from-night via-primary-900 to-primary-700 p-8 text-white md:p-10 lg:col-span-2">
-              <div className="absolute inset-0 dots opacity-25" />
-              <motion.div className="absolute -right-16 -top-16 h-64 w-64 bg-accent-400/45 blur-2xl animate-morph" animate={{ rotate: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity }} />
-              <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full border-[18px] border-accent-400/20 animate-float-slow" />
+          <h2 className="mb-10 text-center font-display text-3xl font-extrabold text-ink md:text-5xl">{p.infoTitle}</h2>
+        </Reveal>
 
-              <div className="relative flex h-full flex-col">
-                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.2em] text-accent-300">{p.infoEyebrow}</span>
-                <h2 className="led-text font-display text-3xl font-extrabold leading-tight md:text-4xl">{p.infoTitle}</h2>
-                <div className="mt-4 h-1.5 w-14 rounded-full bg-accent-300" />
+        <StaggerGroup className="grid gap-6 lg:grid-cols-6">
+          <ContactCard icon={Mail} label={cards.emailLabel} value={contact.email} href={`mailto:${contact.email}`} action={contact.home.emailButton} gradient="from-sky-500 to-blue-600" />
+          <ContactCard icon={Phone} label={cards.phoneLabel} value={contact.phone} href={`tel:${contact.phone.replace(/\s+/g, '')}`} action={contact.home.phoneButton} gradient="from-violet-500 to-purple-600" />
+          <ContactCard whatsapp label={cards.whatsappLabel} value={contact.phone} href={whatsappUrl} external action={p.whatsappButton} gradient="from-whatsapp to-whatsapp-dark" />
+          <ContactCard icon={MapPin} label={cards.locationLabel} value={contact.location} gradient="from-cyan-500 to-sky-600" span="lg:col-span-3" />
+          <ContactCard icon={Clock} label={cards.availabilityLabel} value={contact.availability} gradient="from-indigo-500 to-violet-600" span="lg:col-span-3" />
+        </StaggerGroup>
 
-                <StaggerGroup className="mt-9 flex-1 space-y-5">
-                  {infoItems.map((item) => {
-                    const Icon = item.icon
-                    return (
-                      <StaggerItem key={item.label}>
-                        <div className="group flex items-start gap-4">
-                          <motion.div whileHover={{ rotate: -10, scale: 1.12 }} className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-white/15 backdrop-blur transition-colors group-hover:bg-white group-hover:text-primary-600">
-                            <Icon size={22} />
-                          </motion.div>
-                          <div className="min-w-0">
-                            <p className="mb-0.5 text-[11px] font-bold uppercase tracking-widest text-white/60">{item.label}</p>
-                            {item.href ? (
-                              <a href={item.href} className="break-all font-semibold transition-colors hover:text-accent-300">
-                                {item.value}
-                              </a>
-                            ) : (
-                              <p className="font-semibold">{item.value}</p>
-                            )}
-                          </div>
-                        </div>
-                      </StaggerItem>
-                    )
-                  })}
-                </StaggerGroup>
-
-                <div className="mt-9 border-t border-white/20 pt-7">
-                  <Button href={whatsappUrl} target="_blank" variant="whatsapp" size="lg" shine={false} className="w-full">
-                    <WhatsAppIcon size={24} />
-                    {p.whatsappButton}
-                  </Button>
-                  <p className="mt-4 text-center text-xs text-white/60">{p.footerLine}</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 md:p-12 lg:col-span-3">
-              <h2 className="font-display text-3xl font-extrabold text-ink md:text-4xl">
-                {p.formTitle} <span className="text-gradient">{p.formHighlight}</span>
-              </h2>
-              <p className="mb-8 mt-2 text-ink-soft">{p.formSubtitle}</p>
-
-              <AnimatePresence mode="wait" initial={false}>
-                {status === 'sent' ? (
-                  <motion.div key="sent" initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center justify-center py-16 text-center">
-                    <SuccessCheck />
-                    <h3 className="mt-6 font-display text-3xl font-extrabold text-ink">{p.successTitle}</h3>
-                    <p className="mt-2 text-lg text-ink-soft">{p.successText}</p>
-                  </motion.div>
-                ) : (
-                  <motion.form key="form" onSubmit={handleSubmit} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-5">
-                    <div className="grid gap-5 sm:grid-cols-2">
-                      <Field label={ui.form.nameLabel} name="name" value={formData.name} onChange={handleChange} required />
-                      <Field label={ui.form.emailLabel} name="email" type="email" value={formData.email} onChange={handleChange} required />
-                    </div>
-                    <Field label={ui.form.phoneLabel} name="phone" type="tel" value={formData.phone} onChange={handleChange} />
-
-                    <div>
-                      <p className="mb-3 text-sm font-bold uppercase tracking-wide text-primary-600">{ui.form.subjectLabel} *</p>
-                      <motion.div animate={subjectError ? { x: [0, -8, 8, -6, 6, 0] } : {}} transition={{ duration: 0.4 }} className="flex flex-wrap gap-2.5">
-                        {p.subjects.map((subject) => {
-                          const active = formData.subject === subject
-                          return (
-                            <button
-                              key={subject}
-                              type="button"
-                              onClick={() => {
-                                setFormData({ ...formData, subject })
-                                setSubjectError(false)
-                              }}
-                              className={`relative rounded-full border-2 px-5 py-2.5 text-sm font-bold transition-colors ${active ? 'border-transparent text-white' : 'border-primary-100 bg-white text-ink-soft hover:border-primary-300 hover:text-primary-700'}`}
-                            >
-                              {active && <motion.span layoutId="subject-pill" className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 shadow-glow" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />}
-                              <span className="relative">{subject}</span>
-                            </button>
-                          )
-                        })}
-                      </motion.div>
-                      {subjectError && <p className="mt-2 text-sm font-semibold text-rose-600">{ui.form.subjectError}</p>}
-                    </div>
-
-                    <Field label={ui.form.messageLabel} name="message" value={formData.message} onChange={handleChange} required textarea />
-
-                    <Button type="submit" size="lg" className="w-full" disabled={status === 'sending'}>
-                      {status === 'sending' ? (
-                        <>
-                          <Loader2 size={20} className="animate-spin" />
-                          {ui.form.sendingText}
-                        </>
-                      ) : (
-                        <>
-                          {p.submitButton}
-                          <Send size={18} />
-                        </>
-                      )}
-                    </Button>
-                  </motion.form>
-                )}
-              </AnimatePresence>
-            </div>
-          </div>
+        <Reveal>
+          <p className="mt-8 text-center text-sm font-semibold text-ink-soft">{p.footerLine}</p>
         </Reveal>
 
         <div className="mx-auto mt-28 max-w-3xl">

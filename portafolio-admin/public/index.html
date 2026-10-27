@@ -548,7 +548,8 @@ const UI_DEFAULTS = {
     skills: { usedIn: 'Lo he usado en', levelAdvanced: 'Avanzado', levelIntermediate: 'Intermedio', levelBasic: 'Básico' },
     projects: { filterAll: 'Todos' },
     footer: { marquee: 'Hablemos', backToTop: 'Volver arriba' },
-    form: { nameLabel: 'Nombre', emailLabel: 'Email', phoneLabel: 'Teléfono (opcional)', messageLabel: 'Mensaje', subjectLabel: '¿Sobre qué quieres hablar?', subjectError: 'Elige un tema para continuar.', sendingText: 'Enviando…', faqEyebrow: 'Dudas comunes', faqMoreText: '¿Sigues con dudas?' }
+    contactCards: { emailLabel: 'Correo', phoneLabel: 'Teléfono', whatsappLabel: 'WhatsApp', locationLabel: 'Ubicación', availabilityLabel: 'Disponibilidad' },
+    form: { faqEyebrow: 'Dudas comunes', faqMoreText: '¿Sigues con dudas?' }
 };
 const SEO_DEFAULTS = {
     title: 'Vicente Rabanales - Ingeniero en Informática | Portafolio',
@@ -760,17 +761,10 @@ const PAGES = [
                 T('backText', 'Botón volver'),
                 T('title', 'Título'),
                 TA('subtitle', 'Subtítulo'),
-                T('infoEyebrow', 'Etiqueta superior del panel'),
-                T('infoTitle', 'Título del panel'),
+                T('infoEyebrow', 'Etiqueta superior de la página'),
+                T('infoTitle', 'Título sobre las tarjetas'),
                 T('whatsappButton', 'Botón WhatsApp'),
-                T('footerLine', 'Línea bajo el botón'),
-                T('formTitle', 'Título del formulario (parte 1)'),
-                T('formHighlight', 'Título del formulario (parte destacada)'),
-                T('formSubtitle', 'Subtítulo del formulario'),
-                T('submitButton', 'Botón enviar'),
-                T('successTitle', 'Mensaje enviado: título'),
-                TA('successText', 'Mensaje enviado: texto'),
-                LINES('subjects', 'Temas del formulario (uno por línea)')
+                T('footerLine', 'Línea bajo las tarjetas')
             ])
         ])
     ]},
@@ -831,16 +825,16 @@ const PAGES = [
             ])
         ])
     ]},
-    { id: 'uiForm', group: 'Textos y SEO', tab: 'Formulario de contacto', title: 'Textos del formulario de contacto', desc: 'Etiquetas del formulario y de la sección de dudas de la página Contacto. Si un campo queda vacío se usa el texto por defecto (en gris).', fields: [
+    { id: 'uiForm', group: 'Textos y SEO', tab: 'Página de contacto', title: 'Textos de la página de contacto', desc: 'Etiquetas de las tarjetas de contacto y de la sección de preguntas frecuentes. Si un campo queda vacío se usa el texto por defecto (en gris).', fields: [
         OBJ('ui', 'Textos de interfaz', [
-            OBJ('form', 'Formulario', [
-                U('form', 'nameLabel', 'Campo nombre'),
-                U('form', 'emailLabel', 'Campo email'),
-                U('form', 'phoneLabel', 'Campo teléfono'),
-                U('form', 'messageLabel', 'Campo mensaje'),
-                U('form', 'subjectLabel', 'Pregunta de los temas'),
-                U('form', 'subjectError', 'Aviso si no elige tema'),
-                U('form', 'sendingText', 'Texto mientras se envía'),
+            OBJ('contactCards', 'Tarjetas de contacto', [
+                U('contactCards', 'emailLabel', 'Tarjeta de correo'),
+                U('contactCards', 'phoneLabel', 'Tarjeta de teléfono'),
+                U('contactCards', 'whatsappLabel', 'Tarjeta de WhatsApp'),
+                U('contactCards', 'locationLabel', 'Tarjeta de ubicación'),
+                U('contactCards', 'availabilityLabel', 'Tarjeta de disponibilidad')
+            ]),
+            OBJ('form', 'Preguntas frecuentes', [
                 U('form', 'faqEyebrow', 'Etiqueta sobre "Preguntas frecuentes"'),
                 U('form', 'faqMoreText', 'Texto sobre el botón de WhatsApp final')
             ])

@@ -33,14 +33,14 @@ const UI_DEFAULTS = {
     marquee: 'Hablemos',
     backToTop: 'Volver arriba'
   },
+  contactCards: {
+    emailLabel: 'Correo',
+    phoneLabel: 'Teléfono',
+    whatsappLabel: 'WhatsApp',
+    locationLabel: 'Ubicación',
+    availabilityLabel: 'Disponibilidad'
+  },
   form: {
-    nameLabel: 'Nombre',
-    emailLabel: 'Email',
-    phoneLabel: 'Teléfono (opcional)',
-    messageLabel: 'Mensaje',
-    subjectLabel: '¿Sobre qué quieres hablar?',
-    subjectError: 'Elige un tema para continuar.',
-    sendingText: 'Enviando…',
     faqEyebrow: 'Dudas comunes',
     faqMoreText: '¿Sigues con dudas?'
   }
