@@ -5,6 +5,7 @@ import Button from '../components/ui/Button'
 import Tilt from '../components/ui/Tilt'
 import CountUp from '../components/ui/CountUp'
 import { Words } from '../components/ui/Reveal'
+import IconValue from '../components/ui/IconValue'
 import { hero, visibleProjects, certificates, trajectoryPage, ui } from '../content'
 
 const BADGE_POSITIONS = [
@@ -142,7 +143,7 @@ export default function HeroSection() {
                 whileHover={{ scale: 1.12, rotate: -4 }}
                 className="flex items-center gap-3 rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-soft backdrop-blur"
               >
-                <span className="text-2xl">{badge.icon}</span>
+                <IconValue value={badge.icon} className="text-2xl" imgClass="h-8 w-8" />
                 <span className="whitespace-nowrap text-sm font-bold text-ink">{badge.label}</span>
               </motion.div>
             </motion.div>

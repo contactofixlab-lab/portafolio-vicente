@@ -5,6 +5,7 @@ import Section from '../components/ui/Section'
 import SectionHeading from '../components/ui/SectionHeading'
 import SkillImage from '../components/ui/SkillImage'
 import Marquee from '../components/ui/Marquee'
+import IconValue from '../components/ui/IconValue'
 import Tilt from '../components/ui/Tilt'
 import Button from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
@@ -64,8 +65,8 @@ export default function SkillsSection() {
               {active && (
                 <motion.span layoutId="skills-tab-pill" className="absolute inset-0 rounded-full bg-gradient-to-r from-primary-500 to-primary-600 shadow-glow" transition={{ type: 'spring', stiffness: 380, damping: 30 }} />
               )}
-              <span className="relative">
-                {c.icon} {c.name}
+              <span className="relative inline-flex items-center gap-1.5">
+                <IconValue value={c.icon} imgClass="h-5 w-5" /> {c.name}
               </span>
             </button>
           )

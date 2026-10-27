@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Section from '../components/ui/Section'
 import SectionHeading from '../components/ui/SectionHeading'
 import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
+import IconValue from '../components/ui/IconValue'
 import { life, ui } from '../content'
 
 const PLACEHOLDERS = [
@@ -65,7 +66,7 @@ export default function LifeSection() {
                       className="rounded-2xl border border-white bg-white p-3 text-center shadow-card sm:p-4"
                     >
                       <motion.div whileHover={{ scale: 1.3 }} className="mb-2 text-4xl">
-                        {hobby.icon}
+                        <IconValue value={hobby.icon} imgClass="mx-auto h-10 w-10" />
                       </motion.div>
                       <p className="break-words text-xs font-bold text-ink min-[400px]:text-sm">{hobby.name}</p>
                     </motion.div>

@@ -3,6 +3,7 @@ import Section from '../components/ui/Section'
 import PageHero from '../components/ui/PageHero'
 import SkillImage from '../components/ui/SkillImage'
 import Tilt from '../components/ui/Tilt'
+import IconValue from '../components/ui/IconValue'
 import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
 import { skills, ui } from '../content'
 
@@ -17,7 +18,7 @@ export default function FullSkillsSection() {
             <div key={category.name}>
               <Reveal>
                 <div className="mb-8 flex items-center gap-4">
-                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 text-2xl shadow-glow">{category.icon}</span>
+                  <span className="grid h-14 w-14 place-items-center rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 text-2xl shadow-glow"><IconValue value={category.icon} imgClass="h-8 w-8" /></span>
                   <h2 className="font-display text-3xl font-extrabold text-ink md:text-4xl">{category.name}</h2>
                   <span className="h-px flex-1 bg-gradient-to-r from-primary-300 to-transparent" />
                 </div>
