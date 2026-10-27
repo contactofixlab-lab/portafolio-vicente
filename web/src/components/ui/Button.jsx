@@ -2,10 +2,10 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 
 const VARIANTS = {
-  primary: 'bg-gradient-to-r from-primary-500 to-primary-600 text-white shadow-glow hover:shadow-[0_22px_60px_-10px_rgba(249,115,22,0.7)]',
-  light: 'bg-white text-primary-600 shadow-soft hover:bg-primary-50',
-  outline: 'border-2 border-primary-500 text-primary-600 bg-white/40 hover:bg-primary-500 hover:text-white',
-  dark: 'bg-ink text-white hover:bg-primary-700',
+  primary: 'led-btn',
+  light: 'bg-white led-light hover:bg-primary-50',
+  outline: 'led-outline',
+  dark: 'bg-night text-white hover:bg-primary-700',
   whatsapp: 'bg-whatsapp text-white shadow-[0_18px_44px_-12px_rgba(37,211,102,0.65)] hover:bg-whatsapp-dark',
   secondary: 'bg-gray-200 text-gray-800 hover:bg-gray-300'
 }

@@ -9,7 +9,7 @@ import { Reveal } from '../components/ui/Reveal'
 import { visibleProjects, projectsPage, contact, ui } from '../content'
 
 const STATUS_STYLES = {
-  'En Desarrollo': 'bg-amber-100 text-amber-800',
+  'En Desarrollo': 'bg-cyan-100 text-cyan-800',
   'Últimas Fases': 'bg-emerald-100 text-emerald-800',
   Terminado: 'bg-emerald-100 text-emerald-800'
 }
@@ -32,12 +32,12 @@ const ProjectCard = forwardRef(function ProjectCard({ project, index }, ref) {
       transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1], delay: (index % 6) * 0.05 }}
     >
       <Tilt max={7} scale={1.025} className="h-full rounded-[2rem]">
-        <a href={`#proyecto/${project.id}`} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
+        <a href={`#proyecto/${project.id}`} className="led-hover group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
           <div className={`relative grid h-52 place-items-center overflow-hidden bg-gradient-to-br ${GRADIENTS[index % GRADIENTS.length]} p-6`}>
             <div className="absolute inset-0 dots opacity-40" />
             <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-white/25 blur-xl" />
             {project.image ? (
-              <img src={project.image} alt={project.title} className="relative max-h-36 max-w-full object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.3)] transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3" />
+              <img src={project.image} alt={project.title} className="relative max-h-36 max-w-full rounded-2xl bg-white/90 p-3 object-contain shadow-neon transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3" />
             ) : (
               <span className="relative font-display text-7xl font-extrabold text-white/90 transition-transform duration-500 group-hover:scale-110">{project.title.charAt(0)}</span>
             )}

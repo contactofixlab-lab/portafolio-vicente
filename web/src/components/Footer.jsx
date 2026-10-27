@@ -16,9 +16,9 @@ function MarqueeText() {
     <>
       {[0, 1, 2, 3].map((i) => (
         <span key={i} className="flex items-center gap-6 font-display text-5xl md:text-7xl font-extrabold whitespace-nowrap">
-          <span className="text-transparent [-webkit-text-stroke:2px_rgba(255,255,255,0.75)]">{text}</span>
+          <span className="text-transparent led-sync [-webkit-text-stroke:2px_var(--led)] [filter:drop-shadow(0_0_10px_var(--led))]">{text}</span>
           <span className="text-white/90">✦</span>
-          <span className="text-white">{ui.footer.marquee}</span>
+          <span className="text-white led-text">{ui.footer.marquee}</span>
           <span className="text-white/90">✦</span>
         </span>
       ))}
@@ -33,12 +33,12 @@ export default function Footer() {
   return (
     <footer className="relative bg-primary-50">
       <div className="relative h-24 sm:h-32">
-        <Wave fill="#f97316" height={128} />
+        <Wave fill="#0a1030" height={128} />
       </div>
 
-      <div className="relative overflow-hidden bg-primary-500 text-white">
+      <div className="relative overflow-hidden bg-night text-white">
         <div className="absolute inset-0 dots opacity-25" />
-        <div className="absolute -right-24 top-10 h-72 w-72 rounded-full bg-accent-400/30 blur-3xl animate-morph" />
+        <div className="absolute -right-24 top-10 h-72 w-72 rounded-full bg-accent-400/25 blur-3xl animate-morph" />
 
         <Marquee className="relative pt-4 pb-10" speed={42}>
           <MarqueeText />
@@ -50,7 +50,7 @@ export default function Footer() {
               <div className="flex items-center gap-3">
                 <motion.div
                   whileHover={{ rotate: -10, scale: 1.08 }}
-                  className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-white font-display text-3xl font-extrabold text-primary-600 shadow-soft"
+                  className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl led-pill font-display text-3xl font-extrabold text-white"
                 >
                   {footer.logoLetter}
                 </motion.div>
@@ -87,7 +87,7 @@ export default function Footer() {
                       aria-label={link.label}
                       whileHover={{ y: -5, rotate: -6, scale: 1.1 }}
                       whileTap={{ scale: 0.92 }}
-                      className="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 backdrop-blur transition-colors hover:bg-white hover:text-primary-600"
+                      className="grid h-12 w-12 place-items-center rounded-2xl bg-white/15 backdrop-blur transition-colors hover:bg-accent-400 hover:text-night"
                     >
                       <Icon size={22} />
                     </motion.a>
@@ -106,7 +106,7 @@ export default function Footer() {
               onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               whileHover={{ y: -4 }}
               whileTap={{ scale: 0.92 }}
-              className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-sm font-bold text-primary-600 shadow-soft"
+              className="inline-flex items-center gap-2 rounded-full led-pill px-5 py-2.5 text-sm font-bold text-white"
             >
               {ui.footer.backToTop}
               <ArrowUp size={16} />

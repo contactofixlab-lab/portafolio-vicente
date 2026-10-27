@@ -1,9 +1,9 @@
 import Wave from './Wave'
 
 export const SECTION_COLORS = {
-  cream: { className: 'bg-primary-50', hex: '#fff7ed' },
+  cream: { className: 'bg-primary-50', hex: '#eef4ff' },
   white: { className: 'bg-white', hex: '#ffffff' },
-  peach: { className: 'bg-primary-100', hex: '#ffedd5' }
+  peach: { className: 'bg-primary-100', hex: '#e0eaff' }
 }
 
 /** Sección con fondo propio y onda animada que baja hacia el color de la siguiente. */

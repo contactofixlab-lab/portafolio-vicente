@@ -50,14 +50,14 @@ export default function Header() {
     >
       <nav
         aria-label="Navegación principal"
-        className={`pointer-events-auto relative flex w-full max-w-4xl items-center justify-between gap-2 rounded-full border border-white/30 bg-primary-500/90 backdrop-blur-xl px-2 sm:px-3 transition-all duration-300 ${
-          scrolled ? 'py-1.5 shadow-[0_22px_50px_-14px_rgba(154,52,18,0.65)]' : 'py-2 shadow-[0_14px_36px_-14px_rgba(154,52,18,0.5)]'
+        className={`led-nav pointer-events-auto relative flex w-full max-w-6xl items-center justify-between gap-4 rounded-full border bg-night/90 backdrop-blur-xl px-3 sm:px-5 lg:px-8 transition-all duration-300 ${
+          scrolled ? 'py-1.5 led-nav-strong' : 'py-2'
         }`}
       >
         <a href="#home" className="flex items-center gap-2.5 pl-1 shrink-0" aria-label="Inicio">
           <motion.span
             whileHover={{ rotate: -8, scale: 1.1 }}
-            className="grid place-items-center w-10 h-10 rounded-full bg-white text-primary-600 font-display font-extrabold text-lg shadow-[inset_0_-3px_0_rgba(234,88,12,0.18)]"
+            className="grid place-items-center w-10 h-10 rounded-full led-pill text-white font-display font-extrabold text-lg"
           >
             {header.logoLetter}
           </motion.span>
@@ -74,13 +74,13 @@ export default function Header() {
                   href={item.href}
                   aria-current={isActive ? 'page' : undefined}
                   className={`relative flex items-center gap-2 rounded-full px-3.5 py-2.5 text-sm font-semibold transition-colors ${
-                    isActive ? 'text-primary-600' : 'text-white/90 hover:text-white hover:bg-white/15'
+                    isActive ? 'text-white' : 'text-white/80 hover:text-accent-300 hover:bg-white/10'
                   }`}
                 >
                   {isActive && (
                     <motion.span
                       layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full bg-white shadow-[0_6px_18px_-6px_rgba(0,0,0,0.3)]"
+                      className="absolute inset-0 rounded-full led-pill"
                       transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                     />
                   )}
@@ -99,7 +99,7 @@ export default function Header() {
         </ul>
 
         <div className="hidden md:flex items-center pr-1 shrink-0">
-          <span className="relative flex items-center gap-2 rounded-full bg-white/95 px-3.5 py-2 text-xs font-bold text-emerald-700">
+          <span className="relative flex items-center gap-2 rounded-full border border-emerald-300/40 bg-white/10 px-3.5 py-2 text-xs font-bold text-emerald-300">
             <span className="relative flex h-2.5 w-2.5">
               <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-500 animate-pulse-ring" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-emerald-500" />
@@ -112,7 +112,7 @@ export default function Header() {
           type="button"
           onClick={() => setIsOpen((o) => !o)}
           whileTap={{ scale: 0.9 }}
-          className="md:hidden grid place-items-center w-10 h-10 rounded-full bg-white/20 text-white"
+          className="md:hidden grid place-items-center w-10 h-10 rounded-full bg-white/10 text-white"
           aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={isOpen}
           aria-controls="mobile-menu"
@@ -129,7 +129,7 @@ export default function Header() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -12, scale: 0.96 }}
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-            className="pointer-events-auto mt-3 w-full max-w-4xl rounded-[2rem] border border-white/60 bg-white/90 backdrop-blur-xl p-3 shadow-soft md:hidden"
+            className="pointer-events-auto mt-3 w-full max-w-6xl rounded-[2rem] border border-accent-400/40 bg-night/95 backdrop-blur-xl p-3 shadow-neon md:hidden"
           >
             {navItems.map((item, i) => {
               const Icon = ICONS[item.href] || Sparkles
@@ -143,7 +143,7 @@ export default function Header() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.05 + i * 0.05 }}
                   className={`flex items-center gap-3 rounded-2xl px-4 py-3.5 font-semibold ${
-                    isActive ? 'bg-primary-500 text-white' : 'text-ink hover:bg-primary-50'
+                    isActive ? 'led-pill text-white' : 'text-white/85 hover:bg-white/10'
                   }`}
                 >
                   <Icon size={20} />

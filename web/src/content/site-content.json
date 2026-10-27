@@ -21,10 +21,18 @@
       {
         "icon": "📊",
         "label": "Data"
+      },
+      {
+        "icon": "data:image/png;base64,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",
+        "label": "IA"
+      },
+      {
+        "icon": "🔒",
+        "label": "Seguridad"
       }
     ],
     "secondaryButton": {
-      "href": "",
+      "href": "https://gk1owsxclzumg4aq.public.blob.vercel-storage.com/uploads/CV_Vicente_Rabanales_Actualizado-HHtbW5qhXSE8EheEtZgCIqa6YxB91d.pdf",
       "text": "Descargar CV"
     }
   },
@@ -635,171 +643,6 @@
       "longDescription": "Sistema completo de business intelligence con visualizaciones, reportes automáticos y análisis predictivos. Diseño moderno con framer-motion y glassmorphism."
     },
     {
-      "id": 2,
-      "demo": "https://yencinas-bodega.vercel.app",
-      "tags": [
-        "inventory",
-        "management",
-        "warehouse"
-      ],
-      "type": "App",
-      "image": "",
-      "stack": [
-        "React",
-        "Node.js",
-        "PostgreSQL",
-        "Neon",
-        "Tailwind",
-        "Express"
-      ],
-      "title": "Yencinas Bodega",
-      "github": "https://github.com/contactofixlab-lab/yencinas-bodega",
-      "phases": [
-        {
-          "name": "Setup",
-          "duration": "1 semana",
-          "description": "Configuración"
-        },
-        {
-          "name": "Backend",
-          "duration": "3 semanas",
-          "description": "APIs"
-        },
-        {
-          "name": "Frontend",
-          "duration": "3 semanas",
-          "description": "UI"
-        },
-        {
-          "name": "Deploy",
-          "duration": "1 semana",
-          "description": "QA y lanzamiento"
-        }
-      ],
-      "reason": "Automatizar la gestión de insumos de oficina y evitar desabastecimiento",
-      "status": "Terminado",
-      "company": "Yencinas",
-      "endDate": "2024-06-18",
-      "visible": true,
-      "features": [
-        "Gestión de inventario",
-        "Asignación",
-        "Reportes",
-        "Alertas",
-        "Auditoría",
-        "Exportación"
-      ],
-      "problems": [
-        "Control manual",
-        "Desabastecimiento",
-        "Pérdida de recursos",
-        "Sin visibilidad"
-      ],
-      "solutions": [
-        "Tracking automático",
-        "Alertas de reorden",
-        "Auditoría",
-        "Integración de proveedores"
-      ],
-      "startDate": "2024-03-01",
-      "description": "Sistema de gestión de inventario y asignación de insumos de oficina",
-      "whatWasDone": [
-        "CRUD de inventario",
-        "Asignación de insumos",
-        "Reportes automáticos",
-        "Alertas de stock",
-        "Integración con proveedores",
-        "Migración a Neon"
-      ],
-      "architecture": {
-        "backend": "Node.js Express",
-        "database": "Neon PostgreSQL",
-        "external": "APIs de proveedores",
-        "frontend": "React + Tailwind + Framer Motion"
-      },
-      "longDescription": "App de inventario completa para control de insumos, asignación a empleados, reporte de stocks y compras automáticas."
-    },
-    {
-      "id": 3,
-      "demo": "https://traza-app.vercel.app",
-      "tags": [
-        "documents",
-        "signatures",
-        "audit"
-      ],
-      "type": "App",
-      "image": "/projects/traza-logo.png",
-      "stack": [
-        "React",
-        "Node.js",
-        "Neon",
-        "PostgreSQL",
-        "Tailwind",
-        "Framer Motion"
-      ],
-      "title": "TRAZA",
-      "github": "https://github.com/contactofixlab-lab/traza",
-      "phases": [
-        {
-          "name": "Fase 1",
-          "duration": "3 semanas",
-          "description": "Core documental"
-        },
-        {
-          "name": "Fase 2",
-          "duration": "3 semanas",
-          "description": "Firmas y seguridad"
-        },
-        {
-          "name": "Fase 3",
-          "duration": "2 semanas",
-          "description": "Reportería"
-        }
-      ],
-      "reason": "Implementar control de documentos y firmas digitales para cumplimiento regulatorio",
-      "status": "En Desarrollo",
-      "company": "Proyecto Personal",
-      "endDate": "",
-      "visible": true,
-      "features": [
-        "Gestión documental",
-        "Firmas digitales",
-        "Flujos de aprobación",
-        "Auditoría",
-        "Reportería",
-        "SAML"
-      ],
-      "problems": [
-        "Documentos dispersos",
-        "Sin auditoría",
-        "Firmas inseguras",
-        "Incumplimiento regulatorio"
-      ],
-      "solutions": [
-        "Centralización",
-        "Blockchain",
-        "Auditoría automática",
-        "Cumplimiento normativo"
-      ],
-      "startDate": "2024-04-10",
-      "description": "Sistema de control documental y firmas digitales para resiliencias",
-      "whatWasDone": [
-        "Gestión de documentos",
-        "Firmas digitales",
-        "Flujos de aprobación",
-        "Dashboard",
-        "Reportes",
-        "Interface 3D"
-      ],
-      "architecture": {
-        "backend": "Node.js con JWT",
-        "database": "Neon PostgreSQL",
-        "external": "Blockchain, APIs de compliance",
-        "frontend": "React + Glassmorphism + 3D"
-      },
-      "longDescription": "Plataforma interna para gestión de documentos, firmas digitales, auditoría y reportería con diseño glassmorphism moderno."
-    },
-    {
       "id": 4,
       "demo": "https://constructora-pds.vercel.app",
       "tags": [
@@ -808,7 +651,7 @@
         "corporate"
       ],
       "type": "Web",
-      "image": "",
+      "image": "https://gk1owsxclzumg4aq.public.blob.vercel-storage.com/uploads/Captura-de-pantalla-2026-10-27-172117-cfXd52Wvl1eJgKbp9Tq7qYh3Pe4b8C.png",
       "stack": [
         "Next.js",
         "React",
@@ -878,468 +721,260 @@
     },
     {
       "id": 5,
-      "demo": "https://poketask.vercel.app",
       "tags": [
-        "productivity",
-        "gamification",
-        "tasks"
+        "Inmobiliario",
+        "Aplicación interna",
+        "Integración con CRM",
+        "Plataforma de ventas"
       ],
-      "type": "App",
-      "image": "/projects/poketask-hero.png",
+      "type": "Web",
+      "image": "https://gk1owsxclzumg4aq.public.blob.vercel-storage.com/uploads/Captura-de-pantalla-2026-10-27-162457-M7xtcpjM09P8YrBf43Vfk3eXQKxsi1.png",
       "stack": [
-        "React",
-        "Firebase",
-        "Tailwind",
+        "Next.js 16 (App Router)",
+        "React 19",
+        "TypeScript",
+        "Prisma 6",
+        "PostgreSQL (Neon)",
+        "Tailwind CSS",
         "Framer Motion",
-        "TypeScript"
+        "Recharts",
+        "ExcelJS",
+        "jsPDF + autotable",
+        "Zod",
+        "jose + bcryptjs",
+        "Vercel Blob",
+        "Vercel (hosting y Cron)",
+        "GitHub Actions",
+        "API de Mobysuite (CRM)"
       ],
-      "title": "PokeTask",
-      "github": "https://github.com/contactofixlab-lab/poketask",
-      "phases": [
-        {
-          "name": "Core",
-          "duration": "4 semanas",
-          "description": "Tareas básicas"
-        },
-        {
-          "name": "Gamificación",
-          "duration": "3 semanas",
-          "description": "Pokémon y rewards"
-        },
-        {
-          "name": "Social",
-          "duration": "2 semanas",
-          "description": "Competencia"
-        }
-      ],
-      "reason": "Hacer que la gestión de tareas sea divertida y motivante",
+      "title": "Neo Planera",
+      "github": "https://github.com/contactofixlab-lab/neoplanera-web",
+      "phases": [],
+      "reason": "Para que el equipo comercial y la gerencia vean en un solo lugar, y en tiempo real, qué departamentos, estacionamientos y bodegas están disponibles en cada proyecto. La \"planera\" se desactualizaba respecto del CRM (Mobysuite): el estado, el precio y las fichas de los clientes se llevaban por separado y se cotizaba con datos rearmados a mano. NeoPlanera reemplaza eso con un plano interactivo conectado al CRM, con cotizador propio y con permisos por tipo de usuario, de modo que cada persona ve solo lo que le corresponde.",
       "status": "En Desarrollo",
-      "company": "Proyecto Personal",
+      "company": "",
       "endDate": "",
+      "results": "En producción en https://neoplanera-web.vercel.app. Hoy son 25 páginas, 17 modelos de datos y 6 reportes descargables, con sincronización automática con el CRM y permisos por tipo de usuario.",
       "visible": true,
       "features": [
-        "Task management",
-        "Gamification",
-        "Pokémon avatars",
-        "Rewards",
-        "Social",
-        "Analytics"
+        "Plano interactivo con estado en vivo de cada bien",
+        "Cotizador conectado al CRM",
+        "Conexión automática con Mobysuite",
+        "Permisos personalizables en 3 niveles",
+        "Reportes en PDF y Excel",
+        "Alertas automáticas y novedades dentro de la app",
+        "Estadísticas de trabajo por persona y por equipo",
+        "Diseño de vidrio, responsivo, para cualquier tamaño de pantalla"
       ],
       "problems": [
-        "Tareas aburridas",
-        "Falta de motivación",
-        "Procrastinación"
+        "Planos interactivos por piso con el estado de cada bien (departamentos, estacionamientos y bodegas)",
+        "Zonas dibujadas sobre el plano, incluidas comodidades y espacios comunes (opcionales)",
+        "Cotizador conectado a Mobysuite, con PDF oficial y reintento si el CRM no responde",
+        "Sincronización automática con Mobysuite: bienes, estados, precios, fichas de cliente y operaciones",
+        "Administración de proyectos: crear, configurar, suspender, reactivar y eliminar",
+        "Gestión de usuarios y tipos de usuario con permisos en 3 niveles (módulo, submódulo y acción)",
+        "Dashboard y reportería en PDF y Excel con filtros por proyecto, tipo de bien, estado y período",
+        "Mi perfil con datos personales, alertas, novedades y estadísticas propias",
+        "Equipo: supervisión del trabajo de cada persona por su gerente",
+        "Novedades publicadas por los administradores y alertas automáticas configurables",
+        "Registro de auditoría de las acciones sensibles",
+        "Inicio de sesión con protección contra enumeración de usuarios"
       ],
       "solutions": [
-        "Gamificación",
-        "Sistema de recompensas",
-        "Avatares evolucionables",
-        "Competencia amigable"
+        "Sincronización con Mobysuite por tres vías: Vercel Cron diario, GitHub Actions cada 15 minutos y al abrir el plano o la ficha de la unidad",
+        "Cotizador que crea la cotización directamente en Mobysuite y entrega el PDF oficial",
+        "Permisos en 3 niveles (5 módulos, 15 submódulos y 32 acciones) con una sola fuente de verdad, compatibles con los tipos ya guardados",
+        "Cada acción del servidor y cada ruta de API comprueban sesión, permiso y acceso al proyecto; esconder un botón no es la defensa",
+        "Freno anti-escalación: quien no es administrador solo puede dar permisos que él mismo tiene",
+        "Alertas automáticas calculadas en vivo y ajustables por los administradores",
+        "Supervisión de equipo con indicadores de actividad, cotizaciones y cambios recientes",
+        "Cambios de base de datos siempre aditivos, para convivir con producción",
+        "Interfaz fluida con tamaños en rem y diseño repartido por el ancho real de la pantalla",
+        "Revisión de seguridad con actualización de Next.js, auditoría, RUT enmascarado y cabeceras de seguridad"
       ],
-      "startDate": "2024-02-15",
-      "description": "App de tareas con temática Pokémon y sistema de gamificación",
+      "startDate": "",
+      "description": "Plano interactivo",
       "whatWasDone": [
-        "Sistema de tareas",
-        "Pokémon personalizados",
-        "Recompensas",
-        "Logros",
-        "Sincronización real-time",
-        "Gamificación"
+        "Planos interactivos por piso con el estado de cada bien (departamentos, estacionamientos y bodegas)",
+        "Zonas dibujadas sobre el plano, incluidas comodidades y espacios comunes (opcionales)",
+        "Cotizador conectado a Mobysuite, con PDF oficial y reintento si el CRM no responde",
+        "Sincronización automática con Mobysuite: bienes, estados, precios, fichas de cliente y operaciones",
+        "Administración de proyectos: crear, configurar, suspender, reactivar y eliminar",
+        "Gestión de usuarios y tipos de usuario con permisos en 3 niveles (módulo, submódulo y acción)",
+        "Dashboard y reportería en PDF y Excel con filtros por proyecto, tipo de bien, estado y período",
+        "Mi perfil con datos personales, alertas, novedades y estadísticas propias",
+        "Equipo: supervisión del trabajo de cada persona por su gerente",
+        "Novedades publicadas por los administradores y alertas automáticas configurables",
+        "Registro de auditoría de las acciones sensibles",
+        "Inicio de sesión con protección contra enumeración de usuarios"
       ],
       "architecture": {
-        "backend": "Firebase Real-time DB",
-        "database": "Firestore",
-        "external": "Firebase Auth",
-        "frontend": "React + Tailwind + Framer Motion"
+        "backend": "Next.js (Server Actions y rutas API), Prisma 6, Zod, jose, bcryptjs, ExcelJS, jsPDF",
+        "database": "PostgreSQL (Neon) con Prisma",
+        "external": "Mobysuite (API del CRM), Vercel (hosting y Cron), Vercel Blob, GitHub Actions",
+        "frontend": "Next.js 16, React 19, TypeScript, Tailwind CSS, Framer Motion, Recharts"
       },
-      "longDescription": "Aplicación de productividad con tema Pokémon que convierte tareas en aventuras, con recompensas y badges de logro."
+      "longDescription": "Plano interactivo por piso: al pulsar un departamento se abre su ficha técnica, con características y cliente asociado.\nReemplaza la planera estática que se desactualizaba frente al CRM: los estados se sincronizan con Mobysuite y el equipo\nve de un vistazo qué hay disponible, quién lo tiene y en qué condiciones.\n4 roles con permisos en 3 niveles, cotizador, 6 reportes en PDF y Excel y 25 alertas automáticas."
     },
     {
       "id": 6,
-      "demo": "https://vortex-downloads.vercel.app",
       "tags": [
-        "downloads",
-        "multimedia",
-        "streaming"
+        "Inmobiliario / PropTech",
+        "Cotizador web",
+        "Módulo reutilizable",
+        "Integración con API",
+        "Frontend"
       ],
-      "type": "Web",
-      "image": "/projects/vortex-project-logo.png",
+      "type": "App",
+      "image": "https://gk1owsxclzumg4aq.public.blob.vercel-storage.com/uploads/Captura-de-pantalla-2026-10-27-170817-gKEOPRa27sQKMIX0q8DfdVYAnR8Ilo.png",
       "stack": [
-        "Next.js",
-        "React Three Fiber",
-        "Neon",
-        "PostgreSQL",
-        "Tailwind",
-        "TypeScript"
+        "Next.js 16 (App Router + Turbopack)",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Lucide React",
+        "API pública de Mobysuite (CRM de ventas)",
+        "Nunito Sans"
       ],
-      "title": "Vortex",
-      "github": "https://github.com/contactofixlab-lab/vortex",
-      "phases": [
-        {
-          "name": "Design 3D",
-          "duration": "3 semanas",
-          "description": "Modelado"
-        },
-        {
-          "name": "Frontend",
-          "duration": "4 semanas",
-          "description": "Interface"
-        },
-        {
-          "name": "Backend",
-          "duration": "2 semanas",
-          "description": "API y admin"
-        }
-      ],
-      "reason": "Crear plataforma moderna de descargas con diseño 3D inmersivo",
-      "status": "Terminado",
-      "company": "Proyecto Personal",
-      "endDate": "2024-06-30",
+      "title": "Cotizador 2.0",
+      "github": "",
+      "phases": [],
+      "reason": "Para tener un cotizador único y estándar que se pueda insertar en la página web de cualquier proyecto de edificio, sin rehacerlo cada vez. Toma el catálogo real desde Mobysuite (el CRM de ventas), así que al cambiar solo el proyecto conectado funciona con otro edificio. Además reemplaza una cotización de una sola pantalla por un flujo guiado en 4 pasos que el cliente puede completar solo, desde computador o celular.",
+      "status": "En Desarrollo",
+      "company": "NeoEncians",
+      "endDate": "2026-10-12",
+      "results": "Módulo listo para insertar en la web de cualquier proyecto, con el mismo código y solo cambiando el proyecto conectado. En las pruebas, la ficha del departamento quedó cerca de un 20% más corta y la fase de extras casi a la mitad de su alto original. Pendiente: descarga del PDF oficial y reserva real conectadas a Mobysuite.",
       "visible": true,
       "features": [
-        "3D viewer",
-        "Download manager",
-        "Admin panel",
-        "Search",
-        "Watch tracking",
-        "Comments"
+        "Reutilizable en cualquier proyecto de edificio",
+        "Datos 100% desde Mobysuite",
+        "Responsive con estructura propia para móvil",
+        "Estado de disponibilidad en vivo (verde/rojo/tachado)",
+        "Navegación por pisos",
+        "Formulario con validaciones chilenas (RUT) y selector de país"
       ],
       "problems": [
-        "Interfaces aburridas",
-        "Sin estadísticas",
-        "Admin no intuitivo"
+        "El diseño de una sola pantalla no servía en celular ni se entendía como flujo",
+        "La ficha del departamento y la fase de extras se volvían muy largas (50+ bodegas y estacionamientos en pantalla)",
+        "Las unidades vendidas desaparecían de las listas, sin dar el panorama completo del edificio",
+        "Los desplegables nativos no permiten estilos, y no se veían con la marca",
+        "Los emoji de bandera no se dibujan en Windows",
+        "El mismo módulo debe servir a distintos edificios, sin logo ni textos propios del proyecto",
+        "El precio varía según piso y orientación, pero se mostraba como si fuera fijo por tipología"
       ],
       "solutions": [
-        "Diseño 3D moderno",
-        "Dashboard de admin",
-        "Tracking de descargas",
-        "Experiencia inmersiva"
+        "Wizard de 4 fases con el estado en un solo lugar, para no perder la selección al girar el dispositivo",
+        "Ficha compacta: la unidad se elige desde un desplegable y la acción principal va arriba a la derecha",
+        "Extras en pestañas con alto fijo y scroll propio, sin paginar con \"Ver más\"",
+        "Unidades vendidas visibles pero tachadas y deshabilitadas; pisos sin disponibles dejan de ser clickeables",
+        "Selector desplegable propio con el diseño de la marca, teclado y accesibilidad",
+        "Banderas dibujadas en SVG en lugar de emoji",
+        "Módulo neutro: sin título propio y con logo opcional por prop (logoUrl)",
+        "Precios \"Desde UF\" para las tipologías y el precio exacto en el detalle de cada unidad"
       ],
-      "startDate": "2024-04-01",
-      "description": "Sitio web de descargas con estilo glassmorphism 3D cyberpunk",
+      "startDate": "2026-08-27",
+      "description": "Cotización en línea",
       "whatWasDone": [
-        "Landing 3D cyberpunk",
-        "Sistema de descargas",
-        "Visor 3D",
-        "Admin panel",
-        "Carrusel interactivo",
-        "Estados de seguimiento"
+        "Flujo guiado en 4 pasos: Departamento, Extras, Tus datos y Cotización",
+        "Tipologías con precio y superficie \"desde\" (el mínimo entre las unidades disponibles)",
+        "Ficha del departamento con plano, características, equipamiento y precio",
+        "Ubicación en el edificio por pisos: verde disponible, rojo vendido; al tocar un piso salta a una unidad disponible de esa tipología",
+        "Selector de unidad que muestra también las vendidas, tachadas y sin poder elegirlas",
+        "Extras opcionales (bodegas, estacionamientos y estacionamientos para moto) en pestañas, con total en vivo",
+        "Formulario con validación de RUT, correo y teléfono según el país, con banderas",
+        "Campos marcados como obligatorios u opcionales",
+        "Resumen de la cotización con el desglose y el total",
+        "Versión propia para teléfono y tablet, no solo el escritorio encogido",
+        "Logo del proyecto opcional en la parte superior"
       ],
       "architecture": {
-        "backend": "Next.js API + Node.js",
-        "database": "Neon PostgreSQL",
-        "external": "Vercel deploy",
-        "frontend": "Next.js + React Three Fiber + Tailwind"
+        "backend": "Sin backend propio: Next.js (renderizado en servidor) consulta directamente la API de Mobysuite",
+        "database": "No usa base de datos propia; el catálogo (tipologías, unidades, planos y precios) viene de Mobysuite",
+        "external": "API pública de Mobysuite (cotizacion.mobysuite.com/api/v3)",
+        "frontend": "Next.js 16, React 19, TypeScript y Tailwind CSS v4"
       },
-      "longDescription": "Plataforma de descargas para películas, series y anime con diseño futurista, visor 3D interactivo y admin panel integrado."
+      "longDescription": "Cotización en línea con tarjetas por tipología y detalle del departamento; presenté 3 alternativas a marketing."
     },
     {
       "id": 7,
-      "demo": "https://familycolab.vercel.app",
       "tags": [
-        "family",
-        "productivity",
-        "household"
-      ],
-      "type": "App",
-      "image": "",
-      "stack": [
-        "React",
-        "Firebase",
-        "Tailwind",
-        "Framer Motion",
-        "Three.js"
-      ],
-      "title": "FamilyColab",
-      "github": "https://github.com/contactofixlab-lab/familycolab",
-      "phases": [
-        {
-          "name": "Core",
-          "duration": "3 semanas",
-          "description": "Tareas e inventario"
-        },
-        {
-          "name": "Cocina",
-          "duration": "2 semanas",
-          "description": "Recetas y menú"
-        },
-        {
-          "name": "3D Menu",
-          "duration": "2 semanas",
-          "description": "Menú flotante"
-        }
-      ],
-      "reason": "Centralizar gestión familiar en una única app intuitiva",
-      "status": "En Desarrollo",
-      "company": "Proyecto Personal",
-      "endDate": "",
-      "visible": true,
-      "features": [
-        "Task manager",
-        "Inventory",
-        "Recipes",
-        "Menu planner",
-        "3D menu",
-        "Family roles"
-      ],
-      "problems": [
-        "Tareas sin coordinar",
-        "Inventario disperso",
-        "Planificación caótica"
-      ],
-      "solutions": [
-        "Centralización",
-        "Inventario compartido",
-        "Planificación automática"
-      ],
-      "startDate": "2024-03-15",
-      "description": "App familiar con tareas, inventario, cocina y menú 3D flotante",
-      "whatWasDone": [
-        "Sistema de tareas",
-        "Gestor de inventario",
-        "Recetas",
-        "Planificación de menú",
-        "Menú 3D flotante",
-        "Sincronización"
-      ],
-      "architecture": {
-        "backend": "Firebase Real-time DB",
-        "database": "Firestore",
-        "external": "Firebase Auth",
-        "frontend": "React + Three.js + Tailwind"
-      },
-      "longDescription": "Aplicación completa para familias: gestión de tareas, inventario del hogar, recetas, planificación de menú y menú 3D interactivo flotante."
-    },
-    {
-      "id": 8,
-      "demo": "https://nexora-game.vercel.app",
-      "tags": [
-        "gaming",
-        "esports",
-        "hero-shooter"
+        "Inmobiliario",
+        "Sitio web corporativo",
+        "Cotizador en línea",
+        "Integración con CRM",
+        "Proptech"
       ],
       "type": "Web",
-      "image": "",
+      "image": "https://gk1owsxclzumg4aq.public.blob.vercel-storage.com/uploads/Captura-de-pantalla-2026-10-27-160629-IzfGTCeT3AZlplQQRiaqh4AZL6X08n.png",
       "stack": [
-        "Next.js",
-        "React Three Fiber",
-        "Tailwind",
+        "Next.js 16 (App Router)",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS v4",
         "Framer Motion",
-        "TypeScript"
+        "Embla Carousel",
+        "Zod + React Hook Form",
+        "Mobysuite (CRM de ventas inmobiliario)",
+        "Vercel"
       ],
-      "title": "NEXORA",
-      "github": "https://github.com/contactofixlab-lab/nexora",
-      "phases": [
-        {
-          "name": "Design",
-          "duration": "2 semanas",
-          "description": "Diseño AAA"
-        },
-        {
-          "name": "Development",
-          "duration": "3 semanas",
-          "description": "Frontend y 3D"
-        },
-        {
-          "name": "Launch",
-          "duration": "1 semana",
-          "description": "Deploy"
-        }
-      ],
-      "reason": "Crear presencia digital de videojuego competitivo con diseño AAA",
+      "title": "Boulevard Santa Rosa",
+      "github": "https://github.com/contactofixlab-lab/boulevar-santa-rosa",
+      "phases": [],
+      "reason": "Boulevard Santa Rosa es un edificio de 95 departamentos y 19 locales comerciales en San Miguel, Santiago. Se necesitaba un sitio propio, con dominio propio, que presentara el proyecto y permitiera cotizar sin salir de la página. El widget de cotización estándar del CRM no se podía adaptar al diseño ni mostraba las unidades ya vendidas, así que se construyó un cotizador propio conectado en vivo al CRM de ventas.",
       "status": "Terminado",
-      "company": "Proyecto Personal",
-      "endDate": "2024-07-16",
+      "company": "Inez de Suarez 2",
+      "endDate": "2026-08-31",
+      "results": "Sitio en producción en un dominio propio, con despliegue automático desde GitHub.\nCada cotización queda registrada en el CRM de ventas con su PDF oficial, y los contactos del formulario llegan como prospectos, sin pasos manuales.\nEl catálogo refleja el estado real de las unidades, incluidas las vendidas.\nValidado con cotizaciones de prueba reales de punta a punta.",
       "visible": true,
       "features": [
-        "Hero showcase",
-        "3D viewer",
-        "Abilities",
-        "Faction pages",
-        "Video backgrounds",
-        "Responsive"
+        "Cotizador propio conectado en vivo al CRM de ventas",
+        "Cotización registrada automáticamente con su PDF oficial",
+        "Estado real de cada unidad: disponible, reservado o vendido",
+        "Captura de prospectos desde el formulario directo al CRM",
+        "Experiencia móvil diseñada aparte"
       ],
       "problems": [
-        "Sin presencia digital",
-        "Presentación plana",
-        "Sin experiencia inmersiva"
+        "El widget de cotización del CRM no se adaptaba al diseño del sitio",
+        "El catálogo público solo mostraba unidades disponibles: el piso 2 y las unidades vendidas no aparecían",
+        "La API del CRM tiene trampas: bloqueo de Cloudflare sin User-Agent, \"camas\" confundidas con dormitorios y superficie total sin terraza",
+        "La API gratuita de UF y dólar es intermitente y el sitio mostraba valores fijos o viejos",
+        "Los botones \"Cotizar\" dejaban de funcionar al repetir un mismo destino con la URL ya en ese ancla",
+        "El menú fijo tapaba el título al llegar al cotizador",
+        "Había código antiguo que mostraba datos de relleno (Torre A, UF 2850)",
+        "Sin las credenciales del CRM en producción, el sitio caía al catálogo de respaldo sin avisar"
       ],
       "solutions": [
-        "Landing AAA quality",
-        "Visor 3D",
-        "Diseño profesional"
+        "Cotizador propio dentro de un módulo aislado, con colores y tipografía de la marca",
+        "Lectura del catálogo completo con la API administrativa del CRM (OAuth2), con respaldo a la pública si falla",
+        "Capa de servidor con User-Agent explícito y campos correctos (dormitorios, superficie útil + terraza)",
+        "Segunda fuente de UF y dólar con chequeo de antigüedad del dato",
+        "Enlace propio que siempre desplaza a la sección y margen de scroll bajo el menú fijo",
+        "Validación en el servidor (RUT, correo, teléfono por país) y revisión de disponibilidad antes de crear la cotización",
+        "Límite de solicitudes por IP y credenciales solo en el servidor, sin exponerlas al navegador",
+        "Eliminación del código antiguo y verificación en el sitio publicado tras cada cambio"
       ],
-      "startDate": "2024-05-20",
-      "description": "Sitio web AAA para hero shooter estilo Paladins con 10 héroes únicos",
+      "startDate": "2026-07-01",
+      "description": "Sitio del proyecto",
       "whatWasDone": [
-        "Landing page hero",
-        "10 héroes",
-        "Visor 3D",
-        "Páginas de facciones",
-        "Sistema de habilidades",
-        "Deploy Vercel"
+        "Portada con estadísticas del proyecto, ubicación con mapa, galería de renders y sección de inversión",
+        "Cotizador propio en 4 pasos: departamento, extras, datos del cliente y cotización",
+        "Catálogo en vivo desde el CRM, con el estado real de cada unidad (disponible, reservado, vendido)",
+        "Plano de cada unidad y vista del edificio por piso con unidades disponibles y vendidas",
+        "Superficie útil, terraza y total, precios en UF y selección de bodegas y estacionamientos",
+        "Registro automático de la cotización en el CRM de ventas al llegar al resumen",
+        "Descarga del PDF oficial de la cotización generado por el CRM",
+        "Versión móvil propia del cotizador, no solo el escritorio encogido",
+        "Formulario \"Agenda tu visita\" que envía el contacto como prospecto al CRM, con validación de RUT chileno",
+        "Valores de UF y dólar actualizados en el pie de página",
+        "Botón de WhatsApp y navegación por secciones con scroll suave"
       ],
       "architecture": {
-        "backend": "Next.js static",
-        "database": "None",
-        "external": "Vercel deploy",
-        "frontend": "Next.js + React Three Fiber"
+        "backend": "Next.js en Vercel: Server Components con ISR y una ruta de servidor para crear cotizaciones, con validación y límite por IP",
+        "database": "Sin base de datos propia: el CRM de ventas Mobysuite es la fuente de datos (catálogo, cotizaciones y prospectos)",
+        "external": "Mobysuite (API administrativa con OAuth2, API pública del cotizador y captura de prospectos), Vercel, GitHub, Google Maps, WhatsApp, API de UF y dólar (mindicador.cl y findic.cl)",
+        "frontend": "Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS v4 + Framer Motion"
       },
-      "longDescription": "Landing page de videojuego shooter competitivo con 10 héroes únicos, visor 3D interactivo, facciones y landing pages por héroe."
-    },
-    {
-      "id": 9,
-      "demo": "https://plataforma-games.vercel.app",
-      "tags": [
-        "gaming",
-        "marketplace",
-        "indie"
-      ],
-      "type": "Web",
-      "image": "",
-      "stack": [
-        "React",
-        "Node.js",
-        "PostgreSQL",
-        "Stripe",
-        "Tailwind"
-      ],
-      "title": "Plataforma Videojuegos",
-      "github": "https://github.com/contactofixlab-lab/plataforma-videojuegos",
-      "phases": [
-        {
-          "name": "Marketplace",
-          "duration": "4 semanas",
-          "description": "Tienda y catálogo"
-        },
-        {
-          "name": "Developer Tools",
-          "duration": "3 semanas",
-          "description": "Dashboard y analytics"
-        },
-        {
-          "name": "Monetización",
-          "duration": "2 semanas",
-          "description": "Pagos"
-        }
-      ],
-      "reason": "Democratizar la distribución de videojuegos indie",
-      "status": "En Desarrollo",
-      "company": "Proyecto Personal",
-      "endDate": "",
-      "visible": true,
-      "features": [
-        "Game store",
-        "Developer dashboard",
-        "Payment processing",
-        "Analytics",
-        "Reviews",
-        "Download manager"
-      ],
-      "problems": [
-        "Plataformas con altas comisiones",
-        "Sin herramientas para indies",
-        "Sin datos de ventas"
-      ],
-      "solutions": [
-        "Comisiones bajas",
-        "Dashboard de analytics",
-        "Herramientas de marketing"
-      ],
-      "startDate": "2024-06-01",
-      "description": "Plataforma de distribución y gestión de videojuegos independientes",
-      "whatWasDone": [
-        "Gestión de juegos",
-        "Tienda",
-        "Pagos Stripe",
-        "Analytics",
-        "Valoraciones",
-        "Descargas"
-      ],
-      "architecture": {
-        "backend": "Node.js Express",
-        "database": "PostgreSQL",
-        "external": "Stripe API, AWS S3",
-        "frontend": "React + Tailwind"
-      },
-      "longDescription": "Plataforma para desarrolladores indies para publicar, vender y gestionar sus videojuegos con analytics y monetización integrada."
-    },
-    {
-      "id": 10,
-      "demo": "https://mundo-al-plato.vercel.app",
-      "tags": [
-        "recipes",
-        "food",
-        "seo"
-      ],
-      "type": "Web",
-      "image": "",
-      "stack": [
-        "Next.js",
-        "React",
-        "PostgreSQL",
-        "Tailwind",
-        "MDX"
-      ],
-      "title": "RecipeHub",
-      "github": "https://github.com/contactofixlab-lab/recipe-hub",
-      "phases": [
-        {
-          "name": "Setup",
-          "duration": "1 semana",
-          "description": "Estructura y tema"
-        },
-        {
-          "name": "Content",
-          "duration": "4 semanas",
-          "description": "Recetas y SEO"
-        },
-        {
-          "name": "Monetización",
-          "duration": "1 semana",
-          "description": "AdSense y analytics"
-        }
-      ],
-      "reason": "Crear primer sitio monetizable de la red de proyectos",
-      "status": "En Desarrollo",
-      "company": "Proyecto Personal",
-      "endDate": "",
-      "visible": true,
-      "features": [
-        "Recipe catalog",
-        "Search",
-        "Ingredient filter",
-        "AdSense",
-        "SEO optimized",
-        "Comments"
-      ],
-      "problems": [
-        "Recetas dispersas",
-        "Sin monetización",
-        "Sin estructura de red"
-      ],
-      "solutions": [
-        "Centralización",
-        "Monetización con AdSense",
-        "Red de sitios temáticos"
-      ],
-      "startDate": "2024-04-15",
-      "description": "Sitio web de recetas monetizable con AdSense, primero en la red de proyectos",
-      "whatWasDone": [
-        "Catálogo de recetas",
-        "SEO optimizado",
-        "AdSense integrado",
-        "Búsqueda avanzada",
-        "Recetas por ingredientes",
-        "Guías de cocina"
-      ],
-      "architecture": {
-        "backend": "Next.js API routes",
-        "database": "PostgreSQL",
-        "external": "AdSense, Google Analytics",
-        "frontend": "Next.js 16 + React"
-      },
-      "longDescription": "Plataforma especializada en recetas del mundo con SEO optimizado, AdSense integrado y estructura para monetización. Primer proyecto en la red de sitios web."
+      "longDescription": "Sitio del proyecto con cotizador integrado a Mobysuite para que el cliente cotice solo"
     }
   ],
   "experiences": [

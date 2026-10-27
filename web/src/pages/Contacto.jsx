@@ -13,7 +13,7 @@ const faqs = p.faqs
 const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
 const fieldBase =
-  'peer w-full rounded-2xl border-2 border-primary-100 bg-primary-50/60 px-4 pb-2.5 pt-6 text-ink outline-none transition-all placeholder-transparent hover:border-primary-200 focus:border-primary-500 focus:bg-white focus:shadow-[0_0_0_5px_rgba(249,115,22,0.15)]'
+  'peer w-full rounded-2xl border-2 border-primary-100 bg-primary-50/60 px-4 pb-2.5 pt-6 text-ink outline-none transition-all placeholder-transparent hover:border-primary-200 focus:border-primary-500 focus:bg-white focus:shadow-[0_0_0_5px_rgba(74,75,240,0.2)]'
 
 const labelBase =
   'pointer-events-none absolute left-4 top-1.5 text-xs font-bold uppercase tracking-wide text-primary-600 transition-all peer-placeholder-shown:top-[1.1rem] peer-placeholder-shown:text-base peer-placeholder-shown:font-medium peer-placeholder-shown:normal-case peer-placeholder-shown:tracking-normal peer-placeholder-shown:text-ink-soft peer-focus:top-1.5 peer-focus:text-xs peer-focus:font-bold peer-focus:uppercase peer-focus:tracking-wide peer-focus:text-primary-600'
@@ -44,8 +44,8 @@ function Field({ label, name, type = 'text', value, onChange, required = false, 
 function SuccessCheck() {
   return (
     <svg viewBox="0 0 52 52" className="h-24 w-24" fill="none">
-      <motion.circle cx="26" cy="26" r="24" stroke="#f97316" strokeWidth="3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6 }} />
-      <motion.path d="M14 27 l8 8 l16 -17" stroke="#f97316" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.5 }} />
+      <motion.circle cx="26" cy="26" r="24" stroke="#4a4bf0" strokeWidth="3" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6 }} />
+      <motion.path d="M14 27 l8 8 l16 -17" stroke="#4a4bf0" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.5 }} />
     </svg>
   )
 }
@@ -116,15 +116,15 @@ export default function Contacto() {
 
       <Section bg="cream" className="-mt-px">
         <Reveal>
-          <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_50px_100px_-40px_rgba(154,52,18,0.45)] lg:grid-cols-5">
-            <div className="relative overflow-hidden bg-gradient-to-br from-primary-500 via-primary-600 to-primary-700 p-8 text-white md:p-10 lg:col-span-2">
+          <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_50px_100px_-40px_rgba(30,36,160,0.4)] lg:grid-cols-5">
+            <div className="relative overflow-hidden bg-gradient-to-br from-night via-primary-900 to-primary-700 p-8 text-white md:p-10 lg:col-span-2">
               <div className="absolute inset-0 dots opacity-25" />
-              <motion.div className="absolute -right-16 -top-16 h-64 w-64 bg-accent-400/40 blur-2xl animate-morph" animate={{ rotate: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity }} />
-              <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full border-[18px] border-white/10 animate-float-slow" />
+              <motion.div className="absolute -right-16 -top-16 h-64 w-64 bg-accent-400/45 blur-2xl animate-morph" animate={{ rotate: [0, 20, 0] }} transition={{ duration: 12, repeat: Infinity }} />
+              <div className="absolute -bottom-20 -left-16 h-64 w-64 rounded-full border-[18px] border-accent-400/20 animate-float-slow" />
 
               <div className="relative flex h-full flex-col">
-                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.2em] text-accent-200">{p.infoEyebrow}</span>
-                <h2 className="font-display text-3xl font-extrabold leading-tight md:text-4xl">{p.infoTitle}</h2>
+                <span className="mb-3 block text-xs font-bold uppercase tracking-[0.2em] text-accent-300">{p.infoEyebrow}</span>
+                <h2 className="led-text font-display text-3xl font-extrabold leading-tight md:text-4xl">{p.infoTitle}</h2>
                 <div className="mt-4 h-1.5 w-14 rounded-full bg-accent-300" />
 
                 <StaggerGroup className="mt-9 flex-1 space-y-5">
@@ -139,7 +139,7 @@ export default function Contacto() {
                           <div className="min-w-0">
                             <p className="mb-0.5 text-[11px] font-bold uppercase tracking-widest text-white/60">{item.label}</p>
                             {item.href ? (
-                              <a href={item.href} className="break-all font-semibold transition-colors hover:text-accent-200">
+                              <a href={item.href} className="break-all font-semibold transition-colors hover:text-accent-300">
                                 {item.value}
                               </a>
                             ) : (

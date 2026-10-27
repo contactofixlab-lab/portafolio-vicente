@@ -9,47 +9,53 @@ export default {
     extend: {
       colors: {
         primary: {
-          50: '#fff7ed',
-          100: '#ffedd5',
-          200: '#fed7aa',
-          300: '#fdba74',
-          400: '#fb923c',
-          500: '#f97316',
-          600: '#ea580c',
-          700: '#c2410c',
-          800: '#9a3412',
-          900: '#7c2d12'
+          50: '#eef4ff',
+          100: '#e0eaff',
+          200: '#c7d8ff',
+          300: '#9bb9ff',
+          400: '#6a95ff',
+          500: '#2f7bff',
+          600: '#4a4bf0',
+          700: '#7a2cf0',
+          800: '#4b1fb0',
+          900: '#1a1250'
         },
         accent: {
-          DEFAULT: '#fbbf24',
-          50: '#fffbeb',
-          100: '#fef3c7',
-          200: '#fde68a',
-          300: '#fcd34d',
-          400: '#fbbf24',
-          500: '#f59e0b',
-          600: '#d97706',
-          700: '#b45309'
+          DEFAULT: '#22e5ff',
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4',
+          600: '#0891b2',
+          700: '#0e7490'
+        },
+        night: {
+          DEFAULT: '#080c26',
+          700: '#0f1747',
+          800: '#0a1030'
         },
         ink: {
-          DEFAULT: '#2b1608',
-          soft: '#6b4a35'
+          DEFAULT: '#0a1030',
+          soft: '#46517a'
         },
         whatsapp: {
           DEFAULT: '#25d366',
           dark: '#1ebe5a',
           deep: '#128c7e'
         },
-        warm: '#f97316'
+        warm: '#4a4bf0'
       },
       fontFamily: {
         sans: ['DM Sans', 'sans-serif'],
         display: ['Bricolage Grotesque', 'DM Sans', 'sans-serif']
       },
       boxShadow: {
-        glow: '0 18px 50px -12px rgba(249, 115, 22, 0.55)',
-        soft: '0 20px 60px -20px rgba(124, 45, 18, 0.25)',
-        card: '0 1px 0 rgba(255,255,255,.9) inset, 0 18px 40px -18px rgba(124, 45, 18, 0.28)'
+        glow: '0 18px 50px -12px rgba(74, 75, 240, 0.6)',
+        neon: '0 0 28px rgba(34, 229, 255, 0.55), 0 0 60px rgba(122, 44, 240, 0.35)',
+        soft: '0 20px 60px -20px rgba(20, 28, 110, 0.28)',
+        card: '0 1px 0 rgba(255,255,255,.9) inset, 0 18px 40px -18px rgba(20, 28, 110, 0.3)'
       },
       animation: {
         'pulse-custom': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',

@@ -9,7 +9,7 @@ import { Reveal } from '../components/ui/Reveal'
 import { visibleProjects, projectsHome, ui } from '../content'
 
 const STATUS_STYLES = {
-  'En Desarrollo': 'bg-amber-100 text-amber-800',
+  'En Desarrollo': 'bg-cyan-100 text-cyan-800',
   'Últimas Fases': 'bg-emerald-100 text-emerald-800',
   Terminado: 'bg-emerald-100 text-emerald-800'
 }
@@ -77,7 +77,7 @@ export default function ProjectsCanvas() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <Tilt max={4} scale={1.005} className="rounded-[2.5rem]">
-            <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_40px_90px_-30px_rgba(154,52,18,0.45)] md:grid-cols-[1fr_1.05fr]">
+            <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_40px_90px_-30px_rgba(30,36,160,0.4)] md:grid-cols-[1fr_1.05fr]">
               <div className="relative grid min-h-[20rem] place-items-center overflow-hidden bg-gradient-to-br from-primary-400 via-primary-500 to-accent-400 p-10 md:min-h-[32rem]">
                 <div className="absolute inset-0 dots opacity-40" />
                 <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/25 blur-2xl animate-morph" />
@@ -86,7 +86,7 @@ export default function ProjectsCanvas() {
                 </span>
                 <motion.div animate={{ y: [0, -14, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className="relative z-10">
                   {project.image ? (
-                    <img src={project.image} alt={project.title} className="max-h-56 max-w-full object-contain drop-shadow-[0_24px_40px_rgba(0,0,0,0.3)] md:max-h-72" />
+                    <img src={project.image} alt={project.title} className="max-h-56 max-w-full rounded-3xl bg-white/90 p-5 object-contain shadow-neon md:max-h-72" />
                   ) : (
                     <div className="grid h-40 w-40 place-items-center rounded-[2rem] bg-white/90 font-display text-7xl font-extrabold text-primary-600 shadow-soft">
                       {project.title.charAt(0)}

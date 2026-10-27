@@ -8,7 +8,7 @@ import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
 import { visibleProjects, projectDetail as t } from '../content'
 
 const STATUS_STYLES = {
-  'En Desarrollo': 'bg-amber-100 text-amber-800',
+  'En Desarrollo': 'bg-cyan-100 text-cyan-800',
   'Últimas Fases': 'bg-emerald-100 text-emerald-800',
   Terminado: 'bg-emerald-100 text-emerald-800'
 }
@@ -87,7 +87,7 @@ export default function ProjectDetail({ projectId }) {
             <Reveal className="lg:col-span-2">
               <Tilt max={8} scale={1.03} className="rounded-[2rem]">
                 <div className="grid h-60 place-items-center rounded-[2rem] border-4 border-white bg-gradient-to-br from-primary-400 to-accent-400 p-8 shadow-card">
-                  <ProjectImage src={project.image} alt={project.title} className="max-h-full max-w-full object-contain drop-shadow-[0_16px_24px_rgba(0,0,0,0.3)]" />
+                  <ProjectImage src={project.image} alt={project.title} className="max-h-full max-w-full rounded-3xl bg-white/90 p-4 object-contain shadow-neon" />
                 </div>
               </Tilt>
             </Reveal>
@@ -142,12 +142,12 @@ export default function ProjectDetail({ projectId }) {
 
         {project.problems?.length > 0 && (
           <div>
-            <BlockTitle icon={AlertCircle} color="text-rose-500">{t.problemsTitle}</BlockTitle>
+            <BlockTitle icon={AlertCircle} color="text-violet-500">{t.problemsTitle}</BlockTitle>
             <StaggerGroup className="grid gap-4 md:grid-cols-2">
               {project.problems.map((problem, idx) => (
                 <StaggerItem key={idx}>
-                  <div className="flex h-full items-start gap-4 rounded-2xl border-2 border-rose-100 bg-white p-5 shadow-card">
-                    <AlertCircle size={22} className="mt-0.5 shrink-0 text-rose-500" />
+                  <div className="flex h-full items-start gap-4 rounded-2xl border-2 border-violet-100 bg-white p-5 shadow-card">
+                    <AlertCircle size={22} className="mt-0.5 shrink-0 text-violet-500" />
                     <p className="text-ink-soft">{problem}</p>
                   </div>
                 </StaggerItem>
@@ -174,7 +174,7 @@ export default function ProjectDetail({ projectId }) {
 
         {project.whatWasDone?.length > 0 && (
           <div>
-            <BlockTitle icon={Zap} color="text-amber-500">{t.whatWasDoneTitle}</BlockTitle>
+            <BlockTitle icon={Zap} color="text-cyan-500">{t.whatWasDoneTitle}</BlockTitle>
             <StaggerGroup className="grid gap-4 md:grid-cols-2">
               {project.whatWasDone.map((feature, idx) => (
                 <StaggerItem key={idx}>
@@ -270,7 +270,7 @@ export default function ProjectDetail({ projectId }) {
                   <Tilt max={7} scale={1.03} className="h-full rounded-[2rem]">
                     <a href={`#proyecto/${sp.id}`} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
                       <div className="grid h-36 place-items-center bg-gradient-to-br from-primary-400 to-accent-400 p-5">
-                        {sp.image ? <ProjectImage src={sp.image} alt={sp.title} className="max-h-full max-w-full object-contain drop-shadow-lg" /> : <span className="font-display text-5xl font-extrabold text-white/90">{sp.title.charAt(0)}</span>}
+                        {sp.image ? <ProjectImage src={sp.image} alt={sp.title} className="max-h-full max-w-full rounded-2xl bg-white/90 p-2 object-contain shadow-neon" /> : <span className="font-display text-5xl font-extrabold text-white/90">{sp.title.charAt(0)}</span>}
                       </div>
                       <div className="flex flex-1 flex-col gap-3 p-6">
                         <h3 className="font-display text-xl font-extrabold text-ink transition-colors group-hover:text-primary-600">{sp.title}</h3>

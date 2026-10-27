@@ -4,10 +4,10 @@ import Tilt from './ui/Tilt'
 
 const BADGE_GRADIENTS = {
   Actual: 'from-emerald-400 to-emerald-600',
-  Liderazgo: 'from-amber-400 to-amber-600',
-  Estrategia: 'from-rose-400 to-rose-600',
-  Operaciones: 'from-sky-400 to-sky-600',
-  Sistemas: 'from-violet-400 to-violet-600'
+  Liderazgo: 'from-violet-400 to-violet-600',
+  Estrategia: 'from-blue-400 to-indigo-600',
+  Operaciones: 'from-cyan-400 to-cyan-600',
+  Sistemas: 'from-purple-400 to-purple-600'
 }
 
 const FALLBACK_GRADIENT = 'from-primary-400 to-primary-600'

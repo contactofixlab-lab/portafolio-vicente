@@ -94,12 +94,12 @@ export const pulseVariants = {
 
 // Glow - Efecto de brillo
 export const glowVariants = {
-  initial: { boxShadow: '0 0 0px rgba(249, 115, 22, 0)' },
+  initial: { boxShadow: '0 0 0px rgba(74, 75, 240, 0)' },
   animate: {
     boxShadow: [
-      '0 0 0px rgba(249, 115, 22, 0)',
-      '0 0 30px rgba(249, 115, 22, 0.5)',
-      '0 0 0px rgba(249, 115, 22, 0)'
+      '0 0 0px rgba(74, 75, 240, 0)',
+      '0 0 30px rgba(74, 75, 240, 0.5)',
+      '0 0 0px rgba(74, 75, 240, 0)'
     ],
     transition: {
       duration: 2,
@@ -182,7 +182,7 @@ export const skewVariants = {
 // Color Shift - Cambio de color
 export const colorShiftVariants = {
   animate: {
-    color: ['#f97316', '#fbbf24', '#86efac', '#f97316'],
+    color: ['#4a4bf0', '#22d3ee', '#86efac', '#4a4bf0'],
     transition: {
       duration: 4,
       repeat: Infinity,

@@ -8,7 +8,7 @@ export default function ScrollProgress() {
   return (
     <motion.div
       aria-hidden="true"
-      className="fixed left-0 right-0 top-0 z-[90] h-1 origin-left bg-gradient-to-r from-accent-400 via-primary-500 to-primary-700"
+      className="fixed left-0 right-0 top-0 z-[90] h-1 origin-left led-pill"
       style={{ scaleX }}
     />
   )

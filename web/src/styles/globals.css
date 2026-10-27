@@ -16,8 +16,8 @@ html {
 
 body {
   font-family: 'DM Sans', sans-serif;
-  background-color: #fff7ed;
-  color: #2b1608;
+  background-color: #eef4ff;
+  color: #0a1030;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -61,21 +61,6 @@ h1, h2, h3 {
   z-index: -1;
 }
 
-/* ───────── Texto con degradé animado ───────── */
-@keyframes gradient-pan {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-.text-gradient {
-  background-image: linear-gradient(90deg, #ea580c, #f97316, #fbbf24, #f97316, #ea580c);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradient-pan 6s linear infinite;
-}
-
 /* ───────── Vidrio ───────── */
 .glass {
   background: rgba(255, 255, 255, 0.62);
@@ -86,7 +71,7 @@ h1, h2, h3 {
 
 /* ───────── Patrón de puntos decorativo ───────── */
 .dots {
-  background-image: radial-gradient(rgba(234, 88, 12, 0.22) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(rgba(74, 75, 240, 0.24) 1.5px, transparent 1.5px);
   background-size: 22px 22px;
 }
 
@@ -113,7 +98,7 @@ h1, h2, h3 {
 }
 
 .shimmer {
-  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background: linear-gradient(90deg, #e3ebff 25%, #cfdcff 50%, #e3ebff 75%);
   background-size: 1000px 100%;
   animation: shimmer 2s infinite;
 }
@@ -122,14 +107,156 @@ h1, h2, h3 {
 .fade-in-up { animation: fade-in-up 0.6s ease-out; }
 
 ::-webkit-scrollbar { width: 10px; }
-::-webkit-scrollbar-track { background: #fff7ed; }
-::-webkit-scrollbar-thumb { background: #f97316; border-radius: 5px; }
-::-webkit-scrollbar-thumb:hover { background: #ea580c; }
+::-webkit-scrollbar-track { background: #e6eeff; }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #22d3ee, #4a4bf0, #7a2cf0); border-radius: 5px; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #67e8f9, #2f7bff, #8b5cf6); }
 
 ::selection {
-  background-color: #f97316;
+  background-color: #4a4bf0;
   color: white;
 }
+
+
+/* ═════════ LUZ LED: colores que cambian en ciclo (cian → azul → violeta) ═════════ */
+@property --led { syntax: '<color>'; inherits: true; initial-value: #22e5ff; }
+@property --led-d { syntax: '<color>'; inherits: true; initial-value: #0891b2; }
+
+/* --led = tono brillante para luces y brillos; --led-d = tono más oscuro para texto legible */
+@keyframes led-cycle {
+  0%, 100% { --led: #22e5ff; --led-d: #0891b2; }
+  33% { --led: #4a86ff; --led-d: #2f5bff; }
+  66% { --led: #a45cff; --led-d: #7a2cf0; }
+}
+@keyframes led-pan { from { background-position: 0% 50%; } to { background-position: 100% 50%; } }
+@keyframes led-pan-border { from { background-position: 0 0, 0% 50%; } to { background-position: 0 0, 100% 50%; } }
+@keyframes led-spin { to { transform: rotate(360deg); } }
+
+.led-sync { animation: led-cycle 9s linear infinite; }
+
+/* Texto con degradé que se desplaza y brilla con el color del momento */
+.text-gradient {
+  background-image: linear-gradient(90deg, #14c8e6, #2f7bff, #7a2cf0, #2f7bff, #14c8e6);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: led-pan 6s ease-in-out infinite alternate, led-cycle 9s linear infinite;
+  filter: drop-shadow(0 0 14px color-mix(in srgb, var(--led) 55%, transparent));
+}
+
+/* Subtítulo: el color mismo recorre la paleta */
+.led-sub {
+  color: var(--led-d);
+  text-shadow: 0 0 22px color-mix(in srgb, var(--led) 45%, transparent);
+  animation: led-cycle 9s linear infinite;
+}
+
+/* Texto claro sobre fondo oscuro con resplandor de neón */
+.led-text {
+  animation: led-cycle 9s linear infinite;
+  text-shadow: 0 0 18px color-mix(in srgb, var(--led) 85%, transparent), 0 0 46px color-mix(in srgb, var(--led) 55%, transparent);
+}
+
+/* Anillo giratorio de neón (alrededor de la foto) */
+.led-ring { position: absolute; border-radius: 50%; pointer-events: none; }
+.led-ring::before,
+.led-ring::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(from 0deg, #22e5ff, #2f7bff, #7a2cf0, #a45cff, #22e5ff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: led-spin 7s linear infinite;
+}
+.led-ring::before { padding: 3px; }
+.led-ring::after { padding: 8px; filter: blur(12px); opacity: 0.8; }
+
+/* Puntos de luz que orbitan */
+.led-orbit { position: absolute; border-radius: 50%; pointer-events: none; animation: led-spin 9s linear infinite; }
+.led-orbit.rev { animation-direction: reverse; animation-duration: 13s; }
+.led-dot {
+  position: absolute; top: -7px; left: 50%; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%;
+  background: var(--led);
+  box-shadow: 0 0 14px 4px color-mix(in srgb, var(--led) 85%, transparent), 0 0 38px 12px color-mix(in srgb, var(--led) 45%, transparent);
+  animation: led-cycle 9s linear infinite;
+}
+.led-dot.b { top: auto; bottom: -7px; animation-delay: -4.5s; }
+
+/* Punto pequeño de las etiquetas de sección */
+.led-dot-sm { background: var(--led) !important; box-shadow: 0 0 10px 1px var(--led); animation: led-cycle 9s linear infinite, pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* Botón principal: degradé que fluye + resplandor que cambia de color */
+.led-btn {
+  color: #fff;
+  background-image: linear-gradient(90deg, #0284c7, #3b4fe6, #7a2cf0, #3b4fe6, #0284c7);
+  background-size: 300% 100%;
+  animation: led-pan 5s ease-in-out infinite alternate, led-cycle 9s linear infinite;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--led) 55%, transparent), 0 16px 40px -14px color-mix(in srgb, var(--led) 75%, transparent);
+}
+.led-btn:hover {
+  box-shadow: 0 0 36px color-mix(in srgb, var(--led) 90%, transparent), 0 18px 54px -10px color-mix(in srgb, var(--led) 85%, transparent);
+  filter: brightness(1.1);
+}
+
+/* Botón de contorno: borde de neón que recorre la paleta */
+.led-outline {
+  border: 2px solid transparent;
+  color: var(--led-d);
+  background: linear-gradient(rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.92)) padding-box,
+              linear-gradient(90deg, #22d3ee, #2f7bff, #7a2cf0, #2f7bff, #22d3ee) border-box;
+  background-size: 100% 100%, 300% 100%;
+  animation: led-pan-border 5s ease-in-out infinite alternate, led-cycle 9s linear infinite;
+  box-shadow: 0 0 16px color-mix(in srgb, var(--led) 40%, transparent);
+}
+.led-outline:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #0284c7, #3b4fe6, #7a2cf0) padding-box,
+              linear-gradient(90deg, #22d3ee, #2f7bff, #7a2cf0, #2f7bff, #22d3ee) border-box;
+  box-shadow: 0 0 30px color-mix(in srgb, var(--led) 85%, transparent);
+}
+
+/* Botón claro (sobre fondos oscuros) */
+.led-light {
+  color: var(--led-d);
+  animation: led-cycle 9s linear infinite;
+  box-shadow: 0 0 22px color-mix(in srgb, var(--led) 60%, transparent), 0 14px 36px -14px color-mix(in srgb, var(--led) 70%, transparent);
+}
+.led-light:hover { box-shadow: 0 0 38px color-mix(in srgb, var(--led) 95%, transparent); }
+
+/* Píldoras e íconos con degradé de neón (menú, logo, barras) */
+.led-pill {
+  background-image: linear-gradient(90deg, #0891b2, #2f5bff, #7a2cf0, #2f5bff, #0891b2);
+  background-size: 300% 100%;
+  animation: led-pan 5s ease-in-out infinite alternate, led-cycle 9s linear infinite;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--led) 65%, transparent);
+}
+
+/* Marco del menú */
+.led-nav {
+  animation: led-cycle 9s linear infinite;
+  border-color: color-mix(in srgb, var(--led) 60%, transparent) !important;
+  box-shadow: 0 0 26px color-mix(in srgb, var(--led) 35%, transparent), 0 14px 36px -14px rgba(60, 60, 255, 0.5);
+}
+.led-nav.led-nav-strong { box-shadow: 0 0 36px color-mix(in srgb, var(--led) 45%, transparent), 0 22px 50px -14px rgba(60, 60, 255, 0.6); }
+
+/* Bordes y tarjetas con brillo de neón */
+.led-edge {
+  animation: led-cycle 9s linear infinite;
+  border-color: color-mix(in srgb, var(--led) 65%, white) !important;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--led) 40%, transparent), 0 20px 50px -22px rgba(20, 28, 110, 0.3);
+}
+.led-hover { animation: led-cycle 9s linear infinite; transition: box-shadow 0.3s, border-color 0.3s; }
+.led-hover:hover {
+  border-color: color-mix(in srgb, var(--led) 70%, white) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--led) 70%, transparent), 0 0 34px color-mix(in srgb, var(--led) 50%, transparent), 0 24px 50px -22px rgba(20, 28, 110, 0.35);
+}
+
+/* Subrayado ondulado bajo los títulos */
+.squiggle { animation: led-cycle 9s linear infinite; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--led) 60%, transparent)); }
+.squiggle path { stroke: var(--led-d); }
 
 /* Respeta a quien prefiere menos movimiento */
 @media (prefers-reduced-motion: reduce) {

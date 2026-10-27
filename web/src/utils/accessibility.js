@@ -23,7 +23,7 @@ export const manageFocusVisible = () => {
   const style = document.createElement('style')
   style.textContent = `
     :focus-visible {
-      outline: 2px solid #f97316;
+      outline: 2px solid #4a4bf0;
       outline-offset: 2px;
     }
   `

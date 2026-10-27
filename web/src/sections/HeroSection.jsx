@@ -18,7 +18,7 @@ const BADGE_POSITIONS = [
 function Stat({ value, suffix, label }) {
   return (
     <div className="text-center sm:text-left">
-      <p className="font-display text-3xl font-extrabold text-primary-600 min-[400px]:text-4xl sm:text-5xl">
+      <p className="led-sub font-display text-3xl font-extrabold min-[400px]:text-4xl sm:text-5xl">
         <CountUp to={value} suffix={suffix} />
       </p>
       <p className="mt-1 text-[11px] font-semibold leading-tight min-[400px]:text-xs text-ink-soft sm:text-sm">{label}</p>
@@ -66,7 +66,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.7 }}
-            className="font-display text-2xl font-bold text-primary-700 md:text-3xl"
+            className="led-sub font-display text-2xl font-bold md:text-3xl"
           >
             {hero.subtitle}
           </motion.p>
@@ -116,11 +116,13 @@ export default function HeroSection() {
           transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative mx-auto w-full max-w-[34rem]"
         >
-          <div className="absolute inset-[-8%] animate-spin-slow rounded-full border-2 border-dashed border-primary-300/80" />
+          <div className="led-ring inset-[-9%]" />
+          <div className="led-orbit inset-[-9%]"><span className="led-dot" /></div>
+          <div className="led-orbit rev inset-[-14%]"><span className="led-dot b" /></div>
           <div className="absolute inset-[3%] bg-gradient-to-br from-primary-400 via-primary-500 to-accent-400 opacity-90 blur-[2px] animate-morph" />
 
           <Tilt max={6} glare={false} scale={1.01} className="relative">
-            <div className="relative aspect-square overflow-hidden border-[10px] border-white bg-gradient-to-br from-primary-100 to-accent-100 shadow-[0_40px_90px_-30px_rgba(154,52,18,0.6)] animate-morph">
+            <div className="relative aspect-square overflow-hidden border-[10px] border-white bg-gradient-to-br from-primary-100 to-accent-100 shadow-[0_40px_90px_-30px_rgba(30,36,160,0.5)] animate-morph">
               {hero.photo ? (
                 <img src={hero.photo} alt={hero.title} className="h-full w-full object-cover" />
               ) : (
@@ -141,7 +143,7 @@ export default function HeroSection() {
                 animate={{ y: [0, -14, 0] }}
                 transition={{ duration: 4 + idx, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.4 }}
                 whileHover={{ scale: 1.12, rotate: -4 }}
-                className="flex items-center gap-3 rounded-2xl border border-white bg-white/90 px-4 py-3 shadow-soft backdrop-blur"
+                className="flex items-center gap-3 led-edge rounded-2xl border bg-white/90 px-4 py-3 backdrop-blur"
               >
                 <IconValue value={badge.icon} className="text-2xl" imgClass="h-8 w-8" />
                 <span className="whitespace-nowrap text-sm font-bold text-ink">{badge.label}</span>
