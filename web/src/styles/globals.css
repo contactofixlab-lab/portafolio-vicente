@@ -268,6 +268,15 @@ h1, h2, h3 {
 .badge-orbit:has(.badge-anchor:hover),
 .badge-orbit:has(.badge-anchor:hover) .badge-upright { animation-play-state: paused; }
 
+
+/* ═════════ Modo mapa de calor (la consola muestra la página completa de una vez) ═════════ */
+html.heatmap-mode *, html.heatmap-mode *::before, html.heatmap-mode *::after { animation: none !important; transition: none !important; }
+html.heatmap-mode [style*="opacity: 0"] { opacity: 1 !important; }
+html.heatmap-mode [style*="transform"] { transform: none !important; }
+html.heatmap-mode .min-h-screen { min-height: 0 !important; }
+html.heatmap-mode [class*="min-h-[100vh]"] { min-height: 820px !important; }
+html.heatmap-mode .led-ring, html.heatmap-mode .led-orbit, html.heatmap-mode .badge-orbit { display: none !important; }
+
 /* Respeta a quien prefiere menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

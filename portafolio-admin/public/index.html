@@ -442,6 +442,131 @@
             .nav-item .ico { width: 34px; height: 34px; }
             .section-card { padding: 24px; }
         }
+
+        /* ---------- Analítica ---------- */
+        .an-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 18px; }
+        .an-toolbar .seg { display: inline-flex; padding: 4px; gap: 2px; border-radius: 999px; background: #fff; border: 1.5px solid var(--line); box-shadow: var(--shadow-sm); overflow-x: auto; max-width: 100%; scrollbar-width: none; }
+        .an-toolbar .seg::-webkit-scrollbar { display: none; }
+        .an-toolbar .seg button { border: 0; background: transparent; color: var(--soft); padding: 8px 14px; border-radius: 999px; font: inherit; font-weight: 600; font-size: 13.5px; cursor: pointer; white-space: nowrap; transition: all .15s; }
+        .an-toolbar .seg button:hover { color: var(--accent); background: var(--accent-soft); }
+        .an-toolbar .seg button.on { color: #fff; background: linear-gradient(135deg, var(--accent-2), var(--accent-deep)); box-shadow: 0 0 14px color-mix(in srgb, var(--led) 50%, transparent); }
+        .an-toolbar select { width: auto; min-width: 150px; padding: 9px 38px 9px 14px; border-radius: 999px; background-color: #fff; font-weight: 600; font-size: 13.5px; }
+        .an-toolbar .grow { flex: 1; }
+        .an-check { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--soft); cursor: pointer; padding: 8px 12px; border-radius: 999px; background: #fff; border: 1.5px solid var(--line); }
+        .an-check input { accent-color: var(--accent); width: 16px; height: 16px; }
+        .an-info { font-size: 12.5px; color: var(--dim); margin: -6px 0 16px 4px; }
+        .an-grid { display: grid; gap: 16px; margin-bottom: 16px; }
+        .an-grid.c2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .an-grid.c3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+        .an-grid.c21 { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); }
+        .an-card { background: #fff; border: 1.5px solid var(--line); border-radius: 22px; padding: 22px; box-shadow: var(--shadow-sm); min-width: 0; }
+        .an-card h3 { font-size: 17px; font-weight: 800; letter-spacing: -0.01em; display: flex; align-items: center; gap: 10px; }
+        .an-card h3 .ico { width: 30px; height: 30px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent); flex-shrink: 0; }
+        .an-card .sub { color: var(--soft); font-size: 13px; margin: 4px 0 14px; }
+        .an-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-bottom: 16px; }
+        .an-kpi { background: #fff; border: 1.5px solid var(--line); border-radius: 20px; padding: 18px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden; transition: all .2s; }
+        .an-kpi:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--led) 60%, white); box-shadow: 0 0 26px color-mix(in srgb, var(--led) 35%, transparent), var(--shadow); }
+        .an-kpi .lab { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--soft); display: flex; align-items: center; gap: 8px; }
+        .an-kpi .lab .ico { width: 26px; height: 26px; border-radius: 9px; display: grid; place-items: center; color: #fff; background: linear-gradient(135deg, var(--accent-2), var(--accent-deep)); }
+        .an-kpi .lab .ico svg.i { width: 14px; height: 14px; }
+        .an-kpi b { display: block; font-family: var(--font-display); font-size: 34px; font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin: 10px 0 4px; color: var(--ink); }
+        .an-kpi small { font-size: 12.5px; color: var(--dim); }
+        .delta { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 800; padding: 2px 8px; border-radius: 999px; margin-left: 6px; }
+        .delta.up { color: #15803d; background: #dcfce7; }
+        .delta.down { color: #b91c1c; background: #fee2e2; }
+        .delta.flat { color: var(--soft); background: var(--accent-soft); }
+        .chart { width: 100%; height: auto; display: block; overflow: visible; }
+        .chart text { font-family: 'DM Sans', sans-serif; font-size: 11px; fill: var(--dim); }
+        .chart .grid { stroke: var(--line); stroke-width: 1; }
+        .legend { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 8px; font-size: 12.5px; font-weight: 600; color: var(--soft); }
+        .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+        .bars { display: grid; gap: 9px; }
+        .bar-row { display: grid; grid-template-columns: minmax(80px, 36%) minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 13.5px; }
+        .bar-row .nm { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 600; color: var(--ink-2); }
+        .bar-row .nm small { display: block; font-weight: 500; font-size: 11.5px; color: var(--dim); overflow: hidden; text-overflow: ellipsis; }
+        .bar-row .tr { height: 12px; border-radius: 999px; background: #e9efff; overflow: hidden; }
+        .bar-row .tr span { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, #0284c7, #3b4fe6, #7a2cf0); box-shadow: 0 0 10px rgba(74,134,255,.5); min-width: 3px; }
+        .bar-row .vl { font-weight: 800; color: var(--ink); font-variant-numeric: tabular-nums; }
+        .donut-wrap { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+        .donut { width: 150px; height: 150px; border-radius: 50%; position: relative; flex-shrink: 0; }
+        .donut::after { content: ''; position: absolute; inset: 26px; border-radius: 50%; background: #fff; }
+        .donut .mid { position: absolute; inset: 0; z-index: 1; display: grid; place-items: center; text-align: center; font-family: var(--font-display); font-weight: 800; font-size: 22px; line-height: 1.1; }
+        .donut .mid small { display: block; font-family: 'DM Sans'; font-size: 11px; font-weight: 600; color: var(--dim); }
+        .dl { display: grid; gap: 8px; font-size: 13.5px; flex: 1; min-width: 150px; }
+        .dl div { display: flex; align-items: center; gap: 8px; }
+        .dl i { width: 11px; height: 11px; border-radius: 50%; flex-shrink: 0; }
+        .dl b { margin-left: auto; font-variant-numeric: tabular-nums; }
+        .heat-grid { display: grid; grid-template-columns: 34px repeat(24, minmax(0, 1fr)); gap: 3px; font-size: 10.5px; color: var(--dim); }
+        .heat-grid .c { aspect-ratio: 1; border-radius: 4px; background: #eaf0ff; }
+        .heat-grid .h, .heat-grid .d { text-align: center; line-height: 1.6; }
+        .heat-grid .d { text-align: left; font-weight: 700; display: flex; align-items: center; }
+        .an-table-wrap { overflow-x: auto; margin: 0 -6px; padding: 0 6px; }
+        table.an-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 640px; }
+        .an-table th { text-align: left; font-size: 11.5px; text-transform: uppercase; letter-spacing: .08em; color: var(--dim); font-weight: 700; padding: 8px 10px; border-bottom: 1.5px solid var(--line); white-space: nowrap; }
+        .an-table td { padding: 11px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+        .an-table tr:hover td { background: #f4f8ff; }
+        .an-table .num { text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+        .an-table .rk { width: 34px; color: var(--dim); font-weight: 800; }
+        .an-table .el { font-weight: 700; color: var(--ink-2); max-width: 280px; }
+        .an-table .el small { display: block; font-weight: 500; font-size: 11.5px; color: var(--dim); }
+        .tag { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 700; background: var(--accent-soft); color: var(--accent); white-space: nowrap; }
+        .tag.warn { background: #cffafe; color: #0e7490; }
+        .tag.conv { background: #dcfce7; color: #15803d; }
+        .tag.dead { background: #ede9fe; color: #6d28d9; }
+        .mini-bar { display: inline-block; height: 8px; border-radius: 99px; background: linear-gradient(90deg, #0284c7, #7a2cf0); vertical-align: middle; min-width: 2px; margin-right: 8px; }
+        .funnel { display: grid; gap: 6px; }
+        .funnel .f { display: grid; grid-template-columns: 54px minmax(0, 1fr) 44px; gap: 8px; align-items: center; font-size: 12px; color: var(--soft); font-weight: 600; }
+        .funnel .f .tr { height: 9px; border-radius: 99px; background: #e9efff; overflow: hidden; }
+        .funnel .f .tr span { display: block; height: 100%; background: linear-gradient(90deg, #22d3ee, #4a4bf0); border-radius: 99px; }
+        .page-card { display: grid; gap: 14px; }
+        .page-card .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(110px, 1fr)); gap: 10px; }
+        .page-card .stats div { background: var(--paper); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; }
+        .page-card .stats b { display: block; font-family: var(--font-display); font-size: 20px; font-weight: 800; }
+        .page-card .stats span { font-size: 11.5px; color: var(--dim); font-weight: 600; }
+        .an-empty { text-align: center; padding: 46px 20px; border: 2px dashed var(--line-2); border-radius: 24px; background: var(--paper); color: var(--soft); }
+        .an-empty b { display: block; font-family: var(--font-display); font-size: 20px; color: var(--ink); margin-bottom: 6px; }
+        .an-skel { height: 120px; border-radius: 22px; background: linear-gradient(90deg, #eaf0ff 25%, #dfe8ff 50%, #eaf0ff 75%); background-size: 300% 100%; animation: led-pan 1.4s linear infinite; margin-bottom: 14px; }
+        .an-flow { display: grid; gap: 8px; }
+        .an-flow .row { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; align-items: center; font-size: 13.5px; }
+        .an-flow .path { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-weight: 600; }
+        .an-flow .path svg.i { width: 14px; height: 14px; color: var(--accent); }
+        .an-search { width: auto; min-width: 190px; padding: 9px 14px 9px 38px; border-radius: 999px; font-size: 13.5px; background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238791b5' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='m21 21-4.3-4.3'/%3E%3C/svg%3E") no-repeat 13px center / 17px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .chip.on { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+
+        /* Mapa de calor */
+        .hm-layout { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 16px; align-items: start; }
+        .hm-controls { display: grid; gap: 14px; position: sticky; top: 14px; }
+        .hm-controls label.ctl { display: grid; gap: 6px; font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
+        .hm-controls input[type=range] { padding: 0; min-height: 0; height: 6px; accent-color: var(--accent); }
+        .hm-frame { position: relative; border-radius: 18px; overflow: hidden; border: 1.5px solid var(--line-2); background: #fff; box-shadow: var(--shadow); }
+        .hm-stage { position: absolute; left: 0; top: 0; transform-origin: top left; }
+        .hm-stage iframe { border: 0; display: block; background: #fff; pointer-events: none; }
+        .hm-stage canvas { position: absolute; left: 0; top: 0; pointer-events: none; }
+        .hm-band { position: absolute; left: 0; right: 0; pointer-events: none; background: #05092a; display: flex; align-items: flex-start; justify-content: flex-end; }
+        .hm-band span { font: 800 calc(14px / var(--sc, 1)) 'DM Sans'; color: #fff; background: rgba(5,9,42,.75); padding: 2px 10px; border-radius: 0 0 0 8px; }
+        .hm-mark { position: absolute; transform: translate(-50%, -50%); width: calc(30px / var(--sc, 1)); height: calc(30px / var(--sc, 1)); border-radius: 50%; display: grid; place-items: center; background: #0a1030; color: #fff; border: calc(2px / var(--sc, 1)) solid #67e8f9; box-shadow: 0 0 calc(14px / var(--sc, 1)) #22e5ff; font: 800 calc(14px / var(--sc, 1)) 'DM Sans'; pointer-events: none; }
+        .hm-mark.sel { background: #7a2cf0; border-color: #fff; }
+        .hm-scale { height: 10px; border-radius: 99px; background: linear-gradient(90deg, rgba(34,229,255,.2), #22e5ff, #3b82ff, #7a2cf0, #fff); }
+        .hm-legend { display: flex; justify-content: space-between; font-size: 11.5px; color: var(--dim); font-weight: 600; margin-top: 4px; }
+        .hm-loading { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(255,255,255,.7); font-weight: 700; color: var(--soft); z-index: 3; }
+        @media (max-width: 1100px) {
+            .an-grid.c3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .an-grid.c21 { grid-template-columns: minmax(0, 1fr); }
+            .hm-layout { grid-template-columns: minmax(0, 1fr); }
+            .hm-controls { position: static; }
+        }
+        @media (max-width: 760px) {
+            .an-grid.c2, .an-grid.c3 { grid-template-columns: minmax(0, 1fr); }
+            .an-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .an-kpi { padding: 14px; }
+            .an-kpi b { font-size: 26px; }
+            .an-card { padding: 16px; border-radius: 18px; }
+            .bar-row { grid-template-columns: minmax(70px, 40%) minmax(0, 1fr) auto; font-size: 13px; }
+            .an-toolbar select, .an-search { flex: 1 1 100%; width: 100%; }
+            .an-toolbar .seg { width: 100%; }
+        }
+
         @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
 
         /* Tablet y celular: el menú lateral pasa a una barra superior con botón de menú desplegable */
@@ -653,6 +778,12 @@ const U = (group, key, label) => T(key, label, { placeholder: UI_DEFAULTS[group]
 /* Cada sección del menú lateral es un "módulo" (group). Sus subsecciones (tab) aparecen como pestañas arriba. */
 const PAGES = [
     { id: 'summary', group: 'Resumen', tab: 'Resumen', title: 'Panel de control', desc: 'Estado general de tu sitio.', custom: 'summary', fields: [] },
+    { id: 'an-resumen', group: 'Analítica', tab: 'Resumen', title: 'Analítica del sitio', desc: 'Visitas, clics, conversiones y tiempo de permanencia de tu portafolio, con comparación contra el período anterior.', custom: 'an-resumen', fields: [] },
+    { id: 'an-clics', group: 'Analítica', tab: 'Clics', title: 'Dónde hacen clic', desc: 'Ranking de todo lo que se clickea: botones, enlaces, imágenes y textos; por sección, con clics muertos y clics repetidos.', custom: 'an-clics', fields: [] },
+    { id: 'an-paginas', group: 'Analítica', tab: 'Páginas', title: 'Rendimiento por página', desc: 'Cómo funciona cada página: visitas, clics, tiempo, cuánto bajan y qué recorridos hacen entre páginas.', custom: 'an-paginas', fields: [] },
+    { id: 'an-mapa', group: 'Analítica', tab: 'Mapa de calor', title: 'Mapa de calor', desc: 'Tu página real con los clics dibujados encima: las zonas más claras son las más clicadas. También muestra hasta dónde llegan al hacer scroll.', custom: 'an-mapa', fields: [] },
+    { id: 'an-audiencia', group: 'Analítica', tab: 'Audiencia', title: 'Quién te visita', desc: 'Dispositivos, países, origen del tráfico, navegadores y los días y horas en que más te visitan.', custom: 'an-audiencia', fields: [] },
+    { id: 'an-vivo', group: 'Analítica', tab: 'En vivo', title: 'Actividad reciente', desc: 'Lo último que hicieron los visitantes en el sitio, casi en tiempo real.', custom: 'an-vivo', fields: [] },
     { id: 'header', group: 'Inicio', tab: 'Encabezado', title: 'Encabezado y menú', desc: 'Logo, texto de disponibilidad y enlaces del menú superior.', fields: [
         OBJ('header', 'Encabezado', [
             T('logoLetter', 'Letra del logo'),
@@ -1146,6 +1277,9 @@ function renderPage() {
     const pageEl = document.getElementById('page');
     if (page.custom === 'summary') {
         pageEl.innerHTML = summaryHTML();
+    } else if (page.custom && page.custom.startsWith('an-')) {
+        pageEl.innerHTML = analyticsShell(page, tabs);
+        anLoad();
     } else {
         pageEl.innerHTML =
             `<div class="page-hero"><div class="hero-ico">${ic(meta.icon || 'layers')}</div><p>${esc(page.desc)}</p></div>` +
@@ -1460,6 +1594,23 @@ const ICONS = {
     chevron: '<path d="m6 9 6 6 6-6"/>',
     upload: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m17 8-5-5-5 5"/><path d="M12 3v12"/>',
     check: '<path d="m5 12 5 5L20 7"/>',
+    chart: '<path d="M3 3v18h18"/><path d="m7 15 4-5 3 3 5-7"/>',
+    eye: '<path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+    users: '<circle cx="9" cy="8" r="4"/><path d="M2 21c0-4 3-6 7-6s7 2 7 6"/><path d="M16 4a4 4 0 0 1 0 8M22 21c0-3-2-5-4-5.6"/>',
+    pointer: '<path d="m4 4 7 17 2.5-7.5L21 11z"/>',
+    target: '<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    scroll: '<rect x="6" y="3" width="12" height="18" rx="6"/><path d="M12 7v4"/>',
+    door: '<path d="M14 3h5a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1h-5"/><path d="m10 17-5-5 5-5M5 12h11"/>',
+    alert: '<path d="M12 3 2 20h20z"/><path d="M12 10v5M12 18h.01"/>',
+    device: '<rect x="3" y="4" width="14" height="11" rx="2"/><path d="M8 19h4M10 15v4"/><rect x="18" y="8" width="3" height="9" rx="1"/>',
+    bolt: '<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+    route: '<circle cx="6" cy="19" r="2"/><circle cx="18" cy="5" r="2"/><path d="M8 19h8a3 3 0 0 0 0-6H8a3 3 0 0 1 0-6h8"/>',
+    globe: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
+    shield: '<path d="M12 2 4 6v6c0 5 3.4 8.5 8 10 4.6-1.5 8-5 8-10V6z"/>',
+    flame: '<path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
+    pin: '<path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
+    refresh: '<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/>',
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     close: '<path d="M18 6 6 18M6 6l12 12"/>'
 };
@@ -1467,6 +1618,7 @@ const ic = (name) => `<svg class="i" viewBox="0 0 24 24">${ICONS[name] || ''}</s
 
 const MODULE_META = {
     'Resumen': { icon: 'dashboard', desc: 'Estado general y pendientes de tu sitio.' },
+    'Analítica': { icon: 'chart', desc: 'Visitas, clics y mapa de calor de tu sitio.' },
     'Inicio': { icon: 'home', desc: 'Menú superior, hero y sección personal.' },
     'Proyectos': { icon: 'layers', desc: 'Tus proyectos, logos y textos de la sección.' },
     'Trayectoria': { icon: 'briefcase', desc: 'Experiencia laboral y sus textos.' },
@@ -1945,6 +2097,498 @@ document.getElementById('page').addEventListener('click', (e) => {
     const base = renderSidebar;
     renderSidebar = function () { base(); setOpen(false); };
 })();
+
+/* ---------- Analítica: clics y visitas del sitio ---------- */
+const AN = {
+    data: null, key: '', loading: false, error: '',
+    filters: { range: '30d', device: 'all', local: false, page: 'all' },
+    el: { kind: 'all', q: '' },
+    heat: { page: 'inicio', device: 'desktop', mode: 'clicks', radius: 38, opacity: 85, markers: true, sel: null, data: null, key: '', loading: false },
+    timer: null
+};
+const AN_RANGES = [['today', 'Hoy'], ['7d', '7 días'], ['30d', '30 días'], ['90d', '90 días'], ['365d', '12 meses']];
+const AN_DEVICES = [['all', 'Todos los dispositivos'], ['desktop', 'Escritorio'], ['tablet', 'Tablet'], ['mobile', 'Celular']];
+const AN_CONV = { whatsapp: 'WhatsApp', correo: 'Correo', telefono: 'Llamada / teléfono', cv: 'Descarga de CV' };
+const AN_COLORS = ['#22d3ee', '#3b82ff', '#7a2cf0', '#a45cff', '#0284c7', '#6a95ff', '#c4a3ff', '#67e8f9'];
+const AN_DEVICE_NAMES = { desktop: 'Escritorio', tablet: 'Tablet', mobile: 'Celular' };
+const DOW = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
+
+const fmt = (n) => new Intl.NumberFormat('es-CL').format(Math.round(n || 0));
+const fmt1 = (n) => (Math.round((n || 0) * 10) / 10).toString().replace('.', ',');
+const fmtPct = (f) => fmt1((f || 0) * 100) + '%';
+const fmtDur = (s) => (s >= 60 ? `${Math.floor(s / 60)} min ${Math.round(s % 60)} s` : `${Math.round(s || 0)} s`);
+
+function anPageName(p) {
+    if (!p) return '—';
+    if (p.startsWith('proyecto/')) {
+        const id = Number(p.split('/')[1]);
+        const pr = (content && content.projects || []).find(x => Number(x.id) === id);
+        return 'Proyecto: ' + (pr ? pr.title : '#' + id);
+    }
+    return ({ inicio: 'Inicio', proyectos: 'Proyectos', trayectoria: 'Trayectoria', habilidades: 'Habilidades', contacto: 'Contacto' })[p] || p;
+}
+const anPageHash = (p) => (p === 'inicio' ? '#home' : '#' + p);
+const kindName = (k) => ({ whatsapp: 'WhatsApp', correo: 'Correo', telefono: 'Teléfono', cv: 'CV', github: 'GitHub', linkedin: 'LinkedIn', 'enlace externo': 'Enlace externo', 'navegación': 'Navegación', enlace: 'Enlace', 'botón': 'Botón', imagen: 'Imagen', campo: 'Campo', otro: 'Otro' })[k] || k;
+const countryName = (c) => { try { return c && c.length === 2 ? new Intl.DisplayNames(['es'], { type: 'region' }).of(c) : c; } catch { return c; } };
+
+function delta(cur, prev) {
+    if (!prev) return cur ? '<span class="delta up">nuevo</span>' : '';
+    const d = ((cur - prev) / prev) * 100;
+    if (Math.abs(d) < 0.5) return '<span class="delta flat">= igual</span>';
+    return `<span class="delta ${d > 0 ? 'up' : 'down'}">${d > 0 ? '▲' : '▼'} ${fmt1(Math.abs(d))}%</span>`;
+}
+
+/* ---------- Carga de datos ---------- */
+function anQuery() {
+    const f = AN.filters;
+    return new URLSearchParams({ range: f.range, device: f.device, local: f.local ? '1' : '0', page: f.page }).toString();
+}
+
+async function anLoad(force = false) {
+    const key = anQuery();
+    if (!force && AN.data && AN.key === key) { anRender(); return; }
+    AN.loading = true; AN.error = '';
+    anRender();
+    try {
+        const res = await fetch('/api/analytics?' + key);
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || 'No se pudo cargar');
+        AN.data = json; AN.key = key;
+    } catch (err) {
+        AN.error = err.message;
+    }
+    AN.loading = false;
+    anRender();
+}
+
+function anHeatKey() {
+    const h = AN.heat, f = AN.filters;
+    return [h.page, h.device, f.range, f.local].join('|');
+}
+
+async function anLoadHeat(force = false) {
+    const key = anHeatKey();
+    if (!force && AN.heat.data && AN.heat.key === key) { anDrawHeat(); return; }
+    AN.heat.loading = true;
+    anDrawHeat();
+    try {
+        const q = new URLSearchParams({ view: 'heat', page: AN.heat.page, device: AN.heat.device, range: AN.filters.range, local: AN.filters.local ? '1' : '0' });
+        const res = await fetch('/api/analytics?' + q);
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || 'No se pudo cargar el mapa');
+        AN.heat.data = json; AN.heat.key = key;
+    } catch (err) {
+        toast(err.message);
+    }
+    AN.heat.loading = false;
+    anDrawHeat();
+}
+
+/* ---------- Gráficos ---------- */
+function niceMax(v) {
+    if (v <= 5) return 5;
+    const p = Math.pow(10, Math.floor(Math.log10(v)));
+    const n = v / p;
+    return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 5 ? 5 : 10) * p;
+}
+
+function smoothPath(pts) {
+    if (pts.length < 2) return '';
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+        const [x0, y0] = pts[i], [x1, y1] = pts[i + 1];
+        const cx = (x0 + x1) / 2;
+        d += ` C${cx},${y0} ${cx},${y1} ${x1},${y1}`;
+    }
+    return d;
+}
+
+function lineChart(points, series) {
+    const w = 900, h = 270, pad = { l: 42, r: 14, t: 14, b: 30 };
+    const max = niceMax(Math.max(1, ...points.flatMap(p => series.map(s => p[s.key] || 0))));
+    const X = (i) => pad.l + (w - pad.l - pad.r) * (points.length === 1 ? 0.5 : i / (points.length - 1));
+    const Y = (v) => pad.t + (h - pad.t - pad.b) * (1 - v / max);
+    let out = `<svg class="chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="Gráfico de líneas">`;
+    out += `<defs>${series.map((s, i) => `<linearGradient id="lg${i}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${s.color}" stop-opacity=".28"/><stop offset="1" stop-color="${s.color}" stop-opacity="0"/></linearGradient>`).join('')}</defs>`;
+    for (let i = 0; i <= 4; i++) {
+        const v = (max / 4) * i, y = Y(v);
+        out += `<line class="grid" x1="${pad.l}" x2="${w - pad.r}" y1="${y}" y2="${y}"/><text x="${pad.l - 8}" y="${y + 4}" text-anchor="end">${fmt(v)}</text>`;
+    }
+    const step = Math.max(1, Math.ceil(points.length / 8));
+    points.forEach((p, i) => { if (i % step === 0 || i === points.length - 1) out += `<text x="${X(i)}" y="${h - 8}" text-anchor="middle">${esc(p.label)}</text>`; });
+    series.forEach((s, si) => {
+        const pts = points.map((p, i) => [X(i), Y(p[s.key] || 0)]);
+        if (pts.length > 1) {
+            out += `<path d="${smoothPath(pts)} L${pts[pts.length - 1][0]},${Y(0)} L${pts[0][0]},${Y(0)} Z" fill="url(#lg${si})"/>`;
+            out += `<path d="${smoothPath(pts)}" fill="none" stroke="${s.color}" stroke-width="2.6" stroke-linecap="round" style="filter:drop-shadow(0 0 5px ${s.color}88)"/>`;
+        }
+        pts.forEach((pt, i) => { out += `<circle cx="${pt[0]}" cy="${pt[1]}" r="${points.length > 40 ? 2 : 3.6}" fill="#fff" stroke="${s.color}" stroke-width="2"><title>${esc(points[i].label)} · ${s.name}: ${fmt(points[i][s.key])}</title></circle>`; });
+    });
+    return out + '</svg>';
+}
+
+function legend(series) { return `<div class="legend">${series.map(s => `<span><i style="background:${s.color}"></i>${s.name}</span>`).join('')}</div>`; }
+
+function barList(items, opts = {}) {
+    if (!items.length) return '<p class="sub" style="margin:0">Sin datos todavía.</p>';
+    const max = Math.max(1, ...items.map(i => i.value));
+    return `<div class="bars">${items.map(i => `<div class="bar-row"><div class="nm" title="${esc(i.label)}">${esc(i.label)}${i.sub ? `<small>${esc(i.sub)}</small>` : ''}</div><div class="tr"><span style="width:${(i.value / max) * 100}%"></span></div><div class="vl">${opts.pct ? fmt1(i.value) + '%' : fmt(i.value)}</div></div>`).join('')}</div>`;
+}
+
+function donut(items, centerLabel) {
+    const total = items.reduce((a, i) => a + i.value, 0);
+    if (!total) return '<p class="sub" style="margin:0">Sin datos todavía.</p>';
+    let acc = 0;
+    const stops = items.map((i, k) => { const a = acc / total * 360; acc += i.value; return `${AN_COLORS[k % AN_COLORS.length]} ${a}deg ${acc / total * 360}deg`; }).join(',');
+    return `<div class="donut-wrap"><div class="donut" style="background:conic-gradient(${stops})"><div class="mid"><div>${fmt(total)}<small>${esc(centerLabel)}</small></div></div></div><div class="dl">${items.map((i, k) => `<div><i style="background:${AN_COLORS[k % AN_COLORS.length]}"></i>${esc(i.label)}<b>${fmtPct(i.value / total)}</b></div>`).join('')}</div></div>`;
+}
+
+function heatGrid(rows) {
+    const m = {}; let max = 1;
+    rows.forEach(r => { m[r.dow + '-' + r.h] = r.n; max = Math.max(max, r.n); });
+    let out = '<div class="heat-grid"><div></div>' + Array.from({ length: 24 }, (_, h) => `<div class="h">${h % 3 === 0 ? h : ''}</div>`).join('');
+    for (let d = 1; d <= 7; d++) {
+        out += `<div class="d">${DOW[d - 1]}</div>`;
+        for (let h = 0; h < 24; h++) {
+            const n = m[d + '-' + h] || 0;
+            out += `<div class="c" style="${n ? `background:color-mix(in srgb,#7a2cf0 ${Math.max(18, n / max * 100)}%,#22d3ee ${Math.max(0, 70 - n / max * 70)}%)` : ''}" title="${DOW[d - 1]} ${h}:00 · ${n} visitas"></div>`;
+        }
+    }
+    return out + '</div>';
+}
+
+/* ---------- Páginas del dashboard ---------- */
+function anToolbar(page) {
+    const f = AN.filters;
+    const seg = (items, cur, attr) => `<div class="seg">${items.map(([v, l]) => `<button type="button" class="${cur === v ? 'on' : ''}" data-an="${attr}" data-v="${v}">${l}</button>`).join('')}</div>`;
+    const showDevice = page.custom !== 'an-mapa';
+    return `<div class="an-toolbar">${seg(AN_RANGES, f.range, 'range')}${showDevice ? `<select data-an="device" aria-label="Dispositivo">${AN_DEVICES.map(([v, l]) => `<option value="${v}"${f.device === v ? ' selected' : ''}>${l}</option>`).join('')}</select>` : ''}
+        <span class="grow"></span>
+        <label class="an-check"><input type="checkbox" data-an="local"${f.local ? ' checked' : ''}> Incluir mis pruebas locales</label>
+        <button type="button" class="btn small" data-an="refresh">${ic('refresh')}Actualizar</button></div>`;
+}
+
+function anEmpty() {
+    return `<div class="an-empty"><b>Todavía no hay datos en este período</b>Los datos aparecen cuando alguien visita el sitio publicado. Prueba con otro período, o activa "Incluir mis pruebas locales" para ver las visitas hechas desde tu computador.</div>`;
+}
+
+function anInfo() {
+    const i = AN.data && AN.data.info;
+    if (!i || !i.total) return '';
+    const first = i.first_event ? new Date(i.first_event).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+    return `<p class="an-info">Registrando desde el ${esc(first)} · ${fmt(i.total)} eventos guardados${i.local ? ` (${fmt(i.local)} de pruebas locales)` : ''}. Los datos son anónimos: sin cookies ni datos personales.</p>`;
+}
+
+function anResumen(d) {
+    const k = d.kpi, p = d.prev;
+    const kp = (icon, lab, val, sub) => `<div class="an-kpi"><div class="lab"><span class="ico">${ic(icon)}</span>${lab}</div><b>${val}</b><small>${sub || ''}</small></div>`;
+    let h = `<div class="an-kpis">
+        ${kp('eye', 'Visitas', fmt(k.pageviews), 'páginas vistas ' + delta(k.pageviews, p.pageviews))}
+        ${kp('users', 'Sesiones', fmt(k.sessions), fmt(k.visitors) + ' visitantes únicos ' + delta(k.sessions, p.sessions))}
+        ${kp('pointer', 'Clics', fmt(k.clicks), fmt1(k.clicks_per_session) + ' por sesión ' + delta(k.clicks, p.clicks))}
+        ${kp('target', 'Conversiones', fmt(k.conv_sessions), fmtPct(k.conv_rate) + ' de las sesiones contactó')}
+        ${kp('clock', 'Tiempo medio', fmtDur(k.avg_sec), 'activo en cada página')}
+        ${kp('scroll', 'Scroll medio', fmt(k.avg_scroll) + '%', 'hasta dónde bajan')}
+        ${kp('door', 'Rebote', fmtPct(k.bounce_rate), 'sesiones sin interacción')}
+        ${kp('alert', 'Clics muertos', fmt(k.clicks_dead), fmtPct(k.clicks ? k.clicks_dead / k.clicks : 0) + ' de los clics · ' + fmt(k.rage) + ' repetidos')}
+    </div>`;
+
+    // serie temporal
+    let points;
+    if (d.range === 'today') {
+        const hmap = {}; d.hourly.forEach(x => { hmap[x.h] = x; });
+        const nowH = new Date().getHours();
+        points = Array.from({ length: nowH + 1 }, (_, hr) => ({ label: hr + ':00', pageviews: (hmap[hr] || {}).pageviews || 0, clicks: (hmap[hr] || {}).clicks || 0, sessions: 0 }));
+    } else {
+        const dmap = {}; d.daily.forEach(x => { dmap[x.d] = x; });
+        points = [];
+        const start = new Date(d.from), end = new Date();
+        for (let t = new Date(start); t <= end; t.setDate(t.getDate() + 1)) {
+            const key = new Date(t.getTime() - t.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+            const row = dmap[key] || {};
+            points.push({ label: key.slice(8) + '/' + key.slice(5, 7), pageviews: row.pageviews || 0, sessions: row.sessions || 0, clicks: row.clicks || 0 });
+        }
+    }
+    const series = [{ key: 'pageviews', name: 'Visitas', color: '#22d3ee' }, { key: 'clicks', name: 'Clics', color: '#7a2cf0' }];
+    if (d.range !== 'today') series.splice(1, 0, { key: 'sessions', name: 'Sesiones', color: '#3b82ff' });
+    h += `<div class="an-card" style="margin-bottom:16px"><h3><span class="ico">${ic('chart')}</span>Visitas y clics en el tiempo</h3><p class="sub">${d.range === 'today' ? 'Por hora, hoy' : 'Por día'}</p>${legend(series)}${lineChart(points, series)}</div>`;
+
+    // conversiones + dispositivos
+    const conv = d.conversions.map(c => ({ label: AN_CONV[c.kind] || c.kind, value: c.clicks, sub: fmt(c.sessions) + ' sesiones' }));
+    h += `<div class="an-grid c2">
+        <div class="an-card"><h3><span class="ico">${ic('target')}</span>Conversiones: ¿contactan?</h3><p class="sub">Clics en WhatsApp, correo, teléfono y CV</p>${barList(conv)}</div>
+        <div class="an-card"><h3><span class="ico">${ic('device')}</span>Dispositivos</h3><p class="sub">Sesiones por tipo de pantalla</p>${donut(d.devices.map(x => ({ label: AN_DEVICE_NAMES[x.device] || x.device, value: x.sessions })), 'sesiones')}</div>
+    </div>`;
+
+    // top clics + horas
+    const top = d.elements.slice(0, 8).map(e => ({ label: e.label, sub: anPageName(e.page) + ' · ' + e.section, value: e.clicks }));
+    const hours = Array.from({ length: 24 }, (_, hr) => ({ label: String(hr).padStart(2, '0') + ':00', pageviews: (d.hourly.find(x => x.h === hr) || {}).pageviews || 0, clicks: (d.hourly.find(x => x.h === hr) || {}).clicks || 0 }));
+    h += `<div class="an-grid c2">
+        <div class="an-card"><h3><span class="ico">${ic('pointer')}</span>Lo más clicado</h3><p class="sub">Top 8 elementos de todo el sitio</p>${barList(top)}<p style="margin:14px 0 0"><button type="button" class="btn small" data-goto="an-clics">Ver todos los clics ${ic('arrow')}</button></p></div>
+        <div class="an-card"><h3><span class="ico">${ic('clock')}</span>¿A qué hora visitan?</h3><p class="sub">Visitas por hora del día (hora de Chile)</p>${lineChart(hours, [{ key: 'pageviews', name: 'Visitas', color: '#22d3ee' }, { key: 'clicks', name: 'Clics', color: '#7a2cf0' }])}</div>
+    </div>`;
+    return h;
+}
+
+function anClics(d) {
+    const f = AN.el;
+    let rows = d.elements;
+    if (f.kind !== 'all') rows = rows.filter(r => r.kind === f.kind);
+    if (f.q) rows = rows.filter(r => (r.label + ' ' + r.section + ' ' + anPageName(r.page)).toLowerCase().includes(f.q.toLowerCase()));
+    const totalClicks = d.kpi.clicks || 1;
+    const kinds = [...new Set(d.elements.map(r => r.kind))];
+    const pages = d.pages.map(p => p.page);
+
+    const table = `<div class="an-table-wrap"><table class="an-table"><thead><tr><th>#</th><th>Elemento</th><th>Tipo</th><th>Página</th><th class="num">Clics</th><th class="num">% del total</th><th class="num">Sesiones</th><th></th></tr></thead><tbody>${rows.map((r, i) => {
+        const isConv = AN_CONV[r.kind];
+        return `<tr><td class="rk">${i + 1}</td><td class="el" title="${esc(r.label)}">${esc(r.label)}<small>${esc(r.section)}</small></td><td><span class="tag ${isConv ? 'conv' : r.interactive ? '' : 'dead'}">${esc(kindName(r.kind))}</span>${r.interactive ? '' : ' <span class="tag dead">sin acción</span>'}</td><td>${esc(anPageName(r.page))}</td><td class="num"><span class="mini-bar" style="width:${Math.max(2, r.clicks / (rows[0] ? rows[0].clicks : 1) * 70)}px"></span>${fmt(r.clicks)}</td><td class="num">${fmt1(r.clicks / totalClicks * 100)}%</td><td class="num">${fmt(r.sessions)}</td><td>${r.ay != null ? `<button type="button" class="btn small" data-an="tomap" data-page="${esc(r.page)}" data-lab="${esc(r.label)}">${ic('pin')}Mapa</button>` : ''}</td></tr>`;
+    }).join('') || '<tr><td colspan="8" style="text-align:center;color:var(--dim);padding:26px">Sin resultados con estos filtros.</td></tr>'}</tbody></table></div>`;
+
+    const sectionMap = {};
+    d.sections.forEach(s => { const key = s.section + '||' + s.page; sectionMap[key] = s; });
+    const secBars = Object.values(sectionMap).sort((a, b) => b.clicks - a.clicks).slice(0, 12).map(s => ({ label: s.section, sub: anPageName(s.page), value: s.clicks }));
+    const convPages = d.convByPage.map(c => ({ label: (AN_CONV[c.kind] || c.kind), sub: anPageName(c.page), value: c.clicks }));
+    const dead = d.dead.map(x => ({ label: x.label, sub: anPageName(x.page) + ' · ' + x.section, value: x.clicks }));
+    const rage = d.rage.map(x => ({ label: x.label, sub: anPageName(x.page), value: x.n }));
+
+    return `<div class="an-card" style="margin-bottom:16px"><h3><span class="ico">${ic('pointer')}</span>Ranking de clics por elemento</h3>
+        <p class="sub">Cada fila es un botón, enlace, imagen o texto en el que alguien hizo clic. "Mapa" te lleva al lugar exacto en el mapa de calor.</p>
+        <div class="an-toolbar" style="margin-bottom:12px">
+            <div class="chips"><button type="button" class="chip ${f.kind === 'all' ? 'on' : ''}" data-an="kind" data-v="all">Todos</button>${kinds.map(k => `<button type="button" class="chip ${f.kind === k ? 'on' : ''}" data-an="kind" data-v="${esc(k)}">${esc(kindName(k))}</button>`).join('')}</div>
+            <span class="grow"></span>
+            <select data-an="page" aria-label="Página"><option value="all">Todas las páginas</option>${pages.map(p => `<option value="${esc(p)}"${AN.filters.page === p ? ' selected' : ''}>${esc(anPageName(p))}</option>`).join('')}</select>
+            <input type="text" class="an-search" data-an="q" placeholder="Buscar elemento…" value="${esc(f.q)}"></div>
+        ${table}</div>
+        <div class="an-grid c2">
+            <div class="an-card"><h3><span class="ico">${ic('layers')}</span>Clics por sección</h3><p class="sub">Qué zonas de cada página concentran la atención</p>${barList(secBars)}</div>
+            <div class="an-card"><h3><span class="ico">${ic('target')}</span>Conversiones por página</h3><p class="sub">Desde qué página contactan</p>${barList(convPages)}</div>
+            <div class="an-card"><h3><span class="ico">${ic('alert')}</span>Clics muertos</h3><p class="sub">Elementos en los que hacen clic pero no hacen nada. Si algo aparece mucho aquí, la gente espera que sea un botón o enlace.</p>${barList(dead)}</div>
+            <div class="an-card"><h3><span class="ico">${ic('bolt')}</span>Clics repetidos (frustración)</h3><p class="sub">3 o más clics seguidos en el mismo punto: algo no responde como se espera.</p>${barList(rage)}</div>
+        </div>`;
+}
+
+function anPaginas(d) {
+    const total = d.kpi.pageviews || 1;
+    const flows = d.flows.map(f => `<div class="row"><div class="path"><span>${esc(anPageName(f.prev))}</span>${ic('arrow')}<span>${esc(anPageName(f.page))}</span></div><b>${fmt(f.n)}</b></div>`).join('') || '<p class="sub" style="margin:0">Sin recorridos todavía.</p>';
+    const cards = d.pages.map(p => {
+        const base = p.leaves || 1;
+        const fun = [['25%', p.r25], ['50%', p.r50], ['75%', p.r75], ['Final', p.r100]].map(([l, v]) => `<div class="f"><span>${l}</span><div class="tr"><span style="width:${v / base * 100}%"></span></div><b>${fmt(v / base * 100)}%</b></div>`).join('');
+        const tops = d.elements.filter(e => e.page === p.page).slice(0, 4);
+        return `<div class="an-card page-card"><h3><span class="ico">${ic('layers')}</span>${esc(anPageName(p.page))}<span class="tag" style="margin-left:auto">${fmt1(p.views / total * 100)}% de las visitas</span></h3>
+            <div class="stats"><div><b>${fmt(p.views)}</b><span>Visitas</span></div><div><b>${fmt(p.sessions)}</b><span>Sesiones</span></div><div><b>${fmt(p.clicks)}</b><span>Clics</span></div><div><b>${fmt1(p.views ? p.clicks / p.views : 0)}</b><span>Clics por visita</span></div><div><b>${fmtDur(p.avg_sec)}</b><span>Tiempo medio</span></div><div><b>${fmt(p.conv)}</b><span>Conversiones</span></div></div>
+            <div><p class="sub" style="margin:0 0 8px">Cuánto de la página llegan a ver (scroll)</p><div class="funnel">${fun}</div></div>
+            ${tops.length ? `<div><p class="sub" style="margin:0 0 8px">Lo más clicado aquí</p>${barList(tops.map(e => ({ label: e.label, sub: e.section, value: e.clicks })))}</div>` : ''}
+            <button type="button" class="btn small" data-an="tomap" data-page="${esc(p.page)}" style="justify-self:start">${ic('pin')}Ver mapa de calor</button></div>`;
+    }).join('');
+    return `<div class="an-grid c2">${cards || ''}</div>
+        <div class="an-card"><h3><span class="ico">${ic('route')}</span>Recorridos entre páginas</h3><p class="sub">Cómo se mueven los visitantes de una página a otra</p><div class="an-flow">${flows}</div></div>`;
+}
+
+function anAudiencia(d) {
+    const countries = d.countries.map(c => ({ label: countryName(c.country), value: c.sessions }));
+    const refs = d.referrers.map(r => ({ label: r.ref, value: r.sessions }));
+    return `<div class="an-grid c2">
+        <div class="an-card"><h3><span class="ico">${ic('device')}</span>Tipo de dispositivo</h3>${donut(d.devices.map(x => ({ label: AN_DEVICE_NAMES[x.device] || x.device, value: x.sessions })), 'sesiones')}</div>
+        <div class="an-card"><h3><span class="ico">${ic('globe')}</span>Países</h3><p class="sub">Desde dónde visitan</p>${barList(countries)}</div>
+        <div class="an-card"><h3><span class="ico">${ic('route')}</span>¿De dónde llegan?</h3><p class="sub">Sitios que los enviaron a tu portafolio</p>${barList(refs)}</div>
+        <div class="an-card"><h3><span class="ico">${ic('cpu')}</span>Navegadores y sistemas</h3>${barList(d.browsers.map(b => ({ label: b.browser, value: b.sessions })))}<div style="height:16px"></div>${barList(d.os.map(b => ({ label: b.os, value: b.sessions })))}</div>
+    </div>
+    <div class="an-card"><h3><span class="ico">${ic('clock')}</span>Cuándo te visitan</h3><p class="sub">Visitas por día de la semana y hora (hora de Chile). Más oscuro = más visitas.</p>${heatGrid(d.dow)}</div>`;
+}
+
+function anVivo(d) {
+    const now = Date.now();
+    const rel = (t) => { const s = Math.round((now - new Date(t)) / 1000); return s < 60 ? 'hace ' + s + ' s' : s < 3600 ? 'hace ' + Math.round(s / 60) + ' min' : s < 86400 ? 'hace ' + Math.round(s / 3600) + ' h' : new Date(t).toLocaleDateString('es-CL'); };
+    const rows = d.recent.map(e => `<tr><td>${rel(e.ts)}</td><td><span class="tag ${e.type === 'click' ? '' : e.type === 'pageview' ? 'warn' : 'dead'}">${e.type === 'click' ? 'Clic' : e.type === 'pageview' ? 'Visita' : 'Salió'}</span></td><td>${esc(anPageName(e.page))}</td><td class="el">${esc(e.label || '')}${e.kind ? `<small>${esc(kindName(e.kind))}</small>` : ''}</td><td>${esc(AN_DEVICE_NAMES[e.device] || e.device || '')}</td><td>${esc(countryName(e.country) || '—')}</td></tr>`).join('');
+    const recent5 = d.recent.filter(e => now - new Date(e.ts) < 5 * 60000);
+    const active = new Set(recent5.map(e => e.page + e.device)).size;
+    return `<div class="an-kpis"><div class="an-kpi"><div class="lab"><span class="ico">${ic('bolt')}</span>Últimos 5 minutos</div><b>${fmt(recent5.length)}</b><small>eventos${active ? ' · ' + active + ' pantallas activas' : ''}</small></div></div>
+        <div class="an-card"><h3><span class="ico">${ic('eye')}</span>Actividad reciente</h3><p class="sub">Se actualiza sola cada 10 segundos</p><div class="an-table-wrap"><table class="an-table"><thead><tr><th>Cuándo</th><th>Evento</th><th>Página</th><th>Elemento</th><th>Dispositivo</th><th>País</th></tr></thead><tbody>${rows || '<tr><td colspan="6" style="text-align:center;color:var(--dim);padding:26px">Todavía no hay actividad.</td></tr>'}</tbody></table></div></div>`;
+}
+
+/* ---------- Mapa de calor ---------- */
+function anMapa() {
+    const h = AN.heat;
+    const pages = (AN.data ? AN.data.pages.map(p => p.page) : []);
+    ['inicio', 'proyectos', 'trayectoria', 'habilidades', 'contacto'].forEach(p => { if (!pages.includes(p)) pages.push(p); });
+    return `<div class="hm-layout"><div><div class="hm-frame" id="hm-frame" style="height:520px"><div class="hm-loading" id="hm-loading">Cargando mapa…</div></div>
+        <p class="an-info" style="margin:10px 0 0" id="hm-note"></p></div>
+        <div class="an-card hm-controls"><h3><span class="ico">${ic('flame')}</span>Mapa de calor</h3>
+            <label class="ctl">Página<select data-an="hmpage">${pages.map(p => `<option value="${esc(p)}"${h.page === p ? ' selected' : ''}>${esc(anPageName(p))}</option>`).join('')}</select></label>
+            <label class="ctl">Dispositivo<select data-an="hmdevice">${['desktop', 'tablet', 'mobile'].map(v => `<option value="${v}"${h.device === v ? ' selected' : ''}>${AN_DEVICE_NAMES[v]}</option>`).join('')}</select></label>
+            <label class="ctl">Qué mostrar<select data-an="hmmode"><option value="clicks"${h.mode === 'clicks' ? ' selected' : ''}>Clics</option><option value="scroll"${h.mode === 'scroll' ? ' selected' : ''}>Hasta dónde bajan (scroll)</option><option value="both"${h.mode === 'both' ? ' selected' : ''}>Ambos</option></select></label>
+            <label class="ctl">Tamaño de la mancha <input type="range" min="16" max="90" value="${h.radius}" data-an="hmradius"></label>
+            <label class="ctl">Intensidad <input type="range" min="30" max="100" value="${h.opacity}" data-an="hmopacity"></label>
+            <label class="an-check"><input type="checkbox" data-an="hmmarkers"${h.markers ? ' checked' : ''}> Numerar lo más clicado</label>
+            <div><div class="hm-scale"></div><div class="hm-legend"><span>pocos clics</span><span>muchos</span></div></div>
+            <div id="hm-list"></div></div></div>`;
+}
+
+function heatLUT() {
+    const c = document.createElement('canvas'); c.width = 256; c.height = 1;
+    const g = c.getContext('2d'); const gr = g.createLinearGradient(0, 0, 256, 0);
+    gr.addColorStop(0, 'rgba(34,229,255,0)'); gr.addColorStop(0.12, 'rgba(34,229,255,0.55)'); gr.addColorStop(0.38, 'rgba(59,130,255,0.85)');
+    gr.addColorStop(0.65, 'rgba(122,44,240,0.95)'); gr.addColorStop(0.85, 'rgba(190,150,255,1)'); gr.addColorStop(1, 'rgba(255,255,255,1)');
+    g.fillStyle = gr; g.fillRect(0, 0, 256, 1);
+    return g.getImageData(0, 0, 256, 1).data;
+}
+
+function anHeatSite() { return location.hostname === 'localhost' ? 'http://localhost:5174' : SITE_URL; }
+
+function anDrawHeat() {
+    const frame = document.getElementById('hm-frame');
+    if (!frame) return;
+    const h = AN.heat, d = h.data;
+    const loading = document.getElementById('hm-loading');
+    if (loading) loading.style.display = (h.loading || !d) ? 'grid' : 'none';
+    if (!d) return;
+
+    const devW = h.device === 'mobile' ? Math.min(430, Math.max(360, d.meta.vw || 390)) : h.device === 'tablet' ? Math.min(1000, Math.max(700, d.meta.vw || 820)) : Math.min(1920, Math.max(1100, d.meta.vw || 1366));
+    const docH = Math.max(900, Math.min(24000, d.meta.doc_h || 3000));
+    const s = frame.clientWidth / devW;
+    frame.style.height = Math.round(docH * s) + 'px';
+    const key = [AN.heat.page, devW, docH].join('|');
+    let stage = frame.querySelector('.hm-stage');
+    if (!stage || stage.dataset.key !== key) {
+        frame.querySelector('.hm-stage')?.remove();
+        stage = document.createElement('div');
+        stage.className = 'hm-stage';
+        stage.dataset.key = key;
+        stage.style.cssText = `width:${devW}px;height:${docH}px`;
+        const route = AN.heat.page === 'inicio' ? '#home' : '#' + AN.heat.page;
+        stage.innerHTML = `<iframe src="${anHeatSite()}/?heatmap=1${route}" width="${devW}" height="${docH}" title="Vista de la página"></iframe>`;
+        frame.appendChild(stage);
+    }
+    stage.style.transform = `scale(${s})`;
+    stage.style.setProperty('--sc', s);
+    [...stage.children].forEach((n) => { if (n.tagName !== 'IFRAME') n.remove(); });
+
+    const cells = d.cells.filter(c => !c.fixed);
+    const maxN = Math.max(1, ...cells.map(c => c.n));
+    const total = d.meta.clicks || 0;
+
+    if ((h.mode === 'clicks' || h.mode === 'both') && cells.length) {
+        const K = 0.5;
+        const cv = document.createElement('canvas');
+        cv.width = Math.round(devW * K); cv.height = Math.round(docH * K);
+        cv.style.width = devW + 'px'; cv.style.height = docH + 'px';
+        const ctx = cv.getContext('2d', { willReadFrequently: true });
+        const r = h.radius * K;
+        cells.forEach(c => {
+            const x = (c.bx / 100) * devW * K, y = (c.by * 20 + 10) * K;
+            const a = Math.min(1, 0.22 + 0.78 * Math.pow(c.n / maxN, 0.75));
+            const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+            g.addColorStop(0, `rgba(0,0,0,${a})`); g.addColorStop(1, 'rgba(0,0,0,0)');
+            ctx.fillStyle = g; ctx.fillRect(x - r, y - r, r * 2, r * 2);
+        });
+        const img = ctx.getImageData(0, 0, cv.width, cv.height), px = img.data, lut = heatLUT(), op = h.opacity / 100;
+        for (let i = 0; i < px.length; i += 4) {
+            const al = px[i + 3];
+            if (!al) continue;
+            const j = Math.min(255, al) * 4;
+            px[i] = lut[j]; px[i + 1] = lut[j + 1]; px[i + 2] = lut[j + 2]; px[i + 3] = lut[j + 3] * op;
+        }
+        ctx.putImageData(img, 0, 0);
+        stage.appendChild(cv);
+    }
+
+    if ((h.mode === 'scroll' || h.mode === 'both') && d.reach && d.reach.total) {
+        const t = d.reach.total;
+        for (let i = 0; i < 10; i++) {
+            const frac = i === 0 ? 1 : (d.reach[`d${i * 10}`] || 0) / t;
+            const band = document.createElement('div');
+            band.className = 'hm-band';
+            band.style.top = (i * 10) + '%'; band.style.height = '10%';
+            band.style.opacity = String(Math.min(0.6, (1 - frac) * 0.65));
+            const lab = document.createElement('div');
+            lab.style.cssText = `position:absolute;right:0;top:${i * 10}%;height:10%;pointer-events:none`;
+            lab.innerHTML = `<span style="font:800 ${14 / s}px DM Sans;color:#fff;background:rgba(5,9,42,.78);padding:2px 10px;border-radius:0 0 0 8px;display:inline-block">${fmt(frac * 100)}% llega aquí</span>`;
+            stage.appendChild(band); stage.appendChild(lab);
+        }
+    }
+
+    const marks = AN.data ? AN.data.elements.filter(e => e.page === h.page && e.ay != null).slice(0, 10) : [];
+    if (h.markers) marks.forEach((m, i) => {
+        const el = document.createElement('div');
+        el.className = 'hm-mark' + (h.sel && h.sel === m.label ? ' sel' : '');
+        el.style.left = m.ax + '%'; el.style.top = m.ay + 'px'; el.textContent = i + 1; el.title = `${m.label} · ${m.clicks} clics`;
+        stage.appendChild(el);
+    });
+
+    const list = document.getElementById('hm-list');
+    if (list) list.innerHTML = marks.length ? `<p class="sub" style="margin:0 0 8px">Lo más clicado en esta página</p>${marks.map((m, i) => `<div class="bar-row" style="grid-template-columns:26px minmax(0,1fr) auto;margin-bottom:7px"><b style="color:var(--accent)">${i + 1}</b><div class="nm" title="${esc(m.label)}">${esc(m.label)}<small>${esc(m.section)}</small></div><div class="vl">${fmt(m.clicks)}</div></div>`).join('')}` : '';
+    const fixedClicks = d.cells.filter(c => c.fixed).reduce((a, c) => a + c.n, 0);
+    const note = document.getElementById('hm-note');
+    if (note) note.textContent = `${fmt(d.meta.views)} visitas · ${fmt(total)} clics en esta página (${AN_DEVICE_NAMES[h.device]})${fixedClicks ? ` · ${fmt(fixedClicks)} clics en el menú y botones flotantes no se dibujan aquí` : ''}.${total ? '' : ' Todavía no hay clics registrados para este filtro.'}`;
+}
+
+/* ---------- Pintado de la sección ---------- */
+function anRender() {
+    const body = document.getElementById('an-body');
+    if (!body) return;
+    const page = pageById(currentPage);
+    clearInterval(AN.timer); AN.timer = null;
+
+    if (page.custom === 'an-mapa') {
+        body.innerHTML = anMapa();
+        anLoadHeat(!AN.heat.data);
+        if (!AN.data && !AN.loading) anLoad();
+        return;
+    }
+    if (AN.loading && !AN.data) { body.innerHTML = '<div class="an-skel"></div><div class="an-skel"></div><div class="an-skel"></div>'; return; }
+    if (AN.error) { body.innerHTML = `<div class="an-empty"><b>No se pudo cargar la analítica</b>${esc(AN.error)}<br><br><button type="button" class="btn primary" data-an="refresh">Reintentar</button></div>`; return; }
+    const d = AN.data;
+    if (!d) return;
+    const empty = !d.kpi.pageviews && !d.kpi.clicks;
+    const info = anInfo();
+    if (page.custom === 'an-vivo') {
+        body.innerHTML = info + anVivo(d);
+        AN.timer = setInterval(() => { if (document.getElementById('an-body') && pageById(currentPage).custom === 'an-vivo') anLoad(true); else clearInterval(AN.timer); }, 10000);
+        return;
+    }
+    if (empty) { body.innerHTML = info + anEmpty(); return; }
+    body.innerHTML = info + ({ 'an-resumen': anResumen, 'an-clics': anClics, 'an-paginas': anPaginas, 'an-audiencia': anAudiencia })[page.custom](d) + `<div class="an-grid" style="margin-top:6px"><div class="an-card"><h3><span class="ico">${ic('shield')}</span>Privacidad y tus propias visitas</h3><p class="sub">Los datos son anónimos (sin cookies ni información personal). Para que tus visitas no cuenten, abre el sitio una vez en cada navegador que uses:</p><div class="img-actions"><a class="btn small primary" href="${SITE_URL}/?notrack=1" target="_blank" rel="noopener">${ic('shield')}No contar mis visitas en este navegador</a><a class="btn small" href="${SITE_URL}/?notrack=0" target="_blank" rel="noopener">Volver a contarlas</a>${d.info && d.info.local ? `<button type="button" class="btn small danger" data-an="purge">${ic('trash')}Borrar pruebas locales (${fmt(d.info.local)})</button>` : ''}</div></div></div>`;
+}
+
+function analyticsShell(page, tabs) {
+    const meta = MODULE_META['Analítica'] || {};
+    return `<div class="page-hero"><div class="hero-ico">${ic(meta.icon || 'chart')}</div><p>${esc(page.desc)}</p></div>${tabs}${anToolbar(page)}<div id="an-body"></div>`;
+}
+
+/* ---------- Eventos ---------- */
+document.getElementById('page').addEventListener('click', (e) => {
+    const b = e.target.closest('[data-an]');
+    if (!b) return;
+    const a = b.dataset.an;
+    if (a === 'range') { AN.filters.range = b.dataset.v; AN.data = null; AN.heat.data = null; renderPage(); anLoad(); }
+    else if (a === 'refresh') { AN.heat.data = null; anLoad(true); }
+    else if (a === 'kind') { AN.el.kind = b.dataset.v; anRender(); }
+    else if (a === 'tomap') { AN.heat.page = b.dataset.page; AN.heat.sel = b.dataset.lab || null; AN.heat.data = null; goPage('an-mapa'); }
+    else if (a === 'purge') {
+        if (!confirm('¿Borrar todos los eventos registrados desde localhost (tus pruebas)? Los de visitantes reales no se tocan.')) return;
+        fetch('/api/analytics?scope=local', { method: 'DELETE' }).then(r => r.json()).then(j => { toast('Se borraron ' + (j.removed || 0) + ' eventos de prueba'); AN.data = null; AN.heat.data = null; anLoad(true); });
+    }
+});
+document.getElementById('page').addEventListener('change', (e) => {
+    const t = e.target.closest('[data-an]');
+    if (!t) return;
+    const a = t.dataset.an;
+    if (a === 'device') { AN.filters.device = t.value; AN.data = null; anLoad(); }
+    else if (a === 'local') { AN.filters.local = t.checked; AN.data = null; AN.heat.data = null; anLoad(); }
+    else if (a === 'page') { AN.filters.page = t.value; AN.data = null; anLoad(); }
+    else if (a === 'hmpage') { AN.heat.page = t.value; AN.heat.sel = null; anLoadHeat(); }
+    else if (a === 'hmdevice') { AN.heat.device = t.value; anLoadHeat(); }
+    else if (a === 'hmmode') { AN.heat.mode = t.value; anDrawHeat(); }
+    else if (a === 'hmmarkers') { AN.heat.markers = t.checked; anDrawHeat(); }
+});
+document.getElementById('page').addEventListener('input', (e) => {
+    const t = e.target.closest('[data-an]');
+    if (!t) return;
+    if (t.dataset.an === 'q') { AN.el.q = t.value; const pos = t.selectionStart; anRender(); const n = document.querySelector('[data-an="q"]'); if (n) { n.focus(); n.setSelectionRange(pos, pos); } }
+    else if (t.dataset.an === 'hmradius') { AN.heat.radius = Number(t.value); anDrawHeat(); }
+    else if (t.dataset.an === 'hmopacity') { AN.heat.opacity = Number(t.value); anDrawHeat(); }
+});
+window.addEventListener('resize', () => { if (pageById(currentPage).custom === 'an-mapa' && AN.heat.data) anDrawHeat(); });
 
 checkSession();
 </script>

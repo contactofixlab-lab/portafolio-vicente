@@ -14,7 +14,7 @@ function alreadySeen() {
 
 /** Cortina de carga de la primera visita: logo que late, barra de progreso y salida en cortina. */
 export default function Loader() {
-  const [visible, setVisible] = useState(() => !alreadySeen())
+  const [visible, setVisible] = useState(() => !alreadySeen() && !window.location.search.includes('heatmap'))
 
   useEffect(() => {
     if (!visible) return

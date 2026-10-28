@@ -2,12 +2,12 @@ import pg from 'pg';
 
 const globalForPg = globalThis;
 
-function getPool() {
+export function getPool() {
   if (!globalForPg.__portafolioPool) {
     globalForPg.__portafolioPool = new pg.Pool({
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false },
-      max: 2,
+      max: 4,
     });
   }
   return globalForPg.__portafolioPool;
