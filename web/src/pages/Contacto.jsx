@@ -6,6 +6,7 @@ import PageHero from '../components/ui/PageHero'
 import Button from '../components/ui/Button'
 import Tilt from '../components/ui/Tilt'
 import WhatsAppIcon from '../components/ui/WhatsAppIcon'
+import ContactForm from '../components/ContactForm'
 import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
 import { contact, ui } from '../content'
 
@@ -13,21 +14,23 @@ const p = contact.page
 const faqs = p.faqs
 const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
-/** Tarjeta grande de contacto: con acción (enlace) o solo informativa. */
-function ContactCard({ icon: Icon, label, value, href, action, gradient, span = 'lg:col-span-2', external = false, whatsapp = false }) {
+/** Tarjeta compacta de contacto: con acción (enlace) o solo informativa. */
+function ContactCard({ icon: Icon, label, value, href, action, gradient, external = false, whatsapp = false }) {
   const body = (
-    <Tilt max={6} scale={1.025} className="h-full rounded-[2rem]">
-      <div className="led-hover relative flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white p-8 shadow-card md:p-9">
-        <div className={`absolute inset-x-0 top-0 h-2 bg-gradient-to-r ${gradient}`} />
-        <motion.div whileHover={{ rotate: 8, scale: 1.12 }} className={`mb-6 grid h-20 w-20 place-items-center rounded-3xl bg-gradient-to-br ${gradient} text-white shadow-soft`}>
-          {whatsapp ? <WhatsAppIcon size={38} /> : <Icon size={38} />}
-        </motion.div>
-        <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-600">{label}</p>
-        <p className="[overflow-wrap:anywhere] font-display text-xl font-extrabold leading-tight text-ink min-[400px]:text-2xl md:text-3xl">{value}</p>
+    <Tilt max={5} scale={1.03} className="h-full rounded-3xl">
+      <div className="led-hover relative flex h-full flex-col overflow-hidden rounded-3xl border-2 border-white bg-white p-4 shadow-card">
+        <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${gradient}`} />
+        <div className="mb-3 flex items-center gap-3">
+          <motion.div whileHover={{ rotate: 8, scale: 1.1 }} className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-gradient-to-br ${gradient} text-white shadow-soft`}>
+            {whatsapp ? <WhatsAppIcon size={20} /> : <Icon size={20} />}
+          </motion.div>
+          <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-primary-600">{label}</p>
+        </div>
+        <p className="[overflow-wrap:anywhere] font-display text-[15px] font-extrabold leading-snug text-ink">{value}</p>
         {action && (
-          <span className="mt-8 inline-flex items-center gap-2 self-start rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition-colors group-hover:bg-primary-600">
+          <span className="mt-3 inline-flex items-center gap-1.5 self-start rounded-full bg-ink px-3.5 py-1.5 text-[11px] font-bold text-white transition-colors group-hover:bg-primary-600">
             {action}
-            <ArrowUpRight size={18} />
+            <ArrowUpRight size={13} />
           </span>
         )}
       </div>
@@ -35,7 +38,7 @@ function ContactCard({ icon: Icon, label, value, href, action, gradient, span = 
   )
 
   return (
-    <StaggerItem className={`min-w-0 ${span}`}>
+    <StaggerItem className="min-w-0">
       {href ? (
         <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} className="group block h-full">
           {body}
@@ -84,22 +87,30 @@ export default function Contacto() {
     <>
       <PageHero eyebrow={p.infoEyebrow} title={p.title} subtitle={p.subtitle} backText={p.backText} />
 
-      <Section bg="cream" className="-mt-px">
-        <Reveal>
-          <h2 className="mb-10 text-center font-display text-3xl font-extrabold text-ink md:text-5xl">{p.infoTitle}</h2>
-        </Reveal>
+      <Section bg="cream" className="-mt-px" wide>
+        <div id="escribeme" className="-mt-6">
+          <Reveal>
+            <ContactForm />
+          </Reveal>
+        </div>
 
-        <StaggerGroup className="grid grid-cols-1 gap-6 lg:grid-cols-6">
-          <ContactCard icon={Mail} label={cards.emailLabel} value={contact.email} href={`mailto:${contact.email}`} action={contact.home.emailButton} gradient="from-sky-500 to-blue-600" />
-          <ContactCard icon={Phone} label={cards.phoneLabel} value={contact.phone} href={`tel:${contact.phone.replace(/\s+/g, '')}`} action={contact.home.phoneButton} gradient="from-violet-500 to-purple-600" />
-          <ContactCard whatsapp label={cards.whatsappLabel} value={contact.phone} href={whatsappUrl} external action={p.whatsappButton} gradient="from-whatsapp to-whatsapp-dark" />
-          <ContactCard icon={MapPin} label={cards.locationLabel} value={contact.location} gradient="from-cyan-500 to-sky-600" span="lg:col-span-3" />
-          <ContactCard icon={Clock} label={cards.availabilityLabel} value={contact.availability} gradient="from-indigo-500 to-violet-600" span="lg:col-span-3" />
-        </StaggerGroup>
+        <div className="mx-auto mt-16 max-w-6xl">
+          <Reveal>
+            <h2 className="mb-6 text-center font-display text-xl font-extrabold text-ink md:text-2xl">{p.infoTitle}</h2>
+          </Reveal>
 
-        <Reveal>
-          <p className="mt-8 text-center text-sm font-semibold text-ink-soft">{p.footerLine}</p>
-        </Reveal>
+          <StaggerGroup className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
+            <ContactCard icon={Mail} label={cards.emailLabel} value={contact.email} href={`mailto:${contact.email}`} action={contact.home.emailButton} gradient="from-sky-500 to-blue-600" />
+            <ContactCard icon={Phone} label={cards.phoneLabel} value={contact.phone} href={`tel:${contact.phone.replace(/\s+/g, '')}`} action={contact.home.phoneButton} gradient="from-violet-500 to-purple-600" />
+            <ContactCard whatsapp label={cards.whatsappLabel} value={contact.phone} href={whatsappUrl} external action={p.whatsappButton} gradient="from-whatsapp to-whatsapp-dark" />
+            <ContactCard icon={MapPin} label={cards.locationLabel} value={contact.location} gradient="from-cyan-500 to-sky-600" />
+            <ContactCard icon={Clock} label={cards.availabilityLabel} value={contact.availability} gradient="from-indigo-500 to-violet-600" />
+          </StaggerGroup>
+
+          <Reveal>
+            <p className="mt-5 text-center text-xs font-semibold text-ink-soft">{p.footerLine}</p>
+          </Reveal>
+        </div>
 
         <div className="mx-auto mt-28 max-w-3xl">
           <div className="mb-12 text-center">

@@ -1,7 +1,7 @@
 import { getPool } from '@/lib/db';
 
 const TZ = 'America/Santiago';
-const CONVERSIONS = ['whatsapp', 'correo', 'telefono', 'cv'];
+const CONVERSIONS = ['whatsapp', 'correo', 'telefono', 'cv', 'mensaje'];
 const LOCAL_HOSTS = ['localhost', '127.0.0.1'];
 
 /* ---------- Tabla ---------- */

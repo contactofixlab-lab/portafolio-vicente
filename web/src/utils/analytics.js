@@ -278,6 +278,15 @@ export function initAnalytics() {
     true
   )
 
+  // El formulario avisa cuando un mensaje se envió con éxito
+  window.addEventListener('pv:conversion', (e) => {
+    safe(() => {
+      if (!state) return
+      const d = (e && e.detail) || {}
+      push({ type: 'click', page: state.page, section: 'Formulario de contacto', label: d.label || 'Mensaje enviado', kind: d.kind || 'mensaje', interactive: true, docH: docHeight() })
+    })
+  })
+
   window.setInterval(() => flush(), 5000)
   startPage()
 }

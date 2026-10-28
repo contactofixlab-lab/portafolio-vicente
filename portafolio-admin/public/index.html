@@ -567,6 +567,60 @@
             .an-toolbar .seg { width: 100%; }
         }
 
+
+        /* ---------- Chat ---------- */
+        .tab-badge, .nav-item .badge { display: inline-grid; place-items: center; min-width: 20px; height: 20px; padding: 0 6px; margin-left: 8px; border-radius: 999px; font-size: 11px; font-weight: 800; color: #fff; background: linear-gradient(135deg, #22d3ee, #7a2cf0); box-shadow: 0 0 12px color-mix(in srgb, var(--led) 80%, transparent); animation: led-cycle 9s linear infinite; }
+        .ch-toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 14px; }
+        .ch-toolbar .grow { flex: 1; }
+        .chip b { margin-left: 4px; font-size: 11.5px; color: var(--accent-deep); }
+        .ch-wrap { display: grid; grid-template-columns: minmax(300px, 380px) minmax(0, 1fr); gap: 16px; align-items: start; }
+        .ch-list { display: grid; gap: 8px; max-height: 72vh; overflow-y: auto; padding: 2px 6px 6px 2px; }
+        .ch-item { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 12px; align-items: center; text-align: left; padding: 12px; border-radius: 18px; border: 1.5px solid var(--line); background: #fff; cursor: pointer; font: inherit; color: inherit; transition: all .18s; box-shadow: var(--shadow-sm); }
+        .ch-item:hover { border-color: #9bb9ff; transform: translateX(3px); }
+        .ch-item.sel { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(74,75,240,.15), 0 0 24px color-mix(in srgb, var(--led) 35%, transparent); }
+        .ch-item.unread { background: linear-gradient(135deg, #fff, #eef4ff); }
+        .ch-av { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 800; font-size: 15px; flex-shrink: 0; box-shadow: 0 6px 14px -6px rgba(30,36,160,.6); }
+        .ch-av.big { width: 56px; height: 56px; font-size: 19px; }
+        .ch-main { display: grid; gap: 2px; min-width: 0; }
+        .ch-top { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
+        .ch-top b { font-size: 14.5px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ch-item.unread .ch-top b { color: var(--accent); }
+        .ch-top small { color: var(--dim); font-size: 11.5px; font-weight: 600; flex-shrink: 0; }
+        .ch-subj { font-size: 13px; font-weight: 700; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ch-prev { font-size: 12.5px; color: var(--soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .ch-side { display: grid; gap: 6px; justify-items: center; }
+        .ch-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--led); box-shadow: 0 0 10px var(--led); animation: led-cycle 9s linear infinite; }
+        .ch-star { color: #f5b301; display: grid; } .ch-star svg.i { width: 15px; height: 15px; fill: #f5b301; }
+        .ch-ok { color: #16a34a; display: grid; } .ch-ok svg.i { width: 15px; height: 15px; }
+        .ch-detail { background: #fff; border: 1.5px solid var(--line); border-radius: 24px; padding: 22px; box-shadow: var(--shadow-sm); min-height: 360px; min-width: 0; }
+        .ch-empty { display: grid; place-items: center; gap: 8px; text-align: center; color: var(--soft); padding: 60px 20px; }
+        .ch-empty svg.i { width: 44px; height: 44px; color: var(--accent-2); } .ch-empty b { font-family: var(--font-display); font-size: 20px; color: var(--ink); }
+        .ch-detail-head { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .ch-detail-head .who { flex: 1; min-width: 0; }
+        .ch-detail-head h3 { font-size: 22px; font-weight: 800; overflow-wrap: anywhere; }
+        .ch-detail-head a { color: var(--accent); font-weight: 600; font-size: 14px; text-decoration: none; overflow-wrap: anywhere; }
+        .ch-back { display: none; }
+        .ch-meta { display: flex; flex-wrap: wrap; gap: 8px 14px; margin: 14px 0 6px; font-size: 12.5px; color: var(--soft); font-weight: 600; }
+        .ch-meta span { display: inline-flex; align-items: center; gap: 6px; } .ch-meta svg.i { width: 14px; height: 14px; color: var(--accent-2); }
+        .ch-thread { margin: 16px 0; padding: 18px; border-radius: 20px; background: linear-gradient(160deg, #f4f8ff, #ece8ff); border: 1.5px solid var(--line); }
+        .ch-subject { font-family: var(--font-display); font-size: 20px; font-weight: 800; margin-bottom: 14px; overflow-wrap: anywhere; }
+        .ch-subject small { display: block; font: 700 11px 'DM Sans'; text-transform: uppercase; letter-spacing: .1em; color: var(--dim); margin-bottom: 2px; }
+        .ch-row { display: flex; gap: 12px; align-items: flex-end; }
+        .ch-bubble { position: relative; max-width: 100%; padding: 16px 18px; border-radius: 6px 22px 22px 22px; background: #fff; border: 1.5px solid #9bb9ff; box-shadow: 0 0 22px color-mix(in srgb, var(--led) 28%, transparent); font-size: 15px; line-height: 1.65; overflow-wrap: anywhere; animation: led-cycle 9s linear infinite; }
+        .ch-bubble small { display: block; margin-top: 10px; color: var(--dim); font-size: 11.5px; font-weight: 600; }
+        .ch-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+        .ch-actions .btn { padding: 9px 14px; font-size: 13px; }
+        @media (max-width: 900px) {
+            .ch-wrap { grid-template-columns: minmax(0, 1fr); }
+            .ch-wrap .ch-detail { display: none; }
+            .ch-wrap.show-detail .ch-list { display: none; }
+            .ch-wrap.show-detail .ch-detail { display: block; }
+            .ch-back { display: inline-grid; }
+            .ch-list { max-height: none; }
+            .ch-detail { padding: 16px; border-radius: 20px; }
+            .ch-actions .btn { flex: 1 1 calc(50% - 8px); justify-content: center; }
+        }
+
         @media (max-width: 1100px) { .two-col { grid-template-columns: 1fr; } .stats { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); } }
 
         /* Tablet y celular: el menú lateral pasa a una barra superior con botón de menú desplegable */
@@ -766,7 +820,8 @@ const UI_DEFAULTS = {
     projects: { filterAll: 'Todos' },
     footer: { marquee: 'Hablemos', backToTop: 'Volver arriba' },
     contactCards: { emailLabel: 'Correo', phoneLabel: 'Teléfono', whatsappLabel: 'WhatsApp', locationLabel: 'Ubicación', availabilityLabel: 'Disponibilidad' },
-    form: { faqEyebrow: 'Dudas comunes', faqMoreText: '¿Sigues con dudas?' }
+    form: { faqEyebrow: 'Dudas comunes', faqMoreText: '¿Sigues con dudas?' },
+    messageForm: { eyebrow: 'Escríbeme', title: 'Cuéntame tu idea', titleHighlight: 'y conversemos', subtitle: 'Tu mensaje llega directo a mi bandeja y te respondo personalmente.', nameLabel: 'Nombre completo', subjectLabel: 'Asunto', emailLabel: 'Tu correo', messageLabel: 'Comentario', sendButton: 'Enviar mensaje', sendingText: 'Enviando…', successTitle: '¡Mensaje enviado!', successText: 'Gracias por escribirme. Te responderé muy pronto al correo que dejaste.', anotherButton: 'Enviar otro mensaje', errorText: 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.', privacy: 'Usaré tu correo solo para responderte. Nada de spam.', perk1: 'Respuesta personal', perk2: 'Sin spam', perk3: 'Directo a mi bandeja' }
 };
 const SEO_DEFAULTS = {
     title: 'Vicente Rabanales - Ingeniero en Informática | Portafolio',
@@ -778,6 +833,7 @@ const U = (group, key, label) => T(key, label, { placeholder: UI_DEFAULTS[group]
 /* Cada sección del menú lateral es un "módulo" (group). Sus subsecciones (tab) aparecen como pestañas arriba. */
 const PAGES = [
     { id: 'summary', group: 'Resumen', tab: 'Resumen', title: 'Panel de control', desc: 'Estado general de tu sitio.', custom: 'summary', fields: [] },
+    { id: 'chat', group: 'Resumen', tab: 'Chat', title: 'Chat con visitantes', desc: 'Los mensajes que te escriben desde el formulario de contacto de tu sitio llegan aquí: nombre, asunto, correo y comentario. Sin depender de ningún correo.', custom: 'chat', fields: [] },
     { id: 'an-resumen', group: 'Analítica', tab: 'Resumen', title: 'Analítica del sitio', desc: 'Visitas, clics, conversiones y tiempo de permanencia de tu portafolio, con comparación contra el período anterior.', custom: 'an-resumen', fields: [] },
     { id: 'an-clics', group: 'Analítica', tab: 'Clics', title: 'Dónde hacen clic', desc: 'Ranking de todo lo que se clickea: botones, enlaces, imágenes y textos; por sección, con clics muertos y clics repetidos.', custom: 'an-clics', fields: [] },
     { id: 'an-paginas', group: 'Analítica', tab: 'Páginas', title: 'Rendimiento por página', desc: 'Cómo funciona cada página: visitas, clics, tiempo, cuánto bajan y qué recorridos hacen entre páginas.', custom: 'an-paginas', fields: [] },
@@ -1058,6 +1114,27 @@ const PAGES = [
                 U('contactCards', 'locationLabel', 'Tarjeta de ubicación'),
                 U('contactCards', 'availabilityLabel', 'Tarjeta de disponibilidad')
             ]),
+            OBJ('messageForm', 'Formulario de mensaje (llega al Chat)', [
+                U('messageForm', 'eyebrow', 'Etiqueta superior'),
+                U('messageForm', 'title', 'Título (parte 1)'),
+                U('messageForm', 'titleHighlight', 'Título (parte destacada)'),
+                U('messageForm', 'subtitle', 'Subtítulo'),
+                U('messageForm', 'perk1', 'Ventaja 1'),
+                U('messageForm', 'perk2', 'Ventaja 2'),
+                U('messageForm', 'perk3', 'Ventaja 3'),
+                U('messageForm', 'nameLabel', 'Campo nombre completo'),
+                U('messageForm', 'emailLabel', 'Campo correo'),
+                U('messageForm', 'subjectLabel', 'Campo asunto'),
+                LINES('subjects', 'Sugerencias de asunto (una por línea)'),
+                U('messageForm', 'messageLabel', 'Campo comentario'),
+                U('messageForm', 'sendButton', 'Botón enviar'),
+                U('messageForm', 'sendingText', 'Texto mientras se envía'),
+                U('messageForm', 'successTitle', 'Mensaje enviado: título'),
+                U('messageForm', 'successText', 'Mensaje enviado: texto'),
+                U('messageForm', 'anotherButton', 'Botón enviar otro'),
+                U('messageForm', 'errorText', 'Texto si falla el envío'),
+                U('messageForm', 'privacy', 'Nota de privacidad')
+            ]),
             OBJ('form', 'Preguntas frecuentes', [
                 U('form', 'faqEyebrow', 'Etiqueta sobre "Preguntas frecuentes"'),
                 U('form', 'faqMoreText', 'Texto sobre el botón de WhatsApp final')
@@ -1251,7 +1328,7 @@ function renderSidebar() {
         `<span class="brand-current">${esc(activeModule)}</span><button type="button" class="menu-toggle" data-menu-toggle aria-label="Abrir menú" aria-expanded="false">${ic('menu')}</button>` +
         `<nav class="nav" aria-label="Secciones"><div class="group-label">Menú</div>` +
         MODULES.map(m =>
-            `<button type="button" class="nav-item${m === activeModule ? ' active' : ''}" data-module="${esc(m)}"${m === activeModule ? ' aria-current="page"' : ''}><span class="ico">${ic((MODULE_META[m] || {}).icon || 'layers')}</span>${esc(m)}</button>`
+            `<button type="button" class="nav-item${m === activeModule ? ' active' : ''}" data-module="${esc(m)}"${m === activeModule ? ' aria-current="page"' : ''}><span class="ico">${ic((MODULE_META[m] || {}).icon || 'layers')}</span>${esc(m)}${m === 'Resumen' && CH.unread ? `<span class="badge">${CH.unread}</span>` : ''}</button>`
         ).join('') + `</nav>` +
         `<div class="sidebar-foot">
             <div class="user"><div class="avatar">A</div><div><b>admin</b>Sesión activa</div></div>
@@ -1268,7 +1345,7 @@ function renderPage() {
     const subsections = PAGES.filter(p => p.group === page.group);
     const tabs = subsections.length > 1
         ? `<nav class="tabs" aria-label="Subsecciones de ${esc(page.group)}">${subsections.map(s =>
-            `<button type="button" class="tab${s.id === page.id ? ' active' : ''}" data-page="${s.id}"${s.id === page.id ? ' aria-current="page"' : ''}>${esc(s.tab || s.title)}</button>`
+            `<button type="button" class="tab${s.id === page.id ? ' active' : ''}" data-page="${s.id}"${s.id === page.id ? ' aria-current="page"' : ''}>${esc(s.tab || s.title)}${s.id === 'chat' && CH.unread ? `<span class="tab-badge">${CH.unread}</span>` : ''}</button>`
           ).join('')}</nav>`
         : '';
     document.getElementById('page-title').textContent = page.title;
@@ -1276,7 +1353,10 @@ function renderPage() {
     document.title = `${page.title} · Admin Console`;
     const pageEl = document.getElementById('page');
     if (page.custom === 'summary') {
-        pageEl.innerHTML = summaryHTML();
+        pageEl.innerHTML = tabs + summaryHTML();
+    } else if (page.custom === 'chat') {
+        pageEl.innerHTML = chatShell(page, tabs);
+        chLoad();
     } else if (page.custom && page.custom.startsWith('an-')) {
         pageEl.innerHTML = analyticsShell(page, tabs);
         anLoad();
@@ -1493,6 +1573,7 @@ function showApp() {
     document.getElementById('login').classList.add('hidden');
     document.getElementById('app').classList.remove('hidden');
     loadContent().catch(err => updateStatus(err.message, 'error'));
+    chStart();
 }
 
 document.getElementById('pass-toggle').addEventListener('click', () => {
@@ -1611,6 +1692,11 @@ const ICONS = {
     flame: '<path d="M12 2c1 4 5 5 5 10a5 5 0 0 1-10 0c0-2 1-3 2-4 0 2 1 3 2 3 0-3-1-5 1-9z"/>',
     pin: '<path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/>',
     refresh: '<path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/>',
+    star: '<path d="m12 2 3 7 7 .6-5.3 4.7 1.7 7.2L12 17.8l-6.4 3.7 1.7-7.2L2 9.6 9 9z"/>',
+    chat: '<path d="M21 12a8 8 0 0 1-11.6 7.1L3 21l1.9-5.3A8 8 0 1 1 21 12z"/>',
+    copy: '<rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h9"/>',
+    inbox: '<path d="M22 12h-6l-2 3h-4l-2-3H2"/><path d="M5.5 5.1 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.5-6.9A2 2 0 0 0 16.7 4H7.3a2 2 0 0 0-1.8 1.1z"/>',
+    arrowleft: '<path d="M19 12H5"/><path d="m12 19-7-7 7-7"/>',
     menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
     close: '<path d="M18 6 6 18M6 6l12 12"/>'
 };
@@ -1704,6 +1790,7 @@ function summaryHTML() {
         { ok: !lifeEmpty, text: lifeEmpty ? `${lifeEmpty} fotos de "Más allá del código" por subir` : 'Fotos de "Más allá del código" completas', go: 'life' },
         { ok: !social.length, text: social.length ? `Redes sin enlace (ocultas): ${social.join(', ')}` : 'Todas las redes tienen enlace', go: 'footer' }
     ];
+    if (CH.unread) todos.unshift({ ok: false, text: `Tienes ${CH.unread} ${CH.unread === 1 ? 'mensaje nuevo' : 'mensajes nuevos'} sin leer en el chat`, go: 'chat' });
     const pendientes = todos.filter(t => !t.ok).length;
 
     const quick = MODULES.filter(m => m !== 'Resumen').map(m => {
@@ -2108,7 +2195,7 @@ const AN = {
 };
 const AN_RANGES = [['today', 'Hoy'], ['7d', '7 días'], ['30d', '30 días'], ['90d', '90 días'], ['365d', '12 meses']];
 const AN_DEVICES = [['all', 'Todos los dispositivos'], ['desktop', 'Escritorio'], ['tablet', 'Tablet'], ['mobile', 'Celular']];
-const AN_CONV = { whatsapp: 'WhatsApp', correo: 'Correo', telefono: 'Llamada / teléfono', cv: 'Descarga de CV' };
+const AN_CONV = { whatsapp: 'WhatsApp', correo: 'Correo', telefono: 'Llamada / teléfono', cv: 'Descarga de CV', mensaje: 'Mensaje por el formulario' };
 const AN_COLORS = ['#22d3ee', '#3b82ff', '#7a2cf0', '#a45cff', '#0284c7', '#6a95ff', '#c4a3ff', '#67e8f9'];
 const AN_DEVICE_NAMES = { desktop: 'Escritorio', tablet: 'Tablet', mobile: 'Celular' };
 const DOW = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'];
@@ -2128,7 +2215,7 @@ function anPageName(p) {
     return ({ inicio: 'Inicio', proyectos: 'Proyectos', trayectoria: 'Trayectoria', habilidades: 'Habilidades', contacto: 'Contacto' })[p] || p;
 }
 const anPageHash = (p) => (p === 'inicio' ? '#home' : '#' + p);
-const kindName = (k) => ({ whatsapp: 'WhatsApp', correo: 'Correo', telefono: 'Teléfono', cv: 'CV', github: 'GitHub', linkedin: 'LinkedIn', 'enlace externo': 'Enlace externo', 'navegación': 'Navegación', enlace: 'Enlace', 'botón': 'Botón', imagen: 'Imagen', campo: 'Campo', otro: 'Otro' })[k] || k;
+const kindName = (k) => ({ mensaje: 'Mensaje enviado', whatsapp: 'WhatsApp', correo: 'Correo', telefono: 'Teléfono', cv: 'CV', github: 'GitHub', linkedin: 'LinkedIn', 'enlace externo': 'Enlace externo', 'navegación': 'Navegación', enlace: 'Enlace', 'botón': 'Botón', imagen: 'Imagen', campo: 'Campo', otro: 'Otro' })[k] || k;
 const countryName = (c) => { try { return c && c.length === 2 ? new Intl.DisplayNames(['es'], { type: 'region' }).of(c) : c; } catch { return c; } };
 
 function delta(cur, prev) {
@@ -2588,6 +2675,181 @@ document.getElementById('page').addEventListener('input', (e) => {
     else if (t.dataset.an === 'hmopacity') { AN.heat.opacity = Number(t.value); anDrawHeat(); }
 });
 window.addEventListener('resize', () => { if (pageById(currentPage).custom === 'an-mapa' && AN.heat.data) anDrawHeat(); });
+
+/* ---------- Chat: mensajes que llegan del formulario del sitio ---------- */
+const CH = { list: [], counts: { total: 0, nuevo: 0, leido: 0, respondido: 0, archivado: 0, starred: 0 }, filter: 'todos', starred: false, q: '', sel: null, loading: false, error: '', unread: 0, prevUnread: null, timer: null, started: false, mobileDetail: false };
+const CH_FILTERS = [['todos', 'Todos'], ['nuevo', 'Nuevos'], ['leido', 'Leídos'], ['respondido', 'Respondidos'], ['starred', 'Destacados'], ['archivado', 'Archivados']];
+const CH_STATUS = { nuevo: 'Nuevo', leido: 'Leído', respondido: 'Respondido', archivado: 'Archivado' };
+const CH_GRADS = ['#22d3ee,#3b82ff', '#3b82ff,#7a2cf0', '#7a2cf0,#a45cff', '#0284c7,#22d3ee', '#6a95ff,#7a2cf0', '#0891b2,#3b4fe6'];
+
+const chInitials = (n) => (n || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0] || '').join('').toUpperCase() || '?';
+const chGrad = (n) => { let h = 0; for (const c of (n || '')) h = (h * 31 + c.charCodeAt(0)) >>> 0; return CH_GRADS[h % CH_GRADS.length]; };
+const chAvatar = (n, big) => `<span class="ch-av${big ? ' big' : ''}" style="background:linear-gradient(135deg,${chGrad(n)})">${esc(chInitials(n))}</span>`;
+function chAgo(t) {
+    const s = Math.max(0, Math.round((Date.now() - new Date(t)) / 1000));
+    if (s < 60) return 'ahora';
+    if (s < 3600) return Math.round(s / 60) + ' min';
+    if (s < 86400) return Math.round(s / 3600) + ' h';
+    if (s < 604800) return Math.round(s / 86400) + ' d';
+    return new Date(t).toLocaleDateString('es-CL', { day: 'numeric', month: 'short' });
+}
+const chFull = (t) => new Date(t).toLocaleString('es-CL', { dateStyle: 'full', timeStyle: 'short' });
+const chText = (t) => esc(t).replace(/\n/g, '<br>');
+
+/* ---------- Datos ---------- */
+function chBadges() {
+    const n = CH.unread;
+    const nav = document.querySelector('#sidebar [data-module="Resumen"]');
+    if (nav) {
+        let b = nav.querySelector('.badge');
+        if (n && !b) { b = document.createElement('span'); b.className = 'badge'; nav.appendChild(b); }
+        if (b) { if (n) b.textContent = n; else b.remove(); }
+    }
+    const tab = document.querySelector('.tab[data-page="chat"]');
+    if (tab) {
+        let b = tab.querySelector('.tab-badge');
+        if (n && !b) { b = document.createElement('span'); b.className = 'tab-badge'; tab.appendChild(b); }
+        if (b) { if (n) b.textContent = n; else b.remove(); }
+    }
+}
+
+async function chCounts() {
+    try {
+        const res = await fetch('/api/messages?counts=1');
+        if (!res.ok) return;
+        const { counts } = await res.json();
+        CH.counts = counts;
+        const prev = CH.prevUnread;
+        CH.unread = counts.nuevo;
+        CH.prevUnread = counts.nuevo;
+        chBadges();
+        if (prev !== null && counts.nuevo > prev) {
+            toast(counts.nuevo - prev === 1 ? 'Tienes un mensaje nuevo en el chat' : `Tienes ${counts.nuevo - prev} mensajes nuevos en el chat`);
+            if (pageById(currentPage).custom === 'chat') chLoad(true);
+        }
+    } catch { /* sin conexión: se reintenta en el siguiente ciclo */ }
+}
+
+function chStart() {
+    if (CH.started) return;
+    CH.started = true;
+    chCounts();
+    CH.timer = setInterval(chCounts, 30000);
+}
+
+async function chLoad(silent = false) {
+    if (!silent) { CH.loading = true; chRender(); }
+    try {
+        const q = new URLSearchParams({ status: CH.filter === 'starred' ? 'todos' : CH.filter, starred: CH.filter === 'starred' ? '1' : '0', q: CH.q });
+        const res = await fetch('/api/messages?' + q);
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || 'No se pudo cargar');
+        CH.list = json.messages.map(m => ({ ...m, id: Number(m.id) })); CH.counts = json.counts; CH.unread = json.counts.nuevo; CH.prevUnread = json.counts.nuevo; CH.error = '';
+        if (CH.sel && !CH.list.find(m => m.id === CH.sel)) { CH.sel = null; CH.mobileDetail = false; }
+    } catch (err) {
+        CH.error = err.message;
+    }
+    CH.loading = false;
+    chRender();
+    chBadges();
+}
+
+async function chPatch(id, patch) {
+    const res = await fetch('/api/messages', { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, ...patch }) });
+    const json = await res.json();
+    if (!res.ok) { toast(json.error || 'No se pudo actualizar'); return null; }
+    CH.counts = json.counts; CH.unread = json.counts.nuevo; CH.prevUnread = json.counts.nuevo;
+    const m = CH.list.find(x => x.id === id);
+    if (m) Object.assign(m, { ...json.message, id: Number(json.message.id) });
+    return json.message;
+}
+
+async function chSelect(id) {
+    CH.sel = id; CH.mobileDetail = true;
+    const m = CH.list.find(x => x.id === id);
+    chRender();
+    if (m && m.status === 'nuevo') { await chPatch(id, { status: 'leido' }); chRender(); chBadges(); }
+}
+
+/* ---------- Pintado ---------- */
+function chRender() {
+    const body = document.getElementById('ch-body');
+    if (!body) return;
+    const c = CH.counts;
+    const filters = CH_FILTERS.map(([v, l]) => {
+        const n = v === 'todos' ? c.total - c.archivado : v === 'starred' ? c.starred : c[v];
+        return `<button type="button" class="chip${CH.filter === v ? ' on' : ''}" data-ch="filter" data-v="${v}">${l}${n ? ` <b>${n}</b>` : ''}</button>`;
+    }).join('');
+
+    let list = '';
+    if (CH.loading && !CH.list.length) list = '<div class="an-skel"></div><div class="an-skel"></div>';
+    else if (CH.error) list = `<div class="an-empty"><b>No se pudo cargar</b>${esc(CH.error)}</div>`;
+    else if (!CH.list.length) list = `<div class="an-empty"><b>${CH.q || CH.filter !== 'todos' ? 'Sin resultados' : 'Todavía no hay mensajes'}</b>${CH.q || CH.filter !== 'todos' ? 'Prueba con otro filtro o búsqueda.' : 'Cuando alguien te escriba desde el formulario de tu sitio, aparecerá aquí al instante.'}</div>`;
+    else list = CH.list.map(m => `<button type="button" class="ch-item${m.status === 'nuevo' ? ' unread' : ''}${CH.sel === m.id ? ' sel' : ''}" data-ch="open" data-id="${m.id}">
+        ${chAvatar(m.name)}<span class="ch-main"><span class="ch-top"><b>${esc(m.name)}</b><small>${chAgo(m.created_at)}</small></span><span class="ch-subj">${esc(m.subject)}</span><span class="ch-prev">${esc(m.message)}</span></span>
+        <span class="ch-side">${m.starred ? `<span class="ch-star">${ic('star')}</span>` : ''}${m.status === 'nuevo' ? '<i class="ch-dot"></i>' : m.status === 'respondido' ? `<span class="ch-ok" title="Respondido">${ic('check')}</span>` : ''}</span></button>`).join('');
+
+    const m = CH.list.find(x => x.id === CH.sel);
+    let detail;
+    if (!m) {
+        detail = `<div class="ch-empty">${ic('chat')}<b>Elige un mensaje</b><span>Selecciona una conversación de la lista para leerla y responder.</span></div>`;
+    } else {
+        const quote = encodeURIComponent(`\n\n\n— El ${chFull(m.created_at)}, ${m.name} escribió:\n> ` + m.message.replace(/\n/g, '\n> '));
+        const mailto = `mailto:${m.email}?subject=${encodeURIComponent('Re: ' + m.subject)}&body=${quote}`;
+        detail = `<div class="ch-detail-head"><button type="button" class="icon ch-back" data-ch="back" aria-label="Volver">${ic('arrowleft')}</button>${chAvatar(m.name, true)}<div class="who"><h3>${esc(m.name)}</h3><a href="mailto:${esc(m.email)}">${esc(m.email)}</a></div>
+            <span class="tag ${m.status === 'nuevo' ? 'warn' : m.status === 'respondido' ? 'conv' : ''}">${CH_STATUS[m.status] || m.status}</span></div>
+            <div class="ch-meta"><span>${ic('clock')}${esc(chFull(m.created_at))}</span>${m.country ? `<span>${ic('globe')}${esc(countryName(m.country))}</span>` : ''}${m.device ? `<span>${ic('device')}${esc(AN_DEVICE_NAMES[m.device] || m.device)}</span>` : ''}</div>
+            <div class="ch-thread"><div class="ch-subject"><small>Asunto</small>${esc(m.subject)}</div>
+                <div class="ch-row">${chAvatar(m.name)}<div class="ch-bubble">${chText(m.message)}<small>${esc(chFull(m.created_at))}</small></div></div></div>
+            <div class="ch-actions"><a class="btn primary" href="${mailto}" data-ch="reply" data-id="${m.id}">${ic('mail')}Responder por correo</a>
+                <button type="button" class="btn" data-ch="copy" data-v="${esc(m.email)}">${ic('copy')}Copiar correo</button>
+                <button type="button" class="btn" data-ch="status" data-id="${m.id}" data-v="respondido">${ic('check')}Marcar respondido</button>
+                <button type="button" class="btn" data-ch="star" data-id="${m.id}">${ic('star')}${m.starred ? 'Quitar destacado' : 'Destacar'}</button>
+                <button type="button" class="btn" data-ch="status" data-id="${m.id}" data-v="nuevo">${ic('eye')}Marcar no leído</button>
+                <button type="button" class="btn" data-ch="status" data-id="${m.id}" data-v="${m.status === 'archivado' ? 'leido' : 'archivado'}">${ic('inbox')}${m.status === 'archivado' ? 'Desarchivar' : 'Archivar'}</button>
+                <button type="button" class="btn danger" data-ch="delete" data-id="${m.id}">${ic('trash')}Eliminar</button></div>`;
+    }
+    body.innerHTML = `<div class="ch-toolbar"><div class="chips">${filters}</div><span class="grow"></span><input type="text" class="an-search" data-ch="q" placeholder="Buscar en mensajes…" value="${esc(CH.q)}"><button type="button" class="btn small" data-ch="refresh">${ic('refresh')}Actualizar</button></div>
+        <div class="ch-wrap${CH.mobileDetail && CH.sel ? ' show-detail' : ''}"><div class="ch-list">${list}</div><div class="ch-detail">${detail}</div></div>`;
+}
+
+function chatShell(page, tabs) {
+    const meta = MODULE_META['Resumen'] || {};
+    return `<div class="page-hero"><div class="hero-ico">${ic('chat')}</div><p>${esc(page.desc)}</p></div>${tabs}<div id="ch-body"></div>`;
+}
+
+/* ---------- Eventos ---------- */
+document.getElementById('page').addEventListener('click', async (e) => {
+    const b = e.target.closest('[data-ch]');
+    if (!b) return;
+    const a = b.dataset.ch, id = Number(b.dataset.id);
+    if (a === 'filter') { CH.filter = b.dataset.v; CH.sel = null; CH.mobileDetail = false; chLoad(); }
+    else if (a === 'refresh') chLoad();
+    else if (a === 'open') chSelect(id);
+    else if (a === 'back') { CH.mobileDetail = false; chRender(); }
+    else if (a === 'star') { const m = CH.list.find(x => x.id === id); await chPatch(id, { starred: !m.starred }); chRender(); }
+    else if (a === 'status') {
+        await chPatch(id, { status: b.dataset.v });
+        if (b.dataset.v === 'archivado' && CH.filter !== 'archivado') { CH.sel = null; CH.mobileDetail = false; await chLoad(true); toast('Mensaje archivado'); }
+        else { chRender(); chBadges(); toast(b.dataset.v === 'respondido' ? 'Marcado como respondido' : b.dataset.v === 'nuevo' ? 'Marcado como no leído' : 'Listo'); }
+    }
+    else if (a === 'copy') { try { await navigator.clipboard.writeText(b.dataset.v); toast('Correo copiado'); } catch { toast(b.dataset.v); } }
+    else if (a === 'reply') { setTimeout(() => toast('Cuando respondas, pulsa "Marcar respondido" para llevar el control'), 600); }
+    else if (a === 'delete') {
+        if (!confirm('¿Eliminar este mensaje para siempre?')) return;
+        const res = await fetch('/api/messages?id=' + id, { method: 'DELETE' });
+        const json = await res.json();
+        if (res.ok) { CH.counts = json.counts; CH.unread = json.counts.nuevo; CH.sel = null; CH.mobileDetail = false; await chLoad(true); toast('Mensaje eliminado'); }
+    }
+});
+let chSearchTimer = null;
+document.getElementById('page').addEventListener('input', (e) => {
+    const t = e.target.closest('[data-ch="q"]');
+    if (!t) return;
+    CH.q = t.value;
+    clearTimeout(chSearchTimer);
+    chSearchTimer = setTimeout(async () => { await chLoad(true); const n = document.querySelector('[data-ch="q"]'); if (n) { n.focus(); n.setSelectionRange(n.value.length, n.value.length); } }, 300);
+});
 
 checkSession();
 </script>

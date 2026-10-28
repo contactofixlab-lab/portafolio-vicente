@@ -277,6 +277,110 @@ html.heatmap-mode .min-h-screen { min-height: 0 !important; }
 html.heatmap-mode [class*="min-h-[100vh]"] { min-height: 820px !important; }
 html.heatmap-mode .led-ring, html.heatmap-mode .led-orbit, html.heatmap-mode .badge-orbit { display: none !important; }
 
+
+/* ═════════ Formulario de contacto con luces de neón ═════════ */
+.neon-field { position: relative; }
+.neon-input {
+  width: 100%;
+  padding: 1.7rem 1.1rem 0.65rem;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font: inherit;
+  font-size: 1.05rem;
+  outline: none;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+.neon-input::placeholder { color: transparent; }
+.neon-input:hover { border-color: rgba(255, 255, 255, 0.32); }
+.neon-input:focus {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--led);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--led) 20%, transparent), 0 0 30px color-mix(in srgb, var(--led) 45%, transparent);
+  animation: led-cycle 9s linear infinite;
+}
+.neon-input.err { border-color: #ff8da1; box-shadow: 0 0 0 3px rgba(255, 141, 161, 0.18); }
+.neon-label {
+  position: absolute;
+  left: 1.15rem;
+  top: 1.05rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.02rem;
+  font-weight: 500;
+  pointer-events: none;
+  transform-origin: left top;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), color 0.22s;
+}
+.neon-input:focus ~ .neon-label,
+.neon-input:not(:placeholder-shown) ~ .neon-label { transform: translateY(-0.62rem) scale(0.74); color: #7df9ff; font-weight: 700; }
+.neon-bar {
+  position: absolute;
+  left: 1rem; right: 1rem;
+  bottom: 0;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #22e5ff, #4a86ff, #a45cff);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  pointer-events: none;
+  box-shadow: 0 0 10px #22e5ff;
+}
+textarea.neon-input ~ .neon-bar { display: none; }
+.neon-input:focus ~ .neon-bar { transform: scaleX(1); }
+
+.led-card-glow { box-shadow: 0 0 0 1px rgba(34, 229, 255, 0.25), 0 0 60px rgba(74, 134, 255, 0.28), 0 50px 110px -40px rgba(30, 36, 160, 0.8); }
+
+/* Anillo de neón fijo (pantalla de mensaje enviado) */
+.led-ring-static { position: relative; background: radial-gradient(circle, rgba(34, 229, 255, 0.2), rgba(8, 12, 38, 0)); animation: led-cycle 9s linear infinite; }
+.led-ring-static::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  padding: 3px;
+  background: conic-gradient(from 0deg, #22e5ff, #4a86ff, #a45cff, #22e5ff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: led-spin 6s linear infinite;
+  filter: drop-shadow(0 0 10px var(--led));
+}
+
+/* Destello que cruza el botón de enviar */
+.btn-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.38) 50%, transparent 70%);
+  transform: translateX(-120%);
+  animation: sweep 3.2s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes sweep { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+
+
+/* Marco de neón que recorre el borde del formulario */
+@property --ang { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes frame-spin { to { --ang: 360deg; } }
+.led-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: conic-gradient(from var(--ang), #22e5ff, #4a86ff, #7a2cf0, #a45cff, #22e5ff);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  animation: frame-spin 6s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+.neon-input { padding: 1.55rem 1.1rem 0.5rem; font-size: 1rem; }
+.neon-label { top: 0.95rem; font-size: 1rem; }
+textarea.neon-input { min-height: 9.5rem; line-height: 1.55; }
+
 /* Respeta a quien prefiere menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

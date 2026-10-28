@@ -43,6 +43,27 @@ const UI_DEFAULTS = {
   form: {
     faqEyebrow: 'Dudas comunes',
     faqMoreText: '¿Sigues con dudas?'
+  },
+  messageForm: {
+    eyebrow: 'Escríbeme',
+    title: 'Cuéntame tu idea',
+    titleHighlight: 'y conversemos',
+    subtitle: 'Tu mensaje llega directo a mi bandeja y te respondo personalmente.',
+    nameLabel: 'Nombre completo',
+    subjectLabel: 'Asunto',
+    emailLabel: 'Tu correo',
+    messageLabel: 'Comentario',
+    sendButton: 'Enviar mensaje',
+    sendingText: 'Enviando…',
+    successTitle: '¡Mensaje enviado!',
+    successText: 'Gracias por escribirme. Te responderé muy pronto al correo que dejaste.',
+    anotherButton: 'Enviar otro mensaje',
+    errorText: 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.',
+    privacy: 'Usaré tu correo solo para responderte. Nada de spam.',
+    perk1: 'Respuesta personal',
+    perk2: 'Sin spam',
+    perk3: 'Directo a mi bandeja',
+    subjects: ['Propuesta de proyecto', 'Oportunidad laboral', 'Consulta', 'Colaboración']
   }
 }
 
@@ -61,6 +82,7 @@ function merge(defaults, override) {
     const d = defaults[key]
     const o = override?.[key]
     if (isObj(d)) out[key] = merge(d, isObj(o) ? o : undefined)
+    else if (Array.isArray(d)) out[key] = Array.isArray(o) && o.length ? o : d
     else out[key] = typeof o === 'string' && o.trim() !== '' ? o : d
   }
   return out
