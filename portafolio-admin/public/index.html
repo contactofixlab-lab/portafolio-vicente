@@ -2264,19 +2264,18 @@ function anToolbar(page) {
     const showDevice = page.custom !== 'an-mapa';
     return `<div class="an-toolbar">${seg(AN_RANGES, f.range, 'range')}${showDevice ? `<select data-an="device" aria-label="Dispositivo">${AN_DEVICES.map(([v, l]) => `<option value="${v}"${f.device === v ? ' selected' : ''}>${l}</option>`).join('')}</select>` : ''}
         <span class="grow"></span>
-        <label class="an-check"><input type="checkbox" data-an="local"${f.local ? ' checked' : ''}> Incluir mis pruebas locales</label>
         <button type="button" class="btn small" data-an="refresh">${ic('refresh')}Actualizar</button></div>`;
 }
 
 function anEmpty() {
-    return `<div class="an-empty"><b>Todavía no hay datos en este período</b>Los datos aparecen cuando alguien visita el sitio publicado. Prueba con otro período, o activa "Incluir mis pruebas locales" para ver las visitas hechas desde tu computador.</div>`;
+    return `<div class="an-empty"><b>Todavía no hay datos en este período</b>Los datos aparecen cuando alguien visita el sitio publicado. Prueba con otro período. Cada visita real al sitio publicado se irá sumando sola.</div>`;
 }
 
 function anInfo() {
     const i = AN.data && AN.data.info;
     if (!i || !i.total) return '';
     const first = i.first_event ? new Date(i.first_event).toLocaleDateString('es-CL', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
-    return `<p class="an-info">Registrando desde el ${esc(first)} · ${fmt(i.total)} eventos guardados${i.local ? ` (${fmt(i.local)} de pruebas locales)` : ''}. Los datos son anónimos: sin cookies ni datos personales.</p>`;
+    return `<p class="an-info">Registrando desde el ${esc(first)} · ${fmt(i.total)} eventos guardados. Los datos son anónimos: sin cookies ni datos personales.</p>`;
 }
 
 function anResumen(d) {
@@ -2547,7 +2546,7 @@ function anRender() {
         return;
     }
     if (empty) { body.innerHTML = info + anEmpty(); return; }
-    body.innerHTML = info + ({ 'an-resumen': anResumen, 'an-clics': anClics, 'an-paginas': anPaginas, 'an-audiencia': anAudiencia })[page.custom](d) + `<div class="an-grid" style="margin-top:6px"><div class="an-card"><h3><span class="ico">${ic('shield')}</span>Privacidad y tus propias visitas</h3><p class="sub">Los datos son anónimos (sin cookies ni información personal). Para que tus visitas no cuenten, abre el sitio una vez en cada navegador que uses:</p><div class="img-actions"><a class="btn small primary" href="${SITE_URL}/?notrack=1" target="_blank" rel="noopener">${ic('shield')}No contar mis visitas en este navegador</a><a class="btn small" href="${SITE_URL}/?notrack=0" target="_blank" rel="noopener">Volver a contarlas</a>${d.info && d.info.local ? `<button type="button" class="btn small danger" data-an="purge">${ic('trash')}Borrar pruebas locales (${fmt(d.info.local)})</button>` : ''}</div></div></div>`;
+    body.innerHTML = info + ({ 'an-resumen': anResumen, 'an-clics': anClics, 'an-paginas': anPaginas, 'an-audiencia': anAudiencia })[page.custom](d) + `<div class="an-grid" style="margin-top:6px"><div class="an-card"><h3><span class="ico">${ic('shield')}</span>Privacidad y tus propias visitas</h3><p class="sub">Los datos son anónimos (sin cookies ni información personal). Para que tus visitas no cuenten, abre el sitio una vez en cada navegador que uses:</p><div class="img-actions"><a class="btn small primary" href="${SITE_URL}/?notrack=1" target="_blank" rel="noopener">${ic('shield')}No contar mis visitas en este navegador</a><a class="btn small" href="${SITE_URL}/?notrack=0" target="_blank" rel="noopener">Volver a contarlas</a></div></div></div>`;
 }
 
 function analyticsShell(page, tabs) {

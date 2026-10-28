@@ -78,7 +78,7 @@ export function parseUA(ua = '') {
 const clip = (v, n) => (typeof v === 'string' ? v.slice(0, n) : null);
 const num = (v, min, max) => (Number.isFinite(v) ? Math.min(max, Math.max(min, Math.round(v))) : null);
 
-const ALLOWED_HOST = /^(localhost|127\.0\.0\.1|portfolio-vicente[a-z0-9-]*\.vercel\.app)$/i;
+const ALLOWED_HOST = /^portfolio-vicente[a-z0-9-]*\.vercel\.app$/i;
 
 function allowedHosts() {
   const extra = (process.env.ANALYTICS_ALLOWED_HOSTS || '').split(',').map((h) => h.trim().toLowerCase()).filter(Boolean);

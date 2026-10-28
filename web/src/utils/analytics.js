@@ -5,7 +5,6 @@
  */
 
 const ENDPOINT = import.meta.env.VITE_ANALYTICS_URL || 'https://portafolio-admin-eta.vercel.app/api/track'
-const LOCAL_ENDPOINT = 'http://localhost:5180/api/track'
 
 const SECTION_NAMES = {
   vida: 'Más allá del código',
@@ -144,8 +143,9 @@ export function initAnalytics() {
   if (safe(() => window.localStorage.getItem('pv_notrack') === '1', false)) return
   if (navigator.doNotTrack === '1') return
 
-  const isLocal = /^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)
-  const url = isLocal ? LOCAL_ENDPOINT : ENDPOINT
+  // El desarrollo local nunca se rastrea: la analítica muestra solo visitas reales
+  if (/^(localhost|127\.0\.0\.1)$/.test(window.location.hostname)) return
+  const url = ENDPOINT
   const sid = store('session', 'pv_sid')
   const vid = store('local', 'pv_vid')
 
