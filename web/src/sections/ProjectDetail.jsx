@@ -4,6 +4,7 @@ import Section from '../components/ui/Section'
 import PageHero from '../components/ui/PageHero'
 import Button from '../components/ui/Button'
 import Tilt from '../components/ui/Tilt'
+import ProjectMedia, { fitFromAdmin } from '../components/ui/ProjectMedia'
 import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
 import { visibleProjects, projectDetail as t } from '../content'
 
@@ -17,11 +18,6 @@ function formatDate(dateString) {
   if (!dateString) return t.ongoing
   const date = new Date(dateString)
   return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
-}
-
-function ProjectImage({ src, alt, className }) {
-  if (!src) return null
-  return src.startsWith('/') || src.startsWith('http') ? <img src={src} alt={alt} className={className} /> : <span className="text-7xl">{src}</span>
 }
 
 function BlockTitle({ icon: Icon, children, color = 'text-primary-500' }) {
@@ -86,8 +82,8 @@ export default function ProjectDetail({ projectId }) {
           {project.image && (
             <Reveal className="lg:col-span-2">
               <Tilt max={8} scale={1.03} className="rounded-[2rem]">
-                <div className="grid h-60 place-items-center rounded-[2rem] border-4 border-white bg-gradient-to-br from-primary-400 to-accent-400 p-8 shadow-card">
-                  <ProjectImage src={project.image} alt={project.title} className="max-h-full max-w-full rounded-3xl bg-white/90 p-4 object-contain shadow-neon" />
+                <div className="mx-auto max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-card">
+                  <ProjectMedia src={project.image} title={project.title} fit={fitFromAdmin(project.imageFit)} padding="p-8" />
                 </div>
               </Tilt>
             </Reveal>
@@ -269,8 +265,8 @@ export default function ProjectDetail({ projectId }) {
                 <StaggerItem key={sp.id}>
                   <Tilt max={7} scale={1.03} className="h-full rounded-[2rem]">
                     <a href={`#proyecto/${sp.id}`} className="group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
-                      <div className="grid h-36 place-items-center bg-gradient-to-br from-primary-400 to-accent-400 p-5">
-                        {sp.image ? <ProjectImage src={sp.image} alt={sp.title} className="max-h-full max-w-full rounded-2xl bg-white/90 p-2 object-contain shadow-neon" /> : <span className="font-display text-5xl font-extrabold text-white/90">{sp.title.charAt(0)}</span>}
+                      <div className="border-b border-primary-100">
+                        <ProjectMedia src={sp.image} title={sp.title} fit={fitFromAdmin(sp.imageFit)} padding="p-6" letterSize="text-6xl" />
                       </div>
                       <div className="flex flex-1 flex-col gap-3 p-6">
                         <h3 className="font-display text-xl font-extrabold text-ink transition-colors group-hover:text-primary-600">{sp.title}</h3>

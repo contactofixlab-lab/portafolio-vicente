@@ -23,7 +23,7 @@ function ContactCard({ icon: Icon, label, value, href, action, gradient, span = 
           {whatsapp ? <WhatsAppIcon size={38} /> : <Icon size={38} />}
         </motion.div>
         <p className="mb-2 text-xs font-bold uppercase tracking-[0.2em] text-primary-600">{label}</p>
-        <p className="break-words font-display text-2xl font-extrabold leading-tight text-ink md:text-3xl">{value}</p>
+        <p className="[overflow-wrap:anywhere] font-display text-xl font-extrabold leading-tight text-ink min-[400px]:text-2xl md:text-3xl">{value}</p>
         {action && (
           <span className="mt-8 inline-flex items-center gap-2 self-start rounded-full bg-ink px-6 py-3 text-sm font-bold text-white transition-colors group-hover:bg-primary-600">
             {action}
@@ -35,7 +35,7 @@ function ContactCard({ icon: Icon, label, value, href, action, gradient, span = 
   )
 
   return (
-    <StaggerItem className={span}>
+    <StaggerItem className={`min-w-0 ${span}`}>
       {href ? (
         <a href={href} target={external ? '_blank' : undefined} rel={external ? 'noopener noreferrer' : undefined} className="group block h-full">
           {body}
@@ -89,7 +89,7 @@ export default function Contacto() {
           <h2 className="mb-10 text-center font-display text-3xl font-extrabold text-ink md:text-5xl">{p.infoTitle}</h2>
         </Reveal>
 
-        <StaggerGroup className="grid gap-6 lg:grid-cols-6">
+        <StaggerGroup className="grid grid-cols-1 gap-6 lg:grid-cols-6">
           <ContactCard icon={Mail} label={cards.emailLabel} value={contact.email} href={`mailto:${contact.email}`} action={contact.home.emailButton} gradient="from-sky-500 to-blue-600" />
           <ContactCard icon={Phone} label={cards.phoneLabel} value={contact.phone} href={`tel:${contact.phone.replace(/\s+/g, '')}`} action={contact.home.phoneButton} gradient="from-violet-500 to-purple-600" />
           <ContactCard whatsapp label={cards.whatsappLabel} value={contact.phone} href={whatsappUrl} external action={p.whatsappButton} gradient="from-whatsapp to-whatsapp-dark" />

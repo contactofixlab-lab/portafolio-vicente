@@ -258,6 +258,16 @@ h1, h2, h3 {
 .squiggle { animation: led-cycle 9s linear infinite; filter: drop-shadow(0 0 5px color-mix(in srgb, var(--led) 60%, transparent)); }
 .squiggle path { stroke: var(--led-d); }
 
+
+/* ═════════ Etiquetas que orbitan alrededor de la foto ═════════ */
+.badge-orbit { border-radius: 50%; pointer-events: none; animation: led-spin 40s linear infinite; }
+.badge-anchor { position: absolute; transform: translate(-50%, -50%); pointer-events: auto; }
+/* La etiqueta gira en sentido contrario a su órbita para que el texto siempre se lea derecho */
+.badge-upright { animation: led-spin 40s linear infinite; }
+/* Al pasar el mouse la órbita se detiene, así se puede leer y tocar la etiqueta */
+.badge-orbit:has(.badge-anchor:hover),
+.badge-orbit:has(.badge-anchor:hover) .badge-upright { animation-play-state: paused; }
+
 /* Respeta a quien prefiere menos movimiento */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

@@ -39,9 +39,9 @@ function TimelineItem({ item, index }) {
         <Tilt max={4} scale={1.015} className="rounded-3xl">
           <div className="relative overflow-hidden rounded-3xl border-2 border-white bg-white p-7 shadow-card">
             <div className={`absolute inset-x-0 top-0 h-1.5 bg-gradient-to-r ${gradient}`} />
-            <div className="mb-4 flex items-start justify-between gap-3 pt-1">
-              <div>
-                <h3 className="font-display text-2xl font-extrabold leading-tight text-ink">{item.title}</h3>
+            <div className="mb-4 flex flex-wrap items-start justify-between gap-3 pt-1">
+              <div className="min-w-0 flex-1 basis-[11rem]">
+                <h3 className="break-words font-display text-2xl font-extrabold leading-tight text-ink">{item.title}</h3>
                 <p className="mt-1 text-lg font-bold text-primary-600">{item.company}</p>
               </div>
               {item.badge && (

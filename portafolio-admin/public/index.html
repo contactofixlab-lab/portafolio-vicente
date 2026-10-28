@@ -258,7 +258,8 @@
 
         .img-field { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: center; padding: 14px; border: 2px dashed var(--line-2); border-radius: 20px; background: var(--paper); transition: all .18s; }
         .img-field.drop-over { border-color: var(--accent); background: var(--accent-soft); box-shadow: 0 0 0 5px rgba(249,115,22,.14); }
-        .thumb { width: 150px; height: 106px; border-radius: 15px; border: 1.5px solid var(--line); overflow: hidden; display: flex; align-items: center; justify-content: center; background: #fff linear-gradient(45deg, #f6efe5 25%, transparent 25%, transparent 75%, #f6efe5 75%), linear-gradient(45deg, #f6efe5 25%, transparent 25%, transparent 75%, #f6efe5 75%); background-size: 16px 16px; background-position: 0 0, 8px 8px; }
+        /* Vista previa CUADRADA y sin fondo de color: así se ve la imagen en el sitio */
+        .thumb { width: 150px; height: 150px; border-radius: 16px; border: 1.5px solid var(--line-2); overflow: hidden; display: flex; align-items: center; justify-content: center; background: #fff; padding: 12px; }
         .thumb img { max-width: 100%; max-height: 100%; object-fit: contain; }
         .thumb span { font-size: 12.5px; color: var(--dim); text-align: center; padding: 6px; background: #fff; }
         .drop-hint { font-size: 12.5px; color: var(--dim); margin-top: 8px; }
@@ -417,7 +418,7 @@
             .page-hero { padding: 18px; }
             .welcome { padding: 28px 22px; border-radius: 26px; }
             .img-field { grid-template-columns: 1fr; }
-            .thumb { width: 100%; }
+            .thumb { width: 150px; }
             .item-body { padding: 16px 14px 20px; }
             .dirtybar { gap: 8px; padding-left: 14px; bottom: 12px; }
             .dirtybar .msg { font-size: 13px; }
@@ -596,7 +597,8 @@ const PAGES = [
                 T('title', 'Título'),
                 TA('description', 'Descripción corta'),
                 TA('longDescription', 'Descripción larga'),
-                IMG('image', 'Logo / imagen del proyecto'),
+                IMG('image', 'Logo / imagen de portada (se muestra en un cuadro cuadrado)'),
+                SEL('imageFit', 'Cómo se ajusta la imagen en el cuadro', ['Automático (recomendado)', 'Llenar todo el cuadro', 'Logo completo sobre fondo blanco', 'Completa con fondo difuminado']),
                 SEL('type', 'Tipo', ['App', 'Web']),
                 T('company', 'Empresa / cliente'),
                 SEL('status', 'Estado', ['En Desarrollo', 'Últimas Fases', 'Terminado']),

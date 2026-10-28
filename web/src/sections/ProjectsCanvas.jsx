@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react'
 import Section from '../components/ui/Section'
 import SectionHeading from '../components/ui/SectionHeading'
 import Tilt from '../components/ui/Tilt'
+import ProjectMedia, { fitFromAdmin } from '../components/ui/ProjectMedia'
 import Button from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { visibleProjects, projectsHome, ui } from '../content'
@@ -77,22 +78,9 @@ export default function ProjectsCanvas() {
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <Tilt max={4} scale={1.005} className="rounded-[2.5rem]">
-            <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_40px_90px_-30px_rgba(30,36,160,0.4)] md:grid-cols-[1fr_1.05fr]">
-              <div className="relative grid min-h-[20rem] place-items-center overflow-hidden bg-gradient-to-br from-primary-400 via-primary-500 to-accent-400 p-10 md:min-h-[32rem]">
-                <div className="absolute inset-0 dots opacity-40" />
-                <div className="absolute -right-16 -top-16 h-64 w-64 rounded-full bg-white/25 blur-2xl animate-morph" />
-                <span className="absolute bottom-2 left-6 select-none font-display text-[9rem] font-extrabold leading-none text-white/20 md:text-[12rem]">
-                  {String(index + 1).padStart(2, '0')}
-                </span>
-                <motion.div animate={{ y: [0, -14, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} className="relative z-10">
-                  {project.image ? (
-                    <img src={project.image} alt={project.title} className="max-h-56 max-w-full rounded-3xl bg-white/90 p-5 object-contain shadow-neon md:max-h-72" />
-                  ) : (
-                    <div className="grid h-40 w-40 place-items-center rounded-[2rem] bg-white/90 font-display text-7xl font-extrabold text-primary-600 shadow-soft">
-                      {project.title.charAt(0)}
-                    </div>
-                  )}
-                </motion.div>
+            <div className="grid overflow-hidden rounded-[2.5rem] border-4 border-white bg-white shadow-[0_40px_90px_-30px_rgba(30,36,160,0.4)] md:grid-cols-[1fr_1.1fr]">
+              <div className="relative border-b border-primary-100 md:border-b-0 md:border-r">
+                <ProjectMedia src={project.image} title={project.title} fit={fitFromAdmin(project.imageFit)} padding="p-10 md:p-14" letterSize="text-9xl" />
               </div>
 
               <div className="flex flex-col justify-center gap-6 p-8 md:p-12">

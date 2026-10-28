@@ -4,6 +4,7 @@ import { ArrowUpRight } from 'lucide-react'
 import Section from '../components/ui/Section'
 import PageHero from '../components/ui/PageHero'
 import Tilt from '../components/ui/Tilt'
+import ProjectMedia, { fitFromAdmin } from '../components/ui/ProjectMedia'
 import Button from '../components/ui/Button'
 import { Reveal } from '../components/ui/Reveal'
 import { visibleProjects, projectsPage, contact, ui } from '../content'
@@ -13,13 +14,6 @@ const STATUS_STYLES = {
   'Últimas Fases': 'bg-emerald-100 text-emerald-800',
   Terminado: 'bg-emerald-100 text-emerald-800'
 }
-
-const GRADIENTS = [
-  'from-primary-400 to-accent-400',
-  'from-primary-500 to-primary-700',
-  'from-accent-400 to-primary-500',
-  'from-primary-300 to-primary-600'
-]
 
 const ProjectCard = forwardRef(function ProjectCard({ project, index }, ref) {
   return (
@@ -33,16 +27,10 @@ const ProjectCard = forwardRef(function ProjectCard({ project, index }, ref) {
     >
       <Tilt max={7} scale={1.025} className="h-full rounded-[2rem]">
         <a href={`#proyecto/${project.id}`} className="led-hover group flex h-full flex-col overflow-hidden rounded-[2rem] border-2 border-white bg-white shadow-card">
-          <div className={`relative grid h-52 place-items-center overflow-hidden bg-gradient-to-br ${GRADIENTS[index % GRADIENTS.length]} p-6`}>
-            <div className="absolute inset-0 dots opacity-40" />
-            <div className="absolute -right-10 -top-10 h-36 w-36 rounded-full bg-white/25 blur-xl" />
-            {project.image ? (
-              <img src={project.image} alt={project.title} className="relative max-h-36 max-w-full rounded-2xl bg-white/90 p-3 object-contain shadow-neon transition-transform duration-500 group-hover:scale-110 group-hover:-rotate-3" />
-            ) : (
-              <span className="relative font-display text-7xl font-extrabold text-white/90 transition-transform duration-500 group-hover:scale-110">{project.title.charAt(0)}</span>
-            )}
-            <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-xs font-bold text-primary-700">{project.type}</span>
-            <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-white text-primary-600 opacity-0 transition-all duration-300 group-hover:rotate-12 group-hover:opacity-100">
+          <div className="relative border-b border-primary-100">
+            <ProjectMedia src={project.image} title={project.title} fit={fitFromAdmin(project.imageFit)} padding="p-8" />
+            <span className="absolute left-4 top-4 rounded-full border border-primary-100 bg-white px-3 py-1 text-xs font-bold text-primary-700 shadow-sm">{project.type}</span>
+            <span className="absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full bg-primary-600 text-white opacity-0 shadow-glow transition-all duration-300 group-hover:rotate-12 group-hover:opacity-100">
               <ArrowUpRight size={20} />
             </span>
           </div>

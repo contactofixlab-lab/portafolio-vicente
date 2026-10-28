@@ -8,11 +8,13 @@ import { Words } from '../components/ui/Reveal'
 import IconValue from '../components/ui/IconValue'
 import { hero, visibleProjects, certificates, trajectoryPage, ui } from '../content'
 
-const BADGE_POSITIONS = [
-  'top-2 left-0 sm:-left-6',
-  'top-1/3 -right-2 sm:-right-10',
-  'bottom-10 -left-2 sm:-left-12',
-  'bottom-0 right-6 sm:-right-2'
+// Cada etiqueta orbita alrededor de la foto: círculo (en % del contenedor), duración, sentido y ángulo inicial.
+// En celular la órbita va hacia adentro para que las etiquetas no se corten con el borde de la pantalla.
+const BADGE_ORBITS = [
+  { cls: 'inset-[7%] sm:inset-[-8%]', duration: 30, reverse: false, angle: 215 },
+  { cls: 'inset-[5%] sm:inset-[-15%]', duration: 44, reverse: true, angle: 345 },
+  { cls: 'inset-[9%] sm:inset-[-11%]', duration: 36, reverse: false, angle: 130 },
+  { cls: 'inset-[4%] sm:inset-[-18%]', duration: 52, reverse: true, angle: 50 }
 ]
 
 function Stat({ value, suffix, label }) {
@@ -114,7 +116,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, scale: 0.7, rotate: -8 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="relative mx-auto w-full max-w-[34rem]"
+          className="relative mx-auto w-full max-w-[19rem] sm:max-w-[34rem]"
         >
           <div className="led-ring inset-[-9%]" />
           <div className="led-orbit inset-[-9%]"><span className="led-dot" /></div>
@@ -131,25 +133,37 @@ export default function HeroSection() {
             </div>
           </Tilt>
 
-          {hero.floatingBadges.slice(0, 4).map((badge, idx) => (
-            <motion.div
-              key={`${badge.label}-${idx}`}
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2 + idx * 0.15, type: 'spring', stiffness: 260, damping: 16 }}
-              className={`absolute ${BADGE_POSITIONS[idx]}`}
-            >
-              <motion.div
-                animate={{ y: [0, -14, 0] }}
-                transition={{ duration: 4 + idx, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.4 }}
-                whileHover={{ scale: 1.12, rotate: -4 }}
-                className="flex items-center gap-3 led-edge rounded-2xl border bg-white/90 px-4 py-3 backdrop-blur"
+          {hero.floatingBadges.slice(0, 4).map((badge, idx) => {
+            const orbit = BADGE_ORBITS[idx]
+            const rad = (orbit.angle * Math.PI) / 180
+            return (
+              <div
+                key={`${badge.label}-${idx}`}
+                className={`badge-orbit absolute ${orbit.cls}`}
+                style={{ animationDuration: `${orbit.duration}s`, animationDirection: orbit.reverse ? 'reverse' : 'normal' }}
               >
-                <IconValue value={badge.icon} className="text-2xl" imgClass="h-8 w-8" />
-                <span className="whitespace-nowrap text-sm font-bold text-ink">{badge.label}</span>
-              </motion.div>
-            </motion.div>
-          ))}
+                <div className="badge-anchor" style={{ left: `${50 + 50 * Math.cos(rad)}%`, top: `${50 + 50 * Math.sin(rad)}%` }}>
+                  <div className="badge-upright" style={{ animationDuration: `${orbit.duration}s`, animationDirection: orbit.reverse ? 'normal' : 'reverse' }}>
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 1.2 + idx * 0.15, type: 'spring', stiffness: 260, damping: 16 }}
+                    >
+                      <motion.div
+                        animate={{ y: [0, -8, 0] }}
+                        transition={{ duration: 3.5 + idx, repeat: Infinity, ease: 'easeInOut', delay: idx * 0.4 }}
+                        whileHover={{ scale: 1.12 }}
+                        className="led-edge flex items-center gap-2 rounded-2xl border bg-white/90 px-3 py-2 backdrop-blur sm:gap-3 sm:px-4 sm:py-3"
+                      >
+                        <IconValue value={badge.icon} className="text-xl sm:text-2xl" imgClass="h-6 w-6 sm:h-8 sm:w-8" />
+                        <span className="whitespace-nowrap text-xs font-bold text-ink sm:text-sm">{badge.label}</span>
+                      </motion.div>
+                    </motion.div>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
         </motion.div>
       </div>
 
