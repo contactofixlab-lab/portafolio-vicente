@@ -819,9 +819,8 @@ const UI_DEFAULTS = {
     skills: { usedIn: 'Lo he usado en', levelAdvanced: 'Avanzado', levelIntermediate: 'Intermedio', levelBasic: 'Básico' },
     projects: { filterAll: 'Todos' },
     footer: { marquee: 'Hablemos', backToTop: 'Volver arriba' },
-    contactCards: { emailLabel: 'Correo', phoneLabel: 'Teléfono', whatsappLabel: 'WhatsApp', locationLabel: 'Ubicación', availabilityLabel: 'Disponibilidad' },
+    contactCards: { emailLabel: 'Correo', phoneLabel: 'Teléfono', whatsappLabel: 'WhatsApp', locationLabel: 'Ubicación', availabilityLabel: 'Disponibilidad', emailHint: 'Cuéntame los detalles de tu proyecto o propuesta.', phoneHint: 'Conversemos directamente, sin intermediarios.', whatsappHint: 'La forma más rápida de escribirme.', locationHint: 'Desde aquí trabajo y me conecto con equipos.', availabilityHint: 'Mi estado actual para nuevos proyectos y oportunidades.' },
     form: { faqEyebrow: 'Dudas comunes', faqMoreText: '¿Sigues con dudas?' },
-    messageForm: { eyebrow: 'Escríbeme', title: 'Cuéntame tu idea', titleHighlight: 'y conversemos', subtitle: 'Tu mensaje llega directo a mi bandeja y te respondo personalmente.', nameLabel: 'Nombre completo', subjectLabel: 'Asunto', emailLabel: 'Tu correo', messageLabel: 'Comentario', sendButton: 'Enviar mensaje', sendingText: 'Enviando…', successTitle: '¡Mensaje enviado!', successText: 'Gracias por escribirme. Te responderé muy pronto al correo que dejaste.', anotherButton: 'Enviar otro mensaje', errorText: 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.', privacy: 'Usaré tu correo solo para responderte. Nada de spam.', perk1: 'Respuesta personal', perk2: 'Sin spam', perk3: 'Directo a mi bandeja' }
 };
 const SEO_DEFAULTS = {
     title: 'Vicente Rabanales - Ingeniero en Informática | Portafolio',
@@ -1115,28 +1114,12 @@ const PAGES = [
                 U('contactCards', 'phoneLabel', 'Tarjeta de teléfono'),
                 U('contactCards', 'whatsappLabel', 'Tarjeta de WhatsApp'),
                 U('contactCards', 'locationLabel', 'Tarjeta de ubicación'),
-                U('contactCards', 'availabilityLabel', 'Tarjeta de disponibilidad')
-            ]),
-            OBJ('messageForm', 'Formulario de mensaje (llega al Chat)', [
-                U('messageForm', 'eyebrow', 'Etiqueta superior'),
-                U('messageForm', 'title', 'Título (parte 1)'),
-                U('messageForm', 'titleHighlight', 'Título (parte destacada)'),
-                U('messageForm', 'subtitle', 'Subtítulo'),
-                U('messageForm', 'perk1', 'Ventaja 1'),
-                U('messageForm', 'perk2', 'Ventaja 2'),
-                U('messageForm', 'perk3', 'Ventaja 3'),
-                U('messageForm', 'nameLabel', 'Campo nombre completo'),
-                U('messageForm', 'emailLabel', 'Campo correo'),
-                U('messageForm', 'subjectLabel', 'Campo asunto'),
-                LINES('subjects', 'Sugerencias de asunto (una por línea)'),
-                U('messageForm', 'messageLabel', 'Campo comentario'),
-                U('messageForm', 'sendButton', 'Botón enviar'),
-                U('messageForm', 'sendingText', 'Texto mientras se envía'),
-                U('messageForm', 'successTitle', 'Mensaje enviado: título'),
-                U('messageForm', 'successText', 'Mensaje enviado: texto'),
-                U('messageForm', 'anotherButton', 'Botón enviar otro'),
-                U('messageForm', 'errorText', 'Texto si falla el envío'),
-                U('messageForm', 'privacy', 'Nota de privacidad')
+                U('contactCards', 'availabilityLabel', 'Tarjeta de disponibilidad'),
+                U('contactCards', 'emailHint', 'Frase de apoyo: correo'),
+                U('contactCards', 'phoneHint', 'Frase de apoyo: teléfono'),
+                U('contactCards', 'whatsappHint', 'Frase de apoyo: WhatsApp'),
+                U('contactCards', 'locationHint', 'Frase de apoyo: ubicación'),
+                U('contactCards', 'availabilityHint', 'Frase de apoyo: disponibilidad')
             ]),
             OBJ('form', 'Preguntas frecuentes', [
                 U('form', 'faqEyebrow', 'Etiqueta sobre "Preguntas frecuentes"'),

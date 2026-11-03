@@ -38,7 +38,6 @@ function Tile({ icon: Icon, whatsapp = false, label, value, href, external = fal
 
 export default function ContactSection() {
   const h = contact.home
-  const m = ui.messageForm
   const whatsappUrl = `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.whatsappMessage)}`
 
   return (
@@ -89,7 +88,7 @@ export default function ContactSection() {
         </Reveal>
 
         <StaggerGroup className="grid content-between gap-3.5 lg:col-span-2">
-          <Tile featured desktopOnly icon={MessageSquareText} label={m.eyebrow} value={`${m.title} ${m.titleHighlight}`} href="#contacto" action={h.directButton} />
+          <Tile featured desktopOnly icon={MessageSquareText} label={ui.eyebrows.contact} value={h.directButton} href="#contacto" action={h.directButton} />
           <Tile icon={Mail} label={h.emailTitle} value={contact.email} href={`mailto:${contact.email}`} gradient="from-sky-500 to-blue-600" action={h.emailButton} />
           <Tile icon={Phone} label={h.phoneTitle} value={contact.phone} href={`tel:${contact.phone.replace(/\s+/g, '')}`} gradient="from-violet-500 to-purple-600" action={h.phoneButton} />
           <Tile whatsapp desktopOnly label={ui.contactCards.whatsappLabel} value={contact.phone} href={whatsappUrl} external gradient="from-whatsapp to-whatsapp-dark" action="WhatsApp" />

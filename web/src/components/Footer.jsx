@@ -26,12 +26,13 @@ function MarqueeText() {
   )
 }
 
-export default function Footer() {
+/** `joined`: la sección anterior ya es oscura, así que la onda del footer se apoya directo sobre ella (sin franja clara). */
+export default function Footer({ joined = false }) {
   const currentYear = new Date().getFullYear()
   const socialLinks = footer.social.filter((link) => link.href)
 
   return (
-    <footer className="relative bg-primary-50">
+    <footer className={`relative ${joined ? '-mt-24 sm:-mt-32' : 'bg-primary-50'}`}>
       <div className="relative h-24 sm:h-32">
         <Wave fill="#0a1030" height={128} />
       </div>

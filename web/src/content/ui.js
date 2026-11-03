@@ -38,32 +38,16 @@ const UI_DEFAULTS = {
     phoneLabel: 'Teléfono',
     whatsappLabel: 'WhatsApp',
     locationLabel: 'Ubicación',
-    availabilityLabel: 'Disponibilidad'
+    availabilityLabel: 'Disponibilidad',
+    emailHint: 'Cuéntame los detalles de tu proyecto o propuesta.',
+    phoneHint: 'Conversemos directamente, sin intermediarios.',
+    whatsappHint: 'La forma más rápida de escribirme.',
+    locationHint: 'Desde aquí trabajo y me conecto con equipos.',
+    availabilityHint: 'Mi estado actual para nuevos proyectos y oportunidades.'
   },
   form: {
     faqEyebrow: 'Dudas comunes',
     faqMoreText: '¿Sigues con dudas?'
-  },
-  messageForm: {
-    eyebrow: 'Escríbeme',
-    title: 'Cuéntame tu idea',
-    titleHighlight: 'y conversemos',
-    subtitle: 'Tu mensaje llega directo a mi bandeja y te respondo personalmente.',
-    nameLabel: 'Nombre completo',
-    subjectLabel: 'Asunto',
-    emailLabel: 'Tu correo',
-    messageLabel: 'Comentario',
-    sendButton: 'Enviar mensaje',
-    sendingText: 'Enviando…',
-    successTitle: '¡Mensaje enviado!',
-    successText: 'Gracias por escribirme. Te responderé muy pronto al correo que dejaste.',
-    anotherButton: 'Enviar otro mensaje',
-    errorText: 'No se pudo enviar. Revisa tu conexión e inténtalo de nuevo.',
-    privacy: 'Usaré tu correo solo para responderte. Nada de spam.',
-    perk1: 'Respuesta personal',
-    perk2: 'Sin spam',
-    perk3: 'Directo a mi bandeja',
-    subjects: ['Propuesta de proyecto', 'Oportunidad laboral', 'Consulta', 'Colaboración']
   }
 }
 
