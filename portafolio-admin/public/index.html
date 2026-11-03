@@ -826,7 +826,8 @@ const UI_DEFAULTS = {
 const SEO_DEFAULTS = {
     title: 'Vicente Rabanales - Ingeniero en Informática | Portafolio',
     description: 'Portafolio profesional de Vicente Rabanales. Ingeniero en Informática especializado en transformación digital, innovación y desarrollo de soluciones empresariales.',
-    keywords: 'Ingeniero Informática, Portafolio, React, Node.js, Transformación Digital, Innovación'
+    keywords: 'Ingeniero Informática, Portafolio, React, Node.js, Transformación Digital, Innovación',
+    siteUrl: 'https://portfolio-vicente-seven.vercel.app'
 };
 const U = (group, key, label) => T(key, label, { placeholder: UI_DEFAULTS[group][key] });
 
@@ -995,8 +996,8 @@ const PAGES = [
                 T('issuer', 'Emisor'),
                 TA('description', 'Descripción'),
                 N('year', 'Año', { min: 2000, max: 2100 }),
-                IMG('image', 'Imagen del certificado'),
-                IMG('logo', 'Logo / portada pequeña'),
+                IMG('image', 'Imagen del certificado (se muestra grande en la tarjeta y en el visor; sirve cualquier proporción)'),
+                IMG('logo', 'Logo o emblema (opcional: aparece como insignia pequeña sobre la tarjeta)'),
                 FILE('file', 'Archivo PDF para descargar', { nameKey: 'fileName', accept: 'application/pdf' })
             ], {
                 itemLabel: 'name',
@@ -1072,7 +1073,9 @@ const PAGES = [
         OBJ('seo', 'SEO', [
             T('title', 'Título de la pestaña', { placeholder: SEO_DEFAULTS.title }),
             TA('description', 'Descripción para Google y vistas previas', { placeholder: SEO_DEFAULTS.description }),
-            T('keywords', 'Palabras clave (separadas por coma)', { placeholder: SEO_DEFAULTS.keywords })
+            T('keywords', 'Palabras clave (separadas por coma)', { placeholder: SEO_DEFAULTS.keywords }),
+            IMG('image', 'Imagen al compartir el enlace en WhatsApp, LinkedIn, etc. (ideal 1200 × 630 px; sin imagen se usa la tarjeta con tu foto)'),
+            T('siteUrl', 'Dirección del sitio (cámbiala solo si compras un dominio propio)', { placeholder: SEO_DEFAULTS.siteUrl })
         ])
     ]},
     { id: 'uiLabels', group: 'Textos y SEO', tab: 'Etiquetas y botones', title: 'Etiquetas y botones del sitio', desc: 'Pequeños textos que aparecen en distintas secciones. Si un campo queda vacío se usa el texto por defecto (en gris).', fields: [

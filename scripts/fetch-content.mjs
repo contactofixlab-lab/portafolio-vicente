@@ -28,6 +28,23 @@ function applySeo(seo) {
     setAttr(/(<meta name="twitter:description" content=")[^"]*(")/, seo.description);
   }
   if (seo.keywords?.trim()) setAttr(/(<meta name="keywords" content=")[^"]*(")/, seo.keywords);
+
+  // Dirección del sitio: la usan "og:url", el enlace canónico y las imágenes con ruta relativa.
+  const siteUrl = /^https?:\/\//i.test(seo.siteUrl?.trim() ?? '') ? seo.siteUrl.trim().replace(/\/+$/, '') : '';
+  if (siteUrl) {
+    setAttr(/(<meta property="og:url" content=")[^"]*(")/, siteUrl);
+    setAttr(/(<link rel="canonical" href=")[^"]*(")/, siteUrl);
+  }
+  // Imagen que se ve al compartir el enlace (WhatsApp, LinkedIn, etc.).
+  const image = seo.image?.trim();
+  if (image) {
+    const base = siteUrl || (html.match(/<meta property="og:url" content="([^"]*)"/)?.[1] ?? '').replace(/\/+$/, '');
+    const abs = /^https?:\/\//i.test(image) ? image : base + (image.startsWith('/') ? '' : '/') + encodeURI(image);
+    setAttr(/(<meta property="og:image" content=")[^"]*(")/, abs);
+    setAttr(/(<meta name="twitter:image" content=")[^"]*(")/, abs);
+    // Con una imagen propia no se conocen sus medidas: se quitan las del archivo por defecto.
+    html = html.replace(/\s*<meta property="og:image:(width|height)" content="[^"]*" \/>/g, '');
+  }
   fs.writeFileSync(htmlTarget, html);
   console.log('[contenido] SEO aplicado al HTML');
 }
