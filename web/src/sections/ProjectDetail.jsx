@@ -57,8 +57,8 @@ export default function ProjectDetail({ projectId }) {
   const stats = [
     { icon: Calendar, label: t.startLabel, value: formatDate(project.startDate) },
     { icon: Calendar, label: t.endLabel, value: formatDate(project.endDate) },
-    { icon: Code2, label: t.stackLabel, value: `${project.stack.length} techs` },
-    { icon: BarChart3, label: t.phasesLabel, value: `${project.phases.length} fases` }
+    { icon: Code2, label: t.stackLabel, value: `${project.stack.length} ${project.stack.length === 1 ? 'tecnología' : 'tecnologías'}` },
+    { icon: BarChart3, label: t.phasesLabel, value: `${project.phases.length} ${project.phases.length === 1 ? 'fase' : 'fases'}` }
   ]
 
   return (
