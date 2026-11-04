@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion'
-import { Code2, Zap, Calendar, Target, CheckCircle2, AlertCircle, GitBranch, BarChart3, Github, ArrowUpRight, Layers } from 'lucide-react'
+import { Code2, Zap, Calendar, Target, CheckCircle2, AlertCircle, GitBranch, BarChart3, Github, ArrowUpRight, Layers, PlayCircle } from 'lucide-react'
 import Section from '../components/ui/Section'
 import PageHero from '../components/ui/PageHero'
 import Button from '../components/ui/Button'
 import Tilt from '../components/ui/Tilt'
 import ProjectMedia, { fitFromAdmin } from '../components/ui/ProjectMedia'
+import VideoEmbed, { parseVideo } from '../components/ui/VideoEmbed'
 import { Reveal, StaggerGroup, StaggerItem } from '../components/ui/Reveal'
 import { visibleProjects, projectDetail as t } from '../content'
 
@@ -12,6 +13,14 @@ const STATUS_STYLES = {
   'En Desarrollo': 'bg-cyan-100 text-cyan-800',
   'Últimas Fases': 'bg-emerald-100 text-emerald-800',
   Terminado: 'bg-emerald-100 text-emerald-800'
+}
+
+// Valores que guarda la consola en "Posición del video".
+const VIDEO_POSITIONS = {
+  'Arriba (portada)': 'top',
+  'Junto a la descripción': 'side',
+  'Sección propia': 'section',
+  'Al final, tras las fases': 'end'
 }
 
 function formatDate(dateString) {
@@ -61,6 +70,19 @@ export default function ProjectDetail({ projectId }) {
     { icon: BarChart3, label: t.phasesLabel, value: `${project.phases.length} ${project.phases.length === 1 ? 'fase' : 'fases'}` }
   ]
 
+  // El video es opcional: sin enlace válido no se muestra nada.
+  const hasVideo = Boolean(parseVideo(project.videoUrl))
+  const videoPos = VIDEO_POSITIONS[project.videoPosition] || 'section'
+  const videoTitle = project.videoTitle?.trim()
+  const video = hasVideo ? <VideoEmbed url={project.videoUrl} title={videoTitle || project.title} /> : null
+  const videoBlock = (withTitle) =>
+    hasVideo && (
+      <div className={videoPos === 'top' ? 'mb-14' : 'my-14'}>
+        {withTitle && <BlockTitle icon={PlayCircle} color="text-violet-500">{videoTitle || t.videoTitle || 'Mira cómo funciona'}</BlockTitle>}
+        <Reveal className="mx-auto w-full max-w-4xl">{video}</Reveal>
+      </div>
+    )
+
   return (
     <>
       <PageHero eyebrow={`${project.type} · ${project.status}`} title={project.title} subtitle={project.description} backHref="#proyectos" backText={t.backText}>
@@ -75,17 +97,22 @@ export default function ProjectDetail({ projectId }) {
       </PageHero>
 
       <Section bg="cream" className="-mt-px space-y-24">
+        {videoPos === 'top' && videoBlock(Boolean(videoTitle))}
+
         <div className="grid items-center gap-10 lg:grid-cols-5">
           <Reveal className="lg:col-span-3">
             <p className="text-xl leading-relaxed text-ink-soft">{project.longDescription}</p>
           </Reveal>
-          {project.image && (
-            <Reveal className="lg:col-span-2">
-              <Tilt max={8} scale={1.03} className="rounded-[2rem]">
-                <div className="mx-auto max-w-sm overflow-hidden rounded-[2rem] border-4 border-white shadow-card">
-                  <ProjectMedia src={project.image} title={project.title} fit={fitFromAdmin(project.imageFit)} padding="p-8" />
-                </div>
-              </Tilt>
+          {(project.image || (hasVideo && videoPos === 'side')) && (
+            <Reveal className="space-y-6 lg:col-span-2">
+              {hasVideo && videoPos === 'side' && video}
+              {project.image && (
+                <Tilt max={8} scale={1.03} className="rounded-[2rem]">
+                  <div className={`mx-auto overflow-hidden rounded-[2rem] border-4 border-white shadow-card ${hasVideo && videoPos === 'side' ? 'max-w-[15rem]' : 'max-w-sm'}`}>
+                    <ProjectMedia src={project.image} title={project.title} fit={fitFromAdmin(project.imageFit)} padding={hasVideo && videoPos === 'side' ? 'p-5' : 'p-8'} />
+                  </div>
+                </Tilt>
+              )}
             </Reveal>
           )}
         </div>
@@ -108,6 +135,8 @@ export default function ProjectDetail({ projectId }) {
             )
           })}
         </StaggerGroup>
+
+        {videoPos === 'section' && videoBlock(true)}
 
         {project.architecture && Object.keys(project.architecture).length > 0 && (
           <div>
@@ -229,6 +258,8 @@ export default function ProjectDetail({ projectId }) {
             </Reveal>
           </div>
         )}
+
+        {videoPos === 'end' && videoBlock(Boolean(videoTitle))}
 
         <div className="grid gap-12 md:grid-cols-2">
           <Reveal>

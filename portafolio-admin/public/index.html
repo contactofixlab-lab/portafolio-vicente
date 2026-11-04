@@ -800,8 +800,9 @@ const GROUP = (title, fields) => ({ type: 'group', title, fields });
 
 const nextId = (arr) => arr.reduce((m, x) => Math.max(m, Number(x.id) || 0), 0) + 1;
 
-const DETAIL_KEYS = ['backText', 'notFound', 'startLabel', 'endLabel', 'ongoing', 'stackLabel', 'phasesLabel', 'githubButton', 'architectureTitle', 'reasonTitle', 'problemsTitle', 'solutionsTitle', 'whatWasDoneTitle', 'featuresTitle', 'phasesTitle', 'resultsTitle', 'techTitle', 'categoriesTitle', 'similarTitle', 'similarEmpty', 'similarLink'];
+const DETAIL_KEYS = ['backText', 'notFound', 'startLabel', 'endLabel', 'ongoing', 'stackLabel', 'phasesLabel', 'githubButton', 'architectureTitle', 'reasonTitle', 'problemsTitle', 'solutionsTitle', 'whatWasDoneTitle', 'featuresTitle', 'phasesTitle', 'resultsTitle', 'techTitle', 'categoriesTitle', 'similarTitle', 'similarEmpty', 'similarLink', 'videoTitle'];
 const DETAIL_LABELS = {
+    videoTitle: 'Título de la sección del video (cuando está en "Sección propia")',
     backText: 'Botón volver', notFound: 'Texto "proyecto no encontrado"', startLabel: 'Etiqueta inicio', endLabel: 'Etiqueta fin',
     ongoing: 'Texto "en curso"', stackLabel: 'Etiqueta stack', phasesLabel: 'Etiqueta fases',
     githubButton: 'Botón GitHub', architectureTitle: 'Título arquitectura', reasonTitle: 'Título "por qué"',
@@ -889,6 +890,11 @@ const PAGES = [
                 LINES('tags', 'Categorías (una por línea)')
             ]),
             GROUP('Enlaces', [T('github', 'Enlace a GitHub')]),
+            GROUP('Video (opcional)', [
+                T('videoUrl', 'Enlace del video de YouTube o Vimeo (vacío = el proyecto no muestra video)'),
+                SEL('videoPosition', 'Dónde se muestra el video en la página del proyecto', ['Sección propia', 'Arriba (portada)', 'Junto a la descripción', 'Al final, tras las fases']),
+                T('videoTitle', 'Título sobre el video (opcional; en "Sección propia" vacío usa "Mira cómo funciona")')
+            ]),
             GROUP('Detalle', [
                 TA('reason', '¿Por qué se hizo?'),
                 LINES('whatWasDone', 'Funcionalidades implementadas (una por línea)'),
@@ -905,7 +911,7 @@ const PAGES = [
             itemLabel: 'title',
             make: (arr) => ({
                 id: nextId(arr), visible: true, title: 'Nuevo proyecto', description: '', longDescription: '', image: '',
-                type: 'Web', company: '', stack: [], status: 'En Desarrollo', tags: [], github: '',
+                type: 'Web', company: '', stack: [], status: 'En Desarrollo', tags: [], github: '', videoUrl: '', videoPosition: 'Sección propia', videoTitle: '',
                 startDate: '', endDate: '', reason: '', whatWasDone: [], problems: [], solutions: [], features: [],
                 architecture: { frontend: '', backend: '', database: '', external: '' }, phases: []
             })
